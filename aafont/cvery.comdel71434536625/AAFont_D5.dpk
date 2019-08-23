@@ -1,0 +1,40 @@
+package AAFont_D5;
+
+{$R *.RES}
+{$R 'AACtrls.dcr'}
+{$ALIGN ON}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST ON}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DESCRIPTION '平滑特效字体控件包 V2.60'}
+{$IMPLICITBUILD OFF}
+
+requires
+  vcl50,
+  VclSmp50;
+
+contains
+  AACtrls in 'AACtrls.pas',
+  AAFont in 'AAFont.pas',
+  AAFontDialog in 'AAFontDialog.pas' {AAFontDlg},
+  AAFontEditor in 'AAFontEditor.pas',
+  AATimer in 'AATimer.pas';
+
+end.

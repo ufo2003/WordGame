@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<SynUniHighlighter Version="2.0">
+	<SyntaxColoring>
+		<Info>
+			<General Name="scene edit" Extensions="TXT" Version="1" Revision="3" Sample="string = [''];
+unit UUniEdit;
+  TForm1 = class(TForm)//My class name
+{$R *.dfm}
+if SynUniSyn&lt;&gt;nil then SynUniSyn.RunDesigner else Showmessage('Please, choose highlighter');
+end;{  SynUniSyn:=TSynUniSyn.create( nil );}
+  case (*VersionType.ItemIndex of
+    0: SynUniSyn*).Info.Version.VersionType:=vtInternalTest;
+    1: @SynUniSyn.Info.Version.VersionType:=vtBeta;
+a:=['{9BFA382E-0D79-47F5-8246-E431E899CD62}']+$23-13;
+asm
+  mov ax,bx   //hjk
+  string
+end;" History=""/>
+			<Author Name="ufo2003" Mail="" Web="" Copyright="" Company="N/A" Remark=""/>
+		</Info>
+		<Schemes/>
+		<Editor/>
+		<MainRules Name="SyntaxColoring" Style="Root">
+			<Attributes Foreground="clNone" Background="clWindow"/>
+			<Delimiters Value="!&quot;#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^`{|}~"/>
+			<SubRules>
+				<Range Name="Remarks" CaseSensitive="True" Style="Remarks">
+					<Attributes Foreground="clGray" Background="clWindow" ParentBackground="True"/>
+					<Delimiters Value="!&quot;#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^`{|}~"/>
+					<OpenToken StartLine="" PartOfTerm="Right"/>
+					<CloseToken StartLine="" PartOfTerm="False"/>
+					<Properties CloseOnEol="True"/>
+					<MultiTokens>
+						<Tokens Open=";;"/>
+					</MultiTokens>
+					<SubRules/>
+				</Range>
+				<Range Name="Strings" Style="Strings">
+					<Attributes Foreground="clFuchsia" Background="clWindow" ParentBackground="True"/>
+					<Delimiters Value="!&quot;#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^`{|}~"/>
+					<OpenToken StartLine="" PartOfTerm="Right"/>
+					<CloseToken StartLine="" PartOfTerm="Right"/>
+					<Properties CloseOnEol="True"/>
+					<MultiTokens>
+						<Tokens Open="'" Close="'"/>
+					</MultiTokens>
+					<SubRules/>
+				</Range>
+				<KeyList Name="Pascal Terms" Enabled="True" Style="" Words="procedure
+if
+then
+else
+end
+not
+string
+or
+and
+run
+exeing
+">
+					<Attributes Foreground="clNone" Background="clWindow" ParentForeground="True" ParentBackground="True" Style="B"/>
+				</KeyList>
+				<KeyList Name="Standard types" Enabled="True" Style="" Words="Boolean
+game_pop
+game_page
+game_chat
+game_delay
+game_question
+game_trade
+game_save
+game_infobox
+game_goods_change
+game_attribute_change
+game_write_name
+game_save
+game_talk
+game_talk_char_set
+game_talk_stop
+game_npc_talk
+game_add_res_event
+game_check_res_event
+game_del_res_event
+game_add_scene_event
+game_check_scene_event
+game_del_scene_event
+game_prop_enbd
+game_pop_love
+game_pop_dig
+game_pop_fight
+game_pop_fight_a
+game_pop_game
+game_not_res_event
+game_not_scene_event
+game_over
+game_check_res_event_and
+game_not_res_event_and
+game_check_res_event_or
+game_not_res_event_or
+game_check_scene_event_and
+game_not_scene_event_and
+game_check_scene_event_or
+game_not_scene_event_or
+game_del_friend
+game_add_friend
+game_random_chance
+game_random_chance_at_sleep
+game_rename
+game_reload
+game_add_message
+game_add_task
+game_comp_task
+game_check_goods_nmb
+game_write_temp
+game_write_temp_string
+game_read_temp_string
+game_read_temp
+game_check_temp
+game_enabled_scene
+game_can_stop_chat
+game_functions_m
+game_role_is_exist
+game_set_role_0_hide
+game_role_only_show
+game_role_reshow
+game_bet
+game_check_role_values
+game_newname_from_oldname
+game_pop_a
+game_change_money
+game_direct_page
+game_direct_scene
+game_reload_direct
+game_write_scene_string
+game_read_scene_string
+game_role_count
+game_role_sex_count
+game_get_newname_at_id
+game_goto_home
+game_id_is_name
+game_goods_change_n
+game_sex_from_id
+game_check_money
+game_write_scene_integer
+game_read_scene_integer
+game_integer_comp
+game_show_scene
+game_chat_cleans
+game_grade
+game_start_now
+game_change_sex
+game_sex_from_name
+game_get_fm_1
+game_id_exist
+game_del_friend_byid
+game_get_oldname_at_id
+game_role_all_mtl
+game_clear_money
+game_get_money
+game_get_role_suxing
+game_move_money
+game_get_goods_count
+game_set_game_time
+game_kill_game_time
+game_spk_string
+game_not_rename
+game_clear_temp
+game_random_chance_2
+game_get_pscene_id
+game_role_value_half
+game_get_pscene_id_s
+game_inttostr
+game_get_read_txt
+game_true
+game_weather
+game_get_accoutre
+game_get_TickCount
+game_get_date
+game_get_time
+game_get_datetime
+game_int_datetime
+game_int_date
+game_int_time
+game_time_exe
+game_webform_isshow
+game_run_off_no
+game_write_factor
+game_read_factor
+game_allow_gohome
+game_id_from_oldname
+game_lingli_add
+game_check_role_values_byid
+game_goto_oldpage
+game_is_net_hide
+game_show_logon
+game_is_online
+game_show_note
+game_netuserinfo
+game_reshow_online
+game_show_dwjh
+game_show_chat
+game_send_pk_msg
+game_show_trade
+game_send_game_msg
+game_add_user_dwjh
+game_reload_chatlist
+game_asw_html_in_pop
+game_show_set
+game_set_var
+game_include_str
+game_inner_html
+game_biao_html
+game_res_goods
+game_can_fly
+game_bubble
+game_wuziqi
+">
+					<Attributes Foreground="clNone" Background="clWindow" ParentBackground="True" Style="B"/>
+				</KeyList>
+				<KeyList Name="Symbol ppp" Enabled="True" Style="" Words="
+&lt;:
+:&gt;
+">
+					<Attributes Foreground="clBlue" Background="clWindow" Style="B"/>
+				</KeyList>
+				<KeyList Name="Symbols" Enabled="True" Style="" Words="
+@
+=
+(
+)
+[
+]
+">
+					<Attributes Foreground="clBlue" Background="clWindow" ParentBackground="True"/>
+				</KeyList>
+				<Set Name="Numbers" Enabled="True" Style="" Symbols="0123456789" Quantity="0">
+					<Attributes Foreground="clMaroon" Background="clWindow" ParentBackground="True"/>
+				</Set>
+				<Set Name="Float" Enabled="True" Style="" Symbols=".0123456789" Quantity="0">
+					<Attributes Foreground="clMaroon" Background="clWindow" ParentBackground="True"/>
+				</Set>
+			</SubRules>
+		</MainRules>
+	</SyntaxColoring>
+	<CodeFolding>
+		<FoldRegion Name="Remarks" Type="1">
+			<OpenToken Symbol="{"/>
+			<CloseToken Symbol="}"/>
+			<Properties AllowNoSubs="True"/>
+			<SubRegions/>
+		</FoldRegion>
+	</CodeFolding>
+	<CustomData/>
+</SynUniHighlighter>

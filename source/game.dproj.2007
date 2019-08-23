@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{051e5971-0189-425e-bab2-73ec8d183aea}</ProjectGuid>
+    <MainSource>game.dpr</MainSource>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+    <DCC_DependencyCheckOutputName>output\game.exe</DCC_DependencyCheckOutputName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Version>7.0</Version>
+    <DCC_DebugInformation>False</DCC_DebugInformation>
+    <DCC_LocalDebugSymbols>False</DCC_LocalDebugSymbols>
+    <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+    <DCC_ExeOutput>E:\作品\玩游戏背单词中文互动版\output</DCC_ExeOutput>
+    <DCC_UnitSearchPath>E:\delphi\gdiplus\pas;E:\delphi\delphix107\Dx\Source;E:\delphi\raknet_013</DCC_UnitSearchPath>
+    <DCC_ResourcePath>E:\delphi\gdiplus\pas;E:\delphi\delphix107\Dx\Source;E:\delphi\raknet_013</DCC_ResourcePath>
+    <DCC_ObjPath>E:\delphi\gdiplus\pas;E:\delphi\delphix107\Dx\Source;E:\delphi\raknet_013</DCC_ObjPath>
+    <DCC_IncludePath>E:\delphi\gdiplus\pas;E:\delphi\delphix107\Dx\Source;E:\delphi\raknet_013</DCC_IncludePath>
+    <DCC_Define>RELEASE</DCC_Define>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <Version>7.0</Version>
+    <DCC_ExeOutput>E:\作品\玩游戏背单词中文互动版\output</DCC_ExeOutput>
+    <DCC_UnitSearchPath>E:\delphi\gdiplus\pas;E:\delphi\delphix107\Dx\Source;E:\delphi\raknet_013;E:\delphi\asphyre300\Source;E:\delphi\vclzip3\source</DCC_UnitSearchPath>
+    <DCC_ResourcePath>E:\delphi\gdiplus\pas;E:\delphi\delphix107\Dx\Source;E:\delphi\raknet_013;E:\delphi\asphyre300\Source;E:\delphi\vclzip3\source</DCC_ResourcePath>
+    <DCC_ObjPath>E:\delphi\gdiplus\pas;E:\delphi\delphix107\Dx\Source;E:\delphi\raknet_013;E:\delphi\asphyre300\Source;E:\delphi\vclzip3\source</DCC_ObjPath>
+    <DCC_IncludePath>E:\delphi\gdiplus\pas;E:\delphi\delphix107\Dx\Source;E:\delphi\raknet_013;E:\delphi\asphyre300\Source;E:\delphi\vclzip3\source</DCC_IncludePath>
+    <DCC_Define>DEBUG</DCC_Define>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <Borland.Personality>Delphi.Personality</Borland.Personality>
+    <Borland.ProjectType>VCLApplication</Borland.ProjectType>
+    <BorlandProject>
+<BorlandProject><Delphi.Personality><Parameters><Parameters Name="UseLauncher">False</Parameters><Parameters Name="LoadAllSymbols">True</Parameters><Parameters Name="LoadUnspecifiedSymbols">False</Parameters></Parameters><VersionInfo><VersionInfo Name="IncludeVerInfo">True</VersionInfo><VersionInfo Name="AutoIncBuild">False</VersionInfo><VersionInfo Name="MajorVer">1</VersionInfo><VersionInfo Name="MinorVer">4</VersionInfo><VersionInfo Name="Release">1</VersionInfo><VersionInfo Name="Build">1097</VersionInfo><VersionInfo Name="Debug">False</VersionInfo><VersionInfo Name="PreRelease">False</VersionInfo><VersionInfo Name="Special">False</VersionInfo><VersionInfo Name="Private">False</VersionInfo><VersionInfo Name="DLL">False</VersionInfo><VersionInfo Name="Locale">2052</VersionInfo><VersionInfo Name="CodePage">936</VersionInfo></VersionInfo><VersionInfoKeys><VersionInfoKeys Name="CompanyName">English Game</VersionInfoKeys><VersionInfoKeys Name="FileDescription">玩游戏背单词武侠版</VersionInfoKeys><VersionInfoKeys Name="FileVersion">1.4.1.1097</VersionInfoKeys><VersionInfoKeys Name="InternalName"></VersionInfoKeys><VersionInfoKeys Name="LegalCopyright">傅铖荣，版权所有</VersionInfoKeys><VersionInfoKeys Name="LegalTrademarks"></VersionInfoKeys><VersionInfoKeys Name="OriginalFilename"></VersionInfoKeys><VersionInfoKeys Name="ProductName">英雄传奇</VersionInfoKeys><VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys><VersionInfoKeys Name="Comments">ufo2003a@gmail.com</VersionInfoKeys></VersionInfoKeys><Source><Source Name="MainSource">game.dpr</Source></Source></Delphi.Personality><ModelSupport>False</ModelSupport></BorlandProject></BorlandProject>
+  </ProjectExtensions>
+  <Import Project="$(MSBuildBinPath)\Borland.Delphi.Targets" />
+  <ItemGroup>
+    <DelphiCompile Include="game.dpr">
+      <MainSource>MainSource</MainSource>
+    </DelphiCompile>
+    <DCCReference Include="..\背单词游戏服务器端\Unit_glb.pas" />
+    <DCCReference Include="Unit1.pas">
+      <Form>Form1</Form>
+    </DCCReference>
+    <DCCReference Include="Unit2.pas" />
+    <DCCReference Include="Unit_chat.pas">
+      <Form>Form_chat</Form>
+    </DCCReference>
+    <DCCReference Include="Unit_data.pas">
+      <Form>Data2</Form>
+      <DesignClass>TDataModule</DesignClass>
+    </DCCReference>
+    <DCCReference Include="Unit_download.pas" />
+    <DCCReference Include="Unit_dwjh.pas">
+      <Form>Form_dwjh</Form>
+    </DCCReference>
+    <DCCReference Include="Unit_goods.pas">
+      <Form>Form_goods</Form>
+    </DCCReference>
+    <DCCReference Include="Unit_music.pas" />
+    <DCCReference Include="Unit_net.pas">
+      <Form>Data_net</Form>
+      <DesignClass>TDataModule</DesignClass>
+    </DCCReference>
+    <DCCReference Include="Unit_net_set.pas">
+      <Form>Form_net_set</Form>
+    </DCCReference>
+    <DCCReference Include="Unit_note.pas">
+      <Form>Form_note</Form>
+    </DCCReference>
+    <DCCReference Include="Unit_pic.pas">
+      <Form>Form_pic</Form>
+    </DCCReference>
+    <DCCReference Include="Unit_player.pas" />
+    <DCCReference Include="Unit_pop.pas">
+      <Form>Form_pop</Form>
+    </DCCReference>
+    <DCCReference Include="unit_save.pas">
+      <Form>Form_save</Form>
+    </DCCReference>
+    <DCCReference Include="Unit_set.pas">
+      <Form>Form_set</Form>
+    </DCCReference>
+    <DCCReference Include="Unit_show.pas">
+      <Form>Form_show</Form>
+    </DCCReference>
+    <DCCReference Include="Unit_task.pas">
+      <Form>Form_task</Form>
+    </DCCReference>
+    <DCCReference Include="Unit_trade.pas">
+      <Form>Form_trade</Form>
+    </DCCReference>
+    <DCCReference Include="Unit_ZJ_LY.pas">
+      <Form>Form_ZJ_LY</Form>
+    </DCCReference>
+  </ItemGroup>
+</Project>

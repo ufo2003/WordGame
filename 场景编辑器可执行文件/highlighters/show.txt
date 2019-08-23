@@ -1,0 +1,152 @@
+\style{+B}game_pop_a\style{-B}    带动画效果的弹出背单词窗口
+\style{+B}game_add_scene_event\style{-B}     添加剧情事件，其中1000固定用于存盘场景号，
+\style{+B}game_check_scene_event\style{-B}   检查剧情事件是否发生过
+\style{+B}game_add_res_event\style{-B}    添加有关物品的事件
+\style{+B}game_check_res_event\style{-B}   检查物品事件是否发生过
+\style{+B}game_change_money\style{-B}    修改金钱，正数增加，负数减少
+\style{+B}game_check_money\style{-B}比对金钱，如果大于等于 v 返回 1
+\style{+B}game_pop_fight\style{-B}    战斗，参数1怪物数量，参数2，怪物种类
+\style{+B}game_pop_fight_a\style{-B} 带动画启动窗口的战斗参数1怪物数量，参数2，怪物种类
+\style{+B}game_goods_change\style{-B}   修改游戏物品数量，参数1，物品编号，参数2，加减
+\style{+B}game_goods_change_n\style{-B}通过物品名修改物品数量
+\style{+B}game_pop\style{-B}  弹出单词窗口，参数为弹出次数
+\style{+B}game_page\style{-B}  加载页面，参数为页面id
+\style{+B}game_chat\style{-B}  在聊天窗口显示一句话
+\style{+B}game_delay\style{-B}   延时，参数毫秒
+\style{+B}game_question\style{-B}  问询，回复是继续往下运行，回复否中断动作
+\style{+B}game_trade\style{-B}  交易买卖 ，第一个参数店铺号，第二个0买入，1卖出
+\style{+B}game_save\style{-B}   存取进度 0手工存取
+\style{+B}game_infobox\style{-B}   弹出一条提示
+\style{+B}game_attribute_change\style{-B} 修改属性，参数1，角色，0表全体，参数2属性编号，参数3，加减值
+\style{+B}game_write_name\style{-B}   写入一个名称到当前对话列表
+\style{+B}game_talk\style{-B}    聊天，参数是 姓名
+\style{+B}game_talk_char_set\style{-B}   修改角色的聊天参数
+\style{+B}game_talk_stop\style{-B}   停止聊天
+\style{+B}game_npc_talk\style{-B}    和npc的对话
+\style{+B}game_del_res_event\style{-B}    删除物品事件
+\style{+B}game_del_scene_event\style{-B}    删除剧情事件
+\style{+B}game_prop_enbd\style{-B}   激活或者禁用装备属性按钮，0禁用，1激活
+\style{+B}game_pop_love\style{-B}   弹出只显示两个人的背单词窗口
+\style{+B}game_pop_dig\style{-B}    挖矿 默认数字为一百
+\style{+B}game_pop_game\style{-B}    打擂 ，对方人数，人物种类
+\style{+B}game_not_res_event\style{-B}   当指定的事件不存在，返回1，与game check函数正好相反
+\style{+B}game_not_scene_event\style{-B}   当指定的场景事件不存在，返回1
+\style{+B}game_over\style{-B}   游戏结束
+\style{+B}game_check_res_event_and\style{-B}  多个物品全部在，返回 1
+\style{+B}game_not_res_event_and\style{-B}   多个物品都 不 存在，返回 1
+\style{+B}game_check_res_event_or\style{-B}  多个物品有一个存在，返回 1
+\style{+B}game_not_res_event_or\style{-B}   多个物品有一个 不 存在，返回 1
+\style{+B}game_check_scene_event_and\style{-B}   多个事件是否全部发生过，是返回1                      
+\style{+B}game_not_scene_event_and\style{-B}    多个事情都没发生则返回1                         
+\style{+B}game_check_scene_event_or\style{-B}    多个事件有一个存在，返回1                        
+\style{+B}game_not_scene_event_or\style{-B}    多个事情有一个不存在，返回1
+\style{+B}game_del_friend\style{-B}    删除一个朋友
+\style{+B}game_add_friend\style{-B}    添加一个朋友，新加入者第二个参数为1，再次加入，第二个参数为零
+\style{+B}game_random_chance\style{-B}    判断是否X分之一的机会，是返回1
+\style{+B}game_random_chance_at_sleep\style{-B}    带sleep的适合连续使用的机会判断函数
+\style{+B}game_rename\style{-B}    修改人物姓名 ，oldname为空表示修改主角
+\style{+B}game_reload\style{-B}    重新载入当前场景，参数随意
+\style{+B}game_add_message\style{-B}    添加一个提示消息到消息列表
+\style{+B}game_add_task\style{-B}    添加任务
+\style{+B}game_comp_task\style{-B}    完成任务
+\style{+B}game_check_goods_nmb\style{-B}    检查某物品数量是否有几个，有，返回 1
+\style{+B}game_write_temp\style{-B}    写入一个临时事件,id是事件名，values是事件内容
+\style{+B}game_write_temp_string\style{-B}    写入文字到临时表
+\style{+B}game_read_temp_string\style{-B}    从临时表读取文本
+\style{+B}game_read_temp\style{-B}    从临时表读取事件的值，如果值存在且大于零，则返回1
+\style{+B}game_check_temp\style{-B}    在临时表内比较事件，看是否大于等于指定值
+\style{+B}game_enabled_scene\style{-B}     1,激活场景窗口，0，禁用场景窗口
+\style{+B}game_can_stop_chat\style{-B}    是否允许中途结束聊天
+\style{+B}game_functions_m\style{-B}    在参数内一次执行多个函数，可以带or and 大于小于等于 判断
+\style{+B}game_role_is_exist\style{-B}    如果这个人物存在，返回 1
+\style{+B}game_set_role_0_hide\style{-B}    设置某个人物的显隐，1显示，0隐藏
+\style{+B}game_role_only_show\style{-B}    仅显示此人，隐藏其他全部
+\style{+B}game_role_reshow\style{-B}    恢复人物原先的显隐状态
+\style{+B}game_bet\style{-B} 赌钱，参数1临时表id，参数2设为一表示大，0小。赢了返回 1
+\style{+B}game_check_role_values\style{-B}   检查某个人物的某属性值是否达到某值
+\style{+B}game_Newname_from_oldname\style{-B}   根据原始名来获取新的人物名称
+\style{+B}game_direct_page\style{-B}    直接从内存读入html，忽略脚本和转场效果，并聊天清屏
+\style{+B}game_direct_scene\style{-B}    直接从内存读入html，忽略脚本和转场效果
+\style{+B}game_reload_direct\style{-B}    忽略脚本和转场效果的重新载入当前页面，参数随意
+\style{+B}game_write_scene_string\style{-B}写入字符串到场景表
+\style{+B}game_read_scene_string\style{-B}从场景表读取字符串
+\style{+B}game_role_count\style{-B} 查询人物数，参数为零，返回人物数，参数非零，如果大于等于c，返回1
+\style{+B}game_role_sex_count\style{-B}返回指定性别的人物数，参数1为男，0为女
+\style{+B}game_get_Newname_at_id\style{-B}根据序列号返回新的名字，1为第一个（一般是主角），2为第二个
+\style{+B}game_goto_home\style{-B}回城，参数随意
+\style{+B}game_id_is_name\style{-B}看id是否等于指定人物，参数id等于1表示第一个人，2表示第二个
+\style{+B}game_sex_from_id\style{-B}判断此id是男是女，id=1表示第一个人，2表示第二个。男返回1
+\style{+B}game_sex_from_name\style{-B}  //判断此名是男是女，男返回1
+\style{+B}game_write_scene_integer\style{-B}   往scene事件表写入一个值
+\style{+B}game_read_scene_integer\style{-B}    从scene事件表读取一个值
+\style{+B}game_integer_comp\style{-B} 对i1和i2进行比较，c是比较符号 =,>,<,<=,>=,<>
+\style{+B}game_chat_cleans\style{-B}  //聊天窗口清屏，参数随意
+\style{+B}game_grade\style{-B}    //检查此人物是否大于等于这个等级了
+\style{+B}game_start_now\style{-B}  //游戏开始
+\style{+B}game_change_sex\style{-B} 更改性别,sex为1表示男，0表示女
+\style{+B}game_get_fm_1\style{-B}  //返回第一个指定性别的序号0表示女，1为第一个
+\style{+B}game_id_exist\style{-B}  //检查指定序号人物是否存在，1表示第一个
+\style{+B}game_del_friend_byid\style{-B}   通过id删除朋友
+\style{+B}game_get_oldname_at_id\style{-B}   根据序列号返回老的名字，1为第一个，2为第二个
+\style{+B}game_move_money\style{-B}  转移金钱，从id1转移到id2，1表示第一个人物
+\style{+B}game_role_all_mtl\style{-B}  命体灵全满，p=0表示全体，1表示第一个人物
+\style{+B}game_clear_money\style{-B}  金钱清空，参数1表示第一个人
+\style{+B}game_get_money\style{-B}  返回金钱,参数为1表示第一个人物
+\style{+B}game_get_role_suxing\style{-B} 返回属性值,参数为1表示第一个人物，v表示要取的属性编号
+\style{+B}game_get_goods_count\style{-B}  返回指定名称的物品数量
+\style{+B}game_set_game_time\style{-B} //启动定时器，定时秒数，超时后的载入页面
+\style{+B}game_kill_game_time\style{-B}  //取消定时，参数随意
+\style{+B}game_spk_string\style{-B}  //朗读单词或句子
+\style{+B}game_not_rename\style{-B}  //是否改名，参数1表示第一个人物
+\style{+B}game_clear_temp\style{-B}  //清空临时表，参数随意
+\style{+B}game_random_chance_2\style{-B}  //返回随机数实际值
+\style{+B}game_get_pscene_id\style{-B}  //返回当前页id和参数的累加值
+\style{+B}game_role_value_half\style{-B}  //生命值减半 id为0表示全体减半，为1表示第一个人物
+\style{+B}game_get_pscene_id_s\style{-B} //返回页号，字符串形式，id和参数的累加值
+\style{+B}game_inttostr\style{-B}  // 返回数字的字符形式
+\style{+B}game_get_read_txt\style{-B} 返回阅读材料字符串，参数为零，表示随机，否则返回指定行
+\style{+B}game_true\style{-B}  //参数为一返回true，参数为零返回false
+\style{+B}game_weather\style{-B}指定战斗场景天气-1关闭，0自动（默认） 1，大雪，2大雨，3红叶，4，小雪
+\style{+B}game_get_accoutre\style{-B}返回装备值，i为1表示第一个人物，idx表示要取的装备种类
+\style{+B}game_get_TickCount\style{-B} 返回开机以来的毫秒数量，参数为1，则返回秒
+\style{+B}game_get_date\style{-B} 返回日期，字符型，如果参数为零，返回系统日期
+\style{+B}game_get_time\style{-B} 返回时间，字符型，如果参数为零，返回系统时间
+\style{+B}game_get_datetime\style{-B} 返回日期和时间，字符型，如果参数为零，返回系统日期时间
+\style{+B}game_int_datetime\style{-B} 返回整形的日期时间，参数随意
+\style{+B}game_int_date\style{-B} 返回整形的日期，参数随意
+\style{+B}game_int_time\style{-B} 返回整形的时间 。参数随意
+\style{+B}game_time_exe\style{-B} 在指定秒数后执行内容，注意，为了防止函数参数被预先求值，可把字母Game大写，或者用D5001动作转换
+\style{+B}game_webform_isshow\style{-B} 主窗口是否处于前面
+\style{+B}game_run_off_no\style{-B} 禁止逃跑，0表示禁止，1表示允许，场景初始化时自动允许按概率逃跑
+\style{+B}game_write_factor\style{-B} 写入怪物难度系数
+\style{+B}game_read_factor\style{-B} 读取怪物难度系数
+\style{+B}game_allow_gohome\style{-B} 是否允许回城，1，允许，0禁止
+\style{+B}game_id_from_oldname\style{-B} 用名称返回id，返回1表示第一个
+\style{+B}game_lingli_add\style{-B} 增减灵力，百分比，第一个参数为零表示全体，后一个参数表示百分比
+\style{+B}game_check_role_values_byid\style{-B} 检查指定人物的id，1表示第一个，第二参数指定那个值
+\style{+B}game_goto_oldpage\style{-B} 返回前一页，只适合只有唯一来源的页面使用
+\style{+B}game_is_net_hide\style{-B} 是否隐藏网络版显示
+\style{+B}game_show_logon\style{-B} 显示登录窗口
+\style{+B}game_is_online\style{-B} 是否联网游戏
+\style{+B}game_show_note\style{-B} 显示通告
+\style{+B}game_netuserinfo\style{-B} 在对话区域显示玩家信息
+\style{+B}game_reshow_online\style{-B} 重新显示在线人物
+\style{+B}game_show_dwjh\style{-B} 显示队伍，国家，组织信息
+\style{+B}game_show_chat\style{-B} 显示聊天窗口
+\style{+B}game_send_pk_msg\style{-B} 发送pk邀请
+\style{+B}game_show_trade\style{-B} 显示交易窗口
+\style{+B}game_send_game_msg\style{-B} 发送竞赛邀请
+\style{+B}game_add_user_dwjh\style{-B} 同意，添加此用户
+\style{+B}game_reload_chatlist\style{-B}仅仅重载聊天列表
+\style{+B}game_asw_html_in_pop\style{-B}html模式的背单词
+\style{+B}game_show_set\style{-B}显示设置窗口，参数表示选项面板顺序
+\style{+B}game_set_var\style{-B}设置指定变量的值，参数表示要设置哪个
+\style{+B}game_include_str\style{-B}包含其他文件的内容进来
+\style{+B}game_inner_html\style{-B}设置一段html，参数表示要设置的序号
+\style{+B}game_biao_html\style{-B}做标记
+\style{+B}game_res_goods\style{-B}id,数量，名称。返回一个物品是否捡到的标准字符串
+\style{+B}game_can_fly\style{-B}返回1表示允许飞行，参数随意
+\style{+B}game_bubble\style{-B} 显示泡泡龙
+\style{+B}game_wuziqi\style{-B}五子棋，参数是等级，1-4，从低到高
+\style{+B}game_inc_scene_event\style{-B}值累加，参数是事件id，要累加的数值
+\style{+B}game_dec_scene_event\style{-B}值累减，参数是事件id，要累减的数值

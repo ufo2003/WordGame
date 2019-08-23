@@ -1,0 +1,50 @@
+object Form_msg: TForm_msg
+  Left = 0
+  Top = 0
+  Caption = #21021#22987#21270
+  ClientHeight = 101
+  ClientWidth = 562
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = #23435#20307
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 8
+    Top = 16
+    Width = 459
+    Height = 27
+    Caption = #31532#19968#27425#20351#29992#30334#24230#35821#38899#65292#27491#22312#20934#22791#25968#25454#65292
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = #23435#20307
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 8
+    Top = 49
+    Width = 474
+    Height = 27
+    Caption = #26681#25454#32593#36895#19981#21516#65292#38656#35201#30340#26102#38388#22823#32422#20026'3-6'#31186
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = #23435#20307
+    Font.Style = []
+    ParentFont = False
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 4000
+    OnTimer = Timer1Timer
+    Left = 248
+    Top = 64
+  end
+end

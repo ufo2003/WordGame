@@ -1,0 +1,14 @@
+迷宫阅读=<:game_true(1)exeing game_include_str('biao_yuedu.upp'):><p>
+固定物品=<:game_true(1)string game_res_goods(0,1,'忘忧草'):><p>
+迷宫难度=<:game_true(1)exeing game_include_str('mgnd.upp'):><p>
+随机物品=<:game_true(1)string game_res_goods(5,1,'忘忧草'):><p>
+在线图片=<img src="$apppath$img\img_shamo1.jpg"><p>
+ifthen=if game_check_scene_event(1000) then$br$$br$else$br$$br$end
+allifthen=<:if game_check_scene_event(1000) then$br$$br$else$br$$br$end:>
+task=if game_check_res_event($id$) then$br$if game_check_goods_nmb('$物品$',$数量$) then$br$$人物$=1,对，要的就是$物品$。$br$I=[game_goods_change_n('$物品$',-$数量$);game_comp_task($id$);game_infobox('您得到了$奖励$')]1,提交任务（鼠标点击此处提交物品）。$br$else$br$$人物$=1,您采集的$物品$数量不够。$br$end$br$else$br$$人物$=1,可帮我找$数量$份<FONT color="#FF0000">$物品$</FONT>吗？$br$I,A=[game_add_task($id$)]1,接受任务$br$I,B=1,我现在没空。$br$end$br$
+
+;;如果需要在编辑器内换行显示，请用 $br$ 表示换行符
+
+自定义一=
+自定义二=
+自定义三=
