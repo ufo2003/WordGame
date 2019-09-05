@@ -1,10 +1,10 @@
 object Form_ZJ_LY: TForm_ZJ_LY
   Left = 194
   Top = 123
-  Width = 696
-  Height = 480
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = #38136#21073#12289#28860#33647
+  ClientHeight = 446
+  ClientWidth = 680
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,15 +21,16 @@ object Form_ZJ_LY: TForm_ZJ_LY
   object PageControl1: TPageControl
     Left = 0
     Top = 0
-    Width = 688
-    Height = 453
+    Width = 680
+    Height = 446
     ActivePage = TabSheet1
     Align = alClient
-    TabIndex = 0
     TabOrder = 0
+    ExplicitHeight = 441
     object TabSheet1: TTabSheet
       Caption = #38136#21073
       OnShow = TabSheet1Show
+      ExplicitHeight = 412
       object Label1: TLabel
         Left = 528
         Top = 16
@@ -89,6 +90,7 @@ object Form_ZJ_LY: TForm_ZJ_LY
       Caption = #28860#33647
       ImageIndex = 2
       OnShow = TabSheet3Show
+      ExplicitHeight = 412
       object Label2: TLabel
         Left = 525
         Top = 16
@@ -148,6 +150,7 @@ object Form_ZJ_LY: TForm_ZJ_LY
       Caption = #21046#35013#22791
       ImageIndex = 2
       OnShow = TabSheet2Show
+      ExplicitHeight = 412
       object Label3: TLabel
         Left = 525
         Top = 16
@@ -207,6 +210,7 @@ object Form_ZJ_LY: TForm_ZJ_LY
       Caption = #21046#26263#22120
       ImageIndex = 3
       OnShow = TabSheet4Show
+      ExplicitHeight = 412
       object Label4: TLabel
         Left = 525
         Top = 16
@@ -268,8 +272,6 @@ object Form_ZJ_LY: TForm_ZJ_LY
     Top = 200
     Width = 529
     Height = 25
-    Min = 0
-    Max = 100
     Smooth = True
     Step = 1
     TabOrder = 1

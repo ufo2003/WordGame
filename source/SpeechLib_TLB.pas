@@ -11,65 +11,40 @@ unit SpeechLib_TLB;
 // manual modifications will be lost.                                         
 // ************************************************************************ //
 
-// PASTLWTR : $Revision:   1.88.1.0.1.0  $
-// File generated on 01/05/2002 09:40:21 from Type Library described below.
+// $Rev: 52393 $
+// File generated on 2019/08/26 15:32:46 from Type Library described below.
 
-// *************************************************************************//
-// NOTE:                                                                      
-// Items guarded by $IFDEF_LIVE_SERVER_AT_DESIGN_TIME are used by properties  
-// which return objects that may need to be explicitly created via a function 
-// call prior to any access via the property. These items have been disabled  
-// in order to prevent accidental use from within the object inspector. You   
-// may enable them by defining LIVE_SERVER_AT_DESIGN_TIME or by selectively   
-// removing them from the $IFDEF blocks. However, such items must still be    
-// programmatically created via a method of the appropriate CoClass before    
-// they can be used.                                                          
-// ************************************************************************ //
-// Type Lib: C:\Program Files\Common Files\Microsoft Shared\Speech\sapi.dll (1)
-// IID\LCID: {C866CA3A-32F7-11D2-9602-00C04F8EE628}\0
+// ************************************************************************  //
+// Type Lib: C:\WINDOWS\System32\Speech\Common\sapi.dll (1)
+// LIBID: {C866CA3A-32F7-11D2-9602-00C04F8EE628}
+// LCID: 0
 // Helpfile: 
+// HelpString: Microsoft Speech Object Library
 // DepndLst: 
-//   (1) v2.0 stdole, (C:\WINNT\System32\stdole2.tlb)
-//   (2) v4.0 StdVCL, (C:\WINNT\System32\STDVCL40.DLL)
+//   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
+// SYS_KIND: SYS_WIN32
 // Errors:
 //   Hint: Parameter 'Object' of ISpeechObjectToken.CreateInstance changed to 'Object_'
 //   Hint: Parameter 'Object' of ISpeechObjectToken.IsUISupported changed to 'Object_'
 //   Hint: Parameter 'Object' of ISpeechObjectToken.DisplayUI changed to 'Object_'
-//   Hint: Member 'Type' of 'ISpeechAudioFormat' changed to 'Type_'
+//   Hint: Symbol 'Type' renamed to 'type_'
 //   Hint: Parameter 'Type' of ISpeechVoice.Skip changed to 'Type_'
 //   Hint: Parameter 'Type' of ISpeechRecognizer.GetFormat changed to 'Type_'
 //   Hint: Parameter 'Type' of ISpeechGrammarRuleState.AddWordTransition changed to 'Type_'
 //   Hint: Parameter 'Type' of ISpeechGrammarRuleState.AddSpecialTransition changed to 'Type_'
-//   Hint: Member 'Type' of 'ISpeechGrammarRuleStateTransition' changed to 'Type_'
 //   Hint: Parameter 'Type' of ISpeechGrammarRuleStateTransition.Type changed to 'Type_'
 //   Hint: Parameter 'Property' of ISpeechPhraseProperties.Item changed to 'Property_'
-//   Hint: Member 'Type' of 'ISpeechLexiconWord' changed to 'Type_'
-//   Hint: Member 'Type' of 'ISpeechLexiconPronunciation' changed to 'Type_'
-//   Hint: Member 'Type' of 'tagSTATSTG' changed to 'Type_'
-//   Error creating palette bitmap of (TSpObjectTokenCategory) : Server C:\Program Files\Common Files\Microsoft Shared\Speech\sapi.dll contains no icons
-//   Error creating palette bitmap of (TSpObjectToken) : Server C:\Program Files\Common Files\Microsoft Shared\Speech\sapi.dll contains no icons
-//   Error creating palette bitmap of (TSpMMAudioIn) : Server C:\Program Files\Common Files\Microsoft Shared\Speech\sapi.dll contains no icons
-//   Error creating palette bitmap of (TSpMMAudioOut) : Server C:\Program Files\Common Files\Microsoft Shared\Speech\sapi.dll contains no icons
-//   Error creating palette bitmap of (TSpVoice) : Server C:\Program Files\Common Files\Microsoft Shared\Speech\sapi.dll contains no icons
-//   Error creating palette bitmap of (TSpSharedRecoContext) : Server C:\Program Files\Common Files\Microsoft Shared\Speech\sapi.dll contains no icons
-//   Error creating palette bitmap of (TSpInprocRecognizer) : Server C:\Program Files\Common Files\Microsoft Shared\Speech\sapi.dll contains no icons
-//   Error creating palette bitmap of (TSpSharedRecognizer) : Server C:\Program Files\Common Files\Microsoft Shared\Speech\sapi.dll contains no icons
-//   Error creating palette bitmap of (TSpLexicon) : Server C:\Program Files\Common Files\Microsoft Shared\Speech\sapi.dll contains no icons
-//   Error creating palette bitmap of (TSpUnCompressedLexicon) : Server C:\Program Files\Common Files\Microsoft Shared\Speech\sapi.dll contains no icons
-//   Error creating palette bitmap of (TSpPhoneConverter) : Server C:\Program Files\Common Files\Microsoft Shared\Speech\sapi.dll contains no icons
-//   Error creating palette bitmap of (TSpTextSelectionInformation) : Server C:\Program Files\Common Files\Microsoft Shared\Speech\sapi.dll contains no icons
-//   Error creating palette bitmap of (TSpPhraseInfoBuilder) : Server C:\Program Files\Common Files\Microsoft Shared\Speech\sapi.dll contains no icons
-//   Error creating palette bitmap of (TSpAudioFormat) : Server C:\Program Files\Common Files\Microsoft Shared\Speech\sapi.dll contains no icons
-//   Error creating palette bitmap of (TSpWaveFormatEx) : Server C:\Program Files\Common Files\Microsoft Shared\Speech\sapi.dll contains no icons
-//   Error creating palette bitmap of (TSpInProcRecoContext) : Server C:\Program Files\Common Files\Microsoft Shared\Speech\sapi.dll contains no icons
-//   Error creating palette bitmap of (TSpCustomStream) : Server C:\Program Files\Common Files\Microsoft Shared\Speech\sapi.dll contains no icons
-//   Error creating palette bitmap of (TSpFileStream) : Server C:\Program Files\Common Files\Microsoft Shared\Speech\sapi.dll contains no icons
-//   Error creating palette bitmap of (TSpMemoryStream) : Server C:\Program Files\Common Files\Microsoft Shared\Speech\sapi.dll contains no icons
 // ************************************************************************ //
 {$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers. 
+{$WARN SYMBOL_PLATFORM OFF}
+{$WRITEABLECONST ON}
+{$VARPROPSETTER ON}
+{$ALIGN 4}
+
 interface
 
-uses Windows, ActiveX, Classes, Graphics, OleServer, OleCtrls, StdVCL;
+uses Winapi.Windows, System.Classes, System.Variants, System.Win.StdVCL, Vcl.Graphics, Vcl.OleServer, Winapi.ActiveX;
+  
 
 // *********************************************************************//
 // GUIDS declared in the TypeLibrary. Following prefixes are used:        
@@ -81,7 +56,7 @@ uses Windows, ActiveX, Classes, Graphics, OleServer, OleCtrls, StdVCL;
 const
   // TypeLibrary Major and minor versions
   SpeechLibMajorVersion = 5;
-  SpeechLibMinorVersion = 1;
+  SpeechLibMinorVersion = 4;
 
   LIBID_SpeechLib: TGUID = '{C866CA3A-32F7-11D2-9602-00C04F8EE628}';
 
@@ -126,11 +101,14 @@ const
   IID_ISpeechPhraseAlternates: TGUID = '{B238B6D5-F276-4C3D-A6C1-2974801C3CC2}';
   IID_ISpeechPhraseAlternate: TGUID = '{27864A2A-2B9F-4CB8-92D3-0D2722FD1E73}';
   DIID__ISpeechRecoContextEvents: TGUID = '{7B8FCB42-0E9D-4F00-A048-7B04D6179D3D}';
+  IID_ISpeechRecoResult2: TGUID = '{8E0A246D-D3C8-45DE-8657-04290C458C3C}';
   IID_ISpeechLexicon: TGUID = '{3DA7627A-C7AE-4B23-8708-638C50362C25}';
   IID_ISpeechLexiconWords: TGUID = '{8D199862-415E-47D5-AC4F-FAA608B424E6}';
   IID_ISpeechLexiconWord: TGUID = '{4E5B933C-C9BE-48ED-8842-1EE51BB1D4FF}';
   IID_ISpeechLexiconPronunciations: TGUID = '{72829128-5682-4704-A0D4-3E2BB6F2EAD3}';
   IID_ISpeechLexiconPronunciation: TGUID = '{95252C5D-9E43-4F4A-9899-48EE73352F9F}';
+  IID_ISpeechXMLRecoResult: TGUID = '{AAEC54AF-8F85-4924-944D-B79D39D72E19}';
+  IID_ISpeechRecoResultDispatch: TGUID = '{6D60EB64-ACED-40A6-BBF3-4E557F71DEE2}';
   IID_ISpeechPhraseInfoBuilder: TGUID = '{3B151836-DF3A-4E0A-846C-D2ADC9334333}';
   IID_ISpeechPhoneConverter: TGUID = '{C3E4F353-433F-43D6-89A1-6A62A7054C3D}';
   IID_ISpNotifySink: TGUID = '{259684DC-37C3-11D2-9603-00C04F8EE628}';
@@ -159,13 +137,13 @@ const
   IID_ISpMMSysAudio: TGUID = '{15806F6E-1D70-4B48-98E6-3B1A007509AB}';
   CLASS_SpMMAudioIn: TGUID = '{CF3D2E50-53F2-11D2-960C-00C04F8EE628}';
   CLASS_SpMMAudioOut: TGUID = '{A8C680EB-3D32-11D2-9EE7-00C04F797396}';
-  CLASS_SpRecPlayAudio: TGUID = '{FEE225FC-7AFD-45E9-95D0-5A318079D911}';
   IID_ISpStream: TGUID = '{12E3CCA9-7518-44C5-A5E7-BA5A79CB929E}';
   CLASS_SpStream: TGUID = '{715D9C59-4442-11D2-9605-00C04F8EE628}';
   IID_ISpVoice: TGUID = '{6C44DF74-72B9-4992-A1EC-EF996E0422D4}';
+  IID_ISpPhoneticAlphabetSelection: TGUID = '{B2745EFD-42CE-48CA-81F1-A96E02538A90}';
   CLASS_SpVoice: TGUID = '{96749377-3391-11D2-9EE3-00C04F797396}';
   IID_ISpRecoContext: TGUID = '{F740A62F-7C15-489E-8234-940A33D9272D}';
-  CLASS_SpSharedRecoContext: TGUID = '{47206204-5ECA-11D2-960F-00C04F8EE628}';
+  IID_ISpRecoContext2: TGUID = '{BEAD311C-52FF-437F-9464-6B21054CA73D}';
   IID_ISpProperties: TGUID = '{5B4FB971-B115-4DE1-AD97-E482E3BF6EE4}';
   IID_ISpRecognizer: TGUID = '{C2B5F241-DAA0-4507-9E16-5A1EAA2B7A5C}';
   IID_ISpPhrase: TGUID = '{1A5C0354-B621-4B5A-8791-D306ED379E53}';
@@ -173,14 +151,23 @@ const
   IID_ISpRecoGrammar: TGUID = '{2177DB29-7F45-47D0-8554-067E91C80502}';
   IID_ISpRecoResult: TGUID = '{20B053BE-E235-43CD-9A2A-8D17A48B7842}';
   IID_ISpPhraseAlt: TGUID = '{8FCEBC98-4E49-4067-9C6C-D86A0E092E3D}';
+  CLASS_SpSharedRecoContext: TGUID = '{47206204-5ECA-11D2-960F-00C04F8EE628}';
+  IID_ISpRecognizer2: TGUID = '{8FC6D974-C81E-4098-93C5-0147F61ED4D3}';
+  IID_ISpRecognizer3: TGUID = '{DF1B943C-5838-4AA2-8706-D7CD5B333499}';
+  IID_ISpSerializeState: TGUID = '{21B501A0-0EC7-46C9-92C3-A2BC784C54B9}';
+  IID_ISpRecoCategory: TGUID = '{DA0CD0F9-14A2-4F09-8C2A-85CC48979345}';
   CLASS_SpInprocRecognizer: TGUID = '{41B89B6B-9399-11D2-9623-00C04F8EE628}';
   CLASS_SpSharedRecognizer: TGUID = '{3BEE4890-4FE9-4A37-8C1E-5E7E12791C1F}';
   IID_ISpLexicon: TGUID = '{DA41A7C2-5383-4DB2-916B-6C1719E3DB58}';
   CLASS_SpLexicon: TGUID = '{0655E396-25D0-11D3-9C26-00C04F8EF87C}';
   CLASS_SpUnCompressedLexicon: TGUID = '{C9E37C15-DF92-4727-85D6-72E5EEB6995A}';
   CLASS_SpCompressedLexicon: TGUID = '{90903716-2F42-11D3-9C26-00C04F8EF87C}';
+  IID_ISpShortcut: TGUID = '{3DF681E2-EA56-11D9-8BDE-F66BAD1E3F3A}';
+  CLASS_SpShortcut: TGUID = '{0D722F1A-9FCF-4E62-96D8-6DF8F01A26AA}';
   IID_ISpPhoneConverter: TGUID = '{8445C581-0CAC-4A38-ABFE-9B2CE2826455}';
   CLASS_SpPhoneConverter: TGUID = '{9185F743-1143-4C28-86B5-BFF14F20E5C8}';
+  IID_ISpPhoneticAlphabetConverter: TGUID = '{133ADCD4-19B4-4020-9FDC-842E78253B17}';
+  CLASS_SpPhoneticAlphabetConverter: TGUID = '{4F414126-DFE3-4629-99EE-797978317EAD}';
   CLASS_SpNullPhoneConverter: TGUID = '{455F24E9-7396-4A16-9715-7C0FDBE3EFE3}';
   CLASS_SpTextSelectionInformation: TGUID = '{0F92030A-CBFD-4AB8-A164-FF5985547FF6}';
   CLASS_SpPhraseInfoBuilder: TGUID = '{C23FC28D-C55F-4720-8B32-91F73C2BD5D1}';
@@ -190,6 +177,12 @@ const
   CLASS_SpCustomStream: TGUID = '{8DBEF13F-1948-4AA8-8CF0-048EEBED95D8}';
   CLASS_SpFileStream: TGUID = '{947812B3-2AE1-4644-BA86-9E90DED7EC91}';
   CLASS_SpMemoryStream: TGUID = '{5FB7EF7D-DFF4-468A-B6B7-2FCBD188F994}';
+  IID_ISpXMLRecoResult: TGUID = '{AE39362B-45A8-4074-9B9E-CCF49AA2D0B6}';
+  IID_ISpRecoGrammar2: TGUID = '{4B37BC9E-9ED6-44A3-93D3-18F022B79EC3}';
+  IID_ISpeechResourceLoader: TGUID = '{B9AC5783-FCD0-4B21-B119-B4F8DA8FD2C3}';
+  IID_IInternetSecurityManager: TGUID = '{79EAC9EE-BAF9-11CE-8C82-00AA004BA90B}';
+  IID_IInternetSecurityMgrSite: TGUID = '{79EAC9ED-BAF9-11CE-8C82-00AA004BA90B}';
+  IID_IEnumString: TGUID = '{00000101-0000-0000-C000-000000000046}';
 
 // *********************************************************************//
 // Declaration of Enumerations defined in Type Library                    
@@ -366,9 +359,13 @@ const
   SVSFIsNotXML = $00000010;
   SVSFPersistXML = $00000020;
   SVSFNLPSpeakPunc = $00000040;
+  SVSFParseSapi = $00000080;
+  SVSFParseSsml = $00000100;
+  SVSFParseAutodetect = $00000000;
   SVSFNLPMask = $00000040;
-  SVSFVoiceMask = $0000007F;
-  SVSFUnusedFlags = $FFFFFF80;
+  SVSFParseMask = $00000180;
+  SVSFVoiceMask = $000001FF;
+  SVSFUnusedFlags = $FFFFFE00;
 
 // Constants for enum SpeechVisemeFeature
 type
@@ -482,6 +479,7 @@ const
   SRAImport = $00000008;
   SRAInterpreter = $00000010;
   SRADynamic = $00000020;
+  SRARoot = $00000040;
 
 // Constants for enum SpeechGrammarRuleStateTransitionType
 type
@@ -501,6 +499,7 @@ const
   SGDisplay = $00000000;
   SGLexical = $00000001;
   SGPronounciation = $00000002;
+  SGLexicalNoSpecialChars = $00000003;
 
 // Constants for enum SpeechSpecialTransitionType
 type
@@ -524,6 +523,7 @@ const
   SGDSInactive = $00000000;
   SGDSActive = $00000001;
   SGDSActiveWithAutoPause = $00000003;
+  SGDSActiveUserDelimited = $00000004;
 
 // Constants for enum SpeechWordPronounceable
 type
@@ -585,6 +585,9 @@ const
   SRTStandard = $00000000;
   SRTAutopause = $00000001;
   SRTEmulated = $00000002;
+  SRTSMLTimeout = $00000004;
+  SRTExtendableParse = $00000008;
+  SRTReSent = $00000010;
 
 // Constants for enum SpeechLexiconType
 type
@@ -611,6 +614,8 @@ const
   SPSModifier = $00003000;
   SPSFunction = $00004000;
   SPSInterjection = $00005000;
+  SPSLMA = $00007000;
+  SPSSuppressWord = $0000F000;
 
 // Constants for enum DISPID_SpeechDataKey
 type
@@ -837,6 +842,17 @@ const
   DISPID_SVGetAudioInputs = $00000013;
   DISPID_SVGetProfiles = $00000014;
 
+// Constants for enum SpeechEmulationCompareFlags
+type
+  SpeechEmulationCompareFlags = TOleEnum;
+const
+  SECFIgnoreCase = $00000001;
+  SECFIgnoreKanaType = $00010000;
+  SECFIgnoreWidth = $00020000;
+  SECFNoSpecialChars = $20000000;
+  SECFEmulateResult = $40000000;
+  SECFDefault = $00030001;
+
 // Constants for enum DISPID_SpeechRecognizerStatus
 type
   DISPID_SpeechRecognizerStatus = TOleEnum;
@@ -995,6 +1011,26 @@ const
   DISPID_SRRSpeakAudio = $00000007;
   DISPID_SRRSaveToMemory = $00000008;
   DISPID_SRRDiscardResultInfo = $00000009;
+
+// Constants for enum DISPID_SpeechXMLRecoResult
+type
+  DISPID_SpeechXMLRecoResult = TOleEnum;
+const
+  DISPID_SRRGetXMLResult = $0000000A;
+  DISPID_SRRGetXMLErrorInfo = $0000000B;
+
+// Constants for enum SPXMLRESULTOPTIONS
+type
+  SPXMLRESULTOPTIONS = TOleEnum;
+const
+  SPXRO_SML = $00000000;
+  SPXRO_Alternates_SML = $00000001;
+
+// Constants for enum DISPID_SpeechRecoResult2
+type
+  DISPID_SpeechRecoResult2 = TOleEnum;
+const
+  DISPID_SRRSetTextFeedback = $0000000C;
 
 // Constants for enum DISPID_SpeechPhraseBuilder
 type
@@ -1289,9 +1325,13 @@ const
   SPEI_START_SR_STREAM = $00000030;
   SPEI_RECO_OTHER_CONTEXT = $00000031;
   SPEI_SR_AUDIO_LEVEL = $00000032;
+  SPEI_SR_RETAINEDAUDIO = $00000033;
   SPEI_SR_PRIVATE = $00000034;
+  SPEI_ACTIVE_CATEGORY_CHANGED = $00000035;
+  SPEI_RESERVED5 = $00000036;
+  SPEI_RESERVED6 = $00000037;
   SPEI_MIN_SR = $00000022;
-  SPEI_MAX_SR = $00000034;
+  SPEI_MAX_SR = $00000037;
   SPEI_RESERVED1 = $0000001E;
   SPEI_RESERVED2 = $00000021;
   SPEI_RESERVED3 = $0000003F;
@@ -1313,6 +1353,16 @@ const
   SPWF_INPUT = $00000000;
   SPWF_SRENGINE = $00000001;
 
+// Constants for enum SPSEMANTICFORMAT
+type
+  SPSEMANTICFORMAT = TOleEnum;
+const
+  SPSMF_SAPI_PROPERTIES = $00000000;
+  SPSMF_SRGS_SEMANTICINTERPRETATION_MS = $00000001;
+  SPSMF_SRGS_SAPIPROPERTIES = $00000002;
+  SPSMF_UPS = $00000004;
+  SPSMF_SRGS_SEMANTICINTERPRETATION_W3C = $00000008;
+
 // Constants for enum SPGRAMMARWORDTYPE
 type
   SPGRAMMARWORDTYPE = TOleEnum;
@@ -1320,6 +1370,7 @@ const
   SPWT_DISPLAY = $00000000;
   SPWT_LEXICAL = $00000001;
   SPWT_PRONUNCIATION = $00000002;
+  SPWT_LEXICAL_NO_SPECIAL_CHARS = $00000003;
 
 // Constants for enum SPLOADOPTIONS
 type
@@ -1335,6 +1386,7 @@ const
   SPRS_INACTIVE = $00000000;
   SPRS_ACTIVE = $00000001;
   SPRS_ACTIVE_WITH_AUTO_PAUSE = $00000003;
+  SPRS_ACTIVE_USER_DELIMITED = $00000004;
 
 // Constants for enum SPWORDPRONOUNCEABLE
 type
@@ -1363,6 +1415,9 @@ const
   SPINTERFERENCE_TOOQUIET = $00000004;
   SPINTERFERENCE_TOOFAST = $00000005;
   SPINTERFERENCE_TOOSLOW = $00000006;
+  SPINTERFERENCE_LATENCY_WARNING = $00000007;
+  SPINTERFERENCE_LATENCY_TRUNCATE_BEGIN = $00000008;
+  SPINTERFERENCE_LATENCY_TRUNCATE_END = $00000009;
 
 // Constants for enum SPAUDIOOPTIONS
 type
@@ -1377,6 +1432,8 @@ type
 const
   SPBO_NONE = $00000000;
   SPBO_PAUSE = $00000001;
+  SPBO_AHEAD = $00000002;
+  SPBO_TIME_UNITS = $00000004;
 
 // Constants for enum SPCONTEXTSTATE
 type
@@ -1385,17 +1442,36 @@ const
   SPCS_DISABLED = $00000000;
   SPCS_ENABLED = $00000001;
 
+// Constants for enum SPADAPTATIONRELEVANCE
+type
+  SPADAPTATIONRELEVANCE = TOleEnum;
+const
+  SPAR_Unknown = $00000000;
+  SPAR_Low = $00000001;
+  SPAR_Medium = $00000002;
+  SPAR_High = $00000003;
+
+// Constants for enum SPCATEGORYTYPE
+type
+  SPCATEGORYTYPE = TOleEnum;
+const
+  SPCT_COMMAND = $00000000;
+  SPCT_DICTATION = $00000001;
+  SPCT_SLEEP = $00000002;
+  SPCT_SUB_COMMAND = $00000003;
+  SPCT_SUB_DICTATION = $00000004;
+
 // Constants for enum SPLEXICONTYPE
 type
   SPLEXICONTYPE = TOleEnum;
 const
   eLEXTYPE_USER = $00000001;
   eLEXTYPE_APP = $00000002;
-  eLEXTYPE_RESERVED1 = $00000004;
-  eLEXTYPE_RESERVED2 = $00000008;
-  eLEXTYPE_RESERVED3 = $00000010;
+  eLEXTYPE_VENDORLEXICON = $00000004;
+  eLEXTYPE_LETTERTOSOUND = $00000008;
+  eLEXTYPE_MORPHOLOGY = $00000010;
   eLEXTYPE_RESERVED4 = $00000020;
-  eLEXTYPE_RESERVED5 = $00000040;
+  eLEXTYPE_USER_SHORTCUT = $00000040;
   eLEXTYPE_RESERVED6 = $00000080;
   eLEXTYPE_RESERVED7 = $00000100;
   eLEXTYPE_RESERVED8 = $00000200;
@@ -1433,6 +1509,9 @@ const
   SPPS_Modifier = $00003000;
   SPPS_Function = $00004000;
   SPPS_Interjection = $00005000;
+  SPPS_Noncontent = $00006000;
+  SPPS_LMA = $00007000;
+  SPPS_SuppressWord = $0000F000;
 
 // Constants for enum SPWORDTYPE
 type
@@ -1440,6 +1519,19 @@ type
 const
   eWORDTYPE_ADDED = $00000001;
   eWORDTYPE_DELETED = $00000002;
+
+// Constants for enum SPSHORTCUTTYPE
+type
+  SPSHORTCUTTYPE = TOleEnum;
+const
+  SPSHT_NotOverriden = $FFFFFFFF;
+  SPSHT_Unknown = $00000000;
+  SPSHT_EMAIL = $00001000;
+  SPSHT_OTHER = $00002000;
+  SPPS_RESERVED1 = $00003000;
+  SPPS_RESERVED2 = $00004000;
+  SPPS_RESERVED3 = $00005000;
+  SPPS_RESERVED4 = $0000F000;
 
 type
 
@@ -1526,6 +1618,8 @@ type
   ISpeechPhraseAlternate = interface;
   ISpeechPhraseAlternateDisp = dispinterface;
   _ISpeechRecoContextEvents = dispinterface;
+  ISpeechRecoResult2 = interface;
+  ISpeechRecoResult2Disp = dispinterface;
   ISpeechLexicon = interface;
   ISpeechLexiconDisp = dispinterface;
   ISpeechLexiconWords = interface;
@@ -1536,6 +1630,10 @@ type
   ISpeechLexiconPronunciationsDisp = dispinterface;
   ISpeechLexiconPronunciation = interface;
   ISpeechLexiconPronunciationDisp = dispinterface;
+  ISpeechXMLRecoResult = interface;
+  ISpeechXMLRecoResultDisp = dispinterface;
+  ISpeechRecoResultDispatch = interface;
+  ISpeechRecoResultDispatchDisp = dispinterface;
   ISpeechPhraseInfoBuilder = interface;
   ISpeechPhraseInfoBuilderDisp = dispinterface;
   ISpeechPhoneConverter = interface;
@@ -1560,7 +1658,9 @@ type
   ISpMMSysAudio = interface;
   ISpStream = interface;
   ISpVoice = interface;
+  ISpPhoneticAlphabetSelection = interface;
   ISpRecoContext = interface;
+  ISpRecoContext2 = interface;
   ISpProperties = interface;
   ISpRecognizer = interface;
   ISpPhrase = interface;
@@ -1568,8 +1668,21 @@ type
   ISpRecoGrammar = interface;
   ISpRecoResult = interface;
   ISpPhraseAlt = interface;
+  ISpRecognizer2 = interface;
+  ISpRecognizer3 = interface;
+  ISpSerializeState = interface;
+  ISpRecoCategory = interface;
   ISpLexicon = interface;
+  ISpShortcut = interface;
   ISpPhoneConverter = interface;
+  ISpPhoneticAlphabetConverter = interface;
+  ISpXMLRecoResult = interface;
+  ISpRecoGrammar2 = interface;
+  ISpeechResourceLoader = interface;
+  ISpeechResourceLoaderDisp = dispinterface;
+  IInternetSecurityManager = interface;
+  IInternetSecurityMgrSite = interface;
+  IEnumString = interface;
 
 // *********************************************************************//
 // Declaration of CoClasses defined in Type Library                       
@@ -1583,7 +1696,6 @@ type
   SpMMAudioEnum = IEnumSpObjectTokens;
   SpMMAudioIn = ISpeechMMSysAudio;
   SpMMAudioOut = ISpeechMMSysAudio;
-  SpRecPlayAudio = ISpObjectWithToken;
   SpStream = ISpStream;
   SpVoice = ISpeechVoice;
   SpSharedRecoContext = ISpeechRecoContext;
@@ -1592,7 +1704,9 @@ type
   SpLexicon = ISpeechLexicon;
   SpUnCompressedLexicon = ISpeechLexicon;
   SpCompressedLexicon = ISpLexicon;
+  SpShortcut = ISpShortcut;
   SpPhoneConverter = ISpeechPhoneConverter;
+  SpPhoneticAlphabetConverter = ISpPhoneticAlphabetConverter;
   SpNullPhoneConverter = ISpPhoneConverter;
   SpTextSelectionInformation = ISpeechTextSelectionInformation;
   SpPhraseInfoBuilder = ISpeechPhraseInfoBuilder;
@@ -1608,34 +1722,28 @@ type
 // Declaration of structures, unions and aliases.                         
 // *********************************************************************//
   wireHWND = ^_RemotableHandle; 
-  PUserType10 = ^SPPHRASERULE; {*}
-  PUserType11 = ^SPPHRASEPROPERTY; {*}
-  PUserType15 = ^SPWORDPRONUNCIATION; {*}
-  PUserType16 = ^SPWORD; {*}
+  PUserType9 = ^SPPHRASERULE; {*}
+  PUserType10 = ^SPPHRASEPROPERTY; {*}
+  PUserType14 = ^SPWORDPRONUNCIATION; {*}
+  PUserType15 = ^SPWORD; {*}
+  PUserType16 = ^SPSHORTCUTPAIR; {*}
   POleVariant1 = ^OleVariant; {*}
   PPPrivateAlias1 = ^Pointer; {*}
-  PWord1 = ^Word; {*}
-  PPUserType1 = ^ISpDataKey; {*}
   PByte1 = ^Byte; {*}
   PUINT1 = ^LongWord; {*}
-  PPWord1 = ^PWord1; {*}
-  PPUserType2 = ^ISpObjectTokenCategory; {*}
   PUserType1 = ^TGUID; {*}
-  PUserType2 = ^WaveFormatEx; {*}
-  PPUserType3 = ^PUserType2; {*}
+  PUserType2 = ^WAVEFORMATEX; {*}
   PUserType3 = ^SPEVENT; {*}
-  PPUserType4 = ^ISpObjectToken; {*}
   PUserType4 = ^SPAUDIOBUFFERINFO; {*}
-  PPUserType5 = ^IStream; {*}
   PUserType5 = ^SPAUDIOOPTIONS; {*}
   PUserType6 = ^SPSERIALIZEDRESULT; {*}
-  PUserType7 = ^SPCONTEXTSTATE; {*}
-  PUserType8 = ^SPPHRASE; {*}
-  PUserType9 = ^SPSERIALIZEDPHRASE; {*}
-  PUserType12 = ^SPBINARYGRAMMAR; {*}
-  PUserType13 = ^SPTEXTSELECTIONINFO; {*}
-  PUserType14 = ^SPPROPERTYINFO; {*}
-  PPUserType6 = ^ISpPhrase; {*}
+  PUserType7 = ^SPPHRASE; {*}
+  PUserType8 = ^SPSERIALIZEDPHRASE; {*}
+  PUserType11 = ^SPBINARYGRAMMAR; {*}
+  PWord1 = ^Word; {*}
+  PUserType12 = ^SPTEXTSELECTIONINFO; {*}
+  PUserType13 = ^SPPROPERTYINFO; {*}
+  PUserType17 = ^SPRULE; {*}
 
 
   __MIDL_IWinTypes_0009 = record
@@ -1644,7 +1752,7 @@ type
       1: (hRemote: Integer);
   end;
 
-  _RemotableHandle = packed record
+  _RemotableHandle = record
     fContext: Integer;
     u: __MIDL_IWinTypes_0009;
   end;
@@ -1652,22 +1760,25 @@ type
   UINT_PTR = LongWord; 
   LONG_PTR = Integer; 
 
-  _LARGE_INTEGER = packed record
+{$ALIGN 8}
+  _LARGE_INTEGER = record
     QuadPart: Int64;
   end;
 
-  _ULARGE_INTEGER = packed record
+  _ULARGE_INTEGER = record
     QuadPart: Largeuint;
   end;
 
-  _FILETIME = packed record
+{$ALIGN 4}
+  _FILETIME = record
     dwLowDateTime: LongWord;
     dwHighDateTime: LongWord;
   end;
 
-  tagSTATSTG = packed record
+{$ALIGN 8}
+  tagSTATSTG = record
     pwcsName: PWideChar;
-    Type_: LongWord;
+    type_: LongWord;
     cbSize: _ULARGE_INTEGER;
     mtime: _FILETIME;
     ctime: _FILETIME;
@@ -1679,7 +1790,8 @@ type
     reserved: LongWord;
   end;
 
-  WaveFormatEx = packed record
+{$ALIGN 4}
+  WAVEFORMATEX = record
     wFormatTag: Word;
     nChannels: Word;
     nSamplesPerSec: LongWord;
@@ -1689,7 +1801,8 @@ type
     cbSize: Word;
   end;
 
-  SPEVENT = packed record
+{$ALIGN 8}
+  SPEVENT = record
     eEventId: Word;
     elParamType: Word;
     ulStreamNum: LongWord;
@@ -1698,7 +1811,7 @@ type
     lParam: LONG_PTR;
   end;
 
-  SPEVENTSOURCEINFO = packed record
+  SPEVENTSOURCEINFO = record
     ullEventInterest: Largeuint;
     ullQueuedInterest: Largeuint;
     ulCount: LongWord;
@@ -1706,23 +1819,24 @@ type
 
   SPAUDIOSTATE = _SPAUDIOSTATE; 
 
-  SPAUDIOSTATUS = packed record
+  SPAUDIOSTATUS = record
     cbFreeBuffSpace: Integer;
     cbNonBlockingIO: LongWord;
-    State: _SPAUDIOSTATE;
+    State: SPAUDIOSTATE;
     CurSeekPos: Largeuint;
     CurDevicePos: Largeuint;
-    dwReserved1: LongWord;
+    dwAudioLevel: LongWord;
     dwReserved2: LongWord;
   end;
 
-  SPAUDIOBUFFERINFO = packed record
+{$ALIGN 4}
+  SPAUDIOBUFFERINFO = record
     ulMsMinNotification: LongWord;
     ulMsBufferSize: LongWord;
     ulMsEventBias: LongWord;
   end;
 
-  SPVOICESTATUS = packed record
+  SPVOICESTATUS = record
     ulCurrentStream: LongWord;
     ulLastStreamQueued: LongWord;
     hrLastResult: HResult;
@@ -1738,7 +1852,8 @@ type
     dwReserved2: LongWord;
   end;
 
-  SPRECOGNIZERSTATUS = packed record
+{$ALIGN 8}
+  SPRECOGNIZERSTATUS = record
     AudioStatus: SPAUDIOSTATUS;
     ullRecognitionStreamPos: Largeuint;
     ulStreamNumber: LongWord;
@@ -1746,33 +1861,47 @@ type
     ClsidEngine: TGUID;
     cLangIDs: LongWord;
     aLangID: array[0..19] of Word;
-    dwReserved1: LongWord;
-    dwReserved2: LongWord;
+    ullRecognitionStreamTime: Largeuint;
   end;
 
   SPSTREAMFORMATTYPE = SPWAVEFORMATTYPE; 
 
-  SPPHRASERULE = packed record
-    pszName: ^Word;
+{$ALIGN 4}
+  SPPHRASERULE = record
+    pszName: PWideChar;
     ulId: LongWord;
     ulFirstElement: LongWord;
     ulCountOfElements: LongWord;
-    pNextSibling: PUserType10;
-    pFirstChild: PUserType10;
+    pNextSibling: PUserType9;
+    pFirstChild: PUserType9;
     SREngineConfidence: Single;
     Confidence: Shortint;
   end;
 
+{$ALIGN 2}
+  __MIDL___MIDL_itf_sapi_0000_0020_0002 = record
+    bType: Byte;
+    bReserved: Byte;
+    usArrayIndex: Word;
+  end;
 
-  SPPHRASEELEMENT = packed record
+{$ALIGN 4}
+  __MIDL___MIDL_itf_sapi_0000_0020_0001 = record
+    case Integer of
+      0: (ulId: LongWord);
+      1: (__MIDL____MIDL_itf_sapi_0000_00200000: __MIDL___MIDL_itf_sapi_0000_0020_0002);
+  end;
+
+
+  SPPHRASEELEMENT = record
     ulAudioTimeOffset: LongWord;
     ulAudioSizeTime: LongWord;
     ulAudioStreamOffset: LongWord;
     ulAudioSizeBytes: LongWord;
     ulRetainedStreamOffset: LongWord;
     ulRetainedSizeBytes: LongWord;
-    pszDisplayText: ^Word;
-    pszLexicalForm: ^Word;
+    pszDisplayText: PWideChar;
+    pszLexicalForm: PWideChar;
     pszPronunciation: ^Word;
     bDisplayAttributes: Byte;
     RequiredConfidence: Shortint;
@@ -1781,31 +1910,41 @@ type
     SREngineConfidence: Single;
   end;
 
-  SPPHRASEREPLACEMENT = packed record
+  SPPHRASEREPLACEMENT = record
     bDisplayAttributes: Byte;
-    pszReplacementText: ^Word;
+    pszReplacementText: PWideChar;
     ulFirstElement: LongWord;
     ulCountOfElements: LongWord;
   end;
 
-  SPSERIALIZEDPHRASE = packed record
+  SPSEMANTICERRORINFO = record
+    ulLineNumber: LongWord;
+    pszScriptLine: PWideChar;
+    pszSource: PWideChar;
+    pszDescription: PWideChar;
+    hrResultCode: HResult;
+  end;
+
+  SPSERIALIZEDPHRASE = record
     ulSerializedSize: LongWord;
   end;
 
-  tagSPPROPERTYINFO = packed record
-    pszName: ^Word;
+{$ALIGN 8}
+  tagSPPROPERTYINFO = record
+    pszName: PWideChar;
     ulId: LongWord;
-    pszValue: ^Word;
+    pszValue: PWideChar;
     vValue: OleVariant;
   end;
 
   SPPROPERTYINFO = tagSPPROPERTYINFO; 
 
-  SPBINARYGRAMMAR = packed record
+{$ALIGN 4}
+  SPBINARYGRAMMAR = record
     ulTotalSerializedSize: LongWord;
   end;
 
-  tagSPTEXTSELECTIONINFO = packed record
+  tagSPTEXTSELECTIONINFO = record
     ulStartActiveOffset: LongWord;
     cchActiveChars: LongWord;
     ulStartSelection: LongWord;
@@ -1814,18 +1953,19 @@ type
 
   SPTEXTSELECTIONINFO = tagSPTEXTSELECTIONINFO; 
 
-  SPRECOCONTEXTSTATUS = packed record
+  SPRECOCONTEXTSTATUS = record
     eInterference: SPINTERFERENCE;
     szRequestTypeOfUI: array[0..254] of Word;
     dwReserved1: LongWord;
     dwReserved2: LongWord;
   end;
 
-  SPSERIALIZEDRESULT = packed record
+  SPSERIALIZEDRESULT = record
     ulSerializedSize: LongWord;
   end;
 
-  SPRECORESULTTIMES = packed record
+{$ALIGN 8}
+  SPRECORESULTTIMES = record
     ftStreamTime: _FILETIME;
     ullLength: Largeuint;
     dwTickCount: LongWord;
@@ -1833,43 +1973,61 @@ type
   end;
 
 
-  SPWORDPRONUNCIATION = packed record
-    pNextWordPronunciation: PUserType15;
+{$ALIGN 4}
+  SPWORDPRONUNCIATION = record
+    pNextWordPronunciation: PUserType14;
     eLexiconType: SPLEXICONTYPE;
     LangId: Word;
-    wReserved: Word;
+    wPronunciationFlags: Word;
     ePartOfSpeech: SPPARTOFSPEECH;
     szPronunciation: array[0..0] of Word;
   end;
 
 
-  SPWORD = packed record
-    pNextWord: PUserType16;
+  SPWORD = record
+    pNextWord: PUserType15;
     LangId: Word;
     wReserved: Word;
     eWordType: SPWORDTYPE;
-    pszWord: ^Word;
+    pszWord: PWideChar;
     pFirstWordPronunciation: ^SPWORDPRONUNCIATION;
   end;
 
 
-  SPPHRASEPROPERTY = packed record
-    pszName: ^Word;
-    ulId: LongWord;
-    pszValue: ^Word;
+  SPSHORTCUTPAIR = record
+    pNextSHORTCUTPAIR: PUserType16;
+    LangId: Word;
+    shType: SPSHORTCUTTYPE;
+    pszDisplay: PWideChar;
+    pszSpoken: PWideChar;
+  end;
+
+  SPRULE = record
+    pszRuleName: PWideChar;
+    ulRuleId: LongWord;
+    dwAttributes: LongWord;
+  end;
+
+  ULONG_PTR = LongWord; 
+
+{$ALIGN 8}
+  SPPHRASEPROPERTY = record
+    pszName: PWideChar;
+    __MIDL____MIDL_itf_sapi_0000_00200001: __MIDL___MIDL_itf_sapi_0000_0020_0001;
+    pszValue: PWideChar;
     vValue: OleVariant;
     ulFirstElement: LongWord;
     ulCountOfElements: LongWord;
-    pNextSibling: PUserType11;
-    pFirstChild: PUserType11;
+    pNextSibling: PUserType10;
+    pFirstChild: PUserType10;
     SREngineConfidence: Single;
     Confidence: Shortint;
   end;
 
-  SPPHRASE = packed record
+  SPPHRASE = record
     cbSize: LongWord;
     LangId: Word;
-    wReserved: Word;
+    wHomophoneGroupId: Word;
     ullGrammarID: Largeuint;
     ftStartTime: Largeuint;
     ullAudioStreamPosition: Largeuint;
@@ -1884,19 +2042,29 @@ type
     SREngineID: TGUID;
     ulSREnginePrivateDataSize: LongWord;
     pSREnginePrivateData: ^Byte;
+    pSML: PWideChar;
+    pSemanticErrorInfo: ^SPSEMANTICERRORINFO;
+    SemanticTagFormat: SPSEMANTICFORMAT;
   end;
 
 
-  SPWORDPRONUNCIATIONLIST = packed record
+{$ALIGN 4}
+  SPWORDPRONUNCIATIONLIST = record
     ulSize: LongWord;
     pvBuffer: ^Byte;
     pFirstWordPronunciation: ^SPWORDPRONUNCIATION;
   end;
 
-  SPWORDLIST = packed record
+  SPWORDLIST = record
     ulSize: LongWord;
     pvBuffer: ^Byte;
     pFirstWord: ^SPWORD;
+  end;
+
+  SPSHORTCUTPAIRLIST = record
+    ulSize: LongWord;
+    pvBuffer: ^Byte;
+    pFirstShortcutPair: ^SPSHORTCUTPAIR;
   end;
 
 
@@ -1908,17 +2076,17 @@ type
   ISpeechDataKey = interface(IDispatch)
     ['{CE17C09B-4EFA-44D5-A4C9-59D9585AB0CD}']
     procedure SetBinaryValue(const ValueName: WideString; Value: OleVariant); safecall;
-    function  GetBinaryValue(const ValueName: WideString): OleVariant; safecall;
+    function GetBinaryValue(const ValueName: WideString): OleVariant; safecall;
     procedure SetStringValue(const ValueName: WideString; const Value: WideString); safecall;
-    function  GetStringValue(const ValueName: WideString): WideString; safecall;
+    function GetStringValue(const ValueName: WideString): WideString; safecall;
     procedure SetLongValue(const ValueName: WideString; Value: Integer); safecall;
-    function  GetLongValue(const ValueName: WideString): Integer; safecall;
-    function  OpenKey(const SubKeyName: WideString): ISpeechDataKey; safecall;
-    function  CreateKey(const SubKeyName: WideString): ISpeechDataKey; safecall;
+    function GetLongValue(const ValueName: WideString): Integer; safecall;
+    function OpenKey(const SubKeyName: WideString): ISpeechDataKey; safecall;
+    function CreateKey(const SubKeyName: WideString): ISpeechDataKey; safecall;
     procedure DeleteKey(const SubKeyName: WideString); safecall;
     procedure DeleteValue(const ValueName: WideString); safecall;
-    function  EnumKeys(Index: Integer): WideString; safecall;
-    function  EnumValues(Index: Integer): WideString; safecall;
+    function EnumKeys(Index: Integer): WideString; safecall;
+    function EnumValues(Index: Integer): WideString; safecall;
   end;
 
 // *********************************************************************//
@@ -1929,17 +2097,17 @@ type
   ISpeechDataKeyDisp = dispinterface
     ['{CE17C09B-4EFA-44D5-A4C9-59D9585AB0CD}']
     procedure SetBinaryValue(const ValueName: WideString; Value: OleVariant); dispid 1;
-    function  GetBinaryValue(const ValueName: WideString): OleVariant; dispid 2;
+    function GetBinaryValue(const ValueName: WideString): OleVariant; dispid 2;
     procedure SetStringValue(const ValueName: WideString; const Value: WideString); dispid 3;
-    function  GetStringValue(const ValueName: WideString): WideString; dispid 4;
+    function GetStringValue(const ValueName: WideString): WideString; dispid 4;
     procedure SetLongValue(const ValueName: WideString; Value: Integer); dispid 5;
-    function  GetLongValue(const ValueName: WideString): Integer; dispid 6;
-    function  OpenKey(const SubKeyName: WideString): ISpeechDataKey; dispid 7;
-    function  CreateKey(const SubKeyName: WideString): ISpeechDataKey; dispid 8;
+    function GetLongValue(const ValueName: WideString): Integer; dispid 6;
+    function OpenKey(const SubKeyName: WideString): ISpeechDataKey; dispid 7;
+    function CreateKey(const SubKeyName: WideString): ISpeechDataKey; dispid 8;
     procedure DeleteKey(const SubKeyName: WideString); dispid 9;
     procedure DeleteValue(const ValueName: WideString); dispid 10;
-    function  EnumKeys(Index: Integer): WideString; dispid 11;
-    function  EnumValues(Index: Integer): WideString; dispid 12;
+    function EnumKeys(Index: Integer): WideString; dispid 11;
+    function EnumValues(Index: Integer): WideString; dispid 12;
   end;
 
 // *********************************************************************//
@@ -1949,23 +2117,23 @@ type
 // *********************************************************************//
   ISpeechObjectToken = interface(IDispatch)
     ['{C74A3ADC-B727-4500-A84A-B526721C8B8C}']
-    function  Get_Id: WideString; safecall;
-    function  Get_DataKey: ISpeechDataKey; safecall;
-    function  Get_Category: ISpeechObjectTokenCategory; safecall;
-    function  GetDescription(Locale: Integer): WideString; safecall;
+    function Get_Id: WideString; safecall;
+    function Get_DataKey: ISpeechDataKey; safecall;
+    function Get_Category: ISpeechObjectTokenCategory; safecall;
+    function GetDescription(Locale: Integer): WideString; safecall;
     procedure SetId(const Id: WideString; const CategoryID: WideString; CreateIfNotExist: WordBool); safecall;
-    function  GetAttribute(const AttributeName: WideString): WideString; safecall;
-    function  CreateInstance(const pUnkOuter: IUnknown; ClsContext: SpeechTokenContext): IUnknown; safecall;
+    function GetAttribute(const AttributeName: WideString): WideString; safecall;
+    function CreateInstance(const pUnkOuter: IUnknown; ClsContext: SpeechTokenContext): IUnknown; safecall;
     procedure Remove(const ObjectStorageCLSID: WideString); safecall;
-    function  GetStorageFileName(const ObjectStorageCLSID: WideString; const KeyName: WideString; 
-                                 const FileName: WideString; Folder: SpeechTokenShellFolder): WideString; safecall;
+    function GetStorageFileName(const ObjectStorageCLSID: WideString; const KeyName: WideString; 
+                                const FileName: WideString; Folder: SpeechTokenShellFolder): WideString; safecall;
     procedure RemoveStorageFileName(const ObjectStorageCLSID: WideString; 
                                     const KeyName: WideString; DeleteFile: WordBool); safecall;
-    function  IsUISupported(const TypeOfUI: WideString; var ExtraData: OleVariant; 
-                            const Object_: IUnknown): WordBool; safecall;
+    function IsUISupported(const TypeOfUI: WideString; const ExtraData: OleVariant; 
+                           const Object_: IUnknown): WordBool; safecall;
     procedure DisplayUI(hWnd: Integer; const Title: WideString; const TypeOfUI: WideString; 
-                        var ExtraData: OleVariant; const Object_: IUnknown); safecall;
-    function  MatchesAttributes(const Attributes: WideString): WordBool; safecall;
+                        const ExtraData: OleVariant; const Object_: IUnknown); safecall;
+    function MatchesAttributes(const Attributes: WideString): WordBool; safecall;
     property Id: WideString read Get_Id;
     property DataKey: ISpeechDataKey read Get_DataKey;
     property Category: ISpeechObjectTokenCategory read Get_Category;
@@ -1981,20 +2149,20 @@ type
     property Id: WideString readonly dispid 1;
     property DataKey: ISpeechDataKey readonly dispid 2;
     property Category: ISpeechObjectTokenCategory readonly dispid 3;
-    function  GetDescription(Locale: Integer): WideString; dispid 4;
+    function GetDescription(Locale: Integer): WideString; dispid 4;
     procedure SetId(const Id: WideString; const CategoryID: WideString; CreateIfNotExist: WordBool); dispid 5;
-    function  GetAttribute(const AttributeName: WideString): WideString; dispid 6;
-    function  CreateInstance(const pUnkOuter: IUnknown; ClsContext: SpeechTokenContext): IUnknown; dispid 7;
+    function GetAttribute(const AttributeName: WideString): WideString; dispid 6;
+    function CreateInstance(const pUnkOuter: IUnknown; ClsContext: SpeechTokenContext): IUnknown; dispid 7;
     procedure Remove(const ObjectStorageCLSID: WideString); dispid 8;
-    function  GetStorageFileName(const ObjectStorageCLSID: WideString; const KeyName: WideString; 
-                                 const FileName: WideString; Folder: SpeechTokenShellFolder): WideString; dispid 9;
+    function GetStorageFileName(const ObjectStorageCLSID: WideString; const KeyName: WideString; 
+                                const FileName: WideString; Folder: SpeechTokenShellFolder): WideString; dispid 9;
     procedure RemoveStorageFileName(const ObjectStorageCLSID: WideString; 
                                     const KeyName: WideString; DeleteFile: WordBool); dispid 10;
-    function  IsUISupported(const TypeOfUI: WideString; var ExtraData: OleVariant; 
-                            const Object_: IUnknown): WordBool; dispid 11;
+    function IsUISupported(const TypeOfUI: WideString; const ExtraData: OleVariant; 
+                           const Object_: IUnknown): WordBool; dispid 11;
     procedure DisplayUI(hWnd: Integer; const Title: WideString; const TypeOfUI: WideString; 
-                        var ExtraData: OleVariant; const Object_: IUnknown); dispid 12;
-    function  MatchesAttributes(const Attributes: WideString): WordBool; dispid 13;
+                        const ExtraData: OleVariant; const Object_: IUnknown); dispid 12;
+    function MatchesAttributes(const Attributes: WideString): WordBool; dispid 13;
   end;
 
 // *********************************************************************//
@@ -2004,13 +2172,13 @@ type
 // *********************************************************************//
   ISpeechObjectTokenCategory = interface(IDispatch)
     ['{CA7EAC50-2D01-4145-86D4-5AE7D70F4469}']
-    function  Get_Id: WideString; safecall;
+    function Get_Id: WideString; safecall;
     procedure Set_Default(const TokenId: WideString); safecall;
-    function  Get_Default: WideString; safecall;
+    function Get_Default: WideString; safecall;
     procedure SetId(const Id: WideString; CreateIfNotExist: WordBool); safecall;
-    function  GetDataKey(Location: SpeechDataKeyLocation): ISpeechDataKey; safecall;
-    function  EnumerateTokens(const RequiredAttributes: WideString; 
-                              const OptionalAttributes: WideString): ISpeechObjectTokens; safecall;
+    function GetDataKey(Location: SpeechDataKeyLocation): ISpeechDataKey; safecall;
+    function EnumerateTokens(const RequiredAttributes: WideString; 
+                             const OptionalAttributes: WideString): ISpeechObjectTokens; safecall;
     property Id: WideString read Get_Id;
     property Default: WideString read Get_Default write Set_Default;
   end;
@@ -2025,9 +2193,9 @@ type
     property Id: WideString readonly dispid 1;
     property Default: WideString dispid 2;
     procedure SetId(const Id: WideString; CreateIfNotExist: WordBool); dispid 3;
-    function  GetDataKey(Location: SpeechDataKeyLocation): ISpeechDataKey; dispid 4;
-    function  EnumerateTokens(const RequiredAttributes: WideString; 
-                              const OptionalAttributes: WideString): ISpeechObjectTokens; dispid 5;
+    function GetDataKey(Location: SpeechDataKeyLocation): ISpeechDataKey; dispid 4;
+    function EnumerateTokens(const RequiredAttributes: WideString; 
+                             const OptionalAttributes: WideString): ISpeechObjectTokens; dispid 5;
   end;
 
 // *********************************************************************//
@@ -2037,9 +2205,9 @@ type
 // *********************************************************************//
   ISpeechObjectTokens = interface(IDispatch)
     ['{9285B776-2E7B-4BC0-B53E-580EB6FA967F}']
-    function  Get_Count: Integer; safecall;
-    function  Item(Index: Integer): ISpeechObjectToken; safecall;
-    function  Get__NewEnum: IUnknown; safecall;
+    function Get_Count: Integer; safecall;
+    function Item(Index: Integer): ISpeechObjectToken; safecall;
+    function Get__NewEnum: IUnknown; safecall;
     property Count: Integer read Get_Count;
     property _NewEnum: IUnknown read Get__NewEnum;
   end;
@@ -2052,7 +2220,7 @@ type
   ISpeechObjectTokensDisp = dispinterface
     ['{9285B776-2E7B-4BC0-B53E-580EB6FA967F}']
     property Count: Integer readonly dispid 1;
-    function  Item(Index: Integer): ISpeechObjectToken; dispid 0;
+    function Item(Index: Integer): ISpeechObjectToken; dispid 0;
     property _NewEnum: IUnknown readonly dispid -4;
   end;
 
@@ -2063,11 +2231,11 @@ type
 // *********************************************************************//
   ISpeechAudioBufferInfo = interface(IDispatch)
     ['{11B103D8-1142-4EDF-A093-82FB3915F8CC}']
-    function  Get_MinNotification: Integer; safecall;
+    function Get_MinNotification: Integer; safecall;
     procedure Set_MinNotification(MinNotification: Integer); safecall;
-    function  Get_BufferSize: Integer; safecall;
+    function Get_BufferSize: Integer; safecall;
     procedure Set_BufferSize(BufferSize: Integer); safecall;
-    function  Get_EventBias: Integer; safecall;
+    function Get_EventBias: Integer; safecall;
     procedure Set_EventBias(EventBias: Integer); safecall;
     property MinNotification: Integer read Get_MinNotification write Set_MinNotification;
     property BufferSize: Integer read Get_BufferSize write Set_BufferSize;
@@ -2093,11 +2261,11 @@ type
 // *********************************************************************//
   ISpeechAudioStatus = interface(IDispatch)
     ['{C62D9C91-7458-47F6-862D-1EF86FB0B278}']
-    function  Get_FreeBufferSpace: Integer; safecall;
-    function  Get_NonBlockingIO: Integer; safecall;
-    function  Get_State: SpeechAudioState; safecall;
-    function  Get_CurrentSeekPosition: OleVariant; safecall;
-    function  Get_CurrentDevicePosition: OleVariant; safecall;
+    function Get_FreeBufferSpace: Integer; safecall;
+    function Get_NonBlockingIO: Integer; safecall;
+    function Get_State: SpeechAudioState; safecall;
+    function Get_CurrentSeekPosition: OleVariant; safecall;
+    function Get_CurrentDevicePosition: OleVariant; safecall;
     property FreeBufferSpace: Integer read Get_FreeBufferSpace;
     property NonBlockingIO: Integer read Get_NonBlockingIO;
     property State: SpeechAudioState read Get_State;
@@ -2126,13 +2294,13 @@ type
 // *********************************************************************//
   ISpeechAudioFormat = interface(IDispatch)
     ['{E6E9C590-3E18-40E3-8299-061F98BDE7C7}']
-    function  Get_Type_: SpeechAudioFormatType; safecall;
-    procedure Set_Type_(AudioFormat: SpeechAudioFormatType); safecall;
-    function  Get_Guid: WideString; safecall;
+    function Get_type_: SpeechAudioFormatType; safecall;
+    procedure Set_type_(AudioFormat: SpeechAudioFormatType); safecall;
+    function Get_Guid: WideString; safecall;
     procedure Set_Guid(const Guid: WideString); safecall;
-    function  GetWaveFormatEx: ISpeechWaveFormatEx; safecall;
-    procedure SetWaveFormatEx(const WaveFormatEx: ISpeechWaveFormatEx); safecall;
-    property Type_: SpeechAudioFormatType read Get_Type_ write Set_Type_;
+    function GetWaveFormatEx: ISpeechWaveFormatEx; safecall;
+    procedure SetWaveFormatEx(const SpeechWaveFormatEx: ISpeechWaveFormatEx); safecall;
+    property type_: SpeechAudioFormatType read Get_type_ write Set_type_;
     property Guid: WideString read Get_Guid write Set_Guid;
   end;
 
@@ -2143,10 +2311,10 @@ type
 // *********************************************************************//
   ISpeechAudioFormatDisp = dispinterface
     ['{E6E9C590-3E18-40E3-8299-061F98BDE7C7}']
-    property Type_: SpeechAudioFormatType dispid 1;
+    property type_: SpeechAudioFormatType dispid 1;
     property Guid: WideString dispid 2;
-    function  GetWaveFormatEx: ISpeechWaveFormatEx; dispid 3;
-    procedure SetWaveFormatEx(const WaveFormatEx: ISpeechWaveFormatEx); dispid 4;
+    function GetWaveFormatEx: ISpeechWaveFormatEx; dispid 3;
+    procedure SetWaveFormatEx(const SpeechWaveFormatEx: ISpeechWaveFormatEx); dispid 4;
   end;
 
 // *********************************************************************//
@@ -2156,19 +2324,19 @@ type
 // *********************************************************************//
   ISpeechWaveFormatEx = interface(IDispatch)
     ['{7A1EF0D5-1581-4741-88E4-209A49F11A10}']
-    function  Get_FormatTag: Smallint; safecall;
+    function Get_FormatTag: Smallint; safecall;
     procedure Set_FormatTag(FormatTag: Smallint); safecall;
-    function  Get_Channels: Smallint; safecall;
+    function Get_Channels: Smallint; safecall;
     procedure Set_Channels(Channels: Smallint); safecall;
-    function  Get_SamplesPerSec: Integer; safecall;
+    function Get_SamplesPerSec: Integer; safecall;
     procedure Set_SamplesPerSec(SamplesPerSec: Integer); safecall;
-    function  Get_AvgBytesPerSec: Integer; safecall;
+    function Get_AvgBytesPerSec: Integer; safecall;
     procedure Set_AvgBytesPerSec(AvgBytesPerSec: Integer); safecall;
-    function  Get_BlockAlign: Smallint; safecall;
+    function Get_BlockAlign: Smallint; safecall;
     procedure Set_BlockAlign(BlockAlign: Smallint); safecall;
-    function  Get_BitsPerSample: Smallint; safecall;
+    function Get_BitsPerSample: Smallint; safecall;
     procedure Set_BitsPerSample(BitsPerSample: Smallint); safecall;
-    function  Get_ExtraData: OleVariant; safecall;
+    function Get_ExtraData: OleVariant; safecall;
     procedure Set_ExtraData(ExtraData: OleVariant); safecall;
     property FormatTag: Smallint read Get_FormatTag write Set_FormatTag;
     property Channels: Smallint read Get_Channels write Set_Channels;
@@ -2202,12 +2370,12 @@ type
 // *********************************************************************//
   ISpeechBaseStream = interface(IDispatch)
     ['{6450336F-7D49-4CED-8097-49D6DEE37294}']
-    function  Get_Format: ISpeechAudioFormat; safecall;
-    procedure Set_Format(const AudioFormat: ISpeechAudioFormat); safecall;
-    function  Read(out Buffer: OleVariant; NumberOfBytes: Integer): Integer; safecall;
-    function  Write(Buffer: OleVariant): Integer; safecall;
-    function  Seek(Position: OleVariant; Origin: SpeechStreamSeekPositionType): OleVariant; safecall;
-    property Format: ISpeechAudioFormat read Get_Format write Set_Format;
+    function Get_Format: ISpeechAudioFormat; safecall;
+    procedure _Set_Format(const AudioFormat: ISpeechAudioFormat); safecall;
+    function Read(out Buffer: OleVariant; NumberOfBytes: Integer): Integer; safecall;
+    function Write(Buffer: OleVariant): Integer; safecall;
+    function Seek(Position: OleVariant; Origin: SpeechStreamSeekPositionType): OleVariant; safecall;
+    property Format: ISpeechAudioFormat read Get_Format write _Set_Format;
   end;
 
 // *********************************************************************//
@@ -2218,9 +2386,9 @@ type
   ISpeechBaseStreamDisp = dispinterface
     ['{6450336F-7D49-4CED-8097-49D6DEE37294}']
     property Format: ISpeechAudioFormat dispid 1;
-    function  Read(out Buffer: OleVariant; NumberOfBytes: Integer): Integer; dispid 2;
-    function  Write(Buffer: OleVariant): Integer; dispid 3;
-    function  Seek(Position: OleVariant; Origin: SpeechStreamSeekPositionType): OleVariant; dispid 4;
+    function Read(out Buffer: OleVariant; NumberOfBytes: Integer): Integer; dispid 2;
+    function Write(Buffer: OleVariant): Integer; dispid 3;
+    function Seek(Position: OleVariant; Origin: SpeechStreamSeekPositionType): OleVariant; dispid 4;
   end;
 
 // *********************************************************************//
@@ -2244,9 +2412,9 @@ type
     procedure Open(const FileName: WideString; FileMode: SpeechStreamFileMode; DoEvents: WordBool); dispid 100;
     procedure Close; dispid 101;
     property Format: ISpeechAudioFormat dispid 1;
-    function  Read(out Buffer: OleVariant; NumberOfBytes: Integer): Integer; dispid 2;
-    function  Write(Buffer: OleVariant): Integer; dispid 3;
-    function  Seek(Position: OleVariant; Origin: SpeechStreamSeekPositionType): OleVariant; dispid 4;
+    function Read(out Buffer: OleVariant; NumberOfBytes: Integer): Integer; dispid 2;
+    function Write(Buffer: OleVariant): Integer; dispid 3;
+    function Seek(Position: OleVariant; Origin: SpeechStreamSeekPositionType): OleVariant; dispid 4;
   end;
 
 // *********************************************************************//
@@ -2257,7 +2425,7 @@ type
   ISpeechMemoryStream = interface(ISpeechBaseStream)
     ['{EEB14B68-808B-4ABE-A5EA-B51DA7588008}']
     procedure SetData(Data: OleVariant); safecall;
-    function  GetData: OleVariant; safecall;
+    function GetData: OleVariant; safecall;
   end;
 
 // *********************************************************************//
@@ -2268,11 +2436,11 @@ type
   ISpeechMemoryStreamDisp = dispinterface
     ['{EEB14B68-808B-4ABE-A5EA-B51DA7588008}']
     procedure SetData(Data: OleVariant); dispid 100;
-    function  GetData: OleVariant; dispid 101;
+    function GetData: OleVariant; dispid 101;
     property Format: ISpeechAudioFormat dispid 1;
-    function  Read(out Buffer: OleVariant; NumberOfBytes: Integer): Integer; dispid 2;
-    function  Write(Buffer: OleVariant): Integer; dispid 3;
-    function  Seek(Position: OleVariant; Origin: SpeechStreamSeekPositionType): OleVariant; dispid 4;
+    function Read(out Buffer: OleVariant; NumberOfBytes: Integer): Integer; dispid 2;
+    function Write(Buffer: OleVariant): Integer; dispid 3;
+    function Seek(Position: OleVariant; Origin: SpeechStreamSeekPositionType): OleVariant; dispid 4;
   end;
 
 // *********************************************************************//
@@ -2282,9 +2450,9 @@ type
 // *********************************************************************//
   ISpeechCustomStream = interface(ISpeechBaseStream)
     ['{1A9E9F4F-104F-4DB8-A115-EFD7FD0C97AE}']
-    function  Get_BaseStream: IUnknown; safecall;
-    procedure Set_BaseStream(const ppUnkStream: IUnknown); safecall;
-    property BaseStream: IUnknown read Get_BaseStream write Set_BaseStream;
+    function Get_BaseStream: IUnknown; safecall;
+    procedure _Set_BaseStream(const ppUnkStream: IUnknown); safecall;
+    property BaseStream: IUnknown read Get_BaseStream write _Set_BaseStream;
   end;
 
 // *********************************************************************//
@@ -2296,9 +2464,9 @@ type
     ['{1A9E9F4F-104F-4DB8-A115-EFD7FD0C97AE}']
     property BaseStream: IUnknown dispid 100;
     property Format: ISpeechAudioFormat dispid 1;
-    function  Read(out Buffer: OleVariant; NumberOfBytes: Integer): Integer; dispid 2;
-    function  Write(Buffer: OleVariant): Integer; dispid 3;
-    function  Seek(Position: OleVariant; Origin: SpeechStreamSeekPositionType): OleVariant; dispid 4;
+    function Read(out Buffer: OleVariant; NumberOfBytes: Integer): Integer; dispid 2;
+    function Write(Buffer: OleVariant): Integer; dispid 3;
+    function Seek(Position: OleVariant; Origin: SpeechStreamSeekPositionType): OleVariant; dispid 4;
   end;
 
 // *********************************************************************//
@@ -2308,14 +2476,14 @@ type
 // *********************************************************************//
   ISpeechAudio = interface(ISpeechBaseStream)
     ['{CFF8E175-019E-11D3-A08E-00C04F8EF9B5}']
-    function  Get_Status: ISpeechAudioStatus; safecall;
-    function  Get_BufferInfo: ISpeechAudioBufferInfo; safecall;
-    function  Get_DefaultFormat: ISpeechAudioFormat; safecall;
-    function  Get_Volume: Integer; safecall;
+    function Get_Status: ISpeechAudioStatus; safecall;
+    function Get_BufferInfo: ISpeechAudioBufferInfo; safecall;
+    function Get_DefaultFormat: ISpeechAudioFormat; safecall;
+    function Get_Volume: Integer; safecall;
     procedure Set_Volume(Volume: Integer); safecall;
-    function  Get_BufferNotifySize: Integer; safecall;
+    function Get_BufferNotifySize: Integer; safecall;
     procedure Set_BufferNotifySize(BufferNotifySize: Integer); safecall;
-    function  Get_EventHandle: Integer; safecall;
+    function Get_EventHandle: Integer; safecall;
     procedure SetState(State: SpeechAudioState); safecall;
     property Status: ISpeechAudioStatus read Get_Status;
     property BufferInfo: ISpeechAudioBufferInfo read Get_BufferInfo;
@@ -2340,9 +2508,9 @@ type
     property EventHandle: Integer readonly dispid 205;
     procedure SetState(State: SpeechAudioState); dispid 206;
     property Format: ISpeechAudioFormat dispid 1;
-    function  Read(out Buffer: OleVariant; NumberOfBytes: Integer): Integer; dispid 2;
-    function  Write(Buffer: OleVariant): Integer; dispid 3;
-    function  Seek(Position: OleVariant; Origin: SpeechStreamSeekPositionType): OleVariant; dispid 4;
+    function Read(out Buffer: OleVariant; NumberOfBytes: Integer): Integer; dispid 2;
+    function Write(Buffer: OleVariant): Integer; dispid 3;
+    function Seek(Position: OleVariant; Origin: SpeechStreamSeekPositionType): OleVariant; dispid 4;
   end;
 
 // *********************************************************************//
@@ -2352,11 +2520,11 @@ type
 // *********************************************************************//
   ISpeechMMSysAudio = interface(ISpeechAudio)
     ['{3C76AF6D-1FD7-4831-81D1-3B71D5A13C44}']
-    function  Get_DeviceId: Integer; safecall;
+    function Get_DeviceId: Integer; safecall;
     procedure Set_DeviceId(DeviceId: Integer); safecall;
-    function  Get_LineId: Integer; safecall;
+    function Get_LineId: Integer; safecall;
     procedure Set_LineId(LineId: Integer); safecall;
-    function  Get_MMHandle: Integer; safecall;
+    function Get_MMHandle: Integer; safecall;
     property DeviceId: Integer read Get_DeviceId write Set_DeviceId;
     property LineId: Integer read Get_LineId write Set_LineId;
     property MMHandle: Integer read Get_MMHandle;
@@ -2380,9 +2548,9 @@ type
     property EventHandle: Integer readonly dispid 205;
     procedure SetState(State: SpeechAudioState); dispid 206;
     property Format: ISpeechAudioFormat dispid 1;
-    function  Read(out Buffer: OleVariant; NumberOfBytes: Integer): Integer; dispid 2;
-    function  Write(Buffer: OleVariant): Integer; dispid 3;
-    function  Seek(Position: OleVariant; Origin: SpeechStreamSeekPositionType): OleVariant; dispid 4;
+    function Read(out Buffer: OleVariant; NumberOfBytes: Integer): Integer; dispid 2;
+    function Write(Buffer: OleVariant): Integer; dispid 3;
+    function Seek(Position: OleVariant; Origin: SpeechStreamSeekPositionType): OleVariant; dispid 4;
   end;
 
 // *********************************************************************//
@@ -2392,44 +2560,44 @@ type
 // *********************************************************************//
   ISpeechVoice = interface(IDispatch)
     ['{269316D8-57BD-11D2-9EEE-00C04F797396}']
-    function  Get_Status: ISpeechVoiceStatus; safecall;
-    function  Get_Voice: ISpeechObjectToken; safecall;
-    procedure Set_Voice(const Voice: ISpeechObjectToken); safecall;
-    function  Get_AudioOutput: ISpeechObjectToken; safecall;
-    procedure Set_AudioOutput(const AudioOutput: ISpeechObjectToken); safecall;
-    function  Get_AudioOutputStream: ISpeechBaseStream; safecall;
-    procedure Set_AudioOutputStream(const AudioOutputStream: ISpeechBaseStream); safecall;
-    function  Get_Rate: Integer; safecall;
+    function Get_Status: ISpeechVoiceStatus; safecall;
+    function Get_Voice: ISpeechObjectToken; safecall;
+    procedure _Set_Voice(const Voice: ISpeechObjectToken); safecall;
+    function Get_AudioOutput: ISpeechObjectToken; safecall;
+    procedure _Set_AudioOutput(const AudioOutput: ISpeechObjectToken); safecall;
+    function Get_AudioOutputStream: ISpeechBaseStream; safecall;
+    procedure _Set_AudioOutputStream(const AudioOutputStream: ISpeechBaseStream); safecall;
+    function Get_Rate: Integer; safecall;
     procedure Set_Rate(Rate: Integer); safecall;
-    function  Get_Volume: Integer; safecall;
+    function Get_Volume: Integer; safecall;
     procedure Set_Volume(Volume: Integer); safecall;
     procedure Set_AllowAudioOutputFormatChangesOnNextSet(Allow: WordBool); safecall;
-    function  Get_AllowAudioOutputFormatChangesOnNextSet: WordBool; safecall;
-    function  Get_EventInterests: SpeechVoiceEvents; safecall;
+    function Get_AllowAudioOutputFormatChangesOnNextSet: WordBool; safecall;
+    function Get_EventInterests: SpeechVoiceEvents; safecall;
     procedure Set_EventInterests(EventInterestFlags: SpeechVoiceEvents); safecall;
     procedure Set_Priority(Priority: SpeechVoicePriority); safecall;
-    function  Get_Priority: SpeechVoicePriority; safecall;
+    function Get_Priority: SpeechVoicePriority; safecall;
     procedure Set_AlertBoundary(Boundary: SpeechVoiceEvents); safecall;
-    function  Get_AlertBoundary: SpeechVoiceEvents; safecall;
+    function Get_AlertBoundary: SpeechVoiceEvents; safecall;
     procedure Set_SynchronousSpeakTimeout(msTimeout: Integer); safecall;
-    function  Get_SynchronousSpeakTimeout: Integer; safecall;
-    function  Speak(const Text: WideString; Flags: SpeechVoiceSpeakFlags): Integer; safecall;
-    function  SpeakStream(const Stream: ISpeechBaseStream; Flags: SpeechVoiceSpeakFlags): Integer; safecall;
+    function Get_SynchronousSpeakTimeout: Integer; safecall;
+    function Speak(const Text: WideString; Flags: SpeechVoiceSpeakFlags): Integer; safecall;
+    function SpeakStream(const Stream: ISpeechBaseStream; Flags: SpeechVoiceSpeakFlags): Integer; safecall;
     procedure Pause; safecall;
     procedure Resume; safecall;
-    function  Skip(const Type_: WideString; NumItems: Integer): Integer; safecall;
-    function  GetVoices(const RequiredAttributes: WideString; const OptionalAttributes: WideString): ISpeechObjectTokens; safecall;
-    function  GetAudioOutputs(const RequiredAttributes: WideString; 
-                              const OptionalAttributes: WideString): ISpeechObjectTokens; safecall;
-    function  WaitUntilDone(msTimeout: Integer): WordBool; safecall;
-    function  SpeakCompleteEvent: Integer; safecall;
-    function  IsUISupported(const TypeOfUI: WideString; var ExtraData: OleVariant): WordBool; safecall;
+    function Skip(const Type_: WideString; NumItems: Integer): Integer; safecall;
+    function GetVoices(const RequiredAttributes: WideString; const OptionalAttributes: WideString): ISpeechObjectTokens; safecall;
+    function GetAudioOutputs(const RequiredAttributes: WideString; 
+                             const OptionalAttributes: WideString): ISpeechObjectTokens; safecall;
+    function WaitUntilDone(msTimeout: Integer): WordBool; safecall;
+    function SpeakCompleteEvent: Integer; safecall;
+    function IsUISupported(const TypeOfUI: WideString; const ExtraData: OleVariant): WordBool; safecall;
     procedure DisplayUI(hWndParent: Integer; const Title: WideString; const TypeOfUI: WideString; 
-                        var ExtraData: OleVariant); safecall;
+                        const ExtraData: OleVariant); safecall;
     property Status: ISpeechVoiceStatus read Get_Status;
-    property Voice: ISpeechObjectToken read Get_Voice write Set_Voice;
-    property AudioOutput: ISpeechObjectToken read Get_AudioOutput write Set_AudioOutput;
-    property AudioOutputStream: ISpeechBaseStream read Get_AudioOutputStream write Set_AudioOutputStream;
+    property Voice: ISpeechObjectToken read Get_Voice write _Set_Voice;
+    property AudioOutput: ISpeechObjectToken read Get_AudioOutput write _Set_AudioOutput;
+    property AudioOutputStream: ISpeechBaseStream read Get_AudioOutputStream write _Set_AudioOutputStream;
     property Rate: Integer read Get_Rate write Set_Rate;
     property Volume: Integer read Get_Volume write Set_Volume;
     property AllowAudioOutputFormatChangesOnNextSet: WordBool read Get_AllowAudioOutputFormatChangesOnNextSet write Set_AllowAudioOutputFormatChangesOnNextSet;
@@ -2457,19 +2625,19 @@ type
     property Priority: SpeechVoicePriority dispid 9;
     property AlertBoundary: SpeechVoiceEvents dispid 10;
     property SynchronousSpeakTimeout: Integer dispid 11;
-    function  Speak(const Text: WideString; Flags: SpeechVoiceSpeakFlags): Integer; dispid 12;
-    function  SpeakStream(const Stream: ISpeechBaseStream; Flags: SpeechVoiceSpeakFlags): Integer; dispid 13;
+    function Speak(const Text: WideString; Flags: SpeechVoiceSpeakFlags): Integer; dispid 12;
+    function SpeakStream(const Stream: ISpeechBaseStream; Flags: SpeechVoiceSpeakFlags): Integer; dispid 13;
     procedure Pause; dispid 14;
     procedure Resume; dispid 15;
-    function  Skip(const Type_: WideString; NumItems: Integer): Integer; dispid 16;
-    function  GetVoices(const RequiredAttributes: WideString; const OptionalAttributes: WideString): ISpeechObjectTokens; dispid 17;
-    function  GetAudioOutputs(const RequiredAttributes: WideString; 
-                              const OptionalAttributes: WideString): ISpeechObjectTokens; dispid 18;
-    function  WaitUntilDone(msTimeout: Integer): WordBool; dispid 19;
-    function  SpeakCompleteEvent: Integer; dispid 20;
-    function  IsUISupported(const TypeOfUI: WideString; var ExtraData: OleVariant): WordBool; dispid 21;
+    function Skip(const Type_: WideString; NumItems: Integer): Integer; dispid 16;
+    function GetVoices(const RequiredAttributes: WideString; const OptionalAttributes: WideString): ISpeechObjectTokens; dispid 17;
+    function GetAudioOutputs(const RequiredAttributes: WideString; 
+                             const OptionalAttributes: WideString): ISpeechObjectTokens; dispid 18;
+    function WaitUntilDone(msTimeout: Integer): WordBool; dispid 19;
+    function SpeakCompleteEvent: Integer; dispid 20;
+    function IsUISupported(const TypeOfUI: WideString; const ExtraData: OleVariant): WordBool; dispid 21;
     procedure DisplayUI(hWndParent: Integer; const Title: WideString; const TypeOfUI: WideString; 
-                        var ExtraData: OleVariant); dispid 22;
+                        const ExtraData: OleVariant); dispid 22;
   end;
 
 // *********************************************************************//
@@ -2479,18 +2647,18 @@ type
 // *********************************************************************//
   ISpeechVoiceStatus = interface(IDispatch)
     ['{8BE47B07-57F6-11D2-9EEE-00C04F797396}']
-    function  Get_CurrentStreamNumber: Integer; safecall;
-    function  Get_LastStreamNumberQueued: Integer; safecall;
-    function  Get_LastHResult: Integer; safecall;
-    function  Get_RunningState: SpeechRunState; safecall;
-    function  Get_InputWordPosition: Integer; safecall;
-    function  Get_InputWordLength: Integer; safecall;
-    function  Get_InputSentencePosition: Integer; safecall;
-    function  Get_InputSentenceLength: Integer; safecall;
-    function  Get_LastBookmark: WideString; safecall;
-    function  Get_LastBookmarkId: Integer; safecall;
-    function  Get_PhonemeId: Smallint; safecall;
-    function  Get_VisemeId: Smallint; safecall;
+    function Get_CurrentStreamNumber: Integer; safecall;
+    function Get_LastStreamNumberQueued: Integer; safecall;
+    function Get_LastHResult: Integer; safecall;
+    function Get_RunningState: SpeechRunState; safecall;
+    function Get_InputWordPosition: Integer; safecall;
+    function Get_InputWordLength: Integer; safecall;
+    function Get_InputSentencePosition: Integer; safecall;
+    function Get_InputSentenceLength: Integer; safecall;
+    function Get_LastBookmark: WideString; safecall;
+    function Get_LastBookmarkId: Integer; safecall;
+    function Get_PhonemeId: Smallint; safecall;
+    function Get_VisemeId: Smallint; safecall;
     property CurrentStreamNumber: Integer read Get_CurrentStreamNumber;
     property LastStreamNumberQueued: Integer read Get_LastStreamNumberQueued;
     property LastHResult: Integer read Get_LastHResult;
@@ -2559,44 +2727,44 @@ type
 // *********************************************************************//
   ISpeechRecognizer = interface(IDispatch)
     ['{2D5F1C0C-BD75-4B08-9478-3B11FEA2586C}']
-    procedure Set_Recognizer(const Recognizer: ISpeechObjectToken); safecall;
-    function  Get_Recognizer: ISpeechObjectToken; safecall;
+    procedure _Set_Recognizer(const Recognizer: ISpeechObjectToken); safecall;
+    function Get_Recognizer: ISpeechObjectToken; safecall;
     procedure Set_AllowAudioInputFormatChangesOnNextSet(Allow: WordBool); safecall;
-    function  Get_AllowAudioInputFormatChangesOnNextSet: WordBool; safecall;
-    procedure Set_AudioInput(const AudioInput: ISpeechObjectToken); safecall;
-    function  Get_AudioInput: ISpeechObjectToken; safecall;
-    procedure Set_AudioInputStream(const AudioInputStream: ISpeechBaseStream); safecall;
-    function  Get_AudioInputStream: ISpeechBaseStream; safecall;
-    function  Get_IsShared: WordBool; safecall;
+    function Get_AllowAudioInputFormatChangesOnNextSet: WordBool; safecall;
+    procedure _Set_AudioInput(const AudioInput: ISpeechObjectToken); safecall;
+    function Get_AudioInput: ISpeechObjectToken; safecall;
+    procedure _Set_AudioInputStream(const AudioInputStream: ISpeechBaseStream); safecall;
+    function Get_AudioInputStream: ISpeechBaseStream; safecall;
+    function Get_IsShared: WordBool; safecall;
     procedure Set_State(State: SpeechRecognizerState); safecall;
-    function  Get_State: SpeechRecognizerState; safecall;
-    function  Get_Status: ISpeechRecognizerStatus; safecall;
-    procedure Set_Profile(const Profile: ISpeechObjectToken); safecall;
-    function  Get_Profile: ISpeechObjectToken; safecall;
+    function Get_State: SpeechRecognizerState; safecall;
+    function Get_Status: ISpeechRecognizerStatus; safecall;
+    procedure _Set_Profile(const Profile: ISpeechObjectToken); safecall;
+    function Get_Profile: ISpeechObjectToken; safecall;
     procedure EmulateRecognition(TextElements: OleVariant; 
-                                 var ElementDisplayAttributes: OleVariant; LanguageId: Integer); safecall;
-    function  CreateRecoContext: ISpeechRecoContext; safecall;
-    function  GetFormat(Type_: SpeechFormatType): ISpeechAudioFormat; safecall;
-    function  SetPropertyNumber(const Name: WideString; Value: Integer): WordBool; safecall;
-    function  GetPropertyNumber(const Name: WideString; var Value: Integer): WordBool; safecall;
-    function  SetPropertyString(const Name: WideString; const Value: WideString): WordBool; safecall;
-    function  GetPropertyString(const Name: WideString; var Value: WideString): WordBool; safecall;
-    function  IsUISupported(const TypeOfUI: WideString; var ExtraData: OleVariant): WordBool; safecall;
+                                 const ElementDisplayAttributes: OleVariant; LanguageId: Integer); safecall;
+    function CreateRecoContext: ISpeechRecoContext; safecall;
+    function GetFormat(Type_: SpeechFormatType): ISpeechAudioFormat; safecall;
+    function SetPropertyNumber(const Name: WideString; Value: Integer): WordBool; safecall;
+    function GetPropertyNumber(const Name: WideString; var Value: Integer): WordBool; safecall;
+    function SetPropertyString(const Name: WideString; const Value: WideString): WordBool; safecall;
+    function GetPropertyString(const Name: WideString; var Value: WideString): WordBool; safecall;
+    function IsUISupported(const TypeOfUI: WideString; const ExtraData: OleVariant): WordBool; safecall;
     procedure DisplayUI(hWndParent: Integer; const Title: WideString; const TypeOfUI: WideString; 
-                        var ExtraData: OleVariant); safecall;
-    function  GetRecognizers(const RequiredAttributes: WideString; 
-                             const OptionalAttributes: WideString): ISpeechObjectTokens; safecall;
-    function  GetAudioInputs(const RequiredAttributes: WideString; 
-                             const OptionalAttributes: WideString): ISpeechObjectTokens; safecall;
-    function  GetProfiles(const RequiredAttributes: WideString; const OptionalAttributes: WideString): ISpeechObjectTokens; safecall;
-    property Recognizer: ISpeechObjectToken read Get_Recognizer write Set_Recognizer;
+                        const ExtraData: OleVariant); safecall;
+    function GetRecognizers(const RequiredAttributes: WideString; 
+                            const OptionalAttributes: WideString): ISpeechObjectTokens; safecall;
+    function GetAudioInputs(const RequiredAttributes: WideString; 
+                            const OptionalAttributes: WideString): ISpeechObjectTokens; safecall;
+    function GetProfiles(const RequiredAttributes: WideString; const OptionalAttributes: WideString): ISpeechObjectTokens; safecall;
+    property Recognizer: ISpeechObjectToken read Get_Recognizer write _Set_Recognizer;
     property AllowAudioInputFormatChangesOnNextSet: WordBool read Get_AllowAudioInputFormatChangesOnNextSet write Set_AllowAudioInputFormatChangesOnNextSet;
-    property AudioInput: ISpeechObjectToken read Get_AudioInput write Set_AudioInput;
-    property AudioInputStream: ISpeechBaseStream read Get_AudioInputStream write Set_AudioInputStream;
+    property AudioInput: ISpeechObjectToken read Get_AudioInput write _Set_AudioInput;
+    property AudioInputStream: ISpeechBaseStream read Get_AudioInputStream write _Set_AudioInputStream;
     property IsShared: WordBool read Get_IsShared;
     property State: SpeechRecognizerState read Get_State write Set_State;
     property Status: ISpeechRecognizerStatus read Get_Status;
-    property Profile: ISpeechObjectToken read Get_Profile write Set_Profile;
+    property Profile: ISpeechObjectToken read Get_Profile write _Set_Profile;
   end;
 
 // *********************************************************************//
@@ -2615,21 +2783,21 @@ type
     property Status: ISpeechRecognizerStatus readonly dispid 7;
     property Profile: ISpeechObjectToken dispid 8;
     procedure EmulateRecognition(TextElements: OleVariant; 
-                                 var ElementDisplayAttributes: OleVariant; LanguageId: Integer); dispid 9;
-    function  CreateRecoContext: ISpeechRecoContext; dispid 10;
-    function  GetFormat(Type_: SpeechFormatType): ISpeechAudioFormat; dispid 11;
-    function  SetPropertyNumber(const Name: WideString; Value: Integer): WordBool; dispid 12;
-    function  GetPropertyNumber(const Name: WideString; var Value: Integer): WordBool; dispid 13;
-    function  SetPropertyString(const Name: WideString; const Value: WideString): WordBool; dispid 14;
-    function  GetPropertyString(const Name: WideString; var Value: WideString): WordBool; dispid 15;
-    function  IsUISupported(const TypeOfUI: WideString; var ExtraData: OleVariant): WordBool; dispid 16;
+                                 const ElementDisplayAttributes: OleVariant; LanguageId: Integer); dispid 9;
+    function CreateRecoContext: ISpeechRecoContext; dispid 10;
+    function GetFormat(Type_: SpeechFormatType): ISpeechAudioFormat; dispid 11;
+    function SetPropertyNumber(const Name: WideString; Value: Integer): WordBool; dispid 12;
+    function GetPropertyNumber(const Name: WideString; var Value: Integer): WordBool; dispid 13;
+    function SetPropertyString(const Name: WideString; const Value: WideString): WordBool; dispid 14;
+    function GetPropertyString(const Name: WideString; var Value: WideString): WordBool; dispid 15;
+    function IsUISupported(const TypeOfUI: WideString; const ExtraData: OleVariant): WordBool; dispid 16;
     procedure DisplayUI(hWndParent: Integer; const Title: WideString; const TypeOfUI: WideString; 
-                        var ExtraData: OleVariant); dispid 17;
-    function  GetRecognizers(const RequiredAttributes: WideString; 
-                             const OptionalAttributes: WideString): ISpeechObjectTokens; dispid 18;
-    function  GetAudioInputs(const RequiredAttributes: WideString; 
-                             const OptionalAttributes: WideString): ISpeechObjectTokens; dispid 19;
-    function  GetProfiles(const RequiredAttributes: WideString; const OptionalAttributes: WideString): ISpeechObjectTokens; dispid 20;
+                        const ExtraData: OleVariant); dispid 17;
+    function GetRecognizers(const RequiredAttributes: WideString; 
+                            const OptionalAttributes: WideString): ISpeechObjectTokens; dispid 18;
+    function GetAudioInputs(const RequiredAttributes: WideString; 
+                            const OptionalAttributes: WideString): ISpeechObjectTokens; dispid 19;
+    function GetProfiles(const RequiredAttributes: WideString; const OptionalAttributes: WideString): ISpeechObjectTokens; dispid 20;
   end;
 
 // *********************************************************************//
@@ -2639,12 +2807,12 @@ type
 // *********************************************************************//
   ISpeechRecognizerStatus = interface(IDispatch)
     ['{BFF9E781-53EC-484E-BB8A-0E1B5551E35C}']
-    function  Get_AudioStatus: ISpeechAudioStatus; safecall;
-    function  Get_CurrentStreamPosition: OleVariant; safecall;
-    function  Get_CurrentStreamNumber: Integer; safecall;
-    function  Get_NumberOfActiveRules: Integer; safecall;
-    function  Get_ClsidEngine: WideString; safecall;
-    function  Get_SupportedLanguages: OleVariant; safecall;
+    function Get_AudioStatus: ISpeechAudioStatus; safecall;
+    function Get_CurrentStreamPosition: OleVariant; safecall;
+    function Get_CurrentStreamNumber: Integer; safecall;
+    function Get_NumberOfActiveRules: Integer; safecall;
+    function Get_ClsidEngine: WideString; safecall;
+    function Get_SupportedLanguages: OleVariant; safecall;
     property AudioStatus: ISpeechAudioStatus read Get_AudioStatus;
     property CurrentStreamPosition: OleVariant read Get_CurrentStreamPosition;
     property CurrentStreamNumber: Integer read Get_CurrentStreamNumber;
@@ -2675,42 +2843,42 @@ type
 // *********************************************************************//
   ISpeechRecoContext = interface(IDispatch)
     ['{580AA49D-7E1E-4809-B8E2-57DA806104B8}']
-    function  Get_Recognizer: ISpeechRecognizer; safecall;
-    function  Get_AudioInputInterferenceStatus: SpeechInterference; safecall;
-    function  Get_RequestedUIType: WideString; safecall;
-    procedure Set_Voice(const Voice: ISpeechVoice); safecall;
-    function  Get_Voice: ISpeechVoice; safecall;
+    function Get_Recognizer: ISpeechRecognizer; safecall;
+    function Get_AudioInputInterferenceStatus: SpeechInterference; safecall;
+    function Get_RequestedUIType: WideString; safecall;
+    procedure _Set_Voice(const Voice: ISpeechVoice); safecall;
+    function Get_Voice: ISpeechVoice; safecall;
     procedure Set_AllowVoiceFormatMatchingOnNextSet(pAllow: WordBool); safecall;
-    function  Get_AllowVoiceFormatMatchingOnNextSet: WordBool; safecall;
+    function Get_AllowVoiceFormatMatchingOnNextSet: WordBool; safecall;
     procedure Set_VoicePurgeEvent(EventInterest: SpeechRecoEvents); safecall;
-    function  Get_VoicePurgeEvent: SpeechRecoEvents; safecall;
+    function Get_VoicePurgeEvent: SpeechRecoEvents; safecall;
     procedure Set_EventInterests(EventInterest: SpeechRecoEvents); safecall;
-    function  Get_EventInterests: SpeechRecoEvents; safecall;
+    function Get_EventInterests: SpeechRecoEvents; safecall;
     procedure Set_CmdMaxAlternates(MaxAlternates: Integer); safecall;
-    function  Get_CmdMaxAlternates: Integer; safecall;
+    function Get_CmdMaxAlternates: Integer; safecall;
     procedure Set_State(State: SpeechRecoContextState); safecall;
-    function  Get_State: SpeechRecoContextState; safecall;
+    function Get_State: SpeechRecoContextState; safecall;
     procedure Set_RetainedAudio(Option: SpeechRetainedAudioOptions); safecall;
-    function  Get_RetainedAudio: SpeechRetainedAudioOptions; safecall;
-    procedure Set_RetainedAudioFormat(const Format: ISpeechAudioFormat); safecall;
-    function  Get_RetainedAudioFormat: ISpeechAudioFormat; safecall;
+    function Get_RetainedAudio: SpeechRetainedAudioOptions; safecall;
+    procedure _Set_RetainedAudioFormat(const Format: ISpeechAudioFormat); safecall;
+    function Get_RetainedAudioFormat: ISpeechAudioFormat; safecall;
     procedure Pause; safecall;
     procedure Resume; safecall;
-    function  CreateGrammar(GrammarId: OleVariant): ISpeechRecoGrammar; safecall;
-    function  CreateResultFromMemory(var ResultBlock: OleVariant): ISpeechRecoResult; safecall;
+    function CreateGrammar(GrammarId: OleVariant): ISpeechRecoGrammar; safecall;
+    function CreateResultFromMemory(const ResultBlock: OleVariant): ISpeechRecoResult; safecall;
     procedure Bookmark(Options: SpeechBookmarkOptions; StreamPos: OleVariant; BookmarkId: OleVariant); safecall;
     procedure SetAdaptationData(const AdaptationString: WideString); safecall;
     property Recognizer: ISpeechRecognizer read Get_Recognizer;
     property AudioInputInterferenceStatus: SpeechInterference read Get_AudioInputInterferenceStatus;
     property RequestedUIType: WideString read Get_RequestedUIType;
-    property Voice: ISpeechVoice read Get_Voice write Set_Voice;
+    property Voice: ISpeechVoice read Get_Voice write _Set_Voice;
     property AllowVoiceFormatMatchingOnNextSet: WordBool read Get_AllowVoiceFormatMatchingOnNextSet write Set_AllowVoiceFormatMatchingOnNextSet;
     property VoicePurgeEvent: SpeechRecoEvents read Get_VoicePurgeEvent write Set_VoicePurgeEvent;
     property EventInterests: SpeechRecoEvents read Get_EventInterests write Set_EventInterests;
     property CmdMaxAlternates: Integer read Get_CmdMaxAlternates write Set_CmdMaxAlternates;
     property State: SpeechRecoContextState read Get_State write Set_State;
     property RetainedAudio: SpeechRetainedAudioOptions read Get_RetainedAudio write Set_RetainedAudio;
-    property RetainedAudioFormat: ISpeechAudioFormat read Get_RetainedAudioFormat write Set_RetainedAudioFormat;
+    property RetainedAudioFormat: ISpeechAudioFormat read Get_RetainedAudioFormat write _Set_RetainedAudioFormat;
   end;
 
 // *********************************************************************//
@@ -2733,8 +2901,8 @@ type
     property RetainedAudioFormat: ISpeechAudioFormat dispid 11;
     procedure Pause; dispid 12;
     procedure Resume; dispid 13;
-    function  CreateGrammar(GrammarId: OleVariant): ISpeechRecoGrammar; dispid 14;
-    function  CreateResultFromMemory(var ResultBlock: OleVariant): ISpeechRecoResult; dispid 15;
+    function CreateGrammar(GrammarId: OleVariant): ISpeechRecoGrammar; dispid 14;
+    function CreateResultFromMemory(const ResultBlock: OleVariant): ISpeechRecoResult; dispid 15;
     procedure Bookmark(Options: SpeechBookmarkOptions; StreamPos: OleVariant; BookmarkId: OleVariant); dispid 16;
     procedure SetAdaptationData(const AdaptationString: WideString); dispid 17;
   end;
@@ -2746,11 +2914,11 @@ type
 // *********************************************************************//
   ISpeechRecoGrammar = interface(IDispatch)
     ['{B6D6F79F-2158-4E50-B5BC-9A9CCD852A09}']
-    function  Get_Id: OleVariant; safecall;
-    function  Get_RecoContext: ISpeechRecoContext; safecall;
+    function Get_Id: OleVariant; safecall;
+    function Get_RecoContext: ISpeechRecoContext; safecall;
     procedure Set_State(State: SpeechGrammarState); safecall;
-    function  Get_State: SpeechGrammarState; safecall;
-    function  Get_Rules: ISpeechGrammarRules; safecall;
+    function Get_State: SpeechGrammarState; safecall;
+    function Get_Rules: ISpeechGrammarRules; safecall;
     procedure Reset(NewLanguage: Integer); safecall;
     procedure CmdLoadFromFile(const FileName: WideString; LoadOption: SpeechLoadOption); safecall;
     procedure CmdLoadFromObject(const ClassId: WideString; const GrammarName: WideString; 
@@ -2771,7 +2939,7 @@ type
     procedure SetWordSequenceData(const Text: WideString; TextLength: Integer; 
                                   const Info: ISpeechTextSelectionInformation); safecall;
     procedure SetTextSelection(const Info: ISpeechTextSelectionInformation); safecall;
-    function  IsPronounceable(const Word: WideString): SpeechWordPronounceable; safecall;
+    function IsPronounceable(const Word: WideString): SpeechWordPronounceable; safecall;
     property Id: OleVariant read Get_Id;
     property RecoContext: ISpeechRecoContext read Get_RecoContext;
     property State: SpeechGrammarState read Get_State write Set_State;
@@ -2809,7 +2977,7 @@ type
     procedure SetWordSequenceData(const Text: WideString; TextLength: Integer; 
                                   const Info: ISpeechTextSelectionInformation); dispid 17;
     procedure SetTextSelection(const Info: ISpeechTextSelectionInformation); dispid 18;
-    function  IsPronounceable(const Word: WideString): SpeechWordPronounceable; dispid 19;
+    function IsPronounceable(const Word: WideString): SpeechWordPronounceable; dispid 19;
   end;
 
 // *********************************************************************//
@@ -2819,14 +2987,14 @@ type
 // *********************************************************************//
   ISpeechGrammarRules = interface(IDispatch)
     ['{6FFA3B44-FC2D-40D1-8AFC-32911C7F1AD1}']
-    function  Get_Count: Integer; safecall;
-    function  FindRule(RuleNameOrId: OleVariant): ISpeechGrammarRule; safecall;
-    function  Item(Index: Integer): ISpeechGrammarRule; safecall;
-    function  Get__NewEnum: IUnknown; safecall;
-    function  Get_Dynamic: WordBool; safecall;
-    function  Add(const RuleName: WideString; Attributes: SpeechRuleAttributes; RuleId: Integer): ISpeechGrammarRule; safecall;
+    function Get_Count: Integer; safecall;
+    function FindRule(RuleNameOrId: OleVariant): ISpeechGrammarRule; safecall;
+    function Item(Index: Integer): ISpeechGrammarRule; safecall;
+    function Get__NewEnum: IUnknown; safecall;
+    function Get_Dynamic: WordBool; safecall;
+    function Add(const RuleName: WideString; Attributes: SpeechRuleAttributes; RuleId: Integer): ISpeechGrammarRule; safecall;
     procedure Commit; safecall;
-    function  CommitAndSave(out ErrorText: WideString): OleVariant; safecall;
+    function CommitAndSave(out ErrorText: WideString): OleVariant; safecall;
     property Count: Integer read Get_Count;
     property _NewEnum: IUnknown read Get__NewEnum;
     property Dynamic: WordBool read Get_Dynamic;
@@ -2840,13 +3008,13 @@ type
   ISpeechGrammarRulesDisp = dispinterface
     ['{6FFA3B44-FC2D-40D1-8AFC-32911C7F1AD1}']
     property Count: Integer readonly dispid 1;
-    function  FindRule(RuleNameOrId: OleVariant): ISpeechGrammarRule; dispid 6;
-    function  Item(Index: Integer): ISpeechGrammarRule; dispid 0;
+    function FindRule(RuleNameOrId: OleVariant): ISpeechGrammarRule; dispid 6;
+    function Item(Index: Integer): ISpeechGrammarRule; dispid 0;
     property _NewEnum: IUnknown readonly dispid -4;
     property Dynamic: WordBool readonly dispid 2;
-    function  Add(const RuleName: WideString; Attributes: SpeechRuleAttributes; RuleId: Integer): ISpeechGrammarRule; dispid 3;
+    function Add(const RuleName: WideString; Attributes: SpeechRuleAttributes; RuleId: Integer): ISpeechGrammarRule; dispid 3;
     procedure Commit; dispid 4;
-    function  CommitAndSave(out ErrorText: WideString): OleVariant; dispid 5;
+    function CommitAndSave(out ErrorText: WideString): OleVariant; dispid 5;
   end;
 
 // *********************************************************************//
@@ -2856,13 +3024,13 @@ type
 // *********************************************************************//
   ISpeechGrammarRule = interface(IDispatch)
     ['{AFE719CF-5DD1-44F2-999C-7A399F1CFCCC}']
-    function  Get_Attributes: SpeechRuleAttributes; safecall;
-    function  Get_InitialState: ISpeechGrammarRuleState; safecall;
-    function  Get_Name: WideString; safecall;
-    function  Get_Id: Integer; safecall;
+    function Get_Attributes: SpeechRuleAttributes; safecall;
+    function Get_InitialState: ISpeechGrammarRuleState; safecall;
+    function Get_Name: WideString; safecall;
+    function Get_Id: Integer; safecall;
     procedure Clear; safecall;
     procedure AddResource(const ResourceName: WideString; const ResourceValue: WideString); safecall;
-    function  AddState: ISpeechGrammarRuleState; safecall;
+    function AddState: ISpeechGrammarRuleState; safecall;
     property Attributes: SpeechRuleAttributes read Get_Attributes;
     property InitialState: ISpeechGrammarRuleState read Get_InitialState;
     property Name: WideString read Get_Name;
@@ -2882,7 +3050,7 @@ type
     property Id: Integer readonly dispid 4;
     procedure Clear; dispid 5;
     procedure AddResource(const ResourceName: WideString; const ResourceValue: WideString); dispid 6;
-    function  AddState: ISpeechGrammarRuleState; dispid 7;
+    function AddState: ISpeechGrammarRuleState; dispid 7;
   end;
 
 // *********************************************************************//
@@ -2892,19 +3060,19 @@ type
 // *********************************************************************//
   ISpeechGrammarRuleState = interface(IDispatch)
     ['{D4286F2C-EE67-45AE-B928-28D695362EDA}']
-    function  Get_Rule: ISpeechGrammarRule; safecall;
-    function  Get_Transitions: ISpeechGrammarRuleStateTransitions; safecall;
+    function Get_Rule: ISpeechGrammarRule; safecall;
+    function Get_Transitions: ISpeechGrammarRuleStateTransitions; safecall;
     procedure AddWordTransition(const DestState: ISpeechGrammarRuleState; const Words: WideString; 
                                 const Separators: WideString; Type_: SpeechGrammarWordType; 
                                 const PropertyName: WideString; PropertyId: Integer; 
-                                var PropertyValue: OleVariant; Weight: Single); safecall;
+                                const PropertyValue: OleVariant; Weight: Single); safecall;
     procedure AddRuleTransition(const DestinationState: ISpeechGrammarRuleState; 
                                 const Rule: ISpeechGrammarRule; const PropertyName: WideString; 
-                                PropertyId: Integer; var PropertyValue: OleVariant; Weight: Single); safecall;
+                                PropertyId: Integer; const PropertyValue: OleVariant; Weight: Single); safecall;
     procedure AddSpecialTransition(const DestinationState: ISpeechGrammarRuleState; 
                                    Type_: SpeechSpecialTransitionType; 
                                    const PropertyName: WideString; PropertyId: Integer; 
-                                   var PropertyValue: OleVariant; Weight: Single); safecall;
+                                   const PropertyValue: OleVariant; Weight: Single); safecall;
     property Rule: ISpeechGrammarRule read Get_Rule;
     property Transitions: ISpeechGrammarRuleStateTransitions read Get_Transitions;
   end;
@@ -2921,14 +3089,14 @@ type
     procedure AddWordTransition(const DestState: ISpeechGrammarRuleState; const Words: WideString; 
                                 const Separators: WideString; Type_: SpeechGrammarWordType; 
                                 const PropertyName: WideString; PropertyId: Integer; 
-                                var PropertyValue: OleVariant; Weight: Single); dispid 3;
+                                const PropertyValue: OleVariant; Weight: Single); dispid 3;
     procedure AddRuleTransition(const DestinationState: ISpeechGrammarRuleState; 
                                 const Rule: ISpeechGrammarRule; const PropertyName: WideString; 
-                                PropertyId: Integer; var PropertyValue: OleVariant; Weight: Single); dispid 4;
+                                PropertyId: Integer; const PropertyValue: OleVariant; Weight: Single); dispid 4;
     procedure AddSpecialTransition(const DestinationState: ISpeechGrammarRuleState; 
                                    Type_: SpeechSpecialTransitionType; 
                                    const PropertyName: WideString; PropertyId: Integer; 
-                                   var PropertyValue: OleVariant; Weight: Single); dispid 5;
+                                   const PropertyValue: OleVariant; Weight: Single); dispid 5;
   end;
 
 // *********************************************************************//
@@ -2938,9 +3106,9 @@ type
 // *********************************************************************//
   ISpeechGrammarRuleStateTransitions = interface(IDispatch)
     ['{EABCE657-75BC-44A2-AA7F-C56476742963}']
-    function  Get_Count: Integer; safecall;
-    function  Item(Index: Integer): ISpeechGrammarRuleStateTransition; safecall;
-    function  Get__NewEnum: IUnknown; safecall;
+    function Get_Count: Integer; safecall;
+    function Item(Index: Integer): ISpeechGrammarRuleStateTransition; safecall;
+    function Get__NewEnum: IUnknown; safecall;
     property Count: Integer read Get_Count;
     property _NewEnum: IUnknown read Get__NewEnum;
   end;
@@ -2953,7 +3121,7 @@ type
   ISpeechGrammarRuleStateTransitionsDisp = dispinterface
     ['{EABCE657-75BC-44A2-AA7F-C56476742963}']
     property Count: Integer readonly dispid 1;
-    function  Item(Index: Integer): ISpeechGrammarRuleStateTransition; dispid 0;
+    function Item(Index: Integer): ISpeechGrammarRuleStateTransition; dispid 0;
     property _NewEnum: IUnknown readonly dispid -4;
   end;
 
@@ -2964,15 +3132,15 @@ type
 // *********************************************************************//
   ISpeechGrammarRuleStateTransition = interface(IDispatch)
     ['{CAFD1DB1-41D1-4A06-9863-E2E81DA17A9A}']
-    function  Get_Type_: SpeechGrammarRuleStateTransitionType; safecall;
-    function  Get_Text: WideString; safecall;
-    function  Get_Rule: ISpeechGrammarRule; safecall;
-    function  Get_Weight: OleVariant; safecall;
-    function  Get_PropertyName: WideString; safecall;
-    function  Get_PropertyId: Integer; safecall;
-    function  Get_PropertyValue: OleVariant; safecall;
-    function  Get_NextState: ISpeechGrammarRuleState; safecall;
-    property Type_: SpeechGrammarRuleStateTransitionType read Get_Type_;
+    function Get_type_: SpeechGrammarRuleStateTransitionType; safecall;
+    function Get_Text: WideString; safecall;
+    function Get_Rule: ISpeechGrammarRule; safecall;
+    function Get_Weight: OleVariant; safecall;
+    function Get_PropertyName: WideString; safecall;
+    function Get_PropertyId: Integer; safecall;
+    function Get_PropertyValue: OleVariant; safecall;
+    function Get_NextState: ISpeechGrammarRuleState; safecall;
+    property type_: SpeechGrammarRuleStateTransitionType read Get_type_;
     property Text: WideString read Get_Text;
     property Rule: ISpeechGrammarRule read Get_Rule;
     property Weight: OleVariant read Get_Weight;
@@ -2989,7 +3157,7 @@ type
 // *********************************************************************//
   ISpeechGrammarRuleStateTransitionDisp = dispinterface
     ['{CAFD1DB1-41D1-4A06-9863-E2E81DA17A9A}']
-    property Type_: SpeechGrammarRuleStateTransitionType readonly dispid 1;
+    property type_: SpeechGrammarRuleStateTransitionType readonly dispid 1;
     property Text: WideString readonly dispid 2;
     property Rule: ISpeechGrammarRule readonly dispid 3;
     property Weight: OleVariant readonly dispid 4;
@@ -3007,13 +3175,13 @@ type
   ISpeechTextSelectionInformation = interface(IDispatch)
     ['{3B9C7E7A-6EEE-4DED-9092-11657279ADBE}']
     procedure Set_ActiveOffset(ActiveOffset: Integer); safecall;
-    function  Get_ActiveOffset: Integer; safecall;
+    function Get_ActiveOffset: Integer; safecall;
     procedure Set_ActiveLength(ActiveLength: Integer); safecall;
-    function  Get_ActiveLength: Integer; safecall;
+    function Get_ActiveLength: Integer; safecall;
     procedure Set_SelectionOffset(SelectionOffset: Integer); safecall;
-    function  Get_SelectionOffset: Integer; safecall;
+    function Get_SelectionOffset: Integer; safecall;
     procedure Set_SelectionLength(SelectionLength: Integer); safecall;
-    function  Get_SelectionLength: Integer; safecall;
+    function Get_SelectionLength: Integer; safecall;
     property ActiveOffset: Integer read Get_ActiveOffset write Set_ActiveOffset;
     property ActiveLength: Integer read Get_ActiveLength write Set_ActiveLength;
     property SelectionOffset: Integer read Get_SelectionOffset write Set_SelectionOffset;
@@ -3040,19 +3208,19 @@ type
 // *********************************************************************//
   ISpeechRecoResult = interface(IDispatch)
     ['{ED2879CF-CED9-4EE6-A534-DE0191D5468D}']
-    function  Get_RecoContext: ISpeechRecoContext; safecall;
-    function  Get_Times: ISpeechRecoResultTimes; safecall;
-    procedure Set_AudioFormat(const Format: ISpeechAudioFormat); safecall;
-    function  Get_AudioFormat: ISpeechAudioFormat; safecall;
-    function  Get_PhraseInfo: ISpeechPhraseInfo; safecall;
-    function  Alternates(RequestCount: Integer; StartElement: Integer; Elements: Integer): ISpeechPhraseAlternates; safecall;
-    function  Audio(StartElement: Integer; Elements: Integer): ISpeechMemoryStream; safecall;
-    function  SpeakAudio(StartElement: Integer; Elements: Integer; Flags: SpeechVoiceSpeakFlags): Integer; safecall;
-    function  SaveToMemory: OleVariant; safecall;
+    function Get_RecoContext: ISpeechRecoContext; safecall;
+    function Get_Times: ISpeechRecoResultTimes; safecall;
+    procedure _Set_AudioFormat(const Format: ISpeechAudioFormat); safecall;
+    function Get_AudioFormat: ISpeechAudioFormat; safecall;
+    function Get_PhraseInfo: ISpeechPhraseInfo; safecall;
+    function Alternates(RequestCount: Integer; StartElement: Integer; Elements: Integer): ISpeechPhraseAlternates; safecall;
+    function Audio(StartElement: Integer; Elements: Integer): ISpeechMemoryStream; safecall;
+    function SpeakAudio(StartElement: Integer; Elements: Integer; Flags: SpeechVoiceSpeakFlags): Integer; safecall;
+    function SaveToMemory: OleVariant; safecall;
     procedure DiscardResultInfo(ValueTypes: SpeechDiscardType); safecall;
     property RecoContext: ISpeechRecoContext read Get_RecoContext;
     property Times: ISpeechRecoResultTimes read Get_Times;
-    property AudioFormat: ISpeechAudioFormat read Get_AudioFormat write Set_AudioFormat;
+    property AudioFormat: ISpeechAudioFormat read Get_AudioFormat write _Set_AudioFormat;
     property PhraseInfo: ISpeechPhraseInfo read Get_PhraseInfo;
   end;
 
@@ -3067,10 +3235,10 @@ type
     property Times: ISpeechRecoResultTimes readonly dispid 2;
     property AudioFormat: ISpeechAudioFormat dispid 3;
     property PhraseInfo: ISpeechPhraseInfo readonly dispid 4;
-    function  Alternates(RequestCount: Integer; StartElement: Integer; Elements: Integer): ISpeechPhraseAlternates; dispid 5;
-    function  Audio(StartElement: Integer; Elements: Integer): ISpeechMemoryStream; dispid 6;
-    function  SpeakAudio(StartElement: Integer; Elements: Integer; Flags: SpeechVoiceSpeakFlags): Integer; dispid 7;
-    function  SaveToMemory: OleVariant; dispid 8;
+    function Alternates(RequestCount: Integer; StartElement: Integer; Elements: Integer): ISpeechPhraseAlternates; dispid 5;
+    function Audio(StartElement: Integer; Elements: Integer): ISpeechMemoryStream; dispid 6;
+    function SpeakAudio(StartElement: Integer; Elements: Integer; Flags: SpeechVoiceSpeakFlags): Integer; dispid 7;
+    function SaveToMemory: OleVariant; dispid 8;
     procedure DiscardResultInfo(ValueTypes: SpeechDiscardType); dispid 9;
   end;
 
@@ -3081,10 +3249,10 @@ type
 // *********************************************************************//
   ISpeechRecoResultTimes = interface(IDispatch)
     ['{62B3B8FB-F6E7-41BE-BDCB-056B1C29EFC0}']
-    function  Get_StreamTime: OleVariant; safecall;
-    function  Get_Length: OleVariant; safecall;
-    function  Get_TickCount: Integer; safecall;
-    function  Get_OffsetFromStart: OleVariant; safecall;
+    function Get_StreamTime: OleVariant; safecall;
+    function Get_Length: OleVariant; safecall;
+    function Get_TickCount: Integer; safecall;
+    function Get_OffsetFromStart: OleVariant; safecall;
     property StreamTime: OleVariant read Get_StreamTime;
     property Length: OleVariant read Get_Length;
     property TickCount: Integer read Get_TickCount;
@@ -3111,23 +3279,23 @@ type
 // *********************************************************************//
   ISpeechPhraseInfo = interface(IDispatch)
     ['{961559CF-4E67-4662-8BF0-D93F1FCD61B3}']
-    function  Get_LanguageId: Integer; safecall;
-    function  Get_GrammarId: OleVariant; safecall;
-    function  Get_StartTime: OleVariant; safecall;
-    function  Get_AudioStreamPosition: OleVariant; safecall;
-    function  Get_AudioSizeBytes: Integer; safecall;
-    function  Get_RetainedSizeBytes: Integer; safecall;
-    function  Get_AudioSizeTime: Integer; safecall;
-    function  Get_Rule: ISpeechPhraseRule; safecall;
-    function  Get_Properties: ISpeechPhraseProperties; safecall;
-    function  Get_Elements: ISpeechPhraseElements; safecall;
-    function  Get_Replacements: ISpeechPhraseReplacements; safecall;
-    function  Get_EngineId: WideString; safecall;
-    function  Get_EnginePrivateData: OleVariant; safecall;
-    function  SaveToMemory: OleVariant; safecall;
-    function  GetText(StartElement: Integer; Elements: Integer; UseReplacements: WordBool): WideString; safecall;
-    function  GetDisplayAttributes(StartElement: Integer; Elements: Integer; 
-                                   UseReplacements: WordBool): SpeechDisplayAttributes; safecall;
+    function Get_LanguageId: Integer; safecall;
+    function Get_GrammarId: OleVariant; safecall;
+    function Get_StartTime: OleVariant; safecall;
+    function Get_AudioStreamPosition: OleVariant; safecall;
+    function Get_AudioSizeBytes: Integer; safecall;
+    function Get_RetainedSizeBytes: Integer; safecall;
+    function Get_AudioSizeTime: Integer; safecall;
+    function Get_Rule: ISpeechPhraseRule; safecall;
+    function Get_Properties: ISpeechPhraseProperties; safecall;
+    function Get_Elements: ISpeechPhraseElements; safecall;
+    function Get_Replacements: ISpeechPhraseReplacements; safecall;
+    function Get_EngineId: WideString; safecall;
+    function Get_EnginePrivateData: OleVariant; safecall;
+    function SaveToMemory: OleVariant; safecall;
+    function GetText(StartElement: Integer; Elements: Integer; UseReplacements: WordBool): WideString; safecall;
+    function GetDisplayAttributes(StartElement: Integer; Elements: Integer; 
+                                  UseReplacements: WordBool): SpeechDisplayAttributes; safecall;
     property LanguageId: Integer read Get_LanguageId;
     property GrammarId: OleVariant read Get_GrammarId;
     property StartTime: OleVariant read Get_StartTime;
@@ -3163,10 +3331,10 @@ type
     property Replacements: ISpeechPhraseReplacements readonly dispid 11;
     property EngineId: WideString readonly dispid 12;
     property EnginePrivateData: OleVariant readonly dispid 13;
-    function  SaveToMemory: OleVariant; dispid 14;
-    function  GetText(StartElement: Integer; Elements: Integer; UseReplacements: WordBool): WideString; dispid 15;
-    function  GetDisplayAttributes(StartElement: Integer; Elements: Integer; 
-                                   UseReplacements: WordBool): SpeechDisplayAttributes; dispid 16;
+    function SaveToMemory: OleVariant; dispid 14;
+    function GetText(StartElement: Integer; Elements: Integer; UseReplacements: WordBool): WideString; dispid 15;
+    function GetDisplayAttributes(StartElement: Integer; Elements: Integer; 
+                                  UseReplacements: WordBool): SpeechDisplayAttributes; dispid 16;
   end;
 
 // *********************************************************************//
@@ -3176,14 +3344,14 @@ type
 // *********************************************************************//
   ISpeechPhraseRule = interface(IDispatch)
     ['{A7BFE112-A4A0-48D9-B602-C313843F6964}']
-    function  Get_Name: WideString; safecall;
-    function  Get_Id: Integer; safecall;
-    function  Get_FirstElement: Integer; safecall;
-    function  Get_NumberOfElements: Integer; safecall;
-    function  Get_Parent: ISpeechPhraseRule; safecall;
-    function  Get_Children: ISpeechPhraseRules; safecall;
-    function  Get_Confidence: SpeechEngineConfidence; safecall;
-    function  Get_EngineConfidence: Single; safecall;
+    function Get_Name: WideString; safecall;
+    function Get_Id: Integer; safecall;
+    function Get_FirstElement: Integer; safecall;
+    function Get_NumberOfElements: Integer; safecall;
+    function Get_Parent: ISpeechPhraseRule; safecall;
+    function Get_Children: ISpeechPhraseRules; safecall;
+    function Get_Confidence: SpeechEngineConfidence; safecall;
+    function Get_EngineConfidence: Single; safecall;
     property Name: WideString read Get_Name;
     property Id: Integer read Get_Id;
     property FirstElement: Integer read Get_FirstElement;
@@ -3218,9 +3386,9 @@ type
 // *********************************************************************//
   ISpeechPhraseRules = interface(IDispatch)
     ['{9047D593-01DD-4B72-81A3-E4A0CA69F407}']
-    function  Get_Count: Integer; safecall;
-    function  Item(Index: Integer): ISpeechPhraseRule; safecall;
-    function  Get__NewEnum: IUnknown; safecall;
+    function Get_Count: Integer; safecall;
+    function Item(Index: Integer): ISpeechPhraseRule; safecall;
+    function Get__NewEnum: IUnknown; safecall;
     property Count: Integer read Get_Count;
     property _NewEnum: IUnknown read Get__NewEnum;
   end;
@@ -3233,7 +3401,7 @@ type
   ISpeechPhraseRulesDisp = dispinterface
     ['{9047D593-01DD-4B72-81A3-E4A0CA69F407}']
     property Count: Integer readonly dispid 1;
-    function  Item(Index: Integer): ISpeechPhraseRule; dispid 0;
+    function Item(Index: Integer): ISpeechPhraseRule; dispid 0;
     property _NewEnum: IUnknown readonly dispid -4;
   end;
 
@@ -3244,9 +3412,9 @@ type
 // *********************************************************************//
   ISpeechPhraseProperties = interface(IDispatch)
     ['{08166B47-102E-4B23-A599-BDB98DBFD1F4}']
-    function  Get_Count: Integer; safecall;
-    function  Item(Index: Integer): ISpeechPhraseProperty; safecall;
-    function  Get__NewEnum: IUnknown; safecall;
+    function Get_Count: Integer; safecall;
+    function Item(Index: Integer): ISpeechPhraseProperty; safecall;
+    function Get__NewEnum: IUnknown; safecall;
     property Count: Integer read Get_Count;
     property _NewEnum: IUnknown read Get__NewEnum;
   end;
@@ -3259,7 +3427,7 @@ type
   ISpeechPhrasePropertiesDisp = dispinterface
     ['{08166B47-102E-4B23-A599-BDB98DBFD1F4}']
     property Count: Integer readonly dispid 1;
-    function  Item(Index: Integer): ISpeechPhraseProperty; dispid 0;
+    function Item(Index: Integer): ISpeechPhraseProperty; dispid 0;
     property _NewEnum: IUnknown readonly dispid -4;
   end;
 
@@ -3270,15 +3438,15 @@ type
 // *********************************************************************//
   ISpeechPhraseProperty = interface(IDispatch)
     ['{CE563D48-961E-4732-A2E1-378A42B430BE}']
-    function  Get_Name: WideString; safecall;
-    function  Get_Id: Integer; safecall;
-    function  Get_Value: OleVariant; safecall;
-    function  Get_FirstElement: Integer; safecall;
-    function  Get_NumberOfElements: Integer; safecall;
-    function  Get_EngineConfidence: Single; safecall;
-    function  Get_Confidence: SpeechEngineConfidence; safecall;
-    function  Get_Parent: ISpeechPhraseProperty; safecall;
-    function  Get_Children: ISpeechPhraseProperties; safecall;
+    function Get_Name: WideString; safecall;
+    function Get_Id: Integer; safecall;
+    function Get_Value: OleVariant; safecall;
+    function Get_FirstElement: Integer; safecall;
+    function Get_NumberOfElements: Integer; safecall;
+    function Get_EngineConfidence: Single; safecall;
+    function Get_Confidence: SpeechEngineConfidence; safecall;
+    function Get_Parent: ISpeechPhraseProperty; safecall;
+    function Get_Children: ISpeechPhraseProperties; safecall;
     property Name: WideString read Get_Name;
     property Id: Integer read Get_Id;
     property Value: OleVariant read Get_Value;
@@ -3315,9 +3483,9 @@ type
 // *********************************************************************//
   ISpeechPhraseElements = interface(IDispatch)
     ['{0626B328-3478-467D-A0B3-D0853B93DDA3}']
-    function  Get_Count: Integer; safecall;
-    function  Item(Index: Integer): ISpeechPhraseElement; safecall;
-    function  Get__NewEnum: IUnknown; safecall;
+    function Get_Count: Integer; safecall;
+    function Item(Index: Integer): ISpeechPhraseElement; safecall;
+    function Get__NewEnum: IUnknown; safecall;
     property Count: Integer read Get_Count;
     property _NewEnum: IUnknown read Get__NewEnum;
   end;
@@ -3330,7 +3498,7 @@ type
   ISpeechPhraseElementsDisp = dispinterface
     ['{0626B328-3478-467D-A0B3-D0853B93DDA3}']
     property Count: Integer readonly dispid 1;
-    function  Item(Index: Integer): ISpeechPhraseElement; dispid 0;
+    function Item(Index: Integer): ISpeechPhraseElement; dispid 0;
     property _NewEnum: IUnknown readonly dispid -4;
   end;
 
@@ -3341,19 +3509,19 @@ type
 // *********************************************************************//
   ISpeechPhraseElement = interface(IDispatch)
     ['{E6176F96-E373-4801-B223-3B62C068C0B4}']
-    function  Get_AudioTimeOffset: Integer; safecall;
-    function  Get_AudioSizeTime: Integer; safecall;
-    function  Get_AudioStreamOffset: Integer; safecall;
-    function  Get_AudioSizeBytes: Integer; safecall;
-    function  Get_RetainedStreamOffset: Integer; safecall;
-    function  Get_RetainedSizeBytes: Integer; safecall;
-    function  Get_DisplayText: WideString; safecall;
-    function  Get_LexicalForm: WideString; safecall;
-    function  Get_Pronunciation: OleVariant; safecall;
-    function  Get_DisplayAttributes: SpeechDisplayAttributes; safecall;
-    function  Get_RequiredConfidence: SpeechEngineConfidence; safecall;
-    function  Get_ActualConfidence: SpeechEngineConfidence; safecall;
-    function  Get_EngineConfidence: Single; safecall;
+    function Get_AudioTimeOffset: Integer; safecall;
+    function Get_AudioSizeTime: Integer; safecall;
+    function Get_AudioStreamOffset: Integer; safecall;
+    function Get_AudioSizeBytes: Integer; safecall;
+    function Get_RetainedStreamOffset: Integer; safecall;
+    function Get_RetainedSizeBytes: Integer; safecall;
+    function Get_DisplayText: WideString; safecall;
+    function Get_LexicalForm: WideString; safecall;
+    function Get_Pronunciation: OleVariant; safecall;
+    function Get_DisplayAttributes: SpeechDisplayAttributes; safecall;
+    function Get_RequiredConfidence: SpeechEngineConfidence; safecall;
+    function Get_ActualConfidence: SpeechEngineConfidence; safecall;
+    function Get_EngineConfidence: Single; safecall;
     property AudioTimeOffset: Integer read Get_AudioTimeOffset;
     property AudioSizeTime: Integer read Get_AudioSizeTime;
     property AudioStreamOffset: Integer read Get_AudioStreamOffset;
@@ -3398,9 +3566,9 @@ type
 // *********************************************************************//
   ISpeechPhraseReplacements = interface(IDispatch)
     ['{38BC662F-2257-4525-959E-2069D2596C05}']
-    function  Get_Count: Integer; safecall;
-    function  Item(Index: Integer): ISpeechPhraseReplacement; safecall;
-    function  Get__NewEnum: IUnknown; safecall;
+    function Get_Count: Integer; safecall;
+    function Item(Index: Integer): ISpeechPhraseReplacement; safecall;
+    function Get__NewEnum: IUnknown; safecall;
     property Count: Integer read Get_Count;
     property _NewEnum: IUnknown read Get__NewEnum;
   end;
@@ -3413,7 +3581,7 @@ type
   ISpeechPhraseReplacementsDisp = dispinterface
     ['{38BC662F-2257-4525-959E-2069D2596C05}']
     property Count: Integer readonly dispid 1;
-    function  Item(Index: Integer): ISpeechPhraseReplacement; dispid 0;
+    function Item(Index: Integer): ISpeechPhraseReplacement; dispid 0;
     property _NewEnum: IUnknown readonly dispid -4;
   end;
 
@@ -3424,10 +3592,10 @@ type
 // *********************************************************************//
   ISpeechPhraseReplacement = interface(IDispatch)
     ['{2890A410-53A7-4FB5-94EC-06D4998E3D02}']
-    function  Get_DisplayAttributes: SpeechDisplayAttributes; safecall;
-    function  Get_Text: WideString; safecall;
-    function  Get_FirstElement: Integer; safecall;
-    function  Get_NumberOfElements: Integer; safecall;
+    function Get_DisplayAttributes: SpeechDisplayAttributes; safecall;
+    function Get_Text: WideString; safecall;
+    function Get_FirstElement: Integer; safecall;
+    function Get_NumberOfElements: Integer; safecall;
     property DisplayAttributes: SpeechDisplayAttributes read Get_DisplayAttributes;
     property Text: WideString read Get_Text;
     property FirstElement: Integer read Get_FirstElement;
@@ -3454,9 +3622,9 @@ type
 // *********************************************************************//
   ISpeechPhraseAlternates = interface(IDispatch)
     ['{B238B6D5-F276-4C3D-A6C1-2974801C3CC2}']
-    function  Get_Count: Integer; safecall;
-    function  Item(Index: Integer): ISpeechPhraseAlternate; safecall;
-    function  Get__NewEnum: IUnknown; safecall;
+    function Get_Count: Integer; safecall;
+    function Item(Index: Integer): ISpeechPhraseAlternate; safecall;
+    function Get__NewEnum: IUnknown; safecall;
     property Count: Integer read Get_Count;
     property _NewEnum: IUnknown read Get__NewEnum;
   end;
@@ -3469,7 +3637,7 @@ type
   ISpeechPhraseAlternatesDisp = dispinterface
     ['{B238B6D5-F276-4C3D-A6C1-2974801C3CC2}']
     property Count: Integer readonly dispid 1;
-    function  Item(Index: Integer): ISpeechPhraseAlternate; dispid 0;
+    function Item(Index: Integer): ISpeechPhraseAlternate; dispid 0;
     property _NewEnum: IUnknown readonly dispid -4;
   end;
 
@@ -3480,10 +3648,10 @@ type
 // *********************************************************************//
   ISpeechPhraseAlternate = interface(IDispatch)
     ['{27864A2A-2B9F-4CB8-92D3-0D2722FD1E73}']
-    function  Get_RecoResult: ISpeechRecoResult; safecall;
-    function  Get_StartElementInResult: Integer; safecall;
-    function  Get_NumberOfElementsInResult: Integer; safecall;
-    function  Get_PhraseInfo: ISpeechPhraseInfo; safecall;
+    function Get_RecoResult: ISpeechRecoResult; safecall;
+    function Get_StartElementInResult: Integer; safecall;
+    function Get_NumberOfElementsInResult: Integer; safecall;
+    function Get_PhraseInfo: ISpeechPhraseInfo; safecall;
     procedure Commit; safecall;
     property RecoResult: ISpeechRecoResult read Get_RecoResult;
     property StartElementInResult: Integer read Get_StartElementInResult;
@@ -3542,27 +3710,57 @@ type
   end;
 
 // *********************************************************************//
+// Interface: ISpeechRecoResult2
+// Flags:     (4416) Dual OleAutomation Dispatchable
+// GUID:      {8E0A246D-D3C8-45DE-8657-04290C458C3C}
+// *********************************************************************//
+  ISpeechRecoResult2 = interface(ISpeechRecoResult)
+    ['{8E0A246D-D3C8-45DE-8657-04290C458C3C}']
+    procedure SetTextFeedback(const Feedback: WideString; WasSuccessful: WordBool); safecall;
+  end;
+
+// *********************************************************************//
+// DispIntf:  ISpeechRecoResult2Disp
+// Flags:     (4416) Dual OleAutomation Dispatchable
+// GUID:      {8E0A246D-D3C8-45DE-8657-04290C458C3C}
+// *********************************************************************//
+  ISpeechRecoResult2Disp = dispinterface
+    ['{8E0A246D-D3C8-45DE-8657-04290C458C3C}']
+    procedure SetTextFeedback(const Feedback: WideString; WasSuccessful: WordBool); dispid 12;
+    property RecoContext: ISpeechRecoContext readonly dispid 1;
+    property Times: ISpeechRecoResultTimes readonly dispid 2;
+    property AudioFormat: ISpeechAudioFormat dispid 3;
+    property PhraseInfo: ISpeechPhraseInfo readonly dispid 4;
+    function Alternates(RequestCount: Integer; StartElement: Integer; Elements: Integer): ISpeechPhraseAlternates; dispid 5;
+    function Audio(StartElement: Integer; Elements: Integer): ISpeechMemoryStream; dispid 6;
+    function SpeakAudio(StartElement: Integer; Elements: Integer; Flags: SpeechVoiceSpeakFlags): Integer; dispid 7;
+    function SaveToMemory: OleVariant; dispid 8;
+    procedure DiscardResultInfo(ValueTypes: SpeechDiscardType); dispid 9;
+  end;
+
+// *********************************************************************//
 // Interface: ISpeechLexicon
 // Flags:     (4416) Dual OleAutomation Dispatchable
 // GUID:      {3DA7627A-C7AE-4B23-8708-638C50362C25}
 // *********************************************************************//
   ISpeechLexicon = interface(IDispatch)
     ['{3DA7627A-C7AE-4B23-8708-638C50362C25}']
-    function  Get_GenerationId: Integer; safecall;
-    function  GetWords(Flags: SpeechLexiconType; out GenerationId: Integer): ISpeechLexiconWords; safecall;
+    function Get_GenerationId: Integer; safecall;
+    function GetWords(Flags: SpeechLexiconType; out GenerationId: Integer): ISpeechLexiconWords; safecall;
     procedure AddPronunciation(const bstrWord: WideString; LangId: Integer; 
                                PartOfSpeech: SpeechPartOfSpeech; const bstrPronunciation: WideString); safecall;
     procedure AddPronunciationByPhoneIds(const bstrWord: WideString; LangId: Integer; 
-                                         PartOfSpeech: SpeechPartOfSpeech; var PhoneIds: OleVariant); safecall;
+                                         PartOfSpeech: SpeechPartOfSpeech; 
+                                         const PhoneIds: OleVariant); safecall;
     procedure RemovePronunciation(const bstrWord: WideString; LangId: Integer; 
                                   PartOfSpeech: SpeechPartOfSpeech; 
                                   const bstrPronunciation: WideString); safecall;
     procedure RemovePronunciationByPhoneIds(const bstrWord: WideString; LangId: Integer; 
                                             PartOfSpeech: SpeechPartOfSpeech; 
-                                            var PhoneIds: OleVariant); safecall;
-    function  GetPronunciations(const bstrWord: WideString; LangId: Integer; 
-                                TypeFlags: SpeechLexiconType): ISpeechLexiconPronunciations; safecall;
-    function  GetGenerationChange(var GenerationId: Integer): ISpeechLexiconWords; safecall;
+                                            const PhoneIds: OleVariant); safecall;
+    function GetPronunciations(const bstrWord: WideString; LangId: Integer; 
+                               TypeFlags: SpeechLexiconType): ISpeechLexiconPronunciations; safecall;
+    function GetGenerationChange(var GenerationId: Integer): ISpeechLexiconWords; safecall;
     property GenerationId: Integer read Get_GenerationId;
   end;
 
@@ -3574,20 +3772,21 @@ type
   ISpeechLexiconDisp = dispinterface
     ['{3DA7627A-C7AE-4B23-8708-638C50362C25}']
     property GenerationId: Integer readonly dispid 1;
-    function  GetWords(Flags: SpeechLexiconType; out GenerationId: Integer): ISpeechLexiconWords; dispid 2;
+    function GetWords(Flags: SpeechLexiconType; out GenerationId: Integer): ISpeechLexiconWords; dispid 2;
     procedure AddPronunciation(const bstrWord: WideString; LangId: Integer; 
                                PartOfSpeech: SpeechPartOfSpeech; const bstrPronunciation: WideString); dispid 3;
     procedure AddPronunciationByPhoneIds(const bstrWord: WideString; LangId: Integer; 
-                                         PartOfSpeech: SpeechPartOfSpeech; var PhoneIds: OleVariant); dispid 4;
+                                         PartOfSpeech: SpeechPartOfSpeech; 
+                                         const PhoneIds: OleVariant); dispid 4;
     procedure RemovePronunciation(const bstrWord: WideString; LangId: Integer; 
                                   PartOfSpeech: SpeechPartOfSpeech; 
                                   const bstrPronunciation: WideString); dispid 5;
     procedure RemovePronunciationByPhoneIds(const bstrWord: WideString; LangId: Integer; 
                                             PartOfSpeech: SpeechPartOfSpeech; 
-                                            var PhoneIds: OleVariant); dispid 6;
-    function  GetPronunciations(const bstrWord: WideString; LangId: Integer; 
-                                TypeFlags: SpeechLexiconType): ISpeechLexiconPronunciations; dispid 7;
-    function  GetGenerationChange(var GenerationId: Integer): ISpeechLexiconWords; dispid 8;
+                                            const PhoneIds: OleVariant); dispid 6;
+    function GetPronunciations(const bstrWord: WideString; LangId: Integer; 
+                               TypeFlags: SpeechLexiconType): ISpeechLexiconPronunciations; dispid 7;
+    function GetGenerationChange(var GenerationId: Integer): ISpeechLexiconWords; dispid 8;
   end;
 
 // *********************************************************************//
@@ -3597,9 +3796,9 @@ type
 // *********************************************************************//
   ISpeechLexiconWords = interface(IDispatch)
     ['{8D199862-415E-47D5-AC4F-FAA608B424E6}']
-    function  Get_Count: Integer; safecall;
-    function  Item(Index: Integer): ISpeechLexiconWord; safecall;
-    function  Get__NewEnum: IUnknown; safecall;
+    function Get_Count: Integer; safecall;
+    function Item(Index: Integer): ISpeechLexiconWord; safecall;
+    function Get__NewEnum: IUnknown; safecall;
     property Count: Integer read Get_Count;
     property _NewEnum: IUnknown read Get__NewEnum;
   end;
@@ -3612,7 +3811,7 @@ type
   ISpeechLexiconWordsDisp = dispinterface
     ['{8D199862-415E-47D5-AC4F-FAA608B424E6}']
     property Count: Integer readonly dispid 1;
-    function  Item(Index: Integer): ISpeechLexiconWord; dispid 0;
+    function Item(Index: Integer): ISpeechLexiconWord; dispid 0;
     property _NewEnum: IUnknown readonly dispid -4;
   end;
 
@@ -3623,12 +3822,12 @@ type
 // *********************************************************************//
   ISpeechLexiconWord = interface(IDispatch)
     ['{4E5B933C-C9BE-48ED-8842-1EE51BB1D4FF}']
-    function  Get_LangId: Integer; safecall;
-    function  Get_Type_: SpeechWordType; safecall;
-    function  Get_Word: WideString; safecall;
-    function  Get_Pronunciations: ISpeechLexiconPronunciations; safecall;
+    function Get_LangId: Integer; safecall;
+    function Get_type_: SpeechWordType; safecall;
+    function Get_Word: WideString; safecall;
+    function Get_Pronunciations: ISpeechLexiconPronunciations; safecall;
     property LangId: Integer read Get_LangId;
-    property Type_: SpeechWordType read Get_Type_;
+    property type_: SpeechWordType read Get_type_;
     property Word: WideString read Get_Word;
     property Pronunciations: ISpeechLexiconPronunciations read Get_Pronunciations;
   end;
@@ -3641,7 +3840,7 @@ type
   ISpeechLexiconWordDisp = dispinterface
     ['{4E5B933C-C9BE-48ED-8842-1EE51BB1D4FF}']
     property LangId: Integer readonly dispid 1;
-    property Type_: SpeechWordType readonly dispid 2;
+    property type_: SpeechWordType readonly dispid 2;
     property Word: WideString readonly dispid 3;
     property Pronunciations: ISpeechLexiconPronunciations readonly dispid 4;
   end;
@@ -3653,9 +3852,9 @@ type
 // *********************************************************************//
   ISpeechLexiconPronunciations = interface(IDispatch)
     ['{72829128-5682-4704-A0D4-3E2BB6F2EAD3}']
-    function  Get_Count: Integer; safecall;
-    function  Item(Index: Integer): ISpeechLexiconPronunciation; safecall;
-    function  Get__NewEnum: IUnknown; safecall;
+    function Get_Count: Integer; safecall;
+    function Item(Index: Integer): ISpeechLexiconPronunciation; safecall;
+    function Get__NewEnum: IUnknown; safecall;
     property Count: Integer read Get_Count;
     property _NewEnum: IUnknown read Get__NewEnum;
   end;
@@ -3668,7 +3867,7 @@ type
   ISpeechLexiconPronunciationsDisp = dispinterface
     ['{72829128-5682-4704-A0D4-3E2BB6F2EAD3}']
     property Count: Integer readonly dispid 1;
-    function  Item(Index: Integer): ISpeechLexiconPronunciation; dispid 0;
+    function Item(Index: Integer): ISpeechLexiconPronunciation; dispid 0;
     property _NewEnum: IUnknown readonly dispid -4;
   end;
 
@@ -3679,12 +3878,12 @@ type
 // *********************************************************************//
   ISpeechLexiconPronunciation = interface(IDispatch)
     ['{95252C5D-9E43-4F4A-9899-48EE73352F9F}']
-    function  Get_Type_: SpeechLexiconType; safecall;
-    function  Get_LangId: Integer; safecall;
-    function  Get_PartOfSpeech: SpeechPartOfSpeech; safecall;
-    function  Get_PhoneIds: OleVariant; safecall;
-    function  Get_Symbolic: WideString; safecall;
-    property Type_: SpeechLexiconType read Get_Type_;
+    function Get_type_: SpeechLexiconType; safecall;
+    function Get_LangId: Integer; safecall;
+    function Get_PartOfSpeech: SpeechPartOfSpeech; safecall;
+    function Get_PhoneIds: OleVariant; safecall;
+    function Get_Symbolic: WideString; safecall;
+    property type_: SpeechLexiconType read Get_type_;
     property LangId: Integer read Get_LangId;
     property PartOfSpeech: SpeechPartOfSpeech read Get_PartOfSpeech;
     property PhoneIds: OleVariant read Get_PhoneIds;
@@ -3698,11 +3897,97 @@ type
 // *********************************************************************//
   ISpeechLexiconPronunciationDisp = dispinterface
     ['{95252C5D-9E43-4F4A-9899-48EE73352F9F}']
-    property Type_: SpeechLexiconType readonly dispid 1;
+    property type_: SpeechLexiconType readonly dispid 1;
     property LangId: Integer readonly dispid 2;
     property PartOfSpeech: SpeechPartOfSpeech readonly dispid 3;
     property PhoneIds: OleVariant readonly dispid 4;
     property Symbolic: WideString readonly dispid 5;
+  end;
+
+// *********************************************************************//
+// Interface: ISpeechXMLRecoResult
+// Flags:     (4416) Dual OleAutomation Dispatchable
+// GUID:      {AAEC54AF-8F85-4924-944D-B79D39D72E19}
+// *********************************************************************//
+  ISpeechXMLRecoResult = interface(ISpeechRecoResult)
+    ['{AAEC54AF-8F85-4924-944D-B79D39D72E19}']
+    function GetXMLResult(Options: SPXMLRESULTOPTIONS): WideString; safecall;
+    function GetXMLErrorInfo(out LineNumber: Integer; out ScriptLine: WideString; 
+                             out Source: WideString; out Description: WideString; 
+                             out ResultCode: Integer): WordBool; safecall;
+  end;
+
+// *********************************************************************//
+// DispIntf:  ISpeechXMLRecoResultDisp
+// Flags:     (4416) Dual OleAutomation Dispatchable
+// GUID:      {AAEC54AF-8F85-4924-944D-B79D39D72E19}
+// *********************************************************************//
+  ISpeechXMLRecoResultDisp = dispinterface
+    ['{AAEC54AF-8F85-4924-944D-B79D39D72E19}']
+    function GetXMLResult(Options: SPXMLRESULTOPTIONS): WideString; dispid 10;
+    function GetXMLErrorInfo(out LineNumber: Integer; out ScriptLine: WideString; 
+                             out Source: WideString; out Description: WideString; 
+                             out ResultCode: Integer): WordBool; dispid 11;
+    property RecoContext: ISpeechRecoContext readonly dispid 1;
+    property Times: ISpeechRecoResultTimes readonly dispid 2;
+    property AudioFormat: ISpeechAudioFormat dispid 3;
+    property PhraseInfo: ISpeechPhraseInfo readonly dispid 4;
+    function Alternates(RequestCount: Integer; StartElement: Integer; Elements: Integer): ISpeechPhraseAlternates; dispid 5;
+    function Audio(StartElement: Integer; Elements: Integer): ISpeechMemoryStream; dispid 6;
+    function SpeakAudio(StartElement: Integer; Elements: Integer; Flags: SpeechVoiceSpeakFlags): Integer; dispid 7;
+    function SaveToMemory: OleVariant; dispid 8;
+    procedure DiscardResultInfo(ValueTypes: SpeechDiscardType); dispid 9;
+  end;
+
+// *********************************************************************//
+// Interface: ISpeechRecoResultDispatch
+// Flags:     (4432) Hidden Dual OleAutomation Dispatchable
+// GUID:      {6D60EB64-ACED-40A6-BBF3-4E557F71DEE2}
+// *********************************************************************//
+  ISpeechRecoResultDispatch = interface(IDispatch)
+    ['{6D60EB64-ACED-40A6-BBF3-4E557F71DEE2}']
+    function Get_RecoContext: ISpeechRecoContext; safecall;
+    function Get_Times: ISpeechRecoResultTimes; safecall;
+    procedure _Set_AudioFormat(const Format: ISpeechAudioFormat); safecall;
+    function Get_AudioFormat: ISpeechAudioFormat; safecall;
+    function Get_PhraseInfo: ISpeechPhraseInfo; safecall;
+    function Alternates(RequestCount: Integer; StartElement: Integer; Elements: Integer): ISpeechPhraseAlternates; safecall;
+    function Audio(StartElement: Integer; Elements: Integer): ISpeechMemoryStream; safecall;
+    function SpeakAudio(StartElement: Integer; Elements: Integer; Flags: SpeechVoiceSpeakFlags): Integer; safecall;
+    function SaveToMemory: OleVariant; safecall;
+    procedure DiscardResultInfo(ValueTypes: SpeechDiscardType); safecall;
+    function GetXMLResult(Options: SPXMLRESULTOPTIONS): WideString; safecall;
+    function GetXMLErrorInfo(out LineNumber: Integer; out ScriptLine: WideString; 
+                             out Source: WideString; out Description: WideString; 
+                             out ResultCode: HResult): WordBool; safecall;
+    procedure SetTextFeedback(const Feedback: WideString; WasSuccessful: WordBool); safecall;
+    property RecoContext: ISpeechRecoContext read Get_RecoContext;
+    property Times: ISpeechRecoResultTimes read Get_Times;
+    property AudioFormat: ISpeechAudioFormat read Get_AudioFormat write _Set_AudioFormat;
+    property PhraseInfo: ISpeechPhraseInfo read Get_PhraseInfo;
+  end;
+
+// *********************************************************************//
+// DispIntf:  ISpeechRecoResultDispatchDisp
+// Flags:     (4432) Hidden Dual OleAutomation Dispatchable
+// GUID:      {6D60EB64-ACED-40A6-BBF3-4E557F71DEE2}
+// *********************************************************************//
+  ISpeechRecoResultDispatchDisp = dispinterface
+    ['{6D60EB64-ACED-40A6-BBF3-4E557F71DEE2}']
+    property RecoContext: ISpeechRecoContext readonly dispid 1;
+    property Times: ISpeechRecoResultTimes readonly dispid 2;
+    property AudioFormat: ISpeechAudioFormat dispid 3;
+    property PhraseInfo: ISpeechPhraseInfo readonly dispid 4;
+    function Alternates(RequestCount: Integer; StartElement: Integer; Elements: Integer): ISpeechPhraseAlternates; dispid 5;
+    function Audio(StartElement: Integer; Elements: Integer): ISpeechMemoryStream; dispid 6;
+    function SpeakAudio(StartElement: Integer; Elements: Integer; Flags: SpeechVoiceSpeakFlags): Integer; dispid 7;
+    function SaveToMemory: OleVariant; dispid 8;
+    procedure DiscardResultInfo(ValueTypes: SpeechDiscardType); dispid 9;
+    function GetXMLResult(Options: SPXMLRESULTOPTIONS): WideString; dispid 10;
+    function GetXMLErrorInfo(out LineNumber: Integer; out ScriptLine: WideString; 
+                             out Source: WideString; out Description: WideString; 
+                             out ResultCode: HResult): WordBool; dispid 11;
+    procedure SetTextFeedback(const Feedback: WideString; WasSuccessful: WordBool); dispid 12;
   end;
 
 // *********************************************************************//
@@ -3712,7 +3997,7 @@ type
 // *********************************************************************//
   ISpeechPhraseInfoBuilder = interface(IDispatch)
     ['{3B151836-DF3A-4E0A-846C-D2ADC9334333}']
-    function  RestorePhraseFromMemory(var PhraseInMemory: OleVariant): ISpeechPhraseInfo; safecall;
+    function RestorePhraseFromMemory(const PhraseInMemory: OleVariant): ISpeechPhraseInfo; safecall;
   end;
 
 // *********************************************************************//
@@ -3722,7 +4007,7 @@ type
 // *********************************************************************//
   ISpeechPhraseInfoBuilderDisp = dispinterface
     ['{3B151836-DF3A-4E0A-846C-D2ADC9334333}']
-    function  RestorePhraseFromMemory(var PhraseInMemory: OleVariant): ISpeechPhraseInfo; dispid 1;
+    function RestorePhraseFromMemory(const PhraseInMemory: OleVariant): ISpeechPhraseInfo; dispid 1;
   end;
 
 // *********************************************************************//
@@ -3732,10 +4017,10 @@ type
 // *********************************************************************//
   ISpeechPhoneConverter = interface(IDispatch)
     ['{C3E4F353-433F-43D6-89A1-6A62A7054C3D}']
-    function  Get_LanguageId: Integer; safecall;
+    function Get_LanguageId: Integer; safecall;
     procedure Set_LanguageId(LanguageId: Integer); safecall;
-    function  PhoneToId(const Phonemes: WideString): OleVariant; safecall;
-    function  IdToPhone(IdArray: OleVariant): WideString; safecall;
+    function PhoneToId(const Phonemes: WideString): OleVariant; safecall;
+    function IdToPhone(IdArray: OleVariant): WideString; safecall;
     property LanguageId: Integer read Get_LanguageId write Set_LanguageId;
   end;
 
@@ -3747,8 +4032,8 @@ type
   ISpeechPhoneConverterDisp = dispinterface
     ['{C3E4F353-433F-43D6-89A1-6A62A7054C3D}']
     property LanguageId: Integer dispid 1;
-    function  PhoneToId(const Phonemes: WideString): OleVariant; dispid 2;
-    function  IdToPhone(IdArray: OleVariant): WideString; dispid 3;
+    function PhoneToId(const Phonemes: WideString): OleVariant; dispid 2;
+    function IdToPhone(IdArray: OleVariant): WideString; dispid 3;
   end;
 
 // *********************************************************************//
@@ -3758,7 +4043,7 @@ type
 // *********************************************************************//
   ISpNotifySink = interface(IUnknown)
     ['{259684DC-37C3-11D2-9603-00C04F8EE628}']
-    function  Notify: HResult; stdcall;
+    function Notify: HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -3768,13 +4053,13 @@ type
 // *********************************************************************//
   ISpNotifyTranslator = interface(ISpNotifySink)
     ['{ACA16614-5D3D-11D2-960E-00C04F8EE628}']
-    function  InitWindowMessage(var hWnd: _RemotableHandle; Msg: SYSUINT; wParam: UINT_PTR; 
-                                lParam: LONG_PTR): HResult; stdcall;
-    function  InitCallback(pfnCallback: PPPrivateAlias1; wParam: UINT_PTR; lParam: LONG_PTR): HResult; stdcall;
-    function  InitSpNotifyCallback(pSpCallback: PPPrivateAlias1; wParam: UINT_PTR; lParam: LONG_PTR): HResult; stdcall;
-    function  InitWin32Event(var hEvent: Pointer; fCloseHandleOnRelease: Integer): HResult; stdcall;
-    function  Wait(dwMilliseconds: LongWord): HResult; stdcall;
-    function  GetEventHandle: Pointer; stdcall;
+    function InitWindowMessage(var hWnd: _RemotableHandle; Msg: SYSUINT; wParam: UINT_PTR; 
+                               lParam: LONG_PTR): HResult; stdcall;
+    function InitCallback(pfnCallback: PPPrivateAlias1; wParam: UINT_PTR; lParam: LONG_PTR): HResult; stdcall;
+    function InitSpNotifyCallback(pSpCallback: PPPrivateAlias1; wParam: UINT_PTR; lParam: LONG_PTR): HResult; stdcall;
+    function InitWin32Event(hEvent: Pointer; fCloseHandleOnRelease: Integer): HResult; stdcall;
+    function Wait(dwMilliseconds: LongWord): HResult; stdcall;
+    function GetEventHandle: Pointer; stdcall;
   end;
 
 // *********************************************************************//
@@ -3784,18 +4069,18 @@ type
 // *********************************************************************//
   ISpDataKey = interface(IUnknown)
     ['{14056581-E16C-11D2-BB90-00C04F8EE6C0}']
-    function  SetData(var pszValueName: Word; cbData: LongWord; var pData: Byte): HResult; stdcall;
-    function  GetData(var pszValueName: Word; var pcbData: LongWord; var pData: Byte): HResult; stdcall;
-    function  SetStringValue(var pszValueName: Word; var pszValue: Word): HResult; stdcall;
-    function  GetStringValue(var pszValueName: Word; ppszValue: PPWord1): HResult; stdcall;
-    function  SetDWORD(var pszValueName: Word; dwValue: LongWord): HResult; stdcall;
-    function  GetDWORD(var pszValueName: Word; var pdwValue: LongWord): HResult; stdcall;
-    function  OpenKey(var pszSubKeyName: Word; var ppSubKey: ISpDataKey): HResult; stdcall;
-    function  CreateKey(var pszSubKey: Word; var ppSubKey: ISpDataKey): HResult; stdcall;
-    function  DeleteKey(var pszSubKey: Word): HResult; stdcall;
-    function  DeleteValue(var pszValueName: Word): HResult; stdcall;
-    function  EnumKeys(Index: LongWord; ppszSubKeyName: PPWord1): HResult; stdcall;
-    function  EnumValues(Index: LongWord; ppszValueName: PPWord1): HResult; stdcall;
+    function SetData(pszValueName: PWideChar; cbData: LongWord; var pData: Byte): HResult; stdcall;
+    function GetData(pszValueName: PWideChar; var pcbData: LongWord; out pData: Byte): HResult; stdcall;
+    function SetStringValue(pszValueName: PWideChar; pszValue: PWideChar): HResult; stdcall;
+    function GetStringValue(pszValueName: PWideChar; out ppszValue: PWideChar): HResult; stdcall;
+    function SetDWORD(pszValueName: PWideChar; dwValue: LongWord): HResult; stdcall;
+    function GetDWORD(pszValueName: PWideChar; out pdwValue: LongWord): HResult; stdcall;
+    function OpenKey(pszSubKeyName: PWideChar; out ppSubKey: ISpDataKey): HResult; stdcall;
+    function CreateKey(pszSubKey: PWideChar; out ppSubKey: ISpDataKey): HResult; stdcall;
+    function DeleteKey(pszSubKey: PWideChar): HResult; stdcall;
+    function DeleteValue(pszValueName: PWideChar): HResult; stdcall;
+    function EnumKeys(Index: LongWord; out ppszSubKeyName: PWideChar): HResult; stdcall;
+    function EnumValues(Index: LongWord; out ppszValueName: PWideChar): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -3805,13 +4090,13 @@ type
 // *********************************************************************//
   ISpObjectTokenCategory = interface(ISpDataKey)
     ['{2D3D3845-39AF-4850-BBF9-40B49780011D}']
-    function  SetId(var pszCategoryId: Word; fCreateIfNotExist: Integer): HResult; stdcall;
-    function  GetId(out ppszCoMemCategoryId: PWord1): HResult; stdcall;
-    function  GetDataKey(spdkl: SPDATAKEYLOCATION; var ppDataKey: ISpDataKey): HResult; stdcall;
-    function  EnumTokens(pzsReqAttribs: PWideChar; pszOptAttribs: PWideChar; 
-                         out ppEnum: IEnumSpObjectTokens): HResult; stdcall;
-    function  SetDefaultTokenId(var pszTokenId: Word): HResult; stdcall;
-    function  GetDefaultTokenId(out ppszCoMemTokenId: PWord1): HResult; stdcall;
+    function SetId(pszCategoryId: PWideChar; fCreateIfNotExist: Integer): HResult; stdcall;
+    function GetId(out ppszCoMemCategoryId: PWideChar): HResult; stdcall;
+    function GetDataKey(spdkl: SPDATAKEYLOCATION; out ppDataKey: ISpDataKey): HResult; stdcall;
+    function EnumTokens(pzsReqAttribs: PWideChar; pszOptAttribs: PWideChar; 
+                        out ppEnum: IEnumSpObjectTokens): HResult; stdcall;
+    function SetDefaultTokenId(pszTokenId: PWideChar): HResult; stdcall;
+    function GetDefaultTokenId(out ppszCoMemTokenId: PWideChar): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -3821,12 +4106,12 @@ type
 // *********************************************************************//
   IEnumSpObjectTokens = interface(IUnknown)
     ['{06B64F9E-7FDA-11D2-B4F2-00C04F797396}']
-    function  Next(celt: LongWord; out pelt: ISpObjectToken; out pceltFetched: LongWord): HResult; stdcall;
-    function  Skip(celt: LongWord): HResult; stdcall;
-    function  Reset: HResult; stdcall;
-    function  Clone(out ppEnum: IEnumSpObjectTokens): HResult; stdcall;
-    function  Item(Index: LongWord; out ppToken: ISpObjectToken): HResult; stdcall;
-    function  GetCount(out pCount: LongWord): HResult; stdcall;
+    function Next(celt: LongWord; out pelt: ISpObjectToken; out pceltFetched: LongWord): HResult; stdcall;
+    function Skip(celt: LongWord): HResult; stdcall;
+    function Reset: HResult; stdcall;
+    function Clone(out ppEnum: IEnumSpObjectTokens): HResult; stdcall;
+    function Item(Index: LongWord; out ppToken: ISpObjectToken): HResult; stdcall;
+    function GetCount(out pCount: LongWord): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -3836,23 +4121,23 @@ type
 // *********************************************************************//
   ISpObjectToken = interface(ISpDataKey)
     ['{14056589-E16C-11D2-BB90-00C04F8EE6C0}']
-    function  SetId(var pszCategoryId: Word; var pszTokenId: Word; fCreateIfNotExist: Integer): HResult; stdcall;
-    function  GetId(ppszCoMemTokenId: PPWord1): HResult; stdcall;
-    function  GetCategory(var ppTokenCategory: ISpObjectTokenCategory): HResult; stdcall;
-    function  CreateInstance(const pUnkOuter: IUnknown; dwClsContext: LongWord; var riid: TGUID; 
-                             out ppvObject: Pointer): HResult; stdcall;
-    function  GetStorageFileName(var clsidCaller: TGUID; var pszValueName: Word; 
-                                 var pszFileNameSpecifier: Word; nFolder: LongWord; 
-                                 out ppszFilePath: PWord1): HResult; stdcall;
-    function  RemoveStorageFileName(var clsidCaller: TGUID; var pszKeyName: Word; 
-                                    fDeleteFile: Integer): HResult; stdcall;
-    function  Remove(var pclsidCaller: TGUID): HResult; stdcall;
-    function  IsUISupported(var pszTypeOfUI: Word; var pvExtraData: Pointer; cbExtraData: LongWord; 
-                            const punkObject: IUnknown; out pfSupported: Integer): HResult; stdcall;
-    function  DisplayUI(var hWndParent: _RemotableHandle; var pszTitle: Word; 
-                        var pszTypeOfUI: Word; var pvExtraData: Pointer; cbExtraData: LongWord; 
-                        const punkObject: IUnknown): HResult; stdcall;
-    function  MatchesAttributes(var pszAttributes: Word; out pfMatches: Integer): HResult; stdcall;
+    function SetId(pszCategoryId: PWideChar; pszTokenId: PWideChar; fCreateIfNotExist: Integer): HResult; stdcall;
+    function GetId(out ppszCoMemTokenId: PWideChar): HResult; stdcall;
+    function GetCategory(out ppTokenCategory: ISpObjectTokenCategory): HResult; stdcall;
+    function CreateInstance(const pUnkOuter: IUnknown; dwClsContext: LongWord; var riid: TGUID; 
+                            out ppvObject: Pointer): HResult; stdcall;
+    function GetStorageFileName(var clsidCaller: TGUID; pszValueName: PWideChar; 
+                                pszFileNameSpecifier: PWideChar; nFolder: LongWord; 
+                                out ppszFilePath: PWideChar): HResult; stdcall;
+    function RemoveStorageFileName(var clsidCaller: TGUID; pszKeyName: PWideChar; 
+                                   fDeleteFile: Integer): HResult; stdcall;
+    function Remove(var pclsidCaller: TGUID): HResult; stdcall;
+    function IsUISupported(pszTypeOfUI: PWideChar; pvExtraData: Pointer; cbExtraData: LongWord; 
+                           const punkObject: IUnknown; out pfSupported: Integer): HResult; stdcall;
+    function DisplayUI(var hWndParent: _RemotableHandle; pszTitle: PWideChar; 
+                       pszTypeOfUI: PWideChar; pvExtraData: Pointer; cbExtraData: LongWord; 
+                       const punkObject: IUnknown): HResult; stdcall;
+    function MatchesAttributes(pszAttributes: PWideChar; out pfMatches: Integer): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -3862,7 +4147,7 @@ type
 // *********************************************************************//
   IServiceProvider = interface(IUnknown)
     ['{6D5140C1-7436-11CE-8034-00AA006009FA}']
-    function  RemoteQueryService(var guidService: TGUID; var riid: TGUID; out ppvObject: IUnknown): HResult; stdcall;
+    function RemoteQueryService(var guidService: TGUID; var riid: TGUID; out ppvObject: IUnknown): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -3872,9 +4157,9 @@ type
 // *********************************************************************//
   ISpResourceManager = interface(IServiceProvider)
     ['{93384E18-5014-43D5-ADBB-A78E055926BD}']
-    function  SetObject(var guidServiceId: TGUID; const punkObject: IUnknown): HResult; stdcall;
-    function  GetObject(var guidServiceId: TGUID; var ObjectCLSID: TGUID; var ObjectIID: TGUID; 
-                        fReleaseWhenLastExternalRefReleased: Integer; out ppObject: Pointer): HResult; stdcall;
+    function SetObject(var guidServiceId: TGUID; const punkObject: IUnknown): HResult; stdcall;
+    function GetObject(var guidServiceId: TGUID; var ObjectCLSID: TGUID; var ObjectIID: TGUID; 
+                       fReleaseWhenLastExternalRefReleased: Integer; out ppObject: Pointer): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -3884,8 +4169,8 @@ type
 // *********************************************************************//
   ISequentialStream = interface(IUnknown)
     ['{0C733A30-2A1C-11CE-ADE5-00AA0044773D}']
-    function  RemoteRead(out pv: Byte; cb: LongWord; out pcbRead: LongWord): HResult; stdcall;
-    function  RemoteWrite(var pv: Byte; cb: LongWord; out pcbWritten: LongWord): HResult; stdcall;
+    function RemoteRead(out pv: Byte; cb: LongWord; out pcbRead: LongWord): HResult; stdcall;
+    function RemoteWrite(var pv: Byte; cb: LongWord; out pcbWritten: LongWord): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -3895,17 +4180,17 @@ type
 // *********************************************************************//
   IStream = interface(ISequentialStream)
     ['{0000000C-0000-0000-C000-000000000046}']
-    function  RemoteSeek(dlibMove: _LARGE_INTEGER; dwOrigin: LongWord; 
-                         out plibNewPosition: _ULARGE_INTEGER): HResult; stdcall;
-    function  SetSize(libNewSize: _ULARGE_INTEGER): HResult; stdcall;
-    function  RemoteCopyTo(const pstm: IStream; cb: _ULARGE_INTEGER; out pcbRead: _ULARGE_INTEGER; 
-                           out pcbWritten: _ULARGE_INTEGER): HResult; stdcall;
-    function  Commit(grfCommitFlags: LongWord): HResult; stdcall;
-    function  Revert: HResult; stdcall;
-    function  LockRegion(libOffset: _ULARGE_INTEGER; cb: _ULARGE_INTEGER; dwLockType: LongWord): HResult; stdcall;
-    function  UnlockRegion(libOffset: _ULARGE_INTEGER; cb: _ULARGE_INTEGER; dwLockType: LongWord): HResult; stdcall;
-    function  Stat(out pstatstg: tagSTATSTG; grfStatFlag: LongWord): HResult; stdcall;
-    function  Clone(out ppstm: IStream): HResult; stdcall;
+    function RemoteSeek(dlibMove: _LARGE_INTEGER; dwOrigin: LongWord; 
+                        out plibNewPosition: _ULARGE_INTEGER): HResult; stdcall;
+    function SetSize(libNewSize: _ULARGE_INTEGER): HResult; stdcall;
+    function RemoteCopyTo(const pstm: IStream; cb: _ULARGE_INTEGER; out pcbRead: _ULARGE_INTEGER; 
+                          out pcbWritten: _ULARGE_INTEGER): HResult; stdcall;
+    function Commit(grfCommitFlags: LongWord): HResult; stdcall;
+    function Revert: HResult; stdcall;
+    function LockRegion(libOffset: _ULARGE_INTEGER; cb: _ULARGE_INTEGER; dwLockType: LongWord): HResult; stdcall;
+    function UnlockRegion(libOffset: _ULARGE_INTEGER; cb: _ULARGE_INTEGER; dwLockType: LongWord): HResult; stdcall;
+    function Stat(out pstatstg: tagSTATSTG; grfStatFlag: LongWord): HResult; stdcall;
+    function Clone(out ppstm: IStream): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -3915,7 +4200,7 @@ type
 // *********************************************************************//
   ISpStreamFormat = interface(IStream)
     ['{BED530BE-2606-4F4D-A1C0-54C5CDA5566F}']
-    function  GetFormat(var pguidFormatId: TGUID; ppCoMemWaveFormatEx: PPUserType3): HResult; stdcall;
+    function GetFormat(var pguidFormatId: TGUID; out ppCoMemWaveFormatEx: PUserType2): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -3925,16 +4210,16 @@ type
 // *********************************************************************//
   ISpStreamFormatConverter = interface(ISpStreamFormat)
     ['{678A932C-EA71-4446-9B41-78FDA6280A29}']
-    function  SetBaseStream(const pStream: ISpStreamFormat; fSetFormatToBaseStreamFormat: Integer; 
-                            fWriteToBaseStream: Integer): HResult; stdcall;
-    function  GetBaseStream(out ppStream: ISpStreamFormat): HResult; stdcall;
-    function  SetFormat(var rguidFormatIdOfConvertedStream: TGUID; 
-                        var pWaveFormatExOfConvertedStream: WaveFormatEx): HResult; stdcall;
-    function  ResetSeekPosition: HResult; stdcall;
-    function  ScaleConvertedToBaseOffset(ullOffsetConvertedStream: Largeuint; 
-                                         out pullOffsetBaseStream: Largeuint): HResult; stdcall;
-    function  ScaleBaseToConvertedOffset(ullOffsetBaseStream: Largeuint; 
-                                         out pullOffsetConvertedStream: Largeuint): HResult; stdcall;
+    function SetBaseStream(const pStream: ISpStreamFormat; fSetFormatToBaseStreamFormat: Integer; 
+                           fWriteToBaseStream: Integer): HResult; stdcall;
+    function GetBaseStream(out ppStream: ISpStreamFormat): HResult; stdcall;
+    function SetFormat(var rguidFormatIdOfConvertedStream: TGUID; 
+                       var pWaveFormatExOfConvertedStream: WAVEFORMATEX): HResult; stdcall;
+    function ResetSeekPosition: HResult; stdcall;
+    function ScaleConvertedToBaseOffset(ullOffsetConvertedStream: Largeuint; 
+                                        out pullOffsetBaseStream: Largeuint): HResult; stdcall;
+    function ScaleBaseToConvertedOffset(ullOffsetBaseStream: Largeuint; 
+                                        out pullOffsetConvertedStream: Largeuint): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -3944,16 +4229,16 @@ type
 // *********************************************************************//
   ISpNotifySource = interface(IUnknown)
     ['{5EFF4AEF-8487-11D2-961C-00C04F8EE628}']
-    function  SetNotifySink(const pNotifySink: ISpNotifySink): HResult; stdcall;
-    function  SetNotifyWindowMessage(var hWnd: _RemotableHandle; Msg: SYSUINT; wParam: UINT_PTR; 
-                                     lParam: LONG_PTR): HResult; stdcall;
-    function  SetNotifyCallbackFunction(pfnCallback: PPPrivateAlias1; wParam: UINT_PTR; 
+    function SetNotifySink(const pNotifySink: ISpNotifySink): HResult; stdcall;
+    function SetNotifyWindowMessage(var hWnd: _RemotableHandle; Msg: SYSUINT; wParam: UINT_PTR; 
+                                    lParam: LONG_PTR): HResult; stdcall;
+    function SetNotifyCallbackFunction(pfnCallback: PPPrivateAlias1; wParam: UINT_PTR; 
+                                       lParam: LONG_PTR): HResult; stdcall;
+    function SetNotifyCallbackInterface(pSpCallback: PPPrivateAlias1; wParam: UINT_PTR; 
                                         lParam: LONG_PTR): HResult; stdcall;
-    function  SetNotifyCallbackInterface(pSpCallback: PPPrivateAlias1; wParam: UINT_PTR; 
-                                         lParam: LONG_PTR): HResult; stdcall;
-    function  SetNotifyWin32Event: HResult; stdcall;
-    function  WaitForNotifyEvent(dwMilliseconds: LongWord): HResult; stdcall;
-    function  GetNotifyEventHandle: Pointer; stdcall;
+    function SetNotifyWin32Event: HResult; stdcall;
+    function WaitForNotifyEvent(dwMilliseconds: LongWord): HResult; stdcall;
+    function GetNotifyEventHandle: Pointer; stdcall;
   end;
 
 // *********************************************************************//
@@ -3963,9 +4248,9 @@ type
 // *********************************************************************//
   ISpEventSource = interface(ISpNotifySource)
     ['{BE7A9CCE-5F9E-11D2-960F-00C04F8EE628}']
-    function  SetInterest(ullEventInterest: Largeuint; ullQueuedInterest: Largeuint): HResult; stdcall;
-    function  GetEvents(ulCount: LongWord; out pEventArray: SPEVENT; out pulFetched: LongWord): HResult; stdcall;
-    function  GetInfo(out pInfo: SPEVENTSOURCEINFO): HResult; stdcall;
+    function SetInterest(ullEventInterest: Largeuint; ullQueuedInterest: Largeuint): HResult; stdcall;
+    function GetEvents(ulCount: LongWord; out pEventArray: SPEVENT; out pulFetched: LongWord): HResult; stdcall;
+    function GetInfo(out pInfo: SPEVENTSOURCEINFO): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -3975,8 +4260,8 @@ type
 // *********************************************************************//
   ISpEventSink = interface(IUnknown)
     ['{BE7A9CC9-5F9E-11D2-960F-00C04F8EE628}']
-    function  AddEvents(var pEventArray: SPEVENT; ulCount: LongWord): HResult; stdcall;
-    function  GetEventInterest(out pullEventInterest: Largeuint): HResult; stdcall;
+    function AddEvents(var pEventArray: SPEVENT; ulCount: LongWord): HResult; stdcall;
+    function GetEventInterest(out pullEventInterest: Largeuint): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -3986,8 +4271,8 @@ type
 // *********************************************************************//
   ISpObjectWithToken = interface(IUnknown)
     ['{5B559F40-E952-11D2-BB91-00C04F8EE6C0}']
-    function  SetObjectToken(const pToken: ISpObjectToken): HResult; stdcall;
-    function  GetObjectToken(var ppToken: ISpObjectToken): HResult; stdcall;
+    function SetObjectToken(const pToken: ISpObjectToken): HResult; stdcall;
+    function GetObjectToken(out ppToken: ISpObjectToken): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -3997,17 +4282,17 @@ type
 // *********************************************************************//
   ISpAudio = interface(ISpStreamFormat)
     ['{C05C768F-FAE8-4EC2-8E07-338321C12452}']
-    function  SetState(NewState: SPAUDIOSTATE; ullReserved: Largeuint): HResult; stdcall;
-    function  SetFormat(var rguidFmtId: TGUID; var pWaveFormatEx: WaveFormatEx): HResult; stdcall;
-    function  GetStatus(out pStatus: SPAUDIOSTATUS): HResult; stdcall;
-    function  SetBufferInfo(var pBuffInfo: SPAUDIOBUFFERINFO): HResult; stdcall;
-    function  GetBufferInfo(out pBuffInfo: SPAUDIOBUFFERINFO): HResult; stdcall;
-    function  GetDefaultFormat(out pFormatId: TGUID; out ppCoMemWaveFormatEx: PUserType2): HResult; stdcall;
-    function  EventHandle: Pointer; stdcall;
-    function  GetVolumeLevel(out pLevel: LongWord): HResult; stdcall;
-    function  SetVolumeLevel(Level: LongWord): HResult; stdcall;
-    function  GetBufferNotifySize(out pcbSize: LongWord): HResult; stdcall;
-    function  SetBufferNotifySize(cbSize: LongWord): HResult; stdcall;
+    function SetState(NewState: SPAUDIOSTATE; ullReserved: Largeuint): HResult; stdcall;
+    function SetFormat(var rguidFmtId: TGUID; var pWaveFormatEx: WAVEFORMATEX): HResult; stdcall;
+    function GetStatus(out pStatus: SPAUDIOSTATUS): HResult; stdcall;
+    function SetBufferInfo(var pBuffInfo: SPAUDIOBUFFERINFO): HResult; stdcall;
+    function GetBufferInfo(out pBuffInfo: SPAUDIOBUFFERINFO): HResult; stdcall;
+    function GetDefaultFormat(out pFormatId: TGUID; out ppCoMemWaveFormatEx: PUserType2): HResult; stdcall;
+    function EventHandle: Pointer; stdcall;
+    function GetVolumeLevel(out pLevel: LongWord): HResult; stdcall;
+    function SetVolumeLevel(Level: LongWord): HResult; stdcall;
+    function GetBufferNotifySize(out pcbSize: LongWord): HResult; stdcall;
+    function SetBufferNotifySize(cbSize: LongWord): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -4017,11 +4302,11 @@ type
 // *********************************************************************//
   ISpMMSysAudio = interface(ISpAudio)
     ['{15806F6E-1D70-4B48-98E6-3B1A007509AB}']
-    function  GetDeviceId(out puDeviceId: SYSUINT): HResult; stdcall;
-    function  SetDeviceId(uDeviceId: SYSUINT): HResult; stdcall;
-    function  GetMMHandle(pHandle: PPPrivateAlias1): HResult; stdcall;
-    function  GetLineId(out puLineId: SYSUINT): HResult; stdcall;
-    function  SetLineId(uLineId: SYSUINT): HResult; stdcall;
+    function GetDeviceId(out puDeviceId: SYSUINT): HResult; stdcall;
+    function SetDeviceId(uDeviceId: SYSUINT): HResult; stdcall;
+    function GetMMHandle(out pHandle: Pointer): HResult; stdcall;
+    function GetLineId(out puLineId: SYSUINT): HResult; stdcall;
+    function SetLineId(uLineId: SYSUINT): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -4031,12 +4316,12 @@ type
 // *********************************************************************//
   ISpStream = interface(ISpStreamFormat)
     ['{12E3CCA9-7518-44C5-A5E7-BA5A79CB929E}']
-    function  SetBaseStream(const pStream: IStream; var rguidFormat: TGUID; 
-                            var pWaveFormatEx: WaveFormatEx): HResult; stdcall;
-    function  GetBaseStream(var ppStream: IStream): HResult; stdcall;
-    function  BindToFile(var pszFileName: Word; eMode: SPFILEMODE; var pFormatId: TGUID; 
-                         var pWaveFormatEx: WaveFormatEx; ullEventInterest: Largeuint): HResult; stdcall;
-    function  Close: HResult; stdcall;
+    function SetBaseStream(const pStream: IStream; var rguidFormat: TGUID; 
+                           var pWaveFormatEx: WAVEFORMATEX): HResult; stdcall;
+    function GetBaseStream(out ppStream: IStream): HResult; stdcall;
+    function BindToFile(pszFileName: PWideChar; eMode: SPFILEMODE; var pFormatId: TGUID; 
+                        var pWaveFormatEx: WAVEFORMATEX; ullEventInterest: Largeuint): HResult; stdcall;
+    function Close: HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -4046,33 +4331,44 @@ type
 // *********************************************************************//
   ISpVoice = interface(ISpEventSource)
     ['{6C44DF74-72B9-4992-A1EC-EF996E0422D4}']
-    function  SetOutput(const pUnkOutput: IUnknown; fAllowFormatChanges: Integer): HResult; stdcall;
-    function  GetOutputObjectToken(out ppObjectToken: ISpObjectToken): HResult; stdcall;
-    function  GetOutputStream(out ppStream: ISpStreamFormat): HResult; stdcall;
-    function  Pause: HResult; stdcall;
-    function  Resume: HResult; stdcall;
-    function  SetVoice(const pToken: ISpObjectToken): HResult; stdcall;
-    function  GetVoice(out ppToken: ISpObjectToken): HResult; stdcall;
-    function  Speak(pwcs: PWideChar; dwFlags: LongWord; out pulStreamNumber: LongWord): HResult; stdcall;
-    function  SpeakStream(const pStream: IStream; dwFlags: LongWord; out pulStreamNumber: LongWord): HResult; stdcall;
-    function  GetStatus(out pStatus: SPVOICESTATUS; out ppszLastBookmark: PWideChar): HResult; stdcall;
-    function  Skip(pItemType: PWideChar; lNumItems: Integer; out pulNumSkipped: LongWord): HResult; stdcall;
-    function  SetPriority(ePriority: SPVPRIORITY): HResult; stdcall;
-    function  GetPriority(out pePriority: SPVPRIORITY): HResult; stdcall;
-    function  SetAlertBoundary(eBoundary: SPEVENTENUM): HResult; stdcall;
-    function  GetAlertBoundary(out peBoundary: SPEVENTENUM): HResult; stdcall;
-    function  SetRate(RateAdjust: Integer): HResult; stdcall;
-    function  GetRate(out pRateAdjust: Integer): HResult; stdcall;
-    function  SetVolume(usVolume: Word): HResult; stdcall;
-    function  GetVolume(out pusVolume: Word): HResult; stdcall;
-    function  WaitUntilDone(msTimeout: LongWord): HResult; stdcall;
-    function  SetSyncSpeakTimeout(msTimeout: LongWord): HResult; stdcall;
-    function  GetSyncSpeakTimeout(out pmsTimeout: LongWord): HResult; stdcall;
-    function  SpeakCompleteEvent: Pointer; stdcall;
-    function  IsUISupported(var pszTypeOfUI: Word; var pvExtraData: Pointer; cbExtraData: LongWord; 
-                            out pfSupported: Integer): HResult; stdcall;
-    function  DisplayUI(var hWndParent: _RemotableHandle; var pszTitle: Word; 
-                        var pszTypeOfUI: Word; var pvExtraData: Pointer; cbExtraData: LongWord): HResult; stdcall;
+    function SetOutput(const pUnkOutput: IUnknown; fAllowFormatChanges: Integer): HResult; stdcall;
+    function GetOutputObjectToken(out ppObjectToken: ISpObjectToken): HResult; stdcall;
+    function GetOutputStream(out ppStream: ISpStreamFormat): HResult; stdcall;
+    function Pause: HResult; stdcall;
+    function Resume: HResult; stdcall;
+    function SetVoice(const pToken: ISpObjectToken): HResult; stdcall;
+    function GetVoice(out ppToken: ISpObjectToken): HResult; stdcall;
+    function Speak(pwcs: PWideChar; dwFlags: LongWord; out pulStreamNumber: LongWord): HResult; stdcall;
+    function SpeakStream(const pStream: IStream; dwFlags: LongWord; out pulStreamNumber: LongWord): HResult; stdcall;
+    function GetStatus(out pStatus: SPVOICESTATUS; out ppszLastBookmark: PWideChar): HResult; stdcall;
+    function Skip(pItemType: PWideChar; lNumItems: Integer; out pulNumSkipped: LongWord): HResult; stdcall;
+    function SetPriority(ePriority: SPVPRIORITY): HResult; stdcall;
+    function GetPriority(out pePriority: SPVPRIORITY): HResult; stdcall;
+    function SetAlertBoundary(eBoundary: SPEVENTENUM): HResult; stdcall;
+    function GetAlertBoundary(out peBoundary: SPEVENTENUM): HResult; stdcall;
+    function SetRate(RateAdjust: Integer): HResult; stdcall;
+    function GetRate(out pRateAdjust: Integer): HResult; stdcall;
+    function SetVolume(usVolume: Word): HResult; stdcall;
+    function GetVolume(out pusVolume: Word): HResult; stdcall;
+    function WaitUntilDone(msTimeout: LongWord): HResult; stdcall;
+    function SetSyncSpeakTimeout(msTimeout: LongWord): HResult; stdcall;
+    function GetSyncSpeakTimeout(out pmsTimeout: LongWord): HResult; stdcall;
+    function SpeakCompleteEvent: Pointer; stdcall;
+    function IsUISupported(pszTypeOfUI: PWideChar; pvExtraData: Pointer; cbExtraData: LongWord; 
+                           out pfSupported: Integer): HResult; stdcall;
+    function DisplayUI(var hWndParent: _RemotableHandle; pszTitle: PWideChar; 
+                       pszTypeOfUI: PWideChar; pvExtraData: Pointer; cbExtraData: LongWord): HResult; stdcall;
+  end;
+
+// *********************************************************************//
+// Interface: ISpPhoneticAlphabetSelection
+// Flags:     (512) Restricted
+// GUID:      {B2745EFD-42CE-48CA-81F1-A96E02538A90}
+// *********************************************************************//
+  ISpPhoneticAlphabetSelection = interface(IUnknown)
+    ['{B2745EFD-42CE-48CA-81F1-A96E02538A90}']
+    function IsAlphabetUPS(out pfIsUPS: Integer): HResult; stdcall;
+    function SetAlphabetToUPS(fForceUPS: Integer): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -4082,28 +4378,41 @@ type
 // *********************************************************************//
   ISpRecoContext = interface(ISpEventSource)
     ['{F740A62F-7C15-489E-8234-940A33D9272D}']
-    function  GetRecognizer(out ppRecognizer: ISpRecognizer): HResult; stdcall;
-    function  CreateGrammar(ullGrammarID: Largeuint; out ppGrammar: ISpRecoGrammar): HResult; stdcall;
-    function  GetStatus(out pStatus: SPRECOCONTEXTSTATUS): HResult; stdcall;
-    function  GetMaxAlternates(var pcAlternates: LongWord): HResult; stdcall;
-    function  SetMaxAlternates(cAlternates: LongWord): HResult; stdcall;
-    function  SetAudioOptions(Options: SPAUDIOOPTIONS; var pAudioFormatId: TGUID; 
-                              var pWaveFormatEx: WaveFormatEx): HResult; stdcall;
-    function  GetAudioOptions(var pOptions: SPAUDIOOPTIONS; out pAudioFormatId: TGUID; 
-                              out ppCoMemWFEX: PUserType2): HResult; stdcall;
-    function  DeserializeResult(var pSerializedResult: SPSERIALIZEDRESULT; 
-                                out ppResult: ISpRecoResult): HResult; stdcall;
-    function  Bookmark(Options: SPBOOKMARKOPTIONS; ullStreamPosition: Largeuint; 
-                       lparamEvent: LONG_PTR): HResult; stdcall;
-    function  SetAdaptationData(pAdaptationData: PWideChar; cch: LongWord): HResult; stdcall;
-    function  Pause(dwReserved: LongWord): HResult; stdcall;
-    function  Resume(dwReserved: LongWord): HResult; stdcall;
-    function  SetVoice(const pVoice: ISpVoice; fAllowFormatChanges: Integer): HResult; stdcall;
-    function  GetVoice(out ppVoice: ISpVoice): HResult; stdcall;
-    function  SetVoicePurgeEvent(ullEventInterest: Largeuint): HResult; stdcall;
-    function  GetVoicePurgeEvent(out pullEventInterest: Largeuint): HResult; stdcall;
-    function  SetContextState(eContextState: SPCONTEXTSTATE): HResult; stdcall;
-    function  GetContextState(var peContextState: SPCONTEXTSTATE): HResult; stdcall;
+    function GetRecognizer(out ppRecognizer: ISpRecognizer): HResult; stdcall;
+    function CreateGrammar(ullGrammarID: Largeuint; out ppGrammar: ISpRecoGrammar): HResult; stdcall;
+    function GetStatus(out pStatus: SPRECOCONTEXTSTATUS): HResult; stdcall;
+    function GetMaxAlternates(var pcAlternates: LongWord): HResult; stdcall;
+    function SetMaxAlternates(cAlternates: LongWord): HResult; stdcall;
+    function SetAudioOptions(Options: SPAUDIOOPTIONS; var pAudioFormatId: TGUID; 
+                             var pWaveFormatEx: WAVEFORMATEX): HResult; stdcall;
+    function GetAudioOptions(var pOptions: SPAUDIOOPTIONS; out pAudioFormatId: TGUID; 
+                             out ppCoMemWFEX: PUserType2): HResult; stdcall;
+    function DeserializeResult(var pSerializedResult: SPSERIALIZEDRESULT; 
+                               out ppResult: ISpRecoResult): HResult; stdcall;
+    function Bookmark(Options: SPBOOKMARKOPTIONS; ullStreamPosition: Largeuint; 
+                      lparamEvent: LONG_PTR): HResult; stdcall;
+    function SetAdaptationData(pAdaptationData: PWideChar; cch: LongWord): HResult; stdcall;
+    function Pause(dwReserved: LongWord): HResult; stdcall;
+    function Resume(dwReserved: LongWord): HResult; stdcall;
+    function SetVoice(const pVoice: ISpVoice; fAllowFormatChanges: Integer): HResult; stdcall;
+    function GetVoice(out ppVoice: ISpVoice): HResult; stdcall;
+    function SetVoicePurgeEvent(ullEventInterest: Largeuint): HResult; stdcall;
+    function GetVoicePurgeEvent(out pullEventInterest: Largeuint): HResult; stdcall;
+    function SetContextState(eContextState: SPCONTEXTSTATE): HResult; stdcall;
+    function GetContextState(out peContextState: SPCONTEXTSTATE): HResult; stdcall;
+  end;
+
+// *********************************************************************//
+// Interface: ISpRecoContext2
+// Flags:     (512) Restricted
+// GUID:      {BEAD311C-52FF-437F-9464-6B21054CA73D}
+// *********************************************************************//
+  ISpRecoContext2 = interface(IUnknown)
+    ['{BEAD311C-52FF-437F-9464-6B21054CA73D}']
+    function SetGrammarOptions(eGrammarOptions: LongWord): HResult; stdcall;
+    function GetGrammarOptions(out peGrammarOptions: LongWord): HResult; stdcall;
+    function SetAdaptationData2(pAdaptationData: PWideChar; cch: LongWord; pTopicName: PWideChar; 
+                                eAdaptationSettings: LongWord; eRelevance: SPADAPTATIONRELEVANCE): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -4113,10 +4422,10 @@ type
 // *********************************************************************//
   ISpProperties = interface(IUnknown)
     ['{5B4FB971-B115-4DE1-AD97-E482E3BF6EE4}']
-    function  SetPropertyNum(var pName: Word; lValue: Integer): HResult; stdcall;
-    function  GetPropertyNum(var pName: Word; out plValue: Integer): HResult; stdcall;
-    function  SetPropertyString(var pName: Word; var pValue: Word): HResult; stdcall;
-    function  GetPropertyString(var pName: Word; out ppCoMemValue: PWord1): HResult; stdcall;
+    function SetPropertyNum(pName: PWideChar; lValue: Integer): HResult; stdcall;
+    function GetPropertyNum(pName: PWideChar; out plValue: Integer): HResult; stdcall;
+    function SetPropertyString(pName: PWideChar; pValue: PWideChar): HResult; stdcall;
+    function GetPropertyString(pName: PWideChar; out ppCoMemValue: PWideChar): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -4126,25 +4435,25 @@ type
 // *********************************************************************//
   ISpRecognizer = interface(ISpProperties)
     ['{C2B5F241-DAA0-4507-9E16-5A1EAA2B7A5C}']
-    function  SetRecognizer(const pRecognizer: ISpObjectToken): HResult; stdcall;
-    function  GetRecognizer(out ppRecognizer: ISpObjectToken): HResult; stdcall;
-    function  SetInput(const pUnkInput: IUnknown; fAllowFormatChanges: Integer): HResult; stdcall;
-    function  GetInputObjectToken(out ppToken: ISpObjectToken): HResult; stdcall;
-    function  GetInputStream(out ppStream: ISpStreamFormat): HResult; stdcall;
-    function  CreateRecoContext(out ppNewCtxt: ISpRecoContext): HResult; stdcall;
-    function  GetRecoProfile(out ppToken: ISpObjectToken): HResult; stdcall;
-    function  SetRecoProfile(const pToken: ISpObjectToken): HResult; stdcall;
-    function  IsSharedInstance: HResult; stdcall;
-    function  GetRecoState(out pState: SPRECOSTATE): HResult; stdcall;
-    function  SetRecoState(NewState: SPRECOSTATE): HResult; stdcall;
-    function  GetStatus(out pStatus: SPRECOGNIZERSTATUS): HResult; stdcall;
-    function  GetFormat(WaveFormatType: SPSTREAMFORMATTYPE; out pFormatId: TGUID; 
-                        out ppCoMemWFEX: PUserType2): HResult; stdcall;
-    function  IsUISupported(var pszTypeOfUI: Word; var pvExtraData: Pointer; cbExtraData: LongWord; 
-                            out pfSupported: Integer): HResult; stdcall;
-    function  DisplayUI(var hWndParent: _RemotableHandle; var pszTitle: Word; 
-                        var pszTypeOfUI: Word; var pvExtraData: Pointer; cbExtraData: LongWord): HResult; stdcall;
-    function  EmulateRecognition(const pPhrase: ISpPhrase): HResult; stdcall;
+    function SetRecognizer(const pRecognizer: ISpObjectToken): HResult; stdcall;
+    function GetRecognizer(out ppRecognizer: ISpObjectToken): HResult; stdcall;
+    function SetInput(const pUnkInput: IUnknown; fAllowFormatChanges: Integer): HResult; stdcall;
+    function GetInputObjectToken(out ppToken: ISpObjectToken): HResult; stdcall;
+    function GetInputStream(out ppStream: ISpStreamFormat): HResult; stdcall;
+    function CreateRecoContext(out ppNewCtxt: ISpRecoContext): HResult; stdcall;
+    function GetRecoProfile(out ppToken: ISpObjectToken): HResult; stdcall;
+    function SetRecoProfile(const pToken: ISpObjectToken): HResult; stdcall;
+    function IsSharedInstance: HResult; stdcall;
+    function GetRecoState(out pState: SPRECOSTATE): HResult; stdcall;
+    function SetRecoState(NewState: SPRECOSTATE): HResult; stdcall;
+    function GetStatus(out pStatus: SPRECOGNIZERSTATUS): HResult; stdcall;
+    function GetFormat(WaveFormatType: SPSTREAMFORMATTYPE; out pFormatId: TGUID; 
+                       out ppCoMemWFEX: PUserType2): HResult; stdcall;
+    function IsUISupported(pszTypeOfUI: PWideChar; pvExtraData: Pointer; cbExtraData: LongWord; 
+                           out pfSupported: Integer): HResult; stdcall;
+    function DisplayUI(var hWndParent: _RemotableHandle; pszTitle: PWideChar; 
+                       pszTypeOfUI: PWideChar; pvExtraData: Pointer; cbExtraData: LongWord): HResult; stdcall;
+    function EmulateRecognition(const pPhrase: ISpPhrase): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -4154,11 +4463,11 @@ type
 // *********************************************************************//
   ISpPhrase = interface(IUnknown)
     ['{1A5C0354-B621-4B5A-8791-D306ED379E53}']
-    function  GetPhrase(out ppCoMemPhrase: PUserType8): HResult; stdcall;
-    function  GetSerializedPhrase(out ppCoMemPhrase: PUserType9): HResult; stdcall;
-    function  GetText(ulStart: LongWord; ulCount: LongWord; fUseTextReplacements: Integer; 
-                      out ppszCoMemText: PWord1; out pbDisplayAttributes: Byte): HResult; stdcall;
-    function  Discard(dwValueTypes: LongWord): HResult; stdcall;
+    function GetPhrase(out ppCoMemPhrase: PUserType7): HResult; stdcall;
+    function GetSerializedPhrase(out ppCoMemPhrase: PUserType8): HResult; stdcall;
+    function GetText(ulStart: LongWord; ulCount: LongWord; fUseTextReplacements: Integer; 
+                     out ppszCoMemText: PWideChar; out pbDisplayAttributes: Byte): HResult; stdcall;
+    function Discard(dwValueTypes: LongWord): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -4168,19 +4477,19 @@ type
 // *********************************************************************//
   ISpGrammarBuilder = interface(IUnknown)
     ['{8137828F-591A-4A42-BE58-49EA7EBAAC68}']
-    function  ResetGrammar(NewLanguage: Word): HResult; stdcall;
-    function  GetRule(var pszRuleName: Word; dwRuleId: LongWord; dwAttributes: LongWord; 
-                      fCreateIfNotExist: Integer; out phInitialState: Pointer): HResult; stdcall;
-    function  ClearRule(var hState: Pointer): HResult; stdcall;
-    function  CreateNewState(var hState: Pointer; phState: PPPrivateAlias1): HResult; stdcall;
-    function  AddWordTransition(var hFromState: Pointer; var hToState: Pointer; var psz: Word; 
-                                var pszSeparators: Word; eWordType: SPGRAMMARWORDTYPE; 
-                                Weight: Single; var pPropInfo: SPPROPERTYINFO): HResult; stdcall;
-    function  AddRuleTransition(var hFromState: Pointer; var hToState: Pointer; var hRule: Pointer; 
-                                Weight: Single; var pPropInfo: SPPROPERTYINFO): HResult; stdcall;
-    function  AddResource(var hRuleState: Pointer; var pszResourceName: Word; 
-                          var pszResourceValue: Word): HResult; stdcall;
-    function  Commit(dwReserved: LongWord): HResult; stdcall;
+    function ResetGrammar(NewLanguage: Word): HResult; stdcall;
+    function GetRule(pszRuleName: PWideChar; dwRuleId: LongWord; dwAttributes: LongWord; 
+                     fCreateIfNotExist: Integer; out phInitialState: Pointer): HResult; stdcall;
+    function ClearRule(hState: Pointer): HResult; stdcall;
+    function CreateNewState(hState: Pointer; out phState: Pointer): HResult; stdcall;
+    function AddWordTransition(hFromState: Pointer; hToState: Pointer; psz: PWideChar; 
+                               pszSeparators: PWideChar; eWordType: SPGRAMMARWORDTYPE; 
+                               Weight: Single; var pPropInfo: SPPROPERTYINFO): HResult; stdcall;
+    function AddRuleTransition(hFromState: Pointer; hToState: Pointer; hRule: Pointer; 
+                               Weight: Single; var pPropInfo: SPPROPERTYINFO): HResult; stdcall;
+    function AddResource(hRuleState: Pointer; pszResourceName: PWideChar; 
+                         pszResourceValue: PWideChar): HResult; stdcall;
+    function Commit(dwReserved: LongWord): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -4190,28 +4499,27 @@ type
 // *********************************************************************//
   ISpRecoGrammar = interface(ISpGrammarBuilder)
     ['{2177DB29-7F45-47D0-8554-067E91C80502}']
-    function  GetGrammarId(out pullGrammarId: Largeuint): HResult; stdcall;
-    function  GetRecoContext(out ppRecoCtxt: ISpRecoContext): HResult; stdcall;
-    function  LoadCmdFromFile(pszFileName: PWideChar; Options: SPLOADOPTIONS): HResult; stdcall;
-    function  LoadCmdFromObject(var rcid: TGUID; pszGrammarName: PWideChar; Options: SPLOADOPTIONS): HResult; stdcall;
-    function  LoadCmdFromResource(var hModule: Pointer; pszResourceName: PWideChar; 
-                                  pszResourceType: PWideChar; wLanguage: Word; 
-                                  Options: SPLOADOPTIONS): HResult; stdcall;
-    function  LoadCmdFromMemory(var pGrammar: SPBINARYGRAMMAR; Options: SPLOADOPTIONS): HResult; stdcall;
-    function  LoadCmdFromProprietaryGrammar(var rguidParam: TGUID; pszStringParam: PWideChar; 
-                                            var pvDataPrarm: Pointer; cbDataSize: LongWord; 
-                                            Options: SPLOADOPTIONS): HResult; stdcall;
-    function  SetRuleState(pszName: PWideChar; var pReserved: Pointer; NewState: SPRULESTATE): HResult; stdcall;
-    function  SetRuleIdState(ulRuleId: LongWord; NewState: SPRULESTATE): HResult; stdcall;
-    function  LoadDictation(pszTopicName: PWideChar; Options: SPLOADOPTIONS): HResult; stdcall;
-    function  UnloadDictation: HResult; stdcall;
-    function  SetDictationState(NewState: SPRULESTATE): HResult; stdcall;
-    function  SetWordSequenceData(var pText: Word; cchText: LongWord; var pInfo: SPTEXTSELECTIONINFO): HResult; stdcall;
-    function  SetTextSelection(var pInfo: SPTEXTSELECTIONINFO): HResult; stdcall;
-    function  IsPronounceable(pszWord: PWideChar; out pWordPronounceable: SPWORDPRONOUNCEABLE): HResult; stdcall;
-    function  SetGrammarState(eGrammarState: SPGRAMMARSTATE): HResult; stdcall;
-    function  SaveCmd(const pStream: IStream; out ppszCoMemErrorText: PWord1): HResult; stdcall;
-    function  GetGrammarState(out peGrammarState: SPGRAMMARSTATE): HResult; stdcall;
+    function GetGrammarId(out pullGrammarId: Largeuint): HResult; stdcall;
+    function GetRecoContext(out ppRecoCtxt: ISpRecoContext): HResult; stdcall;
+    function LoadCmdFromFile(pszFileName: PWideChar; Options: SPLOADOPTIONS): HResult; stdcall;
+    function LoadCmdFromObject(var rcid: TGUID; pszGrammarName: PWideChar; Options: SPLOADOPTIONS): HResult; stdcall;
+    function LoadCmdFromResource(hModule: Pointer; pszResourceName: PWideChar; 
+                                 pszResourceType: PWideChar; wLanguage: Word; Options: SPLOADOPTIONS): HResult; stdcall;
+    function LoadCmdFromMemory(var pGrammar: SPBINARYGRAMMAR; Options: SPLOADOPTIONS): HResult; stdcall;
+    function LoadCmdFromProprietaryGrammar(var rguidParam: TGUID; pszStringParam: PWideChar; 
+                                           pvDataPrarm: Pointer; cbDataSize: LongWord; 
+                                           Options: SPLOADOPTIONS): HResult; stdcall;
+    function SetRuleState(pszName: PWideChar; pReserved: Pointer; NewState: SPRULESTATE): HResult; stdcall;
+    function SetRuleIdState(ulRuleId: LongWord; NewState: SPRULESTATE): HResult; stdcall;
+    function LoadDictation(pszTopicName: PWideChar; Options: SPLOADOPTIONS): HResult; stdcall;
+    function UnloadDictation: HResult; stdcall;
+    function SetDictationState(NewState: SPRULESTATE): HResult; stdcall;
+    function SetWordSequenceData(var pText: Word; cchText: LongWord; var pInfo: SPTEXTSELECTIONINFO): HResult; stdcall;
+    function SetTextSelection(var pInfo: SPTEXTSELECTIONINFO): HResult; stdcall;
+    function IsPronounceable(pszWord: PWideChar; out pWordPronounceable: SPWORDPRONOUNCEABLE): HResult; stdcall;
+    function SetGrammarState(eGrammarState: SPGRAMMARSTATE): HResult; stdcall;
+    function SaveCmd(const pStream: IStream; out ppszCoMemErrorText: PWideChar): HResult; stdcall;
+    function GetGrammarState(out peGrammarState: SPGRAMMARSTATE): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -4221,16 +4529,15 @@ type
 // *********************************************************************//
   ISpRecoResult = interface(ISpPhrase)
     ['{20B053BE-E235-43CD-9A2A-8D17A48B7842}']
-    function  GetResultTimes(out pTimes: SPRECORESULTTIMES): HResult; stdcall;
-    function  GetAlternates(ulStartElement: LongWord; cElements: LongWord; 
-                            ulRequestCount: LongWord; out ppPhrases: ISpPhraseAlt; 
-                            out pcPhrasesReturned: LongWord): HResult; stdcall;
-    function  GetAudio(ulStartElement: LongWord; cElements: LongWord; out ppStream: ISpStreamFormat): HResult; stdcall;
-    function  SpeakAudio(ulStartElement: LongWord; cElements: LongWord; dwFlags: LongWord; 
-                         out pulStreamNumber: LongWord): HResult; stdcall;
-    function  Serialize(out ppCoMemSerializedResult: PUserType6): HResult; stdcall;
-    function  ScaleAudio(var pAudioFormatId: TGUID; var pWaveFormatEx: WaveFormatEx): HResult; stdcall;
-    function  GetRecoContext(out ppRecoContext: ISpRecoContext): HResult; stdcall;
+    function GetResultTimes(out pTimes: SPRECORESULTTIMES): HResult; stdcall;
+    function GetAlternates(ulStartElement: LongWord; cElements: LongWord; ulRequestCount: LongWord; 
+                           out ppPhrases: ISpPhraseAlt; out pcPhrasesReturned: LongWord): HResult; stdcall;
+    function GetAudio(ulStartElement: LongWord; cElements: LongWord; out ppStream: ISpStreamFormat): HResult; stdcall;
+    function SpeakAudio(ulStartElement: LongWord; cElements: LongWord; dwFlags: LongWord; 
+                        out pulStreamNumber: LongWord): HResult; stdcall;
+    function Serialize(out ppCoMemSerializedResult: PUserType6): HResult; stdcall;
+    function ScaleAudio(var pAudioFormatId: TGUID; var pWaveFormatEx: WAVEFORMATEX): HResult; stdcall;
+    function GetRecoContext(out ppRecoContext: ISpRecoContext): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -4240,9 +4547,54 @@ type
 // *********************************************************************//
   ISpPhraseAlt = interface(ISpPhrase)
     ['{8FCEBC98-4E49-4067-9C6C-D86A0E092E3D}']
-    function  GetAltInfo(var ppParent: ISpPhrase; var pulStartElementInParent: LongWord; 
-                         var pcElementsInParent: LongWord; var pcElementsInAlt: LongWord): HResult; stdcall;
-    function  Commit: HResult; stdcall;
+    function GetAltInfo(out ppParent: ISpPhrase; out pulStartElementInParent: LongWord; 
+                        out pcElementsInParent: LongWord; out pcElementsInAlt: LongWord): HResult; stdcall;
+    function Commit: HResult; stdcall;
+  end;
+
+// *********************************************************************//
+// Interface: ISpRecognizer2
+// Flags:     (512) Restricted
+// GUID:      {8FC6D974-C81E-4098-93C5-0147F61ED4D3}
+// *********************************************************************//
+  ISpRecognizer2 = interface(IUnknown)
+    ['{8FC6D974-C81E-4098-93C5-0147F61ED4D3}']
+    function EmulateRecognitionEx(const pPhrase: ISpPhrase; dwCompareFlags: LongWord): HResult; stdcall;
+    function SetTrainingState(fDoingTraining: Integer; fAdaptFromTrainingData: Integer): HResult; stdcall;
+    function ResetAcousticModelAdaptation: HResult; stdcall;
+  end;
+
+// *********************************************************************//
+// Interface: ISpRecognizer3
+// Flags:     (512) Restricted
+// GUID:      {DF1B943C-5838-4AA2-8706-D7CD5B333499}
+// *********************************************************************//
+  ISpRecognizer3 = interface(IUnknown)
+    ['{DF1B943C-5838-4AA2-8706-D7CD5B333499}']
+    function GetCategory(categoryType: SPCATEGORYTYPE; out ppCategory: ISpRecoCategory): HResult; stdcall;
+    function SetActiveCategory(const pCategory: ISpRecoCategory): HResult; stdcall;
+    function GetActiveCategory(out ppCategory: ISpRecoCategory): HResult; stdcall;
+  end;
+
+// *********************************************************************//
+// Interface: ISpSerializeState
+// Flags:     (512) Restricted
+// GUID:      {21B501A0-0EC7-46C9-92C3-A2BC784C54B9}
+// *********************************************************************//
+  ISpSerializeState = interface(IUnknown)
+    ['{21B501A0-0EC7-46C9-92C3-A2BC784C54B9}']
+    function GetSerializedState(out ppbData: PByte1; out pulSize: LongWord; dwReserved: LongWord): HResult; stdcall;
+    function SetSerializedState(var pbData: Byte; ulSize: LongWord; dwReserved: LongWord): HResult; stdcall;
+  end;
+
+// *********************************************************************//
+// Interface: ISpRecoCategory
+// Flags:     (512) Restricted
+// GUID:      {DA0CD0F9-14A2-4F09-8C2A-85CC48979345}
+// *********************************************************************//
+  ISpRecoCategory = interface(IUnknown)
+    ['{DA0CD0F9-14A2-4F09-8C2A-85CC48979345}']
+    function GetType(out peCategoryType: SPCATEGORYTYPE): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -4252,17 +4604,39 @@ type
 // *********************************************************************//
   ISpLexicon = interface(IUnknown)
     ['{DA41A7C2-5383-4DB2-916B-6C1719E3DB58}']
-    function  GetPronunciations(var pszWord: Word; LangId: Word; dwFlags: LongWord; 
-                                var pWordPronunciationList: SPWORDPRONUNCIATIONLIST): HResult; stdcall;
-    function  AddPronunciation(var pszWord: Word; LangId: Word; ePartOfSpeech: SPPARTOFSPEECH; 
-                               var pszPronunciation: Word): HResult; stdcall;
-    function  RemovePronunciation(var pszWord: Word; LangId: Word; ePartOfSpeech: SPPARTOFSPEECH; 
-                                  var pszPronunciation: Word): HResult; stdcall;
-    function  GetGeneration(var pdwGeneration: LongWord): HResult; stdcall;
-    function  GetGenerationChange(dwFlags: LongWord; var pdwGeneration: LongWord; 
-                                  var pWordList: SPWORDLIST): HResult; stdcall;
-    function  GetWords(dwFlags: LongWord; var pdwGeneration: LongWord; var pdwCookie: LongWord; 
-                       var pWordList: SPWORDLIST): HResult; stdcall;
+    function GetPronunciations(pszWord: PWideChar; LangId: Word; dwFlags: LongWord; 
+                               var pWordPronunciationList: SPWORDPRONUNCIATIONLIST): HResult; stdcall;
+    function AddPronunciation(pszWord: PWideChar; LangId: Word; ePartOfSpeech: SPPARTOFSPEECH; 
+                              pszPronunciation: PWideChar): HResult; stdcall;
+    function RemovePronunciation(pszWord: PWideChar; LangId: Word; ePartOfSpeech: SPPARTOFSPEECH; 
+                                 pszPronunciation: PWideChar): HResult; stdcall;
+    function GetGeneration(out pdwGeneration: LongWord): HResult; stdcall;
+    function GetGenerationChange(dwFlags: LongWord; var pdwGeneration: LongWord; 
+                                 var pWordList: SPWORDLIST): HResult; stdcall;
+    function GetWords(dwFlags: LongWord; var pdwGeneration: LongWord; var pdwCookie: LongWord; 
+                      var pWordList: SPWORDLIST): HResult; stdcall;
+  end;
+
+// *********************************************************************//
+// Interface: ISpShortcut
+// Flags:     (512) Restricted
+// GUID:      {3DF681E2-EA56-11D9-8BDE-F66BAD1E3F3A}
+// *********************************************************************//
+  ISpShortcut = interface(IUnknown)
+    ['{3DF681E2-EA56-11D9-8BDE-F66BAD1E3F3A}']
+    function AddShortcut(pszDisplay: PWideChar; LangId: Word; pszSpoken: PWideChar; 
+                         shType: SPSHORTCUTTYPE): HResult; stdcall;
+    function RemoveShortcut(pszDisplay: PWideChar; LangId: Word; pszSpoken: PWideChar; 
+                            shType: SPSHORTCUTTYPE): HResult; stdcall;
+    function GetShortcuts(LangId: Word; var pShortcutpairList: SPSHORTCUTPAIRLIST): HResult; stdcall;
+    function GetGeneration(out pdwGeneration: LongWord): HResult; stdcall;
+    function GetWordsFromGenerationChange(var pdwGeneration: LongWord; var pWordList: SPWORDLIST): HResult; stdcall;
+    function GetWords(var pdwGeneration: LongWord; var pdwCookie: LongWord; 
+                      var pWordList: SPWORDLIST): HResult; stdcall;
+    function GetShortcutsForGeneration(var pdwGeneration: LongWord; var pdwCookie: LongWord; 
+                                       var pShortcutpairList: SPSHORTCUTPAIRLIST): HResult; stdcall;
+    function GetGenerationChange(var pdwGeneration: LongWord; 
+                                 var pShortcutpairList: SPSHORTCUTPAIRLIST): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -4272,8 +4646,129 @@ type
 // *********************************************************************//
   ISpPhoneConverter = interface(ISpObjectWithToken)
     ['{8445C581-0CAC-4A38-ABFE-9B2CE2826455}']
-    function  PhoneToId(var pszPhone: Word; out pId: Word): HResult; stdcall;
-    function  IdToPhone(var pId: Word; out pszPhone: Word): HResult; stdcall;
+    function PhoneToId(pszPhone: PWideChar; out pId: Word): HResult; stdcall;
+    function IdToPhone(pId: PWideChar; out pszPhone: Word): HResult; stdcall;
+  end;
+
+// *********************************************************************//
+// Interface: ISpPhoneticAlphabetConverter
+// Flags:     (512) Restricted
+// GUID:      {133ADCD4-19B4-4020-9FDC-842E78253B17}
+// *********************************************************************//
+  ISpPhoneticAlphabetConverter = interface(IUnknown)
+    ['{133ADCD4-19B4-4020-9FDC-842E78253B17}']
+    function GetLangId(out pLangID: Word): HResult; stdcall;
+    function SetLangId(LangId: Word): HResult; stdcall;
+    function SAPI2UPS(var pszSAPIId: Word; out pszUPSId: Word; cMaxLength: LongWord): HResult; stdcall;
+    function UPS2SAPI(var pszUPSId: Word; out pszSAPIId: Word; cMaxLength: LongWord): HResult; stdcall;
+    function GetMaxConvertLength(cSrcLength: LongWord; bSAPI2UPS: Integer; 
+                                 out pcMaxDestLength: LongWord): HResult; stdcall;
+  end;
+
+// *********************************************************************//
+// Interface: ISpXMLRecoResult
+// Flags:     (512) Restricted
+// GUID:      {AE39362B-45A8-4074-9B9E-CCF49AA2D0B6}
+// *********************************************************************//
+  ISpXMLRecoResult = interface(ISpRecoResult)
+    ['{AE39362B-45A8-4074-9B9E-CCF49AA2D0B6}']
+    function GetXMLResult(out ppszCoMemXMLResult: PWideChar; Options: SPXMLRESULTOPTIONS): HResult; stdcall;
+    function GetXMLErrorInfo(out pSemanticErrorInfo: SPSEMANTICERRORINFO): HResult; stdcall;
+  end;
+
+// *********************************************************************//
+// Interface: ISpRecoGrammar2
+// Flags:     (512) Restricted
+// GUID:      {4B37BC9E-9ED6-44A3-93D3-18F022B79EC3}
+// *********************************************************************//
+  ISpRecoGrammar2 = interface(IUnknown)
+    ['{4B37BC9E-9ED6-44A3-93D3-18F022B79EC3}']
+    function GetRules(out ppCoMemRules: PUserType17; out puNumRules: SYSUINT): HResult; stdcall;
+    function LoadCmdFromFile2(pszFileName: PWideChar; Options: SPLOADOPTIONS; 
+                              pszSharingUri: PWideChar; pszBaseUri: PWideChar): HResult; stdcall;
+    function LoadCmdFromMemory2(var pGrammar: SPBINARYGRAMMAR; Options: SPLOADOPTIONS; 
+                                pszSharingUri: PWideChar; pszBaseUri: PWideChar): HResult; stdcall;
+    function SetRulePriority(pszRuleName: PWideChar; ulRuleId: LongWord; nRulePriority: SYSINT): HResult; stdcall;
+    function SetRuleWeight(pszRuleName: PWideChar; ulRuleId: LongWord; flWeight: Single): HResult; stdcall;
+    function SetDictationWeight(flWeight: Single): HResult; stdcall;
+    function SetGrammarLoader(const pLoader: ISpeechResourceLoader): HResult; stdcall;
+    function SetSMLSecurityManager(const pSMLSecurityManager: IInternetSecurityManager): HResult; stdcall;
+  end;
+
+// *********************************************************************//
+// Interface: ISpeechResourceLoader
+// Flags:     (4416) Dual OleAutomation Dispatchable
+// GUID:      {B9AC5783-FCD0-4B21-B119-B4F8DA8FD2C3}
+// *********************************************************************//
+  ISpeechResourceLoader = interface(IDispatch)
+    ['{B9AC5783-FCD0-4B21-B119-B4F8DA8FD2C3}']
+    procedure LoadResource(const bstrResourceUri: WideString; fAlwaysReload: WordBool; 
+                           out pStream: IUnknown; out pbstrMIMEType: WideString; 
+                           out pfModified: WordBool; out pbstrRedirectUrl: WideString); safecall;
+    procedure GetLocalCopy(const bstrResourceUri: WideString; out pbstrLocalPath: WideString; 
+                           out pbstrMIMEType: WideString; out pbstrRedirectUrl: WideString); safecall;
+    procedure ReleaseLocalCopy(const pbstrLocalPath: WideString); safecall;
+  end;
+
+// *********************************************************************//
+// DispIntf:  ISpeechResourceLoaderDisp
+// Flags:     (4416) Dual OleAutomation Dispatchable
+// GUID:      {B9AC5783-FCD0-4B21-B119-B4F8DA8FD2C3}
+// *********************************************************************//
+  ISpeechResourceLoaderDisp = dispinterface
+    ['{B9AC5783-FCD0-4B21-B119-B4F8DA8FD2C3}']
+    procedure LoadResource(const bstrResourceUri: WideString; fAlwaysReload: WordBool; 
+                           out pStream: IUnknown; out pbstrMIMEType: WideString; 
+                           out pfModified: WordBool; out pbstrRedirectUrl: WideString); dispid 1;
+    procedure GetLocalCopy(const bstrResourceUri: WideString; out pbstrLocalPath: WideString; 
+                           out pbstrMIMEType: WideString; out pbstrRedirectUrl: WideString); dispid 2;
+    procedure ReleaseLocalCopy(const pbstrLocalPath: WideString); dispid 3;
+  end;
+
+// *********************************************************************//
+// Interface: IInternetSecurityManager
+// Flags:     (0)
+// GUID:      {79EAC9EE-BAF9-11CE-8C82-00AA004BA90B}
+// *********************************************************************//
+  IInternetSecurityManager = interface(IUnknown)
+    ['{79EAC9EE-BAF9-11CE-8C82-00AA004BA90B}']
+    function SetSecuritySite(const pSite: IInternetSecurityMgrSite): HResult; stdcall;
+    function GetSecuritySite(out ppSite: IInternetSecurityMgrSite): HResult; stdcall;
+    function MapUrlToZone(pwszUrl: PWideChar; out pdwZone: LongWord; dwFlags: LongWord): HResult; stdcall;
+    function GetSecurityId(pwszUrl: PWideChar; out pbSecurityId: Byte; var pcbSecurityId: LongWord; 
+                           dwReserved: ULONG_PTR): HResult; stdcall;
+    function ProcessUrlAction(pwszUrl: PWideChar; dwAction: LongWord; out pPolicy: Byte; 
+                              cbPolicy: LongWord; var pContext: Byte; cbContext: LongWord; 
+                              dwFlags: LongWord; dwReserved: LongWord): HResult; stdcall;
+    function QueryCustomPolicy(pwszUrl: PWideChar; var guidKey: TGUID; out ppPolicy: PByte1; 
+                               out pcbPolicy: LongWord; var pContext: Byte; cbContext: LongWord; 
+                               dwReserved: LongWord): HResult; stdcall;
+    function SetZoneMapping(dwZone: LongWord; lpszPattern: PWideChar; dwFlags: LongWord): HResult; stdcall;
+    function GetZoneMappings(dwZone: LongWord; out ppenumString: IEnumString; dwFlags: LongWord): HResult; stdcall;
+  end;
+
+// *********************************************************************//
+// Interface: IInternetSecurityMgrSite
+// Flags:     (0)
+// GUID:      {79EAC9ED-BAF9-11CE-8C82-00AA004BA90B}
+// *********************************************************************//
+  IInternetSecurityMgrSite = interface(IUnknown)
+    ['{79EAC9ED-BAF9-11CE-8C82-00AA004BA90B}']
+    function GetWindow(out phwnd: wireHWND): HResult; stdcall;
+    function EnableModeless(fEnable: Integer): HResult; stdcall;
+  end;
+
+// *********************************************************************//
+// Interface: IEnumString
+// Flags:     (0)
+// GUID:      {00000101-0000-0000-C000-000000000046}
+// *********************************************************************//
+  IEnumString = interface(IUnknown)
+    ['{00000101-0000-0000-C000-000000000046}']
+    function RemoteNext(celt: LongWord; out rgelt: PWideChar; out pceltFetched: LongWord): HResult; stdcall;
+    function Skip(celt: LongWord): HResult; stdcall;
+    function Reset: HResult; stdcall;
+    function Clone(out ppEnum: IEnumString): HResult; stdcall;
   end;
 
 // *********************************************************************//
@@ -4300,75 +4795,6 @@ type
     class function CreateRemote(const MachineName: string): ISpeechObjectTokenCategory;
   end;
 
-
-// *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TSpObjectTokenCategory
-// Help String      : SpObjectTokenCategory Class
-// Default Interface: ISpeechObjectTokenCategory
-// Def. Intf. DISP? : No
-// Event   Interface: 
-// TypeFlags        : (2) CanCreate
-// *********************************************************************//
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  TSpObjectTokenCategoryProperties= class;
-{$ENDIF}
-  TSpObjectTokenCategory = class(TOleServer)
-  private
-    FIntf:        ISpeechObjectTokenCategory;
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    FProps:       TSpObjectTokenCategoryProperties;
-    function      GetServerProperties: TSpObjectTokenCategoryProperties;
-{$ENDIF}
-    function      GetDefaultInterface: ISpeechObjectTokenCategory;
-  protected
-    procedure InitServerData; override;
-    function  Get_Id: WideString;
-    procedure Set_Default(const TokenId: WideString);
-    function  Get_Default: WideString;
-  public
-    constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure Connect; override;
-    procedure ConnectTo(svrIntf: ISpeechObjectTokenCategory);
-    procedure Disconnect; override;
-    procedure SetId(const Id: WideString; CreateIfNotExist: WordBool);
-    function  GetDataKey(Location: SpeechDataKeyLocation): ISpeechDataKey;
-    function  EnumerateTokens(const RequiredAttributes: WideString; 
-                              const OptionalAttributes: WideString): ISpeechObjectTokens;
-    property  DefaultInterface: ISpeechObjectTokenCategory read GetDefaultInterface;
-    property Id: WideString read Get_Id;
-    property Default: WideString read Get_Default write Set_Default;
-  published
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    property Server: TSpObjectTokenCategoryProperties read GetServerProperties;
-{$ENDIF}
-  end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-// *********************************************************************//
-// OLE Server Properties Proxy Class
-// Server Object    : TSpObjectTokenCategory
-// (This object is used by the IDE's Property Inspector to allow editing
-//  of the properties of this server)
-// *********************************************************************//
- TSpObjectTokenCategoryProperties = class(TPersistent)
-  private
-    FServer:    TSpObjectTokenCategory;
-    function    GetDefaultInterface: ISpeechObjectTokenCategory;
-    constructor Create(AServer: TSpObjectTokenCategory);
-  protected
-    function  Get_Id: WideString;
-    procedure Set_Default(const TokenId: WideString);
-    function  Get_Default: WideString;
-  public
-    property DefaultInterface: ISpeechObjectTokenCategory read GetDefaultInterface;
-  published
-    property Default: WideString read Get_Default write Set_Default;
-  end;
-{$ENDIF}
-
-
 // *********************************************************************//
 // The Class CoSpObjectToken provides a Create and CreateRemote method to          
 // create instances of the default interface ISpeechObjectToken exposed by              
@@ -4380,85 +4806,6 @@ type
     class function Create: ISpeechObjectToken;
     class function CreateRemote(const MachineName: string): ISpeechObjectToken;
   end;
-
-
-// *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TSpObjectToken
-// Help String      : SpObjectToken Class
-// Default Interface: ISpeechObjectToken
-// Def. Intf. DISP? : No
-// Event   Interface: 
-// TypeFlags        : (2) CanCreate
-// *********************************************************************//
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  TSpObjectTokenProperties= class;
-{$ENDIF}
-  TSpObjectToken = class(TOleServer)
-  private
-    FIntf:        ISpeechObjectToken;
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    FProps:       TSpObjectTokenProperties;
-    function      GetServerProperties: TSpObjectTokenProperties;
-{$ENDIF}
-    function      GetDefaultInterface: ISpeechObjectToken;
-  protected
-    procedure InitServerData; override;
-    function  Get_Id: WideString;
-    function  Get_DataKey: ISpeechDataKey;
-    function  Get_Category: ISpeechObjectTokenCategory;
-  public
-    constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure Connect; override;
-    procedure ConnectTo(svrIntf: ISpeechObjectToken);
-    procedure Disconnect; override;
-    function  GetDescription(Locale: Integer): WideString;
-    procedure SetId(const Id: WideString; const CategoryID: WideString; CreateIfNotExist: WordBool);
-    function  GetAttribute(const AttributeName: WideString): WideString;
-    function  CreateInstance(const pUnkOuter: IUnknown; ClsContext: SpeechTokenContext): IUnknown;
-    procedure Remove(const ObjectStorageCLSID: WideString);
-    function  GetStorageFileName(const ObjectStorageCLSID: WideString; const KeyName: WideString; 
-                                 const FileName: WideString; Folder: SpeechTokenShellFolder): WideString;
-    procedure RemoveStorageFileName(const ObjectStorageCLSID: WideString; 
-                                    const KeyName: WideString; DeleteFile: WordBool);
-    function  IsUISupported(const TypeOfUI: WideString; var ExtraData: OleVariant; 
-                            const Object_: IUnknown): WordBool;
-    procedure DisplayUI(hWnd: Integer; const Title: WideString; const TypeOfUI: WideString; 
-                        var ExtraData: OleVariant; const Object_: IUnknown);
-    function  MatchesAttributes(const Attributes: WideString): WordBool;
-    property  DefaultInterface: ISpeechObjectToken read GetDefaultInterface;
-    property Id: WideString read Get_Id;
-    property DataKey: ISpeechDataKey read Get_DataKey;
-    property Category: ISpeechObjectTokenCategory read Get_Category;
-  published
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    property Server: TSpObjectTokenProperties read GetServerProperties;
-{$ENDIF}
-  end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-// *********************************************************************//
-// OLE Server Properties Proxy Class
-// Server Object    : TSpObjectToken
-// (This object is used by the IDE's Property Inspector to allow editing
-//  of the properties of this server)
-// *********************************************************************//
- TSpObjectTokenProperties = class(TPersistent)
-  private
-    FServer:    TSpObjectToken;
-    function    GetDefaultInterface: ISpeechObjectToken;
-    constructor Create(AServer: TSpObjectToken);
-  protected
-    function  Get_Id: WideString;
-    function  Get_DataKey: ISpeechDataKey;
-    function  Get_Category: ISpeechObjectTokenCategory;
-  public
-    property DefaultInterface: ISpeechObjectToken read GetDefaultInterface;
-  published
-  end;
-{$ENDIF}
-
 
 // *********************************************************************//
 // The Class CoSpResourceManager provides a Create and CreateRemote method to          
@@ -4508,110 +4855,6 @@ type
     class function CreateRemote(const MachineName: string): ISpeechMMSysAudio;
   end;
 
-
-// *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TSpMMAudioIn
-// Help String      : SpMMAudioIn Class
-// Default Interface: ISpeechMMSysAudio
-// Def. Intf. DISP? : No
-// Event   Interface: 
-// TypeFlags        : (2) CanCreate
-// *********************************************************************//
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  TSpMMAudioInProperties= class;
-{$ENDIF}
-  TSpMMAudioIn = class(TOleServer)
-  private
-    FIntf:        ISpeechMMSysAudio;
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    FProps:       TSpMMAudioInProperties;
-    function      GetServerProperties: TSpMMAudioInProperties;
-{$ENDIF}
-    function      GetDefaultInterface: ISpeechMMSysAudio;
-  protected
-    procedure InitServerData; override;
-    function  Get_Format: ISpeechAudioFormat;
-    procedure Set_Format(const AudioFormat: ISpeechAudioFormat);
-    function  Get_Status: ISpeechAudioStatus;
-    function  Get_BufferInfo: ISpeechAudioBufferInfo;
-    function  Get_DefaultFormat: ISpeechAudioFormat;
-    function  Get_Volume: Integer;
-    procedure Set_Volume(Volume: Integer);
-    function  Get_BufferNotifySize: Integer;
-    procedure Set_BufferNotifySize(BufferNotifySize: Integer);
-    function  Get_EventHandle: Integer;
-    function  Get_DeviceId: Integer;
-    procedure Set_DeviceId(DeviceId: Integer);
-    function  Get_LineId: Integer;
-    procedure Set_LineId(LineId: Integer);
-    function  Get_MMHandle: Integer;
-  public
-    constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure Connect; override;
-    procedure ConnectTo(svrIntf: ISpeechMMSysAudio);
-    procedure Disconnect; override;
-    function  Read(out Buffer: OleVariant; NumberOfBytes: Integer): Integer;
-    function  Write(Buffer: OleVariant): Integer;
-    function  Seek(Position: OleVariant; Origin: SpeechStreamSeekPositionType): OleVariant;
-    procedure SetState(State: SpeechAudioState);
-    property  DefaultInterface: ISpeechMMSysAudio read GetDefaultInterface;
-    property Format: ISpeechAudioFormat read Get_Format write Set_Format;
-    property Status: ISpeechAudioStatus read Get_Status;
-    property BufferInfo: ISpeechAudioBufferInfo read Get_BufferInfo;
-    property DefaultFormat: ISpeechAudioFormat read Get_DefaultFormat;
-    property EventHandle: Integer read Get_EventHandle;
-    property MMHandle: Integer read Get_MMHandle;
-    property Volume: Integer read Get_Volume write Set_Volume;
-    property BufferNotifySize: Integer read Get_BufferNotifySize write Set_BufferNotifySize;
-    property DeviceId: Integer read Get_DeviceId write Set_DeviceId;
-    property LineId: Integer read Get_LineId write Set_LineId;
-  published
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    property Server: TSpMMAudioInProperties read GetServerProperties;
-{$ENDIF}
-  end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-// *********************************************************************//
-// OLE Server Properties Proxy Class
-// Server Object    : TSpMMAudioIn
-// (This object is used by the IDE's Property Inspector to allow editing
-//  of the properties of this server)
-// *********************************************************************//
- TSpMMAudioInProperties = class(TPersistent)
-  private
-    FServer:    TSpMMAudioIn;
-    function    GetDefaultInterface: ISpeechMMSysAudio;
-    constructor Create(AServer: TSpMMAudioIn);
-  protected
-    function  Get_Format: ISpeechAudioFormat;
-    procedure Set_Format(const AudioFormat: ISpeechAudioFormat);
-    function  Get_Status: ISpeechAudioStatus;
-    function  Get_BufferInfo: ISpeechAudioBufferInfo;
-    function  Get_DefaultFormat: ISpeechAudioFormat;
-    function  Get_Volume: Integer;
-    procedure Set_Volume(Volume: Integer);
-    function  Get_BufferNotifySize: Integer;
-    procedure Set_BufferNotifySize(BufferNotifySize: Integer);
-    function  Get_EventHandle: Integer;
-    function  Get_DeviceId: Integer;
-    procedure Set_DeviceId(DeviceId: Integer);
-    function  Get_LineId: Integer;
-    procedure Set_LineId(LineId: Integer);
-    function  Get_MMHandle: Integer;
-  public
-    property DefaultInterface: ISpeechMMSysAudio read GetDefaultInterface;
-  published
-    property Volume: Integer read Get_Volume write Set_Volume;
-    property BufferNotifySize: Integer read Get_BufferNotifySize write Set_BufferNotifySize;
-    property DeviceId: Integer read Get_DeviceId write Set_DeviceId;
-    property LineId: Integer read Get_LineId write Set_LineId;
-  end;
-{$ENDIF}
-
-
 // *********************************************************************//
 // The Class CoSpMMAudioOut provides a Create and CreateRemote method to          
 // create instances of the default interface ISpeechMMSysAudio exposed by              
@@ -4622,122 +4865,6 @@ type
   CoSpMMAudioOut = class
     class function Create: ISpeechMMSysAudio;
     class function CreateRemote(const MachineName: string): ISpeechMMSysAudio;
-  end;
-
-
-// *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TSpMMAudioOut
-// Help String      : SpMMAudioOut Class
-// Default Interface: ISpeechMMSysAudio
-// Def. Intf. DISP? : No
-// Event   Interface: 
-// TypeFlags        : (2) CanCreate
-// *********************************************************************//
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  TSpMMAudioOutProperties= class;
-{$ENDIF}
-  TSpMMAudioOut = class(TOleServer)
-  private
-    FIntf:        ISpeechMMSysAudio;
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    FProps:       TSpMMAudioOutProperties;
-    function      GetServerProperties: TSpMMAudioOutProperties;
-{$ENDIF}
-    function      GetDefaultInterface: ISpeechMMSysAudio;
-  protected
-    procedure InitServerData; override;
-    function  Get_Format: ISpeechAudioFormat;
-    procedure Set_Format(const AudioFormat: ISpeechAudioFormat);
-    function  Get_Status: ISpeechAudioStatus;
-    function  Get_BufferInfo: ISpeechAudioBufferInfo;
-    function  Get_DefaultFormat: ISpeechAudioFormat;
-    function  Get_Volume: Integer;
-    procedure Set_Volume(Volume: Integer);
-    function  Get_BufferNotifySize: Integer;
-    procedure Set_BufferNotifySize(BufferNotifySize: Integer);
-    function  Get_EventHandle: Integer;
-    function  Get_DeviceId: Integer;
-    procedure Set_DeviceId(DeviceId: Integer);
-    function  Get_LineId: Integer;
-    procedure Set_LineId(LineId: Integer);
-    function  Get_MMHandle: Integer;
-  public
-    constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure Connect; override;
-    procedure ConnectTo(svrIntf: ISpeechMMSysAudio);
-    procedure Disconnect; override;
-    function  Read(out Buffer: OleVariant; NumberOfBytes: Integer): Integer;
-    function  Write(Buffer: OleVariant): Integer;
-    function  Seek(Position: OleVariant; Origin: SpeechStreamSeekPositionType): OleVariant;
-    procedure SetState(State: SpeechAudioState);
-    property  DefaultInterface: ISpeechMMSysAudio read GetDefaultInterface;
-    property Format: ISpeechAudioFormat read Get_Format write Set_Format;
-    property Status: ISpeechAudioStatus read Get_Status;
-    property BufferInfo: ISpeechAudioBufferInfo read Get_BufferInfo;
-    property DefaultFormat: ISpeechAudioFormat read Get_DefaultFormat;
-    property EventHandle: Integer read Get_EventHandle;
-    property MMHandle: Integer read Get_MMHandle;
-    property Volume: Integer read Get_Volume write Set_Volume;
-    property BufferNotifySize: Integer read Get_BufferNotifySize write Set_BufferNotifySize;
-    property DeviceId: Integer read Get_DeviceId write Set_DeviceId;
-    property LineId: Integer read Get_LineId write Set_LineId;
-  published
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    property Server: TSpMMAudioOutProperties read GetServerProperties;
-{$ENDIF}
-  end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-// *********************************************************************//
-// OLE Server Properties Proxy Class
-// Server Object    : TSpMMAudioOut
-// (This object is used by the IDE's Property Inspector to allow editing
-//  of the properties of this server)
-// *********************************************************************//
- TSpMMAudioOutProperties = class(TPersistent)
-  private
-    FServer:    TSpMMAudioOut;
-    function    GetDefaultInterface: ISpeechMMSysAudio;
-    constructor Create(AServer: TSpMMAudioOut);
-  protected
-    function  Get_Format: ISpeechAudioFormat;
-    procedure Set_Format(const AudioFormat: ISpeechAudioFormat);
-    function  Get_Status: ISpeechAudioStatus;
-    function  Get_BufferInfo: ISpeechAudioBufferInfo;
-    function  Get_DefaultFormat: ISpeechAudioFormat;
-    function  Get_Volume: Integer;
-    procedure Set_Volume(Volume: Integer);
-    function  Get_BufferNotifySize: Integer;
-    procedure Set_BufferNotifySize(BufferNotifySize: Integer);
-    function  Get_EventHandle: Integer;
-    function  Get_DeviceId: Integer;
-    procedure Set_DeviceId(DeviceId: Integer);
-    function  Get_LineId: Integer;
-    procedure Set_LineId(LineId: Integer);
-    function  Get_MMHandle: Integer;
-  public
-    property DefaultInterface: ISpeechMMSysAudio read GetDefaultInterface;
-  published
-    property Volume: Integer read Get_Volume write Set_Volume;
-    property BufferNotifySize: Integer read Get_BufferNotifySize write Set_BufferNotifySize;
-    property DeviceId: Integer read Get_DeviceId write Set_DeviceId;
-    property LineId: Integer read Get_LineId write Set_LineId;
-  end;
-{$ENDIF}
-
-
-// *********************************************************************//
-// The Class CoSpRecPlayAudio provides a Create and CreateRemote method to          
-// create instances of the default interface ISpObjectWithToken exposed by              
-// the CoClass SpRecPlayAudio. The functions are intended to be used by             
-// clients wishing to automate the CoClass objects exposed by the         
-// server of this typelibrary.                                            
-// *********************************************************************//
-  CoSpRecPlayAudio = class
-    class function Create: ISpObjectWithToken;
-    class function CreateRemote(const MachineName: string): ISpObjectWithToken;
   end;
 
 // *********************************************************************//
@@ -4764,181 +4891,6 @@ type
     class function CreateRemote(const MachineName: string): ISpeechVoice;
   end;
 
-  TSpVoiceStartStream = procedure(Sender: TObject; StreamNumber: Integer; StreamPosition: OleVariant) of object;
-  TSpVoiceEndStream = procedure(Sender: TObject; StreamNumber: Integer; StreamPosition: OleVariant) of object;
-  TSpVoiceVoiceChange = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                   StreamPosition: OleVariant; 
-                                                   var VoiceObjectToken: OleVariant) of object;
-  TSpVoiceBookmark = procedure(Sender: TObject; StreamNumber: Integer; StreamPosition: OleVariant; 
-                                                var Bookmark: OleVariant;BookmarkId: Integer) of object;
-  TSpVoiceWord = procedure(Sender: TObject; StreamNumber: Integer; StreamPosition: OleVariant; 
-                                            CharacterPosition: Integer; Length: Integer) of object;
-  TSpVoiceSentence = procedure(Sender: TObject; StreamNumber: Integer; StreamPosition: OleVariant; 
-                                                CharacterPosition: Integer; Length: Integer) of object;
-  TSpVoicePhoneme = procedure(Sender: TObject; StreamNumber: Integer; StreamPosition: OleVariant; 
-                                               Duration: Integer; NextPhoneId: Smallint; 
-                                               Feature: SpeechVisemeFeature; 
-                                               CurrentPhoneId: Smallint) of object;
-  TSpVoiceViseme = procedure(Sender: TObject; StreamNumber: Integer; StreamPosition: OleVariant; 
-                                              Duration: Integer; NextVisemeId: SpeechVisemeType; 
-                                              Feature: SpeechVisemeFeature; 
-                                              CurrentVisemeId: SpeechVisemeType) of object;
-  TSpVoiceAudioLevel = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                  StreamPosition: OleVariant; AudioLevel: Integer) of object;
-  TSpVoiceEnginePrivate = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                     StreamPosition: Integer; EngineData: OleVariant) of object;
-
-
-// *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TSpVoice
-// Help String      : SpVoice Class
-// Default Interface: ISpeechVoice
-// Def. Intf. DISP? : No
-// Event   Interface: _ISpeechVoiceEvents
-// TypeFlags        : (2) CanCreate
-// *********************************************************************//
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  TSpVoiceProperties= class;
-{$ENDIF}
-  TSpVoice = class(TOleServer)
-  private
-    FOnStartStream: TSpVoiceStartStream;
-    FOnEndStream: TSpVoiceEndStream;
-    FOnVoiceChange: TSpVoiceVoiceChange;
-    FOnBookmark: TSpVoiceBookmark;
-    FOnWord: TSpVoiceWord;
-    FOnSentence: TSpVoiceSentence;
-    FOnPhoneme: TSpVoicePhoneme;
-    FOnViseme: TSpVoiceViseme;
-    FOnAudioLevel: TSpVoiceAudioLevel;
-    FOnEnginePrivate: TSpVoiceEnginePrivate;
-    FIntf:        ISpeechVoice;
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    FProps:       TSpVoiceProperties;
-    function      GetServerProperties: TSpVoiceProperties;
-{$ENDIF}
-    function      GetDefaultInterface: ISpeechVoice;
-  protected
-    procedure InitServerData; override;
-    procedure InvokeEvent(DispID: TDispID; var Params: TVariantArray); override;
-    function  Get_Status: ISpeechVoiceStatus;
-    function  Get_Voice: ISpeechObjectToken;
-    procedure Set_Voice(const Voice: ISpeechObjectToken);
-    function  Get_AudioOutput: ISpeechObjectToken;
-    procedure Set_AudioOutput(const AudioOutput: ISpeechObjectToken);
-    function  Get_AudioOutputStream: ISpeechBaseStream;
-    procedure Set_AudioOutputStream(const AudioOutputStream: ISpeechBaseStream);
-    function  Get_Rate: Integer;
-    procedure Set_Rate(Rate: Integer);
-    function  Get_Volume: Integer;
-    procedure Set_Volume(Volume: Integer);
-    procedure Set_AllowAudioOutputFormatChangesOnNextSet(Allow: WordBool);
-    function  Get_AllowAudioOutputFormatChangesOnNextSet: WordBool;
-    function  Get_EventInterests: SpeechVoiceEvents;
-    procedure Set_EventInterests(EventInterestFlags: SpeechVoiceEvents);
-    procedure Set_Priority(Priority: SpeechVoicePriority);
-    function  Get_Priority: SpeechVoicePriority;
-    procedure Set_AlertBoundary(Boundary: SpeechVoiceEvents);
-    function  Get_AlertBoundary: SpeechVoiceEvents;
-    procedure Set_SynchronousSpeakTimeout(msTimeout: Integer);
-    function  Get_SynchronousSpeakTimeout: Integer;
-  public
-    constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure Connect; override;
-    procedure ConnectTo(svrIntf: ISpeechVoice);
-    procedure Disconnect; override;
-    function  Speak(const Text: WideString; Flags: SpeechVoiceSpeakFlags): Integer;
-    function  SpeakStream(const Stream: ISpeechBaseStream; Flags: SpeechVoiceSpeakFlags): Integer;
-    procedure Pause;
-    procedure Resume;
-    function  Skip(const Type_: WideString; NumItems: Integer): Integer;
-    function  GetVoices(const RequiredAttributes: WideString; const OptionalAttributes: WideString): ISpeechObjectTokens;
-    function  GetAudioOutputs(const RequiredAttributes: WideString; 
-                              const OptionalAttributes: WideString): ISpeechObjectTokens;
-    function  WaitUntilDone(msTimeout: Integer): WordBool;
-    function  SpeakCompleteEvent: Integer;
-    function  IsUISupported(const TypeOfUI: WideString): WordBool; overload;
-    function  IsUISupported(const TypeOfUI: WideString; var ExtraData: OleVariant): WordBool; overload;
-    procedure DisplayUI(hWndParent: Integer; const Title: WideString; const TypeOfUI: WideString); overload;
-    procedure DisplayUI(hWndParent: Integer; const Title: WideString; const TypeOfUI: WideString; 
-                        var ExtraData: OleVariant); overload;
-    property  DefaultInterface: ISpeechVoice read GetDefaultInterface;
-    property Status: ISpeechVoiceStatus read Get_Status;
-    property Voice: ISpeechObjectToken read Get_Voice write Set_Voice;
-    property AudioOutput: ISpeechObjectToken read Get_AudioOutput write Set_AudioOutput;
-    property AudioOutputStream: ISpeechBaseStream read Get_AudioOutputStream write Set_AudioOutputStream;
-    property AllowAudioOutputFormatChangesOnNextSet: WordBool read Get_AllowAudioOutputFormatChangesOnNextSet write Set_AllowAudioOutputFormatChangesOnNextSet;
-    property Rate: Integer read Get_Rate write Set_Rate;
-    property Volume: Integer read Get_Volume write Set_Volume;
-    property EventInterests: SpeechVoiceEvents read Get_EventInterests write Set_EventInterests;
-    property Priority: SpeechVoicePriority read Get_Priority write Set_Priority;
-    property AlertBoundary: SpeechVoiceEvents read Get_AlertBoundary write Set_AlertBoundary;
-    property SynchronousSpeakTimeout: Integer read Get_SynchronousSpeakTimeout write Set_SynchronousSpeakTimeout;
-  published
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    property Server: TSpVoiceProperties read GetServerProperties;
-{$ENDIF}
-    property OnStartStream: TSpVoiceStartStream read FOnStartStream write FOnStartStream;
-    property OnEndStream: TSpVoiceEndStream read FOnEndStream write FOnEndStream;
-    property OnVoiceChange: TSpVoiceVoiceChange read FOnVoiceChange write FOnVoiceChange;
-    property OnBookmark: TSpVoiceBookmark read FOnBookmark write FOnBookmark;
-    property OnWord: TSpVoiceWord read FOnWord write FOnWord;
-    property OnSentence: TSpVoiceSentence read FOnSentence write FOnSentence;
-    property OnPhoneme: TSpVoicePhoneme read FOnPhoneme write FOnPhoneme;
-    property OnViseme: TSpVoiceViseme read FOnViseme write FOnViseme;
-    property OnAudioLevel: TSpVoiceAudioLevel read FOnAudioLevel write FOnAudioLevel;
-    property OnEnginePrivate: TSpVoiceEnginePrivate read FOnEnginePrivate write FOnEnginePrivate;
-  end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-// *********************************************************************//
-// OLE Server Properties Proxy Class
-// Server Object    : TSpVoice
-// (This object is used by the IDE's Property Inspector to allow editing
-//  of the properties of this server)
-// *********************************************************************//
- TSpVoiceProperties = class(TPersistent)
-  private
-    FServer:    TSpVoice;
-    function    GetDefaultInterface: ISpeechVoice;
-    constructor Create(AServer: TSpVoice);
-  protected
-    function  Get_Status: ISpeechVoiceStatus;
-    function  Get_Voice: ISpeechObjectToken;
-    procedure Set_Voice(const Voice: ISpeechObjectToken);
-    function  Get_AudioOutput: ISpeechObjectToken;
-    procedure Set_AudioOutput(const AudioOutput: ISpeechObjectToken);
-    function  Get_AudioOutputStream: ISpeechBaseStream;
-    procedure Set_AudioOutputStream(const AudioOutputStream: ISpeechBaseStream);
-    function  Get_Rate: Integer;
-    procedure Set_Rate(Rate: Integer);
-    function  Get_Volume: Integer;
-    procedure Set_Volume(Volume: Integer);
-    procedure Set_AllowAudioOutputFormatChangesOnNextSet(Allow: WordBool);
-    function  Get_AllowAudioOutputFormatChangesOnNextSet: WordBool;
-    function  Get_EventInterests: SpeechVoiceEvents;
-    procedure Set_EventInterests(EventInterestFlags: SpeechVoiceEvents);
-    procedure Set_Priority(Priority: SpeechVoicePriority);
-    function  Get_Priority: SpeechVoicePriority;
-    procedure Set_AlertBoundary(Boundary: SpeechVoiceEvents);
-    function  Get_AlertBoundary: SpeechVoiceEvents;
-    procedure Set_SynchronousSpeakTimeout(msTimeout: Integer);
-    function  Get_SynchronousSpeakTimeout: Integer;
-  public
-    property DefaultInterface: ISpeechVoice read GetDefaultInterface;
-  published
-    property Rate: Integer read Get_Rate write Set_Rate;
-    property Volume: Integer read Get_Volume write Set_Volume;
-    property EventInterests: SpeechVoiceEvents read Get_EventInterests write Set_EventInterests;
-    property Priority: SpeechVoicePriority read Get_Priority write Set_Priority;
-    property AlertBoundary: SpeechVoiceEvents read Get_AlertBoundary write Set_AlertBoundary;
-    property SynchronousSpeakTimeout: Integer read Get_SynchronousSpeakTimeout write Set_SynchronousSpeakTimeout;
-  end;
-{$ENDIF}
-
-
 // *********************************************************************//
 // The Class CoSpSharedRecoContext provides a Create and CreateRemote method to          
 // create instances of the default interface ISpeechRecoContext exposed by              
@@ -4950,213 +4902,6 @@ type
     class function Create: ISpeechRecoContext;
     class function CreateRemote(const MachineName: string): ISpeechRecoContext;
   end;
-
-  TSpSharedRecoContextStartStream = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                               StreamPosition: OleVariant) of object;
-  TSpSharedRecoContextEndStream = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                             StreamPosition: OleVariant; 
-                                                             StreamReleased: WordBool) of object;
-  TSpSharedRecoContextBookmark = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                            StreamPosition: OleVariant; 
-                                                            BookmarkId: OleVariant; 
-                                                            Options: SpeechBookmarkOptions) of object;
-  TSpSharedRecoContextSoundStart = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                              StreamPosition: OleVariant) of object;
-  TSpSharedRecoContextSoundEnd = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                            StreamPosition: OleVariant) of object;
-  TSpSharedRecoContextPhraseStart = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                               StreamPosition: OleVariant) of object;
-  TSpSharedRecoContextRecognition = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                               StreamPosition: OleVariant; 
-                                                               RecognitionType: SpeechRecognitionType; 
-                                                               var Result: OleVariant) of object;
-  TSpSharedRecoContextHypothesis = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                              StreamPosition: OleVariant; 
-                                                              var Result: OleVariant) of object;
-  TSpSharedRecoContextPropertyNumberChange = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                                        StreamPosition: OleVariant; 
-                                                                        var PropertyName: OleVariant;
-                                                                        NewNumberValue: Integer) of object;
-  TSpSharedRecoContextPropertyStringChange = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                                        StreamPosition: OleVariant; 
-                                                                        var PropertyName: OleVariant;
-                                                                        var NewStringValue: OleVariant) of object;
-  TSpSharedRecoContextFalseRecognition = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                                    StreamPosition: OleVariant; 
-                                                                    var Result: OleVariant) of object;
-  TSpSharedRecoContextInterference = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                                StreamPosition: OleVariant; 
-                                                                Interference: SpeechInterference) of object;
-  TSpSharedRecoContextRequestUI = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                             StreamPosition: OleVariant; 
-                                                             var UIType: OleVariant) of object;
-  TSpSharedRecoContextRecognizerStateChange = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                                         StreamPosition: OleVariant; 
-                                                                         NewState: SpeechRecognizerState) of object;
-  TSpSharedRecoContextAdaptation = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                              StreamPosition: OleVariant) of object;
-  TSpSharedRecoContextRecognitionForOtherContext = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                                              StreamPosition: OleVariant) of object;
-  TSpSharedRecoContextAudioLevel = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                              StreamPosition: OleVariant; 
-                                                              AudioLevel: Integer) of object;
-  TSpSharedRecoContextEnginePrivate = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                                 StreamPosition: OleVariant; 
-                                                                 EngineData: OleVariant) of object;
-
-
-// *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TSpSharedRecoContext
-// Help String      : SpSharedRecoContext Class
-// Default Interface: ISpeechRecoContext
-// Def. Intf. DISP? : No
-// Event   Interface: _ISpeechRecoContextEvents
-// TypeFlags        : (2) CanCreate
-// *********************************************************************//
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  TSpSharedRecoContextProperties= class;
-{$ENDIF}
-  TSpSharedRecoContext = class(TOleServer)
-  private
-    FOnStartStream: TSpSharedRecoContextStartStream;
-    FOnEndStream: TSpSharedRecoContextEndStream;
-    FOnBookmark: TSpSharedRecoContextBookmark;
-    FOnSoundStart: TSpSharedRecoContextSoundStart;
-    FOnSoundEnd: TSpSharedRecoContextSoundEnd;
-    FOnPhraseStart: TSpSharedRecoContextPhraseStart;
-    FOnRecognition: TSpSharedRecoContextRecognition;
-    FOnHypothesis: TSpSharedRecoContextHypothesis;
-    FOnPropertyNumberChange: TSpSharedRecoContextPropertyNumberChange;
-    FOnPropertyStringChange: TSpSharedRecoContextPropertyStringChange;
-    FOnFalseRecognition: TSpSharedRecoContextFalseRecognition;
-    FOnInterference: TSpSharedRecoContextInterference;
-    FOnRequestUI: TSpSharedRecoContextRequestUI;
-    FOnRecognizerStateChange: TSpSharedRecoContextRecognizerStateChange;
-    FOnAdaptation: TSpSharedRecoContextAdaptation;
-    FOnRecognitionForOtherContext: TSpSharedRecoContextRecognitionForOtherContext;
-    FOnAudioLevel: TSpSharedRecoContextAudioLevel;
-    FOnEnginePrivate: TSpSharedRecoContextEnginePrivate;
-    FIntf:        ISpeechRecoContext;
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    FProps:       TSpSharedRecoContextProperties;
-    function      GetServerProperties: TSpSharedRecoContextProperties;
-{$ENDIF}
-    function      GetDefaultInterface: ISpeechRecoContext;
-  protected
-    procedure InitServerData; override;
-    procedure InvokeEvent(DispID: TDispID; var Params: TVariantArray); override;
-    function  Get_Recognizer: ISpeechRecognizer;
-    function  Get_AudioInputInterferenceStatus: SpeechInterference;
-    function  Get_RequestedUIType: WideString;
-    procedure Set_Voice(const Voice: ISpeechVoice);
-    function  Get_Voice: ISpeechVoice;
-    procedure Set_AllowVoiceFormatMatchingOnNextSet(pAllow: WordBool);
-    function  Get_AllowVoiceFormatMatchingOnNextSet: WordBool;
-    procedure Set_VoicePurgeEvent(EventInterest: SpeechRecoEvents);
-    function  Get_VoicePurgeEvent: SpeechRecoEvents;
-    procedure Set_EventInterests(EventInterest: SpeechRecoEvents);
-    function  Get_EventInterests: SpeechRecoEvents;
-    procedure Set_CmdMaxAlternates(MaxAlternates: Integer);
-    function  Get_CmdMaxAlternates: Integer;
-    procedure Set_State(State: SpeechRecoContextState);
-    function  Get_State: SpeechRecoContextState;
-    procedure Set_RetainedAudio(Option: SpeechRetainedAudioOptions);
-    function  Get_RetainedAudio: SpeechRetainedAudioOptions;
-    procedure Set_RetainedAudioFormat(const Format: ISpeechAudioFormat);
-    function  Get_RetainedAudioFormat: ISpeechAudioFormat;
-  public
-    constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure Connect; override;
-    procedure ConnectTo(svrIntf: ISpeechRecoContext);
-    procedure Disconnect; override;
-    procedure Pause;
-    procedure Resume;
-    function  CreateGrammar: ISpeechRecoGrammar; overload;
-    function  CreateGrammar(GrammarId: OleVariant): ISpeechRecoGrammar; overload;
-    function  CreateResultFromMemory(var ResultBlock: OleVariant): ISpeechRecoResult;
-    procedure Bookmark(Options: SpeechBookmarkOptions; StreamPos: OleVariant; BookmarkId: OleVariant);
-    procedure SetAdaptationData(const AdaptationString: WideString);
-    property  DefaultInterface: ISpeechRecoContext read GetDefaultInterface;
-    property Recognizer: ISpeechRecognizer read Get_Recognizer;
-    property AudioInputInterferenceStatus: SpeechInterference read Get_AudioInputInterferenceStatus;
-    property RequestedUIType: WideString read Get_RequestedUIType;
-    property Voice: ISpeechVoice read Get_Voice write Set_Voice;
-    property AllowVoiceFormatMatchingOnNextSet: WordBool read Get_AllowVoiceFormatMatchingOnNextSet write Set_AllowVoiceFormatMatchingOnNextSet;
-    property RetainedAudioFormat: ISpeechAudioFormat read Get_RetainedAudioFormat write Set_RetainedAudioFormat;
-    property VoicePurgeEvent: SpeechRecoEvents read Get_VoicePurgeEvent write Set_VoicePurgeEvent;
-    property EventInterests: SpeechRecoEvents read Get_EventInterests write Set_EventInterests;
-    property CmdMaxAlternates: Integer read Get_CmdMaxAlternates write Set_CmdMaxAlternates;
-    property State: SpeechRecoContextState read Get_State write Set_State;
-    property RetainedAudio: SpeechRetainedAudioOptions read Get_RetainedAudio write Set_RetainedAudio;
-  published
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    property Server: TSpSharedRecoContextProperties read GetServerProperties;
-{$ENDIF}
-    property OnStartStream: TSpSharedRecoContextStartStream read FOnStartStream write FOnStartStream;
-    property OnEndStream: TSpSharedRecoContextEndStream read FOnEndStream write FOnEndStream;
-    property OnBookmark: TSpSharedRecoContextBookmark read FOnBookmark write FOnBookmark;
-    property OnSoundStart: TSpSharedRecoContextSoundStart read FOnSoundStart write FOnSoundStart;
-    property OnSoundEnd: TSpSharedRecoContextSoundEnd read FOnSoundEnd write FOnSoundEnd;
-    property OnPhraseStart: TSpSharedRecoContextPhraseStart read FOnPhraseStart write FOnPhraseStart;
-    property OnRecognition: TSpSharedRecoContextRecognition read FOnRecognition write FOnRecognition;
-    property OnHypothesis: TSpSharedRecoContextHypothesis read FOnHypothesis write FOnHypothesis;
-    property OnPropertyNumberChange: TSpSharedRecoContextPropertyNumberChange read FOnPropertyNumberChange write FOnPropertyNumberChange;
-    property OnPropertyStringChange: TSpSharedRecoContextPropertyStringChange read FOnPropertyStringChange write FOnPropertyStringChange;
-    property OnFalseRecognition: TSpSharedRecoContextFalseRecognition read FOnFalseRecognition write FOnFalseRecognition;
-    property OnInterference: TSpSharedRecoContextInterference read FOnInterference write FOnInterference;
-    property OnRequestUI: TSpSharedRecoContextRequestUI read FOnRequestUI write FOnRequestUI;
-    property OnRecognizerStateChange: TSpSharedRecoContextRecognizerStateChange read FOnRecognizerStateChange write FOnRecognizerStateChange;
-    property OnAdaptation: TSpSharedRecoContextAdaptation read FOnAdaptation write FOnAdaptation;
-    property OnRecognitionForOtherContext: TSpSharedRecoContextRecognitionForOtherContext read FOnRecognitionForOtherContext write FOnRecognitionForOtherContext;
-    property OnAudioLevel: TSpSharedRecoContextAudioLevel read FOnAudioLevel write FOnAudioLevel;
-    property OnEnginePrivate: TSpSharedRecoContextEnginePrivate read FOnEnginePrivate write FOnEnginePrivate;
-  end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-// *********************************************************************//
-// OLE Server Properties Proxy Class
-// Server Object    : TSpSharedRecoContext
-// (This object is used by the IDE's Property Inspector to allow editing
-//  of the properties of this server)
-// *********************************************************************//
- TSpSharedRecoContextProperties = class(TPersistent)
-  private
-    FServer:    TSpSharedRecoContext;
-    function    GetDefaultInterface: ISpeechRecoContext;
-    constructor Create(AServer: TSpSharedRecoContext);
-  protected
-    function  Get_Recognizer: ISpeechRecognizer;
-    function  Get_AudioInputInterferenceStatus: SpeechInterference;
-    function  Get_RequestedUIType: WideString;
-    procedure Set_Voice(const Voice: ISpeechVoice);
-    function  Get_Voice: ISpeechVoice;
-    procedure Set_AllowVoiceFormatMatchingOnNextSet(pAllow: WordBool);
-    function  Get_AllowVoiceFormatMatchingOnNextSet: WordBool;
-    procedure Set_VoicePurgeEvent(EventInterest: SpeechRecoEvents);
-    function  Get_VoicePurgeEvent: SpeechRecoEvents;
-    procedure Set_EventInterests(EventInterest: SpeechRecoEvents);
-    function  Get_EventInterests: SpeechRecoEvents;
-    procedure Set_CmdMaxAlternates(MaxAlternates: Integer);
-    function  Get_CmdMaxAlternates: Integer;
-    procedure Set_State(State: SpeechRecoContextState);
-    function  Get_State: SpeechRecoContextState;
-    procedure Set_RetainedAudio(Option: SpeechRetainedAudioOptions);
-    function  Get_RetainedAudio: SpeechRetainedAudioOptions;
-    procedure Set_RetainedAudioFormat(const Format: ISpeechAudioFormat);
-    function  Get_RetainedAudioFormat: ISpeechAudioFormat;
-  public
-    property DefaultInterface: ISpeechRecoContext read GetDefaultInterface;
-  published
-    property VoicePurgeEvent: SpeechRecoEvents read Get_VoicePurgeEvent write Set_VoicePurgeEvent;
-    property EventInterests: SpeechRecoEvents read Get_EventInterests write Set_EventInterests;
-    property CmdMaxAlternates: Integer read Get_CmdMaxAlternates write Set_CmdMaxAlternates;
-    property State: SpeechRecoContextState read Get_State write Set_State;
-    property RetainedAudio: SpeechRetainedAudioOptions read Get_RetainedAudio write Set_RetainedAudio;
-  end;
-{$ENDIF}
-
 
 // *********************************************************************//
 // The Class CoSpInprocRecognizer provides a Create and CreateRemote method to          
@@ -5170,117 +4915,6 @@ type
     class function CreateRemote(const MachineName: string): ISpeechRecognizer;
   end;
 
-
-// *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TSpInprocRecognizer
-// Help String      : SpInprocRecognizer Class
-// Default Interface: ISpeechRecognizer
-// Def. Intf. DISP? : No
-// Event   Interface: 
-// TypeFlags        : (2) CanCreate
-// *********************************************************************//
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  TSpInprocRecognizerProperties= class;
-{$ENDIF}
-  TSpInprocRecognizer = class(TOleServer)
-  private
-    FIntf:        ISpeechRecognizer;
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    FProps:       TSpInprocRecognizerProperties;
-    function      GetServerProperties: TSpInprocRecognizerProperties;
-{$ENDIF}
-    function      GetDefaultInterface: ISpeechRecognizer;
-  protected
-    procedure InitServerData; override;
-    procedure Set_Recognizer(const Recognizer: ISpeechObjectToken);
-    function  Get_Recognizer: ISpeechObjectToken;
-    procedure Set_AllowAudioInputFormatChangesOnNextSet(Allow: WordBool);
-    function  Get_AllowAudioInputFormatChangesOnNextSet: WordBool;
-    procedure Set_AudioInput(const AudioInput: ISpeechObjectToken);
-    function  Get_AudioInput: ISpeechObjectToken;
-    procedure Set_AudioInputStream(const AudioInputStream: ISpeechBaseStream);
-    function  Get_AudioInputStream: ISpeechBaseStream;
-    function  Get_IsShared: WordBool;
-    procedure Set_State(State: SpeechRecognizerState);
-    function  Get_State: SpeechRecognizerState;
-    function  Get_Status: ISpeechRecognizerStatus;
-    procedure Set_Profile(const Profile: ISpeechObjectToken);
-    function  Get_Profile: ISpeechObjectToken;
-  public
-    constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure Connect; override;
-    procedure ConnectTo(svrIntf: ISpeechRecognizer);
-    procedure Disconnect; override;
-    procedure EmulateRecognition(TextElements: OleVariant; 
-                                 var ElementDisplayAttributes: OleVariant; LanguageId: Integer);
-    function  CreateRecoContext: ISpeechRecoContext;
-    function  GetFormat(Type_: SpeechFormatType): ISpeechAudioFormat;
-    function  SetPropertyNumber(const Name: WideString; Value: Integer): WordBool;
-    function  GetPropertyNumber(const Name: WideString; var Value: Integer): WordBool;
-    function  SetPropertyString(const Name: WideString; const Value: WideString): WordBool;
-    function  GetPropertyString(const Name: WideString; var Value: WideString): WordBool;
-    function  IsUISupported(const TypeOfUI: WideString): WordBool; overload;
-    function  IsUISupported(const TypeOfUI: WideString; var ExtraData: OleVariant): WordBool; overload;
-    procedure DisplayUI(hWndParent: Integer; const Title: WideString; const TypeOfUI: WideString); overload;
-    procedure DisplayUI(hWndParent: Integer; const Title: WideString; const TypeOfUI: WideString; 
-                        var ExtraData: OleVariant); overload;
-    function  GetRecognizers(const RequiredAttributes: WideString; 
-                             const OptionalAttributes: WideString): ISpeechObjectTokens;
-    function  GetAudioInputs(const RequiredAttributes: WideString; 
-                             const OptionalAttributes: WideString): ISpeechObjectTokens;
-    function  GetProfiles(const RequiredAttributes: WideString; const OptionalAttributes: WideString): ISpeechObjectTokens;
-    property  DefaultInterface: ISpeechRecognizer read GetDefaultInterface;
-    property Recognizer: ISpeechObjectToken read Get_Recognizer write Set_Recognizer;
-    property AllowAudioInputFormatChangesOnNextSet: WordBool read Get_AllowAudioInputFormatChangesOnNextSet write Set_AllowAudioInputFormatChangesOnNextSet;
-    property AudioInput: ISpeechObjectToken read Get_AudioInput write Set_AudioInput;
-    property AudioInputStream: ISpeechBaseStream read Get_AudioInputStream write Set_AudioInputStream;
-    property IsShared: WordBool read Get_IsShared;
-    property Status: ISpeechRecognizerStatus read Get_Status;
-    property Profile: ISpeechObjectToken read Get_Profile write Set_Profile;
-    property State: SpeechRecognizerState read Get_State write Set_State;
-  published
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    property Server: TSpInprocRecognizerProperties read GetServerProperties;
-{$ENDIF}
-  end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-// *********************************************************************//
-// OLE Server Properties Proxy Class
-// Server Object    : TSpInprocRecognizer
-// (This object is used by the IDE's Property Inspector to allow editing
-//  of the properties of this server)
-// *********************************************************************//
- TSpInprocRecognizerProperties = class(TPersistent)
-  private
-    FServer:    TSpInprocRecognizer;
-    function    GetDefaultInterface: ISpeechRecognizer;
-    constructor Create(AServer: TSpInprocRecognizer);
-  protected
-    procedure Set_Recognizer(const Recognizer: ISpeechObjectToken);
-    function  Get_Recognizer: ISpeechObjectToken;
-    procedure Set_AllowAudioInputFormatChangesOnNextSet(Allow: WordBool);
-    function  Get_AllowAudioInputFormatChangesOnNextSet: WordBool;
-    procedure Set_AudioInput(const AudioInput: ISpeechObjectToken);
-    function  Get_AudioInput: ISpeechObjectToken;
-    procedure Set_AudioInputStream(const AudioInputStream: ISpeechBaseStream);
-    function  Get_AudioInputStream: ISpeechBaseStream;
-    function  Get_IsShared: WordBool;
-    procedure Set_State(State: SpeechRecognizerState);
-    function  Get_State: SpeechRecognizerState;
-    function  Get_Status: ISpeechRecognizerStatus;
-    procedure Set_Profile(const Profile: ISpeechObjectToken);
-    function  Get_Profile: ISpeechObjectToken;
-  public
-    property DefaultInterface: ISpeechRecognizer read GetDefaultInterface;
-  published
-    property State: SpeechRecognizerState read Get_State write Set_State;
-  end;
-{$ENDIF}
-
-
 // *********************************************************************//
 // The Class CoSpSharedRecognizer provides a Create and CreateRemote method to          
 // create instances of the default interface ISpeechRecognizer exposed by              
@@ -5292,117 +4926,6 @@ type
     class function Create: ISpeechRecognizer;
     class function CreateRemote(const MachineName: string): ISpeechRecognizer;
   end;
-
-
-// *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TSpSharedRecognizer
-// Help String      : SpSharedRecognizer Class
-// Default Interface: ISpeechRecognizer
-// Def. Intf. DISP? : No
-// Event   Interface: 
-// TypeFlags        : (2) CanCreate
-// *********************************************************************//
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  TSpSharedRecognizerProperties= class;
-{$ENDIF}
-  TSpSharedRecognizer = class(TOleServer)
-  private
-    FIntf:        ISpeechRecognizer;
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    FProps:       TSpSharedRecognizerProperties;
-    function      GetServerProperties: TSpSharedRecognizerProperties;
-{$ENDIF}
-    function      GetDefaultInterface: ISpeechRecognizer;
-  protected
-    procedure InitServerData; override;
-    procedure Set_Recognizer(const Recognizer: ISpeechObjectToken);
-    function  Get_Recognizer: ISpeechObjectToken;
-    procedure Set_AllowAudioInputFormatChangesOnNextSet(Allow: WordBool);
-    function  Get_AllowAudioInputFormatChangesOnNextSet: WordBool;
-    procedure Set_AudioInput(const AudioInput: ISpeechObjectToken);
-    function  Get_AudioInput: ISpeechObjectToken;
-    procedure Set_AudioInputStream(const AudioInputStream: ISpeechBaseStream);
-    function  Get_AudioInputStream: ISpeechBaseStream;
-    function  Get_IsShared: WordBool;
-    procedure Set_State(State: SpeechRecognizerState);
-    function  Get_State: SpeechRecognizerState;
-    function  Get_Status: ISpeechRecognizerStatus;
-    procedure Set_Profile(const Profile: ISpeechObjectToken);
-    function  Get_Profile: ISpeechObjectToken;
-  public
-    constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure Connect; override;
-    procedure ConnectTo(svrIntf: ISpeechRecognizer);
-    procedure Disconnect; override;
-    procedure EmulateRecognition(TextElements: OleVariant; 
-                                 var ElementDisplayAttributes: OleVariant; LanguageId: Integer);
-    function  CreateRecoContext: ISpeechRecoContext;
-    function  GetFormat(Type_: SpeechFormatType): ISpeechAudioFormat;
-    function  SetPropertyNumber(const Name: WideString; Value: Integer): WordBool;
-    function  GetPropertyNumber(const Name: WideString; var Value: Integer): WordBool;
-    function  SetPropertyString(const Name: WideString; const Value: WideString): WordBool;
-    function  GetPropertyString(const Name: WideString; var Value: WideString): WordBool;
-    function  IsUISupported(const TypeOfUI: WideString): WordBool; overload;
-    function  IsUISupported(const TypeOfUI: WideString; var ExtraData: OleVariant): WordBool; overload;
-    procedure DisplayUI(hWndParent: Integer; const Title: WideString; const TypeOfUI: WideString); overload;
-    procedure DisplayUI(hWndParent: Integer; const Title: WideString; const TypeOfUI: WideString; 
-                        var ExtraData: OleVariant); overload;
-    function  GetRecognizers(const RequiredAttributes: WideString; 
-                             const OptionalAttributes: WideString): ISpeechObjectTokens;
-    function  GetAudioInputs(const RequiredAttributes: WideString; 
-                             const OptionalAttributes: WideString): ISpeechObjectTokens;
-    function  GetProfiles(const RequiredAttributes: WideString; const OptionalAttributes: WideString): ISpeechObjectTokens;
-    property  DefaultInterface: ISpeechRecognizer read GetDefaultInterface;
-    property Recognizer: ISpeechObjectToken read Get_Recognizer write Set_Recognizer;
-    property AllowAudioInputFormatChangesOnNextSet: WordBool read Get_AllowAudioInputFormatChangesOnNextSet write Set_AllowAudioInputFormatChangesOnNextSet;
-    property AudioInput: ISpeechObjectToken read Get_AudioInput write Set_AudioInput;
-    property AudioInputStream: ISpeechBaseStream read Get_AudioInputStream write Set_AudioInputStream;
-    property IsShared: WordBool read Get_IsShared;
-    property Status: ISpeechRecognizerStatus read Get_Status;
-    property Profile: ISpeechObjectToken read Get_Profile write Set_Profile;
-    property State: SpeechRecognizerState read Get_State write Set_State;
-  published
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    property Server: TSpSharedRecognizerProperties read GetServerProperties;
-{$ENDIF}
-  end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-// *********************************************************************//
-// OLE Server Properties Proxy Class
-// Server Object    : TSpSharedRecognizer
-// (This object is used by the IDE's Property Inspector to allow editing
-//  of the properties of this server)
-// *********************************************************************//
- TSpSharedRecognizerProperties = class(TPersistent)
-  private
-    FServer:    TSpSharedRecognizer;
-    function    GetDefaultInterface: ISpeechRecognizer;
-    constructor Create(AServer: TSpSharedRecognizer);
-  protected
-    procedure Set_Recognizer(const Recognizer: ISpeechObjectToken);
-    function  Get_Recognizer: ISpeechObjectToken;
-    procedure Set_AllowAudioInputFormatChangesOnNextSet(Allow: WordBool);
-    function  Get_AllowAudioInputFormatChangesOnNextSet: WordBool;
-    procedure Set_AudioInput(const AudioInput: ISpeechObjectToken);
-    function  Get_AudioInput: ISpeechObjectToken;
-    procedure Set_AudioInputStream(const AudioInputStream: ISpeechBaseStream);
-    function  Get_AudioInputStream: ISpeechBaseStream;
-    function  Get_IsShared: WordBool;
-    procedure Set_State(State: SpeechRecognizerState);
-    function  Get_State: SpeechRecognizerState;
-    function  Get_Status: ISpeechRecognizerStatus;
-    procedure Set_Profile(const Profile: ISpeechObjectToken);
-    function  Get_Profile: ISpeechObjectToken;
-  public
-    property DefaultInterface: ISpeechRecognizer read GetDefaultInterface;
-  published
-    property State: SpeechRecognizerState read Get_State write Set_State;
-  end;
-{$ENDIF}
-
 
 // *********************************************************************//
 // The Class CoSpLexicon provides a Create and CreateRemote method to          
@@ -5416,83 +4939,6 @@ type
     class function CreateRemote(const MachineName: string): ISpeechLexicon;
   end;
 
-
-// *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TSpLexicon
-// Help String      : SpLexicon Class
-// Default Interface: ISpeechLexicon
-// Def. Intf. DISP? : No
-// Event   Interface: 
-// TypeFlags        : (2) CanCreate
-// *********************************************************************//
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  TSpLexiconProperties= class;
-{$ENDIF}
-  TSpLexicon = class(TOleServer)
-  private
-    FIntf:        ISpeechLexicon;
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    FProps:       TSpLexiconProperties;
-    function      GetServerProperties: TSpLexiconProperties;
-{$ENDIF}
-    function      GetDefaultInterface: ISpeechLexicon;
-  protected
-    procedure InitServerData; override;
-    function  Get_GenerationId: Integer;
-  public
-    constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure Connect; override;
-    procedure ConnectTo(svrIntf: ISpeechLexicon);
-    procedure Disconnect; override;
-    function  GetWords(Flags: SpeechLexiconType; out GenerationId: Integer): ISpeechLexiconWords;
-    procedure AddPronunciation(const bstrWord: WideString; LangId: Integer; 
-                               PartOfSpeech: SpeechPartOfSpeech; const bstrPronunciation: WideString);
-    procedure AddPronunciationByPhoneIds(const bstrWord: WideString; LangId: Integer; 
-                                         PartOfSpeech: SpeechPartOfSpeech); overload;
-    procedure AddPronunciationByPhoneIds(const bstrWord: WideString; LangId: Integer; 
-                                         PartOfSpeech: SpeechPartOfSpeech; var PhoneIds: OleVariant); overload;
-    procedure RemovePronunciation(const bstrWord: WideString; LangId: Integer; 
-                                  PartOfSpeech: SpeechPartOfSpeech; 
-                                  const bstrPronunciation: WideString);
-    procedure RemovePronunciationByPhoneIds(const bstrWord: WideString; LangId: Integer; 
-                                            PartOfSpeech: SpeechPartOfSpeech); overload;
-    procedure RemovePronunciationByPhoneIds(const bstrWord: WideString; LangId: Integer; 
-                                            PartOfSpeech: SpeechPartOfSpeech; 
-                                            var PhoneIds: OleVariant); overload;
-    function  GetPronunciations(const bstrWord: WideString; LangId: Integer; 
-                                TypeFlags: SpeechLexiconType): ISpeechLexiconPronunciations;
-    function  GetGenerationChange(var GenerationId: Integer): ISpeechLexiconWords;
-    property  DefaultInterface: ISpeechLexicon read GetDefaultInterface;
-    property GenerationId: Integer read Get_GenerationId;
-  published
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    property Server: TSpLexiconProperties read GetServerProperties;
-{$ENDIF}
-  end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-// *********************************************************************//
-// OLE Server Properties Proxy Class
-// Server Object    : TSpLexicon
-// (This object is used by the IDE's Property Inspector to allow editing
-//  of the properties of this server)
-// *********************************************************************//
- TSpLexiconProperties = class(TPersistent)
-  private
-    FServer:    TSpLexicon;
-    function    GetDefaultInterface: ISpeechLexicon;
-    constructor Create(AServer: TSpLexicon);
-  protected
-    function  Get_GenerationId: Integer;
-  public
-    property DefaultInterface: ISpeechLexicon read GetDefaultInterface;
-  published
-  end;
-{$ENDIF}
-
-
 // *********************************************************************//
 // The Class CoSpUnCompressedLexicon provides a Create and CreateRemote method to          
 // create instances of the default interface ISpeechLexicon exposed by              
@@ -5504,83 +4950,6 @@ type
     class function Create: ISpeechLexicon;
     class function CreateRemote(const MachineName: string): ISpeechLexicon;
   end;
-
-
-// *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TSpUnCompressedLexicon
-// Help String      : SpUnCompressedLexicon Class
-// Default Interface: ISpeechLexicon
-// Def. Intf. DISP? : No
-// Event   Interface: 
-// TypeFlags        : (2) CanCreate
-// *********************************************************************//
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  TSpUnCompressedLexiconProperties= class;
-{$ENDIF}
-  TSpUnCompressedLexicon = class(TOleServer)
-  private
-    FIntf:        ISpeechLexicon;
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    FProps:       TSpUnCompressedLexiconProperties;
-    function      GetServerProperties: TSpUnCompressedLexiconProperties;
-{$ENDIF}
-    function      GetDefaultInterface: ISpeechLexicon;
-  protected
-    procedure InitServerData; override;
-    function  Get_GenerationId: Integer;
-  public
-    constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure Connect; override;
-    procedure ConnectTo(svrIntf: ISpeechLexicon);
-    procedure Disconnect; override;
-    function  GetWords(Flags: SpeechLexiconType; out GenerationId: Integer): ISpeechLexiconWords;
-    procedure AddPronunciation(const bstrWord: WideString; LangId: Integer; 
-                               PartOfSpeech: SpeechPartOfSpeech; const bstrPronunciation: WideString);
-    procedure AddPronunciationByPhoneIds(const bstrWord: WideString; LangId: Integer; 
-                                         PartOfSpeech: SpeechPartOfSpeech); overload;
-    procedure AddPronunciationByPhoneIds(const bstrWord: WideString; LangId: Integer; 
-                                         PartOfSpeech: SpeechPartOfSpeech; var PhoneIds: OleVariant); overload;
-    procedure RemovePronunciation(const bstrWord: WideString; LangId: Integer; 
-                                  PartOfSpeech: SpeechPartOfSpeech; 
-                                  const bstrPronunciation: WideString);
-    procedure RemovePronunciationByPhoneIds(const bstrWord: WideString; LangId: Integer; 
-                                            PartOfSpeech: SpeechPartOfSpeech); overload;
-    procedure RemovePronunciationByPhoneIds(const bstrWord: WideString; LangId: Integer; 
-                                            PartOfSpeech: SpeechPartOfSpeech; 
-                                            var PhoneIds: OleVariant); overload;
-    function  GetPronunciations(const bstrWord: WideString; LangId: Integer; 
-                                TypeFlags: SpeechLexiconType): ISpeechLexiconPronunciations;
-    function  GetGenerationChange(var GenerationId: Integer): ISpeechLexiconWords;
-    property  DefaultInterface: ISpeechLexicon read GetDefaultInterface;
-    property GenerationId: Integer read Get_GenerationId;
-  published
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    property Server: TSpUnCompressedLexiconProperties read GetServerProperties;
-{$ENDIF}
-  end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-// *********************************************************************//
-// OLE Server Properties Proxy Class
-// Server Object    : TSpUnCompressedLexicon
-// (This object is used by the IDE's Property Inspector to allow editing
-//  of the properties of this server)
-// *********************************************************************//
- TSpUnCompressedLexiconProperties = class(TPersistent)
-  private
-    FServer:    TSpUnCompressedLexicon;
-    function    GetDefaultInterface: ISpeechLexicon;
-    constructor Create(AServer: TSpUnCompressedLexicon);
-  protected
-    function  Get_GenerationId: Integer;
-  public
-    property DefaultInterface: ISpeechLexicon read GetDefaultInterface;
-  published
-  end;
-{$ENDIF}
-
 
 // *********************************************************************//
 // The Class CoSpCompressedLexicon provides a Create and CreateRemote method to          
@@ -5595,6 +4964,18 @@ type
   end;
 
 // *********************************************************************//
+// The Class CoSpShortcut provides a Create and CreateRemote method to          
+// create instances of the default interface ISpShortcut exposed by              
+// the CoClass SpShortcut. The functions are intended to be used by             
+// clients wishing to automate the CoClass objects exposed by the         
+// server of this typelibrary.                                            
+// *********************************************************************//
+  CoSpShortcut = class
+    class function Create: ISpShortcut;
+    class function CreateRemote(const MachineName: string): ISpShortcut;
+  end;
+
+// *********************************************************************//
 // The Class CoSpPhoneConverter provides a Create and CreateRemote method to          
 // create instances of the default interface ISpeechPhoneConverter exposed by              
 // the CoClass SpPhoneConverter. The functions are intended to be used by             
@@ -5606,69 +4987,17 @@ type
     class function CreateRemote(const MachineName: string): ISpeechPhoneConverter;
   end;
 
-
 // *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TSpPhoneConverter
-// Help String      : SpPhoneConverter Class
-// Default Interface: ISpeechPhoneConverter
-// Def. Intf. DISP? : No
-// Event   Interface: 
-// TypeFlags        : (2) CanCreate
+// The Class CoSpPhoneticAlphabetConverter provides a Create and CreateRemote method to          
+// create instances of the default interface ISpPhoneticAlphabetConverter exposed by              
+// the CoClass SpPhoneticAlphabetConverter. The functions are intended to be used by             
+// clients wishing to automate the CoClass objects exposed by the         
+// server of this typelibrary.                                            
 // *********************************************************************//
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  TSpPhoneConverterProperties= class;
-{$ENDIF}
-  TSpPhoneConverter = class(TOleServer)
-  private
-    FIntf:        ISpeechPhoneConverter;
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    FProps:       TSpPhoneConverterProperties;
-    function      GetServerProperties: TSpPhoneConverterProperties;
-{$ENDIF}
-    function      GetDefaultInterface: ISpeechPhoneConverter;
-  protected
-    procedure InitServerData; override;
-    function  Get_LanguageId: Integer;
-    procedure Set_LanguageId(LanguageId: Integer);
-  public
-    constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure Connect; override;
-    procedure ConnectTo(svrIntf: ISpeechPhoneConverter);
-    procedure Disconnect; override;
-    function  PhoneToId(const Phonemes: WideString): OleVariant;
-    function  IdToPhone(IdArray: OleVariant): WideString;
-    property  DefaultInterface: ISpeechPhoneConverter read GetDefaultInterface;
-    property LanguageId: Integer read Get_LanguageId write Set_LanguageId;
-  published
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    property Server: TSpPhoneConverterProperties read GetServerProperties;
-{$ENDIF}
+  CoSpPhoneticAlphabetConverter = class
+    class function Create: ISpPhoneticAlphabetConverter;
+    class function CreateRemote(const MachineName: string): ISpPhoneticAlphabetConverter;
   end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-// *********************************************************************//
-// OLE Server Properties Proxy Class
-// Server Object    : TSpPhoneConverter
-// (This object is used by the IDE's Property Inspector to allow editing
-//  of the properties of this server)
-// *********************************************************************//
- TSpPhoneConverterProperties = class(TPersistent)
-  private
-    FServer:    TSpPhoneConverter;
-    function    GetDefaultInterface: ISpeechPhoneConverter;
-    constructor Create(AServer: TSpPhoneConverter);
-  protected
-    function  Get_LanguageId: Integer;
-    procedure Set_LanguageId(LanguageId: Integer);
-  public
-    property DefaultInterface: ISpeechPhoneConverter read GetDefaultInterface;
-  published
-    property LanguageId: Integer read Get_LanguageId write Set_LanguageId;
-  end;
-{$ENDIF}
-
 
 // *********************************************************************//
 // The Class CoSpNullPhoneConverter provides a Create and CreateRemote method to          
@@ -5694,86 +5023,6 @@ type
     class function CreateRemote(const MachineName: string): ISpeechTextSelectionInformation;
   end;
 
-
-// *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TSpTextSelectionInformation
-// Help String      : SpTextSelectionInformation Class
-// Default Interface: ISpeechTextSelectionInformation
-// Def. Intf. DISP? : No
-// Event   Interface: 
-// TypeFlags        : (2) CanCreate
-// *********************************************************************//
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  TSpTextSelectionInformationProperties= class;
-{$ENDIF}
-  TSpTextSelectionInformation = class(TOleServer)
-  private
-    FIntf:        ISpeechTextSelectionInformation;
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    FProps:       TSpTextSelectionInformationProperties;
-    function      GetServerProperties: TSpTextSelectionInformationProperties;
-{$ENDIF}
-    function      GetDefaultInterface: ISpeechTextSelectionInformation;
-  protected
-    procedure InitServerData; override;
-    procedure Set_ActiveOffset(ActiveOffset: Integer);
-    function  Get_ActiveOffset: Integer;
-    procedure Set_ActiveLength(ActiveLength: Integer);
-    function  Get_ActiveLength: Integer;
-    procedure Set_SelectionOffset(SelectionOffset: Integer);
-    function  Get_SelectionOffset: Integer;
-    procedure Set_SelectionLength(SelectionLength: Integer);
-    function  Get_SelectionLength: Integer;
-  public
-    constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure Connect; override;
-    procedure ConnectTo(svrIntf: ISpeechTextSelectionInformation);
-    procedure Disconnect; override;
-    property  DefaultInterface: ISpeechTextSelectionInformation read GetDefaultInterface;
-    property ActiveOffset: Integer read Get_ActiveOffset write Set_ActiveOffset;
-    property ActiveLength: Integer read Get_ActiveLength write Set_ActiveLength;
-    property SelectionOffset: Integer read Get_SelectionOffset write Set_SelectionOffset;
-    property SelectionLength: Integer read Get_SelectionLength write Set_SelectionLength;
-  published
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    property Server: TSpTextSelectionInformationProperties read GetServerProperties;
-{$ENDIF}
-  end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-// *********************************************************************//
-// OLE Server Properties Proxy Class
-// Server Object    : TSpTextSelectionInformation
-// (This object is used by the IDE's Property Inspector to allow editing
-//  of the properties of this server)
-// *********************************************************************//
- TSpTextSelectionInformationProperties = class(TPersistent)
-  private
-    FServer:    TSpTextSelectionInformation;
-    function    GetDefaultInterface: ISpeechTextSelectionInformation;
-    constructor Create(AServer: TSpTextSelectionInformation);
-  protected
-    procedure Set_ActiveOffset(ActiveOffset: Integer);
-    function  Get_ActiveOffset: Integer;
-    procedure Set_ActiveLength(ActiveLength: Integer);
-    function  Get_ActiveLength: Integer;
-    procedure Set_SelectionOffset(SelectionOffset: Integer);
-    function  Get_SelectionOffset: Integer;
-    procedure Set_SelectionLength(SelectionLength: Integer);
-    function  Get_SelectionLength: Integer;
-  public
-    property DefaultInterface: ISpeechTextSelectionInformation read GetDefaultInterface;
-  published
-    property ActiveOffset: Integer read Get_ActiveOffset write Set_ActiveOffset;
-    property ActiveLength: Integer read Get_ActiveLength write Set_ActiveLength;
-    property SelectionOffset: Integer read Get_SelectionOffset write Set_SelectionOffset;
-    property SelectionLength: Integer read Get_SelectionLength write Set_SelectionLength;
-  end;
-{$ENDIF}
-
-
 // *********************************************************************//
 // The Class CoSpPhraseInfoBuilder provides a Create and CreateRemote method to          
 // create instances of the default interface ISpeechPhraseInfoBuilder exposed by              
@@ -5785,63 +5034,6 @@ type
     class function Create: ISpeechPhraseInfoBuilder;
     class function CreateRemote(const MachineName: string): ISpeechPhraseInfoBuilder;
   end;
-
-
-// *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TSpPhraseInfoBuilder
-// Help String      : SpPhraseInfoBuilder Class
-// Default Interface: ISpeechPhraseInfoBuilder
-// Def. Intf. DISP? : No
-// Event   Interface: 
-// TypeFlags        : (2) CanCreate
-// *********************************************************************//
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  TSpPhraseInfoBuilderProperties= class;
-{$ENDIF}
-  TSpPhraseInfoBuilder = class(TOleServer)
-  private
-    FIntf:        ISpeechPhraseInfoBuilder;
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    FProps:       TSpPhraseInfoBuilderProperties;
-    function      GetServerProperties: TSpPhraseInfoBuilderProperties;
-{$ENDIF}
-    function      GetDefaultInterface: ISpeechPhraseInfoBuilder;
-  protected
-    procedure InitServerData; override;
-  public
-    constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure Connect; override;
-    procedure ConnectTo(svrIntf: ISpeechPhraseInfoBuilder);
-    procedure Disconnect; override;
-    function  RestorePhraseFromMemory(var PhraseInMemory: OleVariant): ISpeechPhraseInfo;
-    property  DefaultInterface: ISpeechPhraseInfoBuilder read GetDefaultInterface;
-  published
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    property Server: TSpPhraseInfoBuilderProperties read GetServerProperties;
-{$ENDIF}
-  end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-// *********************************************************************//
-// OLE Server Properties Proxy Class
-// Server Object    : TSpPhraseInfoBuilder
-// (This object is used by the IDE's Property Inspector to allow editing
-//  of the properties of this server)
-// *********************************************************************//
- TSpPhraseInfoBuilderProperties = class(TPersistent)
-  private
-    FServer:    TSpPhraseInfoBuilder;
-    function    GetDefaultInterface: ISpeechPhraseInfoBuilder;
-    constructor Create(AServer: TSpPhraseInfoBuilder);
-  protected
-  public
-    property DefaultInterface: ISpeechPhraseInfoBuilder read GetDefaultInterface;
-  published
-  end;
-{$ENDIF}
-
 
 // *********************************************************************//
 // The Class CoSpAudioFormat provides a Create and CreateRemote method to          
@@ -5855,75 +5047,6 @@ type
     class function CreateRemote(const MachineName: string): ISpeechAudioFormat;
   end;
 
-
-// *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TSpAudioFormat
-// Help String      : SpAudioFormat Class
-// Default Interface: ISpeechAudioFormat
-// Def. Intf. DISP? : No
-// Event   Interface: 
-// TypeFlags        : (2) CanCreate
-// *********************************************************************//
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  TSpAudioFormatProperties= class;
-{$ENDIF}
-  TSpAudioFormat = class(TOleServer)
-  private
-    FIntf:        ISpeechAudioFormat;
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    FProps:       TSpAudioFormatProperties;
-    function      GetServerProperties: TSpAudioFormatProperties;
-{$ENDIF}
-    function      GetDefaultInterface: ISpeechAudioFormat;
-  protected
-    procedure InitServerData; override;
-    function  Get_Type_: SpeechAudioFormatType;
-    procedure Set_Type_(AudioFormat: SpeechAudioFormatType);
-    function  Get_Guid: WideString;
-    procedure Set_Guid(const Guid: WideString);
-  public
-    constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure Connect; override;
-    procedure ConnectTo(svrIntf: ISpeechAudioFormat);
-    procedure Disconnect; override;
-    function  GetWaveFormatEx: ISpeechWaveFormatEx;
-    procedure SetWaveFormatEx(const WaveFormatEx: ISpeechWaveFormatEx);
-    property  DefaultInterface: ISpeechAudioFormat read GetDefaultInterface;
-    property Guid: WideString read Get_Guid write Set_Guid;
-    property Type_: SpeechAudioFormatType read Get_Type_ write Set_Type_;
-  published
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    property Server: TSpAudioFormatProperties read GetServerProperties;
-{$ENDIF}
-  end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-// *********************************************************************//
-// OLE Server Properties Proxy Class
-// Server Object    : TSpAudioFormat
-// (This object is used by the IDE's Property Inspector to allow editing
-//  of the properties of this server)
-// *********************************************************************//
- TSpAudioFormatProperties = class(TPersistent)
-  private
-    FServer:    TSpAudioFormat;
-    function    GetDefaultInterface: ISpeechAudioFormat;
-    constructor Create(AServer: TSpAudioFormat);
-  protected
-    function  Get_Type_: SpeechAudioFormatType;
-    procedure Set_Type_(AudioFormat: SpeechAudioFormatType);
-    function  Get_Guid: WideString;
-    procedure Set_Guid(const Guid: WideString);
-  public
-    property DefaultInterface: ISpeechAudioFormat read GetDefaultInterface;
-  published
-    property Type_: SpeechAudioFormatType read Get_Type_ write Set_Type_;
-  end;
-{$ENDIF}
-
-
 // *********************************************************************//
 // The Class CoSpWaveFormatEx provides a Create and CreateRemote method to          
 // create instances of the default interface ISpeechWaveFormatEx exposed by              
@@ -5935,103 +5058,6 @@ type
     class function Create: ISpeechWaveFormatEx;
     class function CreateRemote(const MachineName: string): ISpeechWaveFormatEx;
   end;
-
-
-// *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TSpWaveFormatEx
-// Help String      : SpWaveFormatEx Class
-// Default Interface: ISpeechWaveFormatEx
-// Def. Intf. DISP? : No
-// Event   Interface: 
-// TypeFlags        : (2) CanCreate
-// *********************************************************************//
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  TSpWaveFormatExProperties= class;
-{$ENDIF}
-  TSpWaveFormatEx = class(TOleServer)
-  private
-    FIntf:        ISpeechWaveFormatEx;
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    FProps:       TSpWaveFormatExProperties;
-    function      GetServerProperties: TSpWaveFormatExProperties;
-{$ENDIF}
-    function      GetDefaultInterface: ISpeechWaveFormatEx;
-  protected
-    procedure InitServerData; override;
-    function  Get_FormatTag: Smallint;
-    procedure Set_FormatTag(FormatTag: Smallint);
-    function  Get_Channels: Smallint;
-    procedure Set_Channels(Channels: Smallint);
-    function  Get_SamplesPerSec: Integer;
-    procedure Set_SamplesPerSec(SamplesPerSec: Integer);
-    function  Get_AvgBytesPerSec: Integer;
-    procedure Set_AvgBytesPerSec(AvgBytesPerSec: Integer);
-    function  Get_BlockAlign: Smallint;
-    procedure Set_BlockAlign(BlockAlign: Smallint);
-    function  Get_BitsPerSample: Smallint;
-    procedure Set_BitsPerSample(BitsPerSample: Smallint);
-    function  Get_ExtraData: OleVariant;
-    procedure Set_ExtraData(ExtraData: OleVariant);
-  public
-    constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure Connect; override;
-    procedure ConnectTo(svrIntf: ISpeechWaveFormatEx);
-    procedure Disconnect; override;
-    property  DefaultInterface: ISpeechWaveFormatEx read GetDefaultInterface;
-    property ExtraData: OleVariant read Get_ExtraData write Set_ExtraData;
-    property FormatTag: Smallint read Get_FormatTag write Set_FormatTag;
-    property Channels: Smallint read Get_Channels write Set_Channels;
-    property SamplesPerSec: Integer read Get_SamplesPerSec write Set_SamplesPerSec;
-    property AvgBytesPerSec: Integer read Get_AvgBytesPerSec write Set_AvgBytesPerSec;
-    property BlockAlign: Smallint read Get_BlockAlign write Set_BlockAlign;
-    property BitsPerSample: Smallint read Get_BitsPerSample write Set_BitsPerSample;
-  published
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    property Server: TSpWaveFormatExProperties read GetServerProperties;
-{$ENDIF}
-  end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-// *********************************************************************//
-// OLE Server Properties Proxy Class
-// Server Object    : TSpWaveFormatEx
-// (This object is used by the IDE's Property Inspector to allow editing
-//  of the properties of this server)
-// *********************************************************************//
- TSpWaveFormatExProperties = class(TPersistent)
-  private
-    FServer:    TSpWaveFormatEx;
-    function    GetDefaultInterface: ISpeechWaveFormatEx;
-    constructor Create(AServer: TSpWaveFormatEx);
-  protected
-    function  Get_FormatTag: Smallint;
-    procedure Set_FormatTag(FormatTag: Smallint);
-    function  Get_Channels: Smallint;
-    procedure Set_Channels(Channels: Smallint);
-    function  Get_SamplesPerSec: Integer;
-    procedure Set_SamplesPerSec(SamplesPerSec: Integer);
-    function  Get_AvgBytesPerSec: Integer;
-    procedure Set_AvgBytesPerSec(AvgBytesPerSec: Integer);
-    function  Get_BlockAlign: Smallint;
-    procedure Set_BlockAlign(BlockAlign: Smallint);
-    function  Get_BitsPerSample: Smallint;
-    procedure Set_BitsPerSample(BitsPerSample: Smallint);
-    function  Get_ExtraData: OleVariant;
-    procedure Set_ExtraData(ExtraData: OleVariant);
-  public
-    property DefaultInterface: ISpeechWaveFormatEx read GetDefaultInterface;
-  published
-    property FormatTag: Smallint read Get_FormatTag write Set_FormatTag;
-    property Channels: Smallint read Get_Channels write Set_Channels;
-    property SamplesPerSec: Integer read Get_SamplesPerSec write Set_SamplesPerSec;
-    property AvgBytesPerSec: Integer read Get_AvgBytesPerSec write Set_AvgBytesPerSec;
-    property BlockAlign: Smallint read Get_BlockAlign write Set_BlockAlign;
-    property BitsPerSample: Smallint read Get_BitsPerSample write Set_BitsPerSample;
-  end;
-{$ENDIF}
-
 
 // *********************************************************************//
 // The Class CoSpInProcRecoContext provides a Create and CreateRemote method to          
@@ -6045,213 +5071,6 @@ type
     class function CreateRemote(const MachineName: string): ISpeechRecoContext;
   end;
 
-  TSpInProcRecoContextStartStream = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                               StreamPosition: OleVariant) of object;
-  TSpInProcRecoContextEndStream = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                             StreamPosition: OleVariant; 
-                                                             StreamReleased: WordBool) of object;
-  TSpInProcRecoContextBookmark = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                            StreamPosition: OleVariant; 
-                                                            BookmarkId: OleVariant; 
-                                                            Options: SpeechBookmarkOptions) of object;
-  TSpInProcRecoContextSoundStart = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                              StreamPosition: OleVariant) of object;
-  TSpInProcRecoContextSoundEnd = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                            StreamPosition: OleVariant) of object;
-  TSpInProcRecoContextPhraseStart = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                               StreamPosition: OleVariant) of object;
-  TSpInProcRecoContextRecognition = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                               StreamPosition: OleVariant; 
-                                                               RecognitionType: SpeechRecognitionType; 
-                                                               var Result: OleVariant) of object;
-  TSpInProcRecoContextHypothesis = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                              StreamPosition: OleVariant; 
-                                                              var Result: OleVariant) of object;
-  TSpInProcRecoContextPropertyNumberChange = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                                        StreamPosition: OleVariant; 
-                                                                        var PropertyName: OleVariant;
-                                                                        NewNumberValue: Integer) of object;
-  TSpInProcRecoContextPropertyStringChange = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                                        StreamPosition: OleVariant; 
-                                                                        var PropertyName: OleVariant;
-                                                                        var NewStringValue: OleVariant) of object;
-  TSpInProcRecoContextFalseRecognition = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                                    StreamPosition: OleVariant; 
-                                                                    var Result: OleVariant) of object;
-  TSpInProcRecoContextInterference = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                                StreamPosition: OleVariant; 
-                                                                Interference: SpeechInterference) of object;
-  TSpInProcRecoContextRequestUI = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                             StreamPosition: OleVariant; 
-                                                             var UIType: OleVariant) of object;
-  TSpInProcRecoContextRecognizerStateChange = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                                         StreamPosition: OleVariant; 
-                                                                         NewState: SpeechRecognizerState) of object;
-  TSpInProcRecoContextAdaptation = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                              StreamPosition: OleVariant) of object;
-  TSpInProcRecoContextRecognitionForOtherContext = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                                              StreamPosition: OleVariant) of object;
-  TSpInProcRecoContextAudioLevel = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                              StreamPosition: OleVariant; 
-                                                              AudioLevel: Integer) of object;
-  TSpInProcRecoContextEnginePrivate = procedure(Sender: TObject; StreamNumber: Integer; 
-                                                                 StreamPosition: OleVariant; 
-                                                                 EngineData: OleVariant) of object;
-
-
-// *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TSpInProcRecoContext
-// Help String      : SpInProcRecoContext Class
-// Default Interface: ISpeechRecoContext
-// Def. Intf. DISP? : No
-// Event   Interface: _ISpeechRecoContextEvents
-// TypeFlags        : (2) CanCreate
-// *********************************************************************//
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  TSpInProcRecoContextProperties= class;
-{$ENDIF}
-  TSpInProcRecoContext = class(TOleServer)
-  private
-    FOnStartStream: TSpInProcRecoContextStartStream;
-    FOnEndStream: TSpInProcRecoContextEndStream;
-    FOnBookmark: TSpInProcRecoContextBookmark;
-    FOnSoundStart: TSpInProcRecoContextSoundStart;
-    FOnSoundEnd: TSpInProcRecoContextSoundEnd;
-    FOnPhraseStart: TSpInProcRecoContextPhraseStart;
-    FOnRecognition: TSpInProcRecoContextRecognition;
-    FOnHypothesis: TSpInProcRecoContextHypothesis;
-    FOnPropertyNumberChange: TSpInProcRecoContextPropertyNumberChange;
-    FOnPropertyStringChange: TSpInProcRecoContextPropertyStringChange;
-    FOnFalseRecognition: TSpInProcRecoContextFalseRecognition;
-    FOnInterference: TSpInProcRecoContextInterference;
-    FOnRequestUI: TSpInProcRecoContextRequestUI;
-    FOnRecognizerStateChange: TSpInProcRecoContextRecognizerStateChange;
-    FOnAdaptation: TSpInProcRecoContextAdaptation;
-    FOnRecognitionForOtherContext: TSpInProcRecoContextRecognitionForOtherContext;
-    FOnAudioLevel: TSpInProcRecoContextAudioLevel;
-    FOnEnginePrivate: TSpInProcRecoContextEnginePrivate;
-    FIntf:        ISpeechRecoContext;
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    FProps:       TSpInProcRecoContextProperties;
-    function      GetServerProperties: TSpInProcRecoContextProperties;
-{$ENDIF}
-    function      GetDefaultInterface: ISpeechRecoContext;
-  protected
-    procedure InitServerData; override;
-    procedure InvokeEvent(DispID: TDispID; var Params: TVariantArray); override;
-    function  Get_Recognizer: ISpeechRecognizer;
-    function  Get_AudioInputInterferenceStatus: SpeechInterference;
-    function  Get_RequestedUIType: WideString;
-    procedure Set_Voice(const Voice: ISpeechVoice);
-    function  Get_Voice: ISpeechVoice;
-    procedure Set_AllowVoiceFormatMatchingOnNextSet(pAllow: WordBool);
-    function  Get_AllowVoiceFormatMatchingOnNextSet: WordBool;
-    procedure Set_VoicePurgeEvent(EventInterest: SpeechRecoEvents);
-    function  Get_VoicePurgeEvent: SpeechRecoEvents;
-    procedure Set_EventInterests(EventInterest: SpeechRecoEvents);
-    function  Get_EventInterests: SpeechRecoEvents;
-    procedure Set_CmdMaxAlternates(MaxAlternates: Integer);
-    function  Get_CmdMaxAlternates: Integer;
-    procedure Set_State(State: SpeechRecoContextState);
-    function  Get_State: SpeechRecoContextState;
-    procedure Set_RetainedAudio(Option: SpeechRetainedAudioOptions);
-    function  Get_RetainedAudio: SpeechRetainedAudioOptions;
-    procedure Set_RetainedAudioFormat(const Format: ISpeechAudioFormat);
-    function  Get_RetainedAudioFormat: ISpeechAudioFormat;
-  public
-    constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure Connect; override;
-    procedure ConnectTo(svrIntf: ISpeechRecoContext);
-    procedure Disconnect; override;
-    procedure Pause;
-    procedure Resume;
-    function  CreateGrammar: ISpeechRecoGrammar; overload;
-    function  CreateGrammar(GrammarId: OleVariant): ISpeechRecoGrammar; overload;
-    function  CreateResultFromMemory(var ResultBlock: OleVariant): ISpeechRecoResult;
-    procedure Bookmark(Options: SpeechBookmarkOptions; StreamPos: OleVariant; BookmarkId: OleVariant);
-    procedure SetAdaptationData(const AdaptationString: WideString);
-    property  DefaultInterface: ISpeechRecoContext read GetDefaultInterface;
-    property Recognizer: ISpeechRecognizer read Get_Recognizer;
-    property AudioInputInterferenceStatus: SpeechInterference read Get_AudioInputInterferenceStatus;
-    property RequestedUIType: WideString read Get_RequestedUIType;
-    property Voice: ISpeechVoice read Get_Voice write Set_Voice;
-    property AllowVoiceFormatMatchingOnNextSet: WordBool read Get_AllowVoiceFormatMatchingOnNextSet write Set_AllowVoiceFormatMatchingOnNextSet;
-    property RetainedAudioFormat: ISpeechAudioFormat read Get_RetainedAudioFormat write Set_RetainedAudioFormat;
-    property VoicePurgeEvent: SpeechRecoEvents read Get_VoicePurgeEvent write Set_VoicePurgeEvent;
-    property EventInterests: SpeechRecoEvents read Get_EventInterests write Set_EventInterests;
-    property CmdMaxAlternates: Integer read Get_CmdMaxAlternates write Set_CmdMaxAlternates;
-    property State: SpeechRecoContextState read Get_State write Set_State;
-    property RetainedAudio: SpeechRetainedAudioOptions read Get_RetainedAudio write Set_RetainedAudio;
-  published
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    property Server: TSpInProcRecoContextProperties read GetServerProperties;
-{$ENDIF}
-    property OnStartStream: TSpInProcRecoContextStartStream read FOnStartStream write FOnStartStream;
-    property OnEndStream: TSpInProcRecoContextEndStream read FOnEndStream write FOnEndStream;
-    property OnBookmark: TSpInProcRecoContextBookmark read FOnBookmark write FOnBookmark;
-    property OnSoundStart: TSpInProcRecoContextSoundStart read FOnSoundStart write FOnSoundStart;
-    property OnSoundEnd: TSpInProcRecoContextSoundEnd read FOnSoundEnd write FOnSoundEnd;
-    property OnPhraseStart: TSpInProcRecoContextPhraseStart read FOnPhraseStart write FOnPhraseStart;
-    property OnRecognition: TSpInProcRecoContextRecognition read FOnRecognition write FOnRecognition;
-    property OnHypothesis: TSpInProcRecoContextHypothesis read FOnHypothesis write FOnHypothesis;
-    property OnPropertyNumberChange: TSpInProcRecoContextPropertyNumberChange read FOnPropertyNumberChange write FOnPropertyNumberChange;
-    property OnPropertyStringChange: TSpInProcRecoContextPropertyStringChange read FOnPropertyStringChange write FOnPropertyStringChange;
-    property OnFalseRecognition: TSpInProcRecoContextFalseRecognition read FOnFalseRecognition write FOnFalseRecognition;
-    property OnInterference: TSpInProcRecoContextInterference read FOnInterference write FOnInterference;
-    property OnRequestUI: TSpInProcRecoContextRequestUI read FOnRequestUI write FOnRequestUI;
-    property OnRecognizerStateChange: TSpInProcRecoContextRecognizerStateChange read FOnRecognizerStateChange write FOnRecognizerStateChange;
-    property OnAdaptation: TSpInProcRecoContextAdaptation read FOnAdaptation write FOnAdaptation;
-    property OnRecognitionForOtherContext: TSpInProcRecoContextRecognitionForOtherContext read FOnRecognitionForOtherContext write FOnRecognitionForOtherContext;
-    property OnAudioLevel: TSpInProcRecoContextAudioLevel read FOnAudioLevel write FOnAudioLevel;
-    property OnEnginePrivate: TSpInProcRecoContextEnginePrivate read FOnEnginePrivate write FOnEnginePrivate;
-  end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-// *********************************************************************//
-// OLE Server Properties Proxy Class
-// Server Object    : TSpInProcRecoContext
-// (This object is used by the IDE's Property Inspector to allow editing
-//  of the properties of this server)
-// *********************************************************************//
- TSpInProcRecoContextProperties = class(TPersistent)
-  private
-    FServer:    TSpInProcRecoContext;
-    function    GetDefaultInterface: ISpeechRecoContext;
-    constructor Create(AServer: TSpInProcRecoContext);
-  protected
-    function  Get_Recognizer: ISpeechRecognizer;
-    function  Get_AudioInputInterferenceStatus: SpeechInterference;
-    function  Get_RequestedUIType: WideString;
-    procedure Set_Voice(const Voice: ISpeechVoice);
-    function  Get_Voice: ISpeechVoice;
-    procedure Set_AllowVoiceFormatMatchingOnNextSet(pAllow: WordBool);
-    function  Get_AllowVoiceFormatMatchingOnNextSet: WordBool;
-    procedure Set_VoicePurgeEvent(EventInterest: SpeechRecoEvents);
-    function  Get_VoicePurgeEvent: SpeechRecoEvents;
-    procedure Set_EventInterests(EventInterest: SpeechRecoEvents);
-    function  Get_EventInterests: SpeechRecoEvents;
-    procedure Set_CmdMaxAlternates(MaxAlternates: Integer);
-    function  Get_CmdMaxAlternates: Integer;
-    procedure Set_State(State: SpeechRecoContextState);
-    function  Get_State: SpeechRecoContextState;
-    procedure Set_RetainedAudio(Option: SpeechRetainedAudioOptions);
-    function  Get_RetainedAudio: SpeechRetainedAudioOptions;
-    procedure Set_RetainedAudioFormat(const Format: ISpeechAudioFormat);
-    function  Get_RetainedAudioFormat: ISpeechAudioFormat;
-  public
-    property DefaultInterface: ISpeechRecoContext read GetDefaultInterface;
-  published
-    property VoicePurgeEvent: SpeechRecoEvents read Get_VoicePurgeEvent write Set_VoicePurgeEvent;
-    property EventInterests: SpeechRecoEvents read Get_EventInterests write Set_EventInterests;
-    property CmdMaxAlternates: Integer read Get_CmdMaxAlternates write Set_CmdMaxAlternates;
-    property State: SpeechRecoContextState read Get_State write Set_State;
-    property RetainedAudio: SpeechRetainedAudioOptions read Get_RetainedAudio write Set_RetainedAudio;
-  end;
-{$ENDIF}
-
-
 // *********************************************************************//
 // The Class CoSpCustomStream provides a Create and CreateRemote method to          
 // create instances of the default interface ISpeechCustomStream exposed by              
@@ -6263,75 +5082,6 @@ type
     class function Create: ISpeechCustomStream;
     class function CreateRemote(const MachineName: string): ISpeechCustomStream;
   end;
-
-
-// *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TSpCustomStream
-// Help String      : SpCustomStream Class
-// Default Interface: ISpeechCustomStream
-// Def. Intf. DISP? : No
-// Event   Interface: 
-// TypeFlags        : (2) CanCreate
-// *********************************************************************//
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  TSpCustomStreamProperties= class;
-{$ENDIF}
-  TSpCustomStream = class(TOleServer)
-  private
-    FIntf:        ISpeechCustomStream;
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    FProps:       TSpCustomStreamProperties;
-    function      GetServerProperties: TSpCustomStreamProperties;
-{$ENDIF}
-    function      GetDefaultInterface: ISpeechCustomStream;
-  protected
-    procedure InitServerData; override;
-    function  Get_Format: ISpeechAudioFormat;
-    procedure Set_Format(const AudioFormat: ISpeechAudioFormat);
-    function  Get_BaseStream: IUnknown;
-    procedure Set_BaseStream(const ppUnkStream: IUnknown);
-  public
-    constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure Connect; override;
-    procedure ConnectTo(svrIntf: ISpeechCustomStream);
-    procedure Disconnect; override;
-    function  Read(out Buffer: OleVariant; NumberOfBytes: Integer): Integer;
-    function  Write(Buffer: OleVariant): Integer;
-    function  Seek(Position: OleVariant; Origin: SpeechStreamSeekPositionType): OleVariant;
-    property  DefaultInterface: ISpeechCustomStream read GetDefaultInterface;
-    property Format: ISpeechAudioFormat read Get_Format write Set_Format;
-    property BaseStream: IUnknown read Get_BaseStream write Set_BaseStream;
-  published
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    property Server: TSpCustomStreamProperties read GetServerProperties;
-{$ENDIF}
-  end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-// *********************************************************************//
-// OLE Server Properties Proxy Class
-// Server Object    : TSpCustomStream
-// (This object is used by the IDE's Property Inspector to allow editing
-//  of the properties of this server)
-// *********************************************************************//
- TSpCustomStreamProperties = class(TPersistent)
-  private
-    FServer:    TSpCustomStream;
-    function    GetDefaultInterface: ISpeechCustomStream;
-    constructor Create(AServer: TSpCustomStream);
-  protected
-    function  Get_Format: ISpeechAudioFormat;
-    procedure Set_Format(const AudioFormat: ISpeechAudioFormat);
-    function  Get_BaseStream: IUnknown;
-    procedure Set_BaseStream(const ppUnkStream: IUnknown);
-  public
-    property DefaultInterface: ISpeechCustomStream read GetDefaultInterface;
-  published
-  end;
-{$ENDIF}
-
 
 // *********************************************************************//
 // The Class CoSpFileStream provides a Create and CreateRemote method to          
@@ -6345,72 +5095,6 @@ type
     class function CreateRemote(const MachineName: string): ISpeechFileStream;
   end;
 
-
-// *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TSpFileStream
-// Help String      : SpFileStream Class
-// Default Interface: ISpeechFileStream
-// Def. Intf. DISP? : No
-// Event   Interface: 
-// TypeFlags        : (2) CanCreate
-// *********************************************************************//
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  TSpFileStreamProperties= class;
-{$ENDIF}
-  TSpFileStream = class(TOleServer)
-  private
-    FIntf:        ISpeechFileStream;
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    FProps:       TSpFileStreamProperties;
-    function      GetServerProperties: TSpFileStreamProperties;
-{$ENDIF}
-    function      GetDefaultInterface: ISpeechFileStream;
-  protected
-    procedure InitServerData; override;
-    function  Get_Format: ISpeechAudioFormat;
-    procedure Set_Format(const AudioFormat: ISpeechAudioFormat);
-  public
-    constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure Connect; override;
-    procedure ConnectTo(svrIntf: ISpeechFileStream);
-    procedure Disconnect; override;
-    function  Read(out Buffer: OleVariant; NumberOfBytes: Integer): Integer;
-    function  Write(Buffer: OleVariant): Integer;
-    function  Seek(Position: OleVariant; Origin: SpeechStreamSeekPositionType): OleVariant;
-    procedure Open(const FileName: WideString; FileMode: SpeechStreamFileMode; DoEvents: WordBool);
-    procedure Close;
-    property  DefaultInterface: ISpeechFileStream read GetDefaultInterface;
-    property Format: ISpeechAudioFormat read Get_Format write Set_Format;
-  published
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    property Server: TSpFileStreamProperties read GetServerProperties;
-{$ENDIF}
-  end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-// *********************************************************************//
-// OLE Server Properties Proxy Class
-// Server Object    : TSpFileStream
-// (This object is used by the IDE's Property Inspector to allow editing
-//  of the properties of this server)
-// *********************************************************************//
- TSpFileStreamProperties = class(TPersistent)
-  private
-    FServer:    TSpFileStream;
-    function    GetDefaultInterface: ISpeechFileStream;
-    constructor Create(AServer: TSpFileStream);
-  protected
-    function  Get_Format: ISpeechAudioFormat;
-    procedure Set_Format(const AudioFormat: ISpeechAudioFormat);
-  public
-    property DefaultInterface: ISpeechFileStream read GetDefaultInterface;
-  published
-  end;
-{$ENDIF}
-
-
 // *********************************************************************//
 // The Class CoSpMemoryStream provides a Create and CreateRemote method to          
 // create instances of the default interface ISpeechMemoryStream exposed by              
@@ -6423,77 +5107,9 @@ type
     class function CreateRemote(const MachineName: string): ISpeechMemoryStream;
   end;
 
-
-// *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TSpMemoryStream
-// Help String      : SpMemoryStream Class
-// Default Interface: ISpeechMemoryStream
-// Def. Intf. DISP? : No
-// Event   Interface: 
-// TypeFlags        : (2) CanCreate
-// *********************************************************************//
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  TSpMemoryStreamProperties= class;
-{$ENDIF}
-  TSpMemoryStream = class(TOleServer)
-  private
-    FIntf:        ISpeechMemoryStream;
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    FProps:       TSpMemoryStreamProperties;
-    function      GetServerProperties: TSpMemoryStreamProperties;
-{$ENDIF}
-    function      GetDefaultInterface: ISpeechMemoryStream;
-  protected
-    procedure InitServerData; override;
-    function  Get_Format: ISpeechAudioFormat;
-    procedure Set_Format(const AudioFormat: ISpeechAudioFormat);
-  public
-    constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure Connect; override;
-    procedure ConnectTo(svrIntf: ISpeechMemoryStream);
-    procedure Disconnect; override;
-    function  Read(out Buffer: OleVariant; NumberOfBytes: Integer): Integer;
-    function  Write(Buffer: OleVariant): Integer;
-    function  Seek(Position: OleVariant; Origin: SpeechStreamSeekPositionType): OleVariant;
-    procedure SetData(Data: OleVariant);
-    function  GetData: OleVariant;
-    property  DefaultInterface: ISpeechMemoryStream read GetDefaultInterface;
-    property Format: ISpeechAudioFormat read Get_Format write Set_Format;
-  published
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    property Server: TSpMemoryStreamProperties read GetServerProperties;
-{$ENDIF}
-  end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-// *********************************************************************//
-// OLE Server Properties Proxy Class
-// Server Object    : TSpMemoryStream
-// (This object is used by the IDE's Property Inspector to allow editing
-//  of the properties of this server)
-// *********************************************************************//
- TSpMemoryStreamProperties = class(TPersistent)
-  private
-    FServer:    TSpMemoryStream;
-    function    GetDefaultInterface: ISpeechMemoryStream;
-    constructor Create(AServer: TSpMemoryStream);
-  protected
-    function  Get_Format: ISpeechAudioFormat;
-    procedure Set_Format(const AudioFormat: ISpeechAudioFormat);
-  public
-    property DefaultInterface: ISpeechMemoryStream read GetDefaultInterface;
-  published
-  end;
-{$ENDIF}
-
-
-procedure Register;
-
 implementation
 
-uses ComObj;
+uses System.Win.ComObj;
 
 class function CoSpNotifyTranslator.Create: ISpNotifyTranslator;
 begin
@@ -6515,134 +5131,6 @@ begin
   Result := CreateRemoteComObject(MachineName, CLASS_SpObjectTokenCategory) as ISpeechObjectTokenCategory;
 end;
 
-procedure TSpObjectTokenCategory.InitServerData;
-const
-  CServerData: TServerData = (
-    ClassID:   '{A910187F-0C7A-45AC-92CC-59EDAFB77B53}';
-    IntfIID:   '{CA7EAC50-2D01-4145-86D4-5AE7D70F4469}';
-    EventIID:  '';
-    LicenseKey: nil;
-    Version: 500);
-begin
-  ServerData := @CServerData;
-end;
-
-procedure TSpObjectTokenCategory.Connect;
-var
-  punk: IUnknown;
-begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    Fintf:= punk as ISpeechObjectTokenCategory;
-  end;
-end;
-
-procedure TSpObjectTokenCategory.ConnectTo(svrIntf: ISpeechObjectTokenCategory);
-begin
-  Disconnect;
-  FIntf := svrIntf;
-end;
-
-procedure TSpObjectTokenCategory.DisConnect;
-begin
-  if Fintf <> nil then
-  begin
-    FIntf := nil;
-  end;
-end;
-
-function TSpObjectTokenCategory.GetDefaultInterface: ISpeechObjectTokenCategory;
-begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call ''Connect'' or ''ConnectTo'' before this operation');
-  Result := FIntf;
-end;
-
-constructor TSpObjectTokenCategory.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps := TSpObjectTokenCategoryProperties.Create(Self);
-{$ENDIF}
-end;
-
-destructor TSpObjectTokenCategory.Destroy;
-begin
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps.Free;
-{$ENDIF}
-  inherited Destroy;
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-function TSpObjectTokenCategory.GetServerProperties: TSpObjectTokenCategoryProperties;
-begin
-  Result := FProps;
-end;
-{$ENDIF}
-
-function  TSpObjectTokenCategory.Get_Id: WideString;
-begin
-  Result := DefaultInterface.Get_Id;
-end;
-
-procedure TSpObjectTokenCategory.Set_Default(const TokenId: WideString);
-begin
-  DefaultInterface.Set_Default(TokenId);
-end;
-
-function  TSpObjectTokenCategory.Get_Default: WideString;
-begin
-  Result := DefaultInterface.Get_Default;
-end;
-
-procedure TSpObjectTokenCategory.SetId(const Id: WideString; CreateIfNotExist: WordBool);
-begin
-  DefaultInterface.SetId(Id, CreateIfNotExist);
-end;
-
-function  TSpObjectTokenCategory.GetDataKey(Location: SpeechDataKeyLocation): ISpeechDataKey;
-begin
-  Result := DefaultInterface.GetDataKey(Location);
-end;
-
-function  TSpObjectTokenCategory.EnumerateTokens(const RequiredAttributes: WideString; 
-                                                 const OptionalAttributes: WideString): ISpeechObjectTokens;
-begin
-  Result := DefaultInterface.EnumerateTokens(RequiredAttributes, OptionalAttributes);
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-constructor TSpObjectTokenCategoryProperties.Create(AServer: TSpObjectTokenCategory);
-begin
-  inherited Create;
-  FServer := AServer;
-end;
-
-function TSpObjectTokenCategoryProperties.GetDefaultInterface: ISpeechObjectTokenCategory;
-begin
-  Result := FServer.DefaultInterface;
-end;
-
-function  TSpObjectTokenCategoryProperties.Get_Id: WideString;
-begin
-  Result := DefaultInterface.Get_Id;
-end;
-
-procedure TSpObjectTokenCategoryProperties.Set_Default(const TokenId: WideString);
-begin
-  DefaultInterface.Set_Default(TokenId);
-end;
-
-function  TSpObjectTokenCategoryProperties.Get_Default: WideString;
-begin
-  Result := DefaultInterface.Get_Default;
-end;
-
-{$ENDIF}
-
 class function CoSpObjectToken.Create: ISpeechObjectToken;
 begin
   Result := CreateComObject(CLASS_SpObjectToken) as ISpeechObjectToken;
@@ -6652,175 +5140,6 @@ class function CoSpObjectToken.CreateRemote(const MachineName: string): ISpeechO
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_SpObjectToken) as ISpeechObjectToken;
 end;
-
-procedure TSpObjectToken.InitServerData;
-const
-  CServerData: TServerData = (
-    ClassID:   '{EF411752-3736-4CB4-9C8C-8EF4CCB58EFE}';
-    IntfIID:   '{C74A3ADC-B727-4500-A84A-B526721C8B8C}';
-    EventIID:  '';
-    LicenseKey: nil;
-    Version: 500);
-begin
-  ServerData := @CServerData;
-end;
-
-procedure TSpObjectToken.Connect;
-var
-  punk: IUnknown;
-begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    Fintf:= punk as ISpeechObjectToken;
-  end;
-end;
-
-procedure TSpObjectToken.ConnectTo(svrIntf: ISpeechObjectToken);
-begin
-  Disconnect;
-  FIntf := svrIntf;
-end;
-
-procedure TSpObjectToken.DisConnect;
-begin
-  if Fintf <> nil then
-  begin
-    FIntf := nil;
-  end;
-end;
-
-function TSpObjectToken.GetDefaultInterface: ISpeechObjectToken;
-begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call ''Connect'' or ''ConnectTo'' before this operation');
-  Result := FIntf;
-end;
-
-constructor TSpObjectToken.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps := TSpObjectTokenProperties.Create(Self);
-{$ENDIF}
-end;
-
-destructor TSpObjectToken.Destroy;
-begin
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps.Free;
-{$ENDIF}
-  inherited Destroy;
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-function TSpObjectToken.GetServerProperties: TSpObjectTokenProperties;
-begin
-  Result := FProps;
-end;
-{$ENDIF}
-
-function  TSpObjectToken.Get_Id: WideString;
-begin
-  Result := DefaultInterface.Get_Id;
-end;
-
-function  TSpObjectToken.Get_DataKey: ISpeechDataKey;
-begin
-  Result := DefaultInterface.Get_DataKey;
-end;
-
-function  TSpObjectToken.Get_Category: ISpeechObjectTokenCategory;
-begin
-  Result := DefaultInterface.Get_Category;
-end;
-
-function  TSpObjectToken.GetDescription(Locale: Integer): WideString;
-begin
-  Result := DefaultInterface.GetDescription(Locale);
-end;
-
-procedure TSpObjectToken.SetId(const Id: WideString; const CategoryID: WideString; 
-                               CreateIfNotExist: WordBool);
-begin
-  DefaultInterface.SetId(Id, CategoryID, CreateIfNotExist);
-end;
-
-function  TSpObjectToken.GetAttribute(const AttributeName: WideString): WideString;
-begin
-  Result := DefaultInterface.GetAttribute(AttributeName);
-end;
-
-function  TSpObjectToken.CreateInstance(const pUnkOuter: IUnknown; ClsContext: SpeechTokenContext): IUnknown;
-begin
-  Result := DefaultInterface.CreateInstance(pUnkOuter, ClsContext);
-end;
-
-procedure TSpObjectToken.Remove(const ObjectStorageCLSID: WideString);
-begin
-  DefaultInterface.Remove(ObjectStorageCLSID);
-end;
-
-function  TSpObjectToken.GetStorageFileName(const ObjectStorageCLSID: WideString; 
-                                            const KeyName: WideString; const FileName: WideString; 
-                                            Folder: SpeechTokenShellFolder): WideString;
-begin
-  Result := DefaultInterface.GetStorageFileName(ObjectStorageCLSID, KeyName, FileName, Folder);
-end;
-
-procedure TSpObjectToken.RemoveStorageFileName(const ObjectStorageCLSID: WideString; 
-                                               const KeyName: WideString; DeleteFile: WordBool);
-begin
-  DefaultInterface.RemoveStorageFileName(ObjectStorageCLSID, KeyName, DeleteFile);
-end;
-
-function  TSpObjectToken.IsUISupported(const TypeOfUI: WideString; var ExtraData: OleVariant; 
-                                       const Object_: IUnknown): WordBool;
-begin
-  Result := DefaultInterface.IsUISupported(TypeOfUI, ExtraData, Object_);
-end;
-
-procedure TSpObjectToken.DisplayUI(hWnd: Integer; const Title: WideString; 
-                                   const TypeOfUI: WideString; var ExtraData: OleVariant; 
-                                   const Object_: IUnknown);
-begin
-  DefaultInterface.DisplayUI(hWnd, Title, TypeOfUI, ExtraData, Object_);
-end;
-
-function  TSpObjectToken.MatchesAttributes(const Attributes: WideString): WordBool;
-begin
-  Result := DefaultInterface.MatchesAttributes(Attributes);
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-constructor TSpObjectTokenProperties.Create(AServer: TSpObjectToken);
-begin
-  inherited Create;
-  FServer := AServer;
-end;
-
-function TSpObjectTokenProperties.GetDefaultInterface: ISpeechObjectToken;
-begin
-  Result := FServer.DefaultInterface;
-end;
-
-function  TSpObjectTokenProperties.Get_Id: WideString;
-begin
-  Result := DefaultInterface.Get_Id;
-end;
-
-function  TSpObjectTokenProperties.Get_DataKey: ISpeechDataKey;
-begin
-  Result := DefaultInterface.Get_DataKey;
-end;
-
-function  TSpObjectTokenProperties.Get_Category: ISpeechObjectTokenCategory;
-begin
-  Result := DefaultInterface.Get_Category;
-end;
-
-{$ENDIF}
 
 class function CoSpResourceManager.Create: ISpResourceManager;
 begin
@@ -6862,258 +5181,6 @@ begin
   Result := CreateRemoteComObject(MachineName, CLASS_SpMMAudioIn) as ISpeechMMSysAudio;
 end;
 
-procedure TSpMMAudioIn.InitServerData;
-const
-  CServerData: TServerData = (
-    ClassID:   '{CF3D2E50-53F2-11D2-960C-00C04F8EE628}';
-    IntfIID:   '{3C76AF6D-1FD7-4831-81D1-3B71D5A13C44}';
-    EventIID:  '';
-    LicenseKey: nil;
-    Version: 500);
-begin
-  ServerData := @CServerData;
-end;
-
-procedure TSpMMAudioIn.Connect;
-var
-  punk: IUnknown;
-begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    Fintf:= punk as ISpeechMMSysAudio;
-  end;
-end;
-
-procedure TSpMMAudioIn.ConnectTo(svrIntf: ISpeechMMSysAudio);
-begin
-  Disconnect;
-  FIntf := svrIntf;
-end;
-
-procedure TSpMMAudioIn.DisConnect;
-begin
-  if Fintf <> nil then
-  begin
-    FIntf := nil;
-  end;
-end;
-
-function TSpMMAudioIn.GetDefaultInterface: ISpeechMMSysAudio;
-begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call ''Connect'' or ''ConnectTo'' before this operation');
-  Result := FIntf;
-end;
-
-constructor TSpMMAudioIn.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps := TSpMMAudioInProperties.Create(Self);
-{$ENDIF}
-end;
-
-destructor TSpMMAudioIn.Destroy;
-begin
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps.Free;
-{$ENDIF}
-  inherited Destroy;
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-function TSpMMAudioIn.GetServerProperties: TSpMMAudioInProperties;
-begin
-  Result := FProps;
-end;
-{$ENDIF}
-
-function  TSpMMAudioIn.Get_Format: ISpeechAudioFormat;
-begin
-  Result := DefaultInterface.Get_Format;
-end;
-
-procedure TSpMMAudioIn.Set_Format(const AudioFormat: ISpeechAudioFormat);
-begin
-  DefaultInterface.Set_Format(AudioFormat);
-end;
-
-function  TSpMMAudioIn.Get_Status: ISpeechAudioStatus;
-begin
-  Result := DefaultInterface.Get_Status;
-end;
-
-function  TSpMMAudioIn.Get_BufferInfo: ISpeechAudioBufferInfo;
-begin
-  Result := DefaultInterface.Get_BufferInfo;
-end;
-
-function  TSpMMAudioIn.Get_DefaultFormat: ISpeechAudioFormat;
-begin
-  Result := DefaultInterface.Get_DefaultFormat;
-end;
-
-function  TSpMMAudioIn.Get_Volume: Integer;
-begin
-  Result := DefaultInterface.Get_Volume;
-end;
-
-procedure TSpMMAudioIn.Set_Volume(Volume: Integer);
-begin
-  DefaultInterface.Set_Volume(Volume);
-end;
-
-function  TSpMMAudioIn.Get_BufferNotifySize: Integer;
-begin
-  Result := DefaultInterface.Get_BufferNotifySize;
-end;
-
-procedure TSpMMAudioIn.Set_BufferNotifySize(BufferNotifySize: Integer);
-begin
-  DefaultInterface.Set_BufferNotifySize(BufferNotifySize);
-end;
-
-function  TSpMMAudioIn.Get_EventHandle: Integer;
-begin
-  Result := DefaultInterface.Get_EventHandle;
-end;
-
-function  TSpMMAudioIn.Get_DeviceId: Integer;
-begin
-  Result := DefaultInterface.Get_DeviceId;
-end;
-
-procedure TSpMMAudioIn.Set_DeviceId(DeviceId: Integer);
-begin
-  DefaultInterface.Set_DeviceId(DeviceId);
-end;
-
-function  TSpMMAudioIn.Get_LineId: Integer;
-begin
-  Result := DefaultInterface.Get_LineId;
-end;
-
-procedure TSpMMAudioIn.Set_LineId(LineId: Integer);
-begin
-  DefaultInterface.Set_LineId(LineId);
-end;
-
-function  TSpMMAudioIn.Get_MMHandle: Integer;
-begin
-  Result := DefaultInterface.Get_MMHandle;
-end;
-
-function  TSpMMAudioIn.Read(out Buffer: OleVariant; NumberOfBytes: Integer): Integer;
-begin
-  Result := DefaultInterface.Read(Buffer, NumberOfBytes);
-end;
-
-function  TSpMMAudioIn.Write(Buffer: OleVariant): Integer;
-begin
-  Result := DefaultInterface.Write(Buffer);
-end;
-
-function  TSpMMAudioIn.Seek(Position: OleVariant; Origin: SpeechStreamSeekPositionType): OleVariant;
-begin
-  Result := DefaultInterface.Seek(Position, Origin);
-end;
-
-procedure TSpMMAudioIn.SetState(State: SpeechAudioState);
-begin
-  DefaultInterface.SetState(State);
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-constructor TSpMMAudioInProperties.Create(AServer: TSpMMAudioIn);
-begin
-  inherited Create;
-  FServer := AServer;
-end;
-
-function TSpMMAudioInProperties.GetDefaultInterface: ISpeechMMSysAudio;
-begin
-  Result := FServer.DefaultInterface;
-end;
-
-function  TSpMMAudioInProperties.Get_Format: ISpeechAudioFormat;
-begin
-  Result := DefaultInterface.Get_Format;
-end;
-
-procedure TSpMMAudioInProperties.Set_Format(const AudioFormat: ISpeechAudioFormat);
-begin
-  DefaultInterface.Set_Format(AudioFormat);
-end;
-
-function  TSpMMAudioInProperties.Get_Status: ISpeechAudioStatus;
-begin
-  Result := DefaultInterface.Get_Status;
-end;
-
-function  TSpMMAudioInProperties.Get_BufferInfo: ISpeechAudioBufferInfo;
-begin
-  Result := DefaultInterface.Get_BufferInfo;
-end;
-
-function  TSpMMAudioInProperties.Get_DefaultFormat: ISpeechAudioFormat;
-begin
-  Result := DefaultInterface.Get_DefaultFormat;
-end;
-
-function  TSpMMAudioInProperties.Get_Volume: Integer;
-begin
-  Result := DefaultInterface.Get_Volume;
-end;
-
-procedure TSpMMAudioInProperties.Set_Volume(Volume: Integer);
-begin
-  DefaultInterface.Set_Volume(Volume);
-end;
-
-function  TSpMMAudioInProperties.Get_BufferNotifySize: Integer;
-begin
-  Result := DefaultInterface.Get_BufferNotifySize;
-end;
-
-procedure TSpMMAudioInProperties.Set_BufferNotifySize(BufferNotifySize: Integer);
-begin
-  DefaultInterface.Set_BufferNotifySize(BufferNotifySize);
-end;
-
-function  TSpMMAudioInProperties.Get_EventHandle: Integer;
-begin
-  Result := DefaultInterface.Get_EventHandle;
-end;
-
-function  TSpMMAudioInProperties.Get_DeviceId: Integer;
-begin
-  Result := DefaultInterface.Get_DeviceId;
-end;
-
-procedure TSpMMAudioInProperties.Set_DeviceId(DeviceId: Integer);
-begin
-  DefaultInterface.Set_DeviceId(DeviceId);
-end;
-
-function  TSpMMAudioInProperties.Get_LineId: Integer;
-begin
-  Result := DefaultInterface.Get_LineId;
-end;
-
-procedure TSpMMAudioInProperties.Set_LineId(LineId: Integer);
-begin
-  DefaultInterface.Set_LineId(LineId);
-end;
-
-function  TSpMMAudioInProperties.Get_MMHandle: Integer;
-begin
-  Result := DefaultInterface.Get_MMHandle;
-end;
-
-{$ENDIF}
-
 class function CoSpMMAudioOut.Create: ISpeechMMSysAudio;
 begin
   Result := CreateComObject(CLASS_SpMMAudioOut) as ISpeechMMSysAudio;
@@ -7122,268 +5189,6 @@ end;
 class function CoSpMMAudioOut.CreateRemote(const MachineName: string): ISpeechMMSysAudio;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_SpMMAudioOut) as ISpeechMMSysAudio;
-end;
-
-procedure TSpMMAudioOut.InitServerData;
-const
-  CServerData: TServerData = (
-    ClassID:   '{A8C680EB-3D32-11D2-9EE7-00C04F797396}';
-    IntfIID:   '{3C76AF6D-1FD7-4831-81D1-3B71D5A13C44}';
-    EventIID:  '';
-    LicenseKey: nil;
-    Version: 500);
-begin
-  ServerData := @CServerData;
-end;
-
-procedure TSpMMAudioOut.Connect;
-var
-  punk: IUnknown;
-begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    Fintf:= punk as ISpeechMMSysAudio;
-  end;
-end;
-
-procedure TSpMMAudioOut.ConnectTo(svrIntf: ISpeechMMSysAudio);
-begin
-  Disconnect;
-  FIntf := svrIntf;
-end;
-
-procedure TSpMMAudioOut.DisConnect;
-begin
-  if Fintf <> nil then
-  begin
-    FIntf := nil;
-  end;
-end;
-
-function TSpMMAudioOut.GetDefaultInterface: ISpeechMMSysAudio;
-begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call ''Connect'' or ''ConnectTo'' before this operation');
-  Result := FIntf;
-end;
-
-constructor TSpMMAudioOut.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps := TSpMMAudioOutProperties.Create(Self);
-{$ENDIF}
-end;
-
-destructor TSpMMAudioOut.Destroy;
-begin
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps.Free;
-{$ENDIF}
-  inherited Destroy;
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-function TSpMMAudioOut.GetServerProperties: TSpMMAudioOutProperties;
-begin
-  Result := FProps;
-end;
-{$ENDIF}
-
-function  TSpMMAudioOut.Get_Format: ISpeechAudioFormat;
-begin
-  Result := DefaultInterface.Get_Format;
-end;
-
-procedure TSpMMAudioOut.Set_Format(const AudioFormat: ISpeechAudioFormat);
-begin
-  DefaultInterface.Set_Format(AudioFormat);
-end;
-
-function  TSpMMAudioOut.Get_Status: ISpeechAudioStatus;
-begin
-  Result := DefaultInterface.Get_Status;
-end;
-
-function  TSpMMAudioOut.Get_BufferInfo: ISpeechAudioBufferInfo;
-begin
-  Result := DefaultInterface.Get_BufferInfo;
-end;
-
-function  TSpMMAudioOut.Get_DefaultFormat: ISpeechAudioFormat;
-begin
-  Result := DefaultInterface.Get_DefaultFormat;
-end;
-
-function  TSpMMAudioOut.Get_Volume: Integer;
-begin
-  Result := DefaultInterface.Get_Volume;
-end;
-
-procedure TSpMMAudioOut.Set_Volume(Volume: Integer);
-begin
-  DefaultInterface.Set_Volume(Volume);
-end;
-
-function  TSpMMAudioOut.Get_BufferNotifySize: Integer;
-begin
-  Result := DefaultInterface.Get_BufferNotifySize;
-end;
-
-procedure TSpMMAudioOut.Set_BufferNotifySize(BufferNotifySize: Integer);
-begin
-  DefaultInterface.Set_BufferNotifySize(BufferNotifySize);
-end;
-
-function  TSpMMAudioOut.Get_EventHandle: Integer;
-begin
-  Result := DefaultInterface.Get_EventHandle;
-end;
-
-function  TSpMMAudioOut.Get_DeviceId: Integer;
-begin
-  Result := DefaultInterface.Get_DeviceId;
-end;
-
-procedure TSpMMAudioOut.Set_DeviceId(DeviceId: Integer);
-begin
-  DefaultInterface.Set_DeviceId(DeviceId);
-end;
-
-function  TSpMMAudioOut.Get_LineId: Integer;
-begin
-  Result := DefaultInterface.Get_LineId;
-end;
-
-procedure TSpMMAudioOut.Set_LineId(LineId: Integer);
-begin
-  DefaultInterface.Set_LineId(LineId);
-end;
-
-function  TSpMMAudioOut.Get_MMHandle: Integer;
-begin
-  Result := DefaultInterface.Get_MMHandle;
-end;
-
-function  TSpMMAudioOut.Read(out Buffer: OleVariant; NumberOfBytes: Integer): Integer;
-begin
-  Result := DefaultInterface.Read(Buffer, NumberOfBytes);
-end;
-
-function  TSpMMAudioOut.Write(Buffer: OleVariant): Integer;
-begin
-  Result := DefaultInterface.Write(Buffer);
-end;
-
-function  TSpMMAudioOut.Seek(Position: OleVariant; Origin: SpeechStreamSeekPositionType): OleVariant;
-begin
-  Result := DefaultInterface.Seek(Position, Origin);
-end;
-
-procedure TSpMMAudioOut.SetState(State: SpeechAudioState);
-begin
-  DefaultInterface.SetState(State);
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-constructor TSpMMAudioOutProperties.Create(AServer: TSpMMAudioOut);
-begin
-  inherited Create;
-  FServer := AServer;
-end;
-
-function TSpMMAudioOutProperties.GetDefaultInterface: ISpeechMMSysAudio;
-begin
-  Result := FServer.DefaultInterface;
-end;
-
-function  TSpMMAudioOutProperties.Get_Format: ISpeechAudioFormat;
-begin
-  Result := DefaultInterface.Get_Format;
-end;
-
-procedure TSpMMAudioOutProperties.Set_Format(const AudioFormat: ISpeechAudioFormat);
-begin
-  DefaultInterface.Set_Format(AudioFormat);
-end;
-
-function  TSpMMAudioOutProperties.Get_Status: ISpeechAudioStatus;
-begin
-  Result := DefaultInterface.Get_Status;
-end;
-
-function  TSpMMAudioOutProperties.Get_BufferInfo: ISpeechAudioBufferInfo;
-begin
-  Result := DefaultInterface.Get_BufferInfo;
-end;
-
-function  TSpMMAudioOutProperties.Get_DefaultFormat: ISpeechAudioFormat;
-begin
-  Result := DefaultInterface.Get_DefaultFormat;
-end;
-
-function  TSpMMAudioOutProperties.Get_Volume: Integer;
-begin
-  Result := DefaultInterface.Get_Volume;
-end;
-
-procedure TSpMMAudioOutProperties.Set_Volume(Volume: Integer);
-begin
-  DefaultInterface.Set_Volume(Volume);
-end;
-
-function  TSpMMAudioOutProperties.Get_BufferNotifySize: Integer;
-begin
-  Result := DefaultInterface.Get_BufferNotifySize;
-end;
-
-procedure TSpMMAudioOutProperties.Set_BufferNotifySize(BufferNotifySize: Integer);
-begin
-  DefaultInterface.Set_BufferNotifySize(BufferNotifySize);
-end;
-
-function  TSpMMAudioOutProperties.Get_EventHandle: Integer;
-begin
-  Result := DefaultInterface.Get_EventHandle;
-end;
-
-function  TSpMMAudioOutProperties.Get_DeviceId: Integer;
-begin
-  Result := DefaultInterface.Get_DeviceId;
-end;
-
-procedure TSpMMAudioOutProperties.Set_DeviceId(DeviceId: Integer);
-begin
-  DefaultInterface.Set_DeviceId(DeviceId);
-end;
-
-function  TSpMMAudioOutProperties.Get_LineId: Integer;
-begin
-  Result := DefaultInterface.Get_LineId;
-end;
-
-procedure TSpMMAudioOutProperties.Set_LineId(LineId: Integer);
-begin
-  DefaultInterface.Set_LineId(LineId);
-end;
-
-function  TSpMMAudioOutProperties.Get_MMHandle: Integer;
-begin
-  Result := DefaultInterface.Get_MMHandle;
-end;
-
-{$ENDIF}
-
-class function CoSpRecPlayAudio.Create: ISpObjectWithToken;
-begin
-  Result := CreateComObject(CLASS_SpRecPlayAudio) as ISpObjectWithToken;
-end;
-
-class function CoSpRecPlayAudio.CreateRemote(const MachineName: string): ISpObjectWithToken;
-begin
-  Result := CreateRemoteComObject(MachineName, CLASS_SpRecPlayAudio) as ISpObjectWithToken;
 end;
 
 class function CoSpStream.Create: ISpStream;
@@ -7406,397 +5211,6 @@ begin
   Result := CreateRemoteComObject(MachineName, CLASS_SpVoice) as ISpeechVoice;
 end;
 
-procedure TSpVoice.InitServerData;
-const
-  CServerData: TServerData = (
-    ClassID:   '{96749377-3391-11D2-9EE3-00C04F797396}';
-    IntfIID:   '{269316D8-57BD-11D2-9EEE-00C04F797396}';
-    EventIID:  '{A372ACD1-3BEF-4BBD-8FFB-CB3E2B416AF8}';
-    LicenseKey: nil;
-    Version: 500);
-begin
-  ServerData := @CServerData;
-end;
-
-procedure TSpVoice.Connect;
-var
-  punk: IUnknown;
-begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    ConnectEvents(punk);
-    Fintf:= punk as ISpeechVoice;
-  end;
-end;
-
-procedure TSpVoice.ConnectTo(svrIntf: ISpeechVoice);
-begin
-  Disconnect;
-  FIntf := svrIntf;
-  ConnectEvents(FIntf);
-end;
-
-procedure TSpVoice.DisConnect;
-begin
-  if Fintf <> nil then
-  begin
-    DisconnectEvents(FIntf);
-    FIntf := nil;
-  end;
-end;
-
-function TSpVoice.GetDefaultInterface: ISpeechVoice;
-begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call ''Connect'' or ''ConnectTo'' before this operation');
-  Result := FIntf;
-end;
-
-constructor TSpVoice.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps := TSpVoiceProperties.Create(Self);
-{$ENDIF}
-end;
-
-destructor TSpVoice.Destroy;
-begin
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps.Free;
-{$ENDIF}
-  inherited Destroy;
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-function TSpVoice.GetServerProperties: TSpVoiceProperties;
-begin
-  Result := FProps;
-end;
-{$ENDIF}
-
-procedure TSpVoice.InvokeEvent(DispID: TDispID; var Params: TVariantArray);
-begin
-  case DispID of
-    -1: Exit;  // DISPID_UNKNOWN
-   1: if Assigned(FOnStartStream) then
-            FOnStartStream(Self, Params[0] {Integer}, Params[1] {OleVariant});
-   2: if Assigned(FOnEndStream) then
-            FOnEndStream(Self, Params[0] {Integer}, Params[1] {OleVariant});
-   3: if Assigned(FOnVoiceChange) then
-            FOnVoiceChange(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {const ISpeechObjectToken});
-   4: if Assigned(FOnBookmark) then
-            FOnBookmark(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {const WideString}, Params[3] {Integer});
-   5: if Assigned(FOnWord) then
-            FOnWord(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {Integer}, Params[3] {Integer});
-   7: if Assigned(FOnSentence) then
-            FOnSentence(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {Integer}, Params[3] {Integer});
-   6: if Assigned(FOnPhoneme) then
-            FOnPhoneme(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {Integer}, Params[3] {Smallint}, Params[4] {SpeechVisemeFeature}, Params[5] {Smallint});
-   8: if Assigned(FOnViseme) then
-            FOnViseme(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {Integer}, Params[3] {SpeechVisemeType}, Params[4] {SpeechVisemeFeature}, Params[5] {SpeechVisemeType});
-   9: if Assigned(FOnAudioLevel) then
-            FOnAudioLevel(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {Integer});
-   10: if Assigned(FOnEnginePrivate) then
-            FOnEnginePrivate(Self, Params[0] {Integer}, Params[1] {Integer}, Params[2] {OleVariant});
-  end; {case DispID}
-end;
-
-function  TSpVoice.Get_Status: ISpeechVoiceStatus;
-begin
-  Result := DefaultInterface.Get_Status;
-end;
-
-function  TSpVoice.Get_Voice: ISpeechObjectToken;
-begin
-  Result := DefaultInterface.Get_Voice;
-end;
-
-procedure TSpVoice.Set_Voice(const Voice: ISpeechObjectToken);
-begin
-  DefaultInterface.Set_Voice(Voice);
-end;
-
-function  TSpVoice.Get_AudioOutput: ISpeechObjectToken;
-begin
-  Result := DefaultInterface.Get_AudioOutput;
-end;
-
-procedure TSpVoice.Set_AudioOutput(const AudioOutput: ISpeechObjectToken);
-begin
-  DefaultInterface.Set_AudioOutput(AudioOutput);
-end;
-
-function  TSpVoice.Get_AudioOutputStream: ISpeechBaseStream;
-begin
-  Result := DefaultInterface.Get_AudioOutputStream;
-end;
-
-procedure TSpVoice.Set_AudioOutputStream(const AudioOutputStream: ISpeechBaseStream);
-begin
-  DefaultInterface.Set_AudioOutputStream(AudioOutputStream);
-end;
-
-function  TSpVoice.Get_Rate: Integer;
-begin
-  Result := DefaultInterface.Get_Rate;
-end;
-
-procedure TSpVoice.Set_Rate(Rate: Integer);
-begin
-  DefaultInterface.Set_Rate(Rate);
-end;
-
-function  TSpVoice.Get_Volume: Integer;
-begin
-  Result := DefaultInterface.Get_Volume;
-end;
-
-procedure TSpVoice.Set_Volume(Volume: Integer);
-begin
-  DefaultInterface.Set_Volume(Volume);
-end;
-
-procedure TSpVoice.Set_AllowAudioOutputFormatChangesOnNextSet(Allow: WordBool);
-begin
-  DefaultInterface.Set_AllowAudioOutputFormatChangesOnNextSet(Allow);
-end;
-
-function  TSpVoice.Get_AllowAudioOutputFormatChangesOnNextSet: WordBool;
-begin
-  Result := DefaultInterface.Get_AllowAudioOutputFormatChangesOnNextSet;
-end;
-
-function  TSpVoice.Get_EventInterests: SpeechVoiceEvents;
-begin
-  Result := DefaultInterface.Get_EventInterests;
-end;
-
-procedure TSpVoice.Set_EventInterests(EventInterestFlags: SpeechVoiceEvents);
-begin
-  DefaultInterface.Set_EventInterests(EventInterestFlags);
-end;
-
-procedure TSpVoice.Set_Priority(Priority: SpeechVoicePriority);
-begin
-  DefaultInterface.Set_Priority(Priority);
-end;
-
-function  TSpVoice.Get_Priority: SpeechVoicePriority;
-begin
-  Result := DefaultInterface.Get_Priority;
-end;
-
-procedure TSpVoice.Set_AlertBoundary(Boundary: SpeechVoiceEvents);
-begin
-  DefaultInterface.Set_AlertBoundary(Boundary);
-end;
-
-function  TSpVoice.Get_AlertBoundary: SpeechVoiceEvents;
-begin
-  Result := DefaultInterface.Get_AlertBoundary;
-end;
-
-procedure TSpVoice.Set_SynchronousSpeakTimeout(msTimeout: Integer);
-begin
-  DefaultInterface.Set_SynchronousSpeakTimeout(msTimeout);
-end;
-
-function  TSpVoice.Get_SynchronousSpeakTimeout: Integer;
-begin
-  Result := DefaultInterface.Get_SynchronousSpeakTimeout;
-end;
-
-function  TSpVoice.Speak(const Text: WideString; Flags: SpeechVoiceSpeakFlags): Integer;
-begin
-  Result := DefaultInterface.Speak(Text, Flags);
-end;
-
-function  TSpVoice.SpeakStream(const Stream: ISpeechBaseStream; Flags: SpeechVoiceSpeakFlags): Integer;
-begin
-  Result := DefaultInterface.SpeakStream(Stream, Flags);
-end;
-
-procedure TSpVoice.Pause;
-begin
-  DefaultInterface.Pause;
-end;
-
-procedure TSpVoice.Resume;
-begin
-  DefaultInterface.Resume;
-end;
-
-function  TSpVoice.Skip(const Type_: WideString; NumItems: Integer): Integer;
-begin
-  Result := DefaultInterface.Skip(Type_, NumItems);
-end;
-
-function  TSpVoice.GetVoices(const RequiredAttributes: WideString; 
-                             const OptionalAttributes: WideString): ISpeechObjectTokens;
-begin
-  Result := DefaultInterface.GetVoices(RequiredAttributes, OptionalAttributes);
-end;
-
-function  TSpVoice.GetAudioOutputs(const RequiredAttributes: WideString; 
-                                   const OptionalAttributes: WideString): ISpeechObjectTokens;
-begin
-  Result := DefaultInterface.GetAudioOutputs(RequiredAttributes, OptionalAttributes);
-end;
-
-function  TSpVoice.WaitUntilDone(msTimeout: Integer): WordBool;
-begin
-  Result := DefaultInterface.WaitUntilDone(msTimeout);
-end;
-
-function  TSpVoice.SpeakCompleteEvent: Integer;
-begin
-  Result := DefaultInterface.SpeakCompleteEvent;
-end;
-
-function  TSpVoice.IsUISupported(const TypeOfUI: WideString): WordBool;
-begin
-  Result := DefaultInterface.IsUISupported(TypeOfUI, EmptyParam);
-end;
-
-function  TSpVoice.IsUISupported(const TypeOfUI: WideString; var ExtraData: OleVariant): WordBool;
-begin
-  Result := DefaultInterface.IsUISupported(TypeOfUI, ExtraData);
-end;
-
-procedure TSpVoice.DisplayUI(hWndParent: Integer; const Title: WideString; 
-                             const TypeOfUI: WideString);
-begin
-  DefaultInterface.DisplayUI(hWndParent, Title, TypeOfUI, EmptyParam);
-end;
-
-procedure TSpVoice.DisplayUI(hWndParent: Integer; const Title: WideString; 
-                             const TypeOfUI: WideString; var ExtraData: OleVariant);
-begin
-  DefaultInterface.DisplayUI(hWndParent, Title, TypeOfUI, ExtraData);
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-constructor TSpVoiceProperties.Create(AServer: TSpVoice);
-begin
-  inherited Create;
-  FServer := AServer;
-end;
-
-function TSpVoiceProperties.GetDefaultInterface: ISpeechVoice;
-begin
-  Result := FServer.DefaultInterface;
-end;
-
-function  TSpVoiceProperties.Get_Status: ISpeechVoiceStatus;
-begin
-  Result := DefaultInterface.Get_Status;
-end;
-
-function  TSpVoiceProperties.Get_Voice: ISpeechObjectToken;
-begin
-  Result := DefaultInterface.Get_Voice;
-end;
-
-procedure TSpVoiceProperties.Set_Voice(const Voice: ISpeechObjectToken);
-begin
-  DefaultInterface.Set_Voice(Voice);
-end;
-
-function  TSpVoiceProperties.Get_AudioOutput: ISpeechObjectToken;
-begin
-  Result := DefaultInterface.Get_AudioOutput;
-end;
-
-procedure TSpVoiceProperties.Set_AudioOutput(const AudioOutput: ISpeechObjectToken);
-begin
-  DefaultInterface.Set_AudioOutput(AudioOutput);
-end;
-
-function  TSpVoiceProperties.Get_AudioOutputStream: ISpeechBaseStream;
-begin
-  Result := DefaultInterface.Get_AudioOutputStream;
-end;
-
-procedure TSpVoiceProperties.Set_AudioOutputStream(const AudioOutputStream: ISpeechBaseStream);
-begin
-  DefaultInterface.Set_AudioOutputStream(AudioOutputStream);
-end;
-
-function  TSpVoiceProperties.Get_Rate: Integer;
-begin
-  Result := DefaultInterface.Get_Rate;
-end;
-
-procedure TSpVoiceProperties.Set_Rate(Rate: Integer);
-begin
-  DefaultInterface.Set_Rate(Rate);
-end;
-
-function  TSpVoiceProperties.Get_Volume: Integer;
-begin
-  Result := DefaultInterface.Get_Volume;
-end;
-
-procedure TSpVoiceProperties.Set_Volume(Volume: Integer);
-begin
-  DefaultInterface.Set_Volume(Volume);
-end;
-
-procedure TSpVoiceProperties.Set_AllowAudioOutputFormatChangesOnNextSet(Allow: WordBool);
-begin
-  DefaultInterface.Set_AllowAudioOutputFormatChangesOnNextSet(Allow);
-end;
-
-function  TSpVoiceProperties.Get_AllowAudioOutputFormatChangesOnNextSet: WordBool;
-begin
-  Result := DefaultInterface.Get_AllowAudioOutputFormatChangesOnNextSet;
-end;
-
-function  TSpVoiceProperties.Get_EventInterests: SpeechVoiceEvents;
-begin
-  Result := DefaultInterface.Get_EventInterests;
-end;
-
-procedure TSpVoiceProperties.Set_EventInterests(EventInterestFlags: SpeechVoiceEvents);
-begin
-  DefaultInterface.Set_EventInterests(EventInterestFlags);
-end;
-
-procedure TSpVoiceProperties.Set_Priority(Priority: SpeechVoicePriority);
-begin
-  DefaultInterface.Set_Priority(Priority);
-end;
-
-function  TSpVoiceProperties.Get_Priority: SpeechVoicePriority;
-begin
-  Result := DefaultInterface.Get_Priority;
-end;
-
-procedure TSpVoiceProperties.Set_AlertBoundary(Boundary: SpeechVoiceEvents);
-begin
-  DefaultInterface.Set_AlertBoundary(Boundary);
-end;
-
-function  TSpVoiceProperties.Get_AlertBoundary: SpeechVoiceEvents;
-begin
-  Result := DefaultInterface.Get_AlertBoundary;
-end;
-
-procedure TSpVoiceProperties.Set_SynchronousSpeakTimeout(msTimeout: Integer);
-begin
-  DefaultInterface.Set_SynchronousSpeakTimeout(msTimeout);
-end;
-
-function  TSpVoiceProperties.Get_SynchronousSpeakTimeout: Integer;
-begin
-  Result := DefaultInterface.Get_SynchronousSpeakTimeout;
-end;
-
-{$ENDIF}
-
 class function CoSpSharedRecoContext.Create: ISpeechRecoContext;
 begin
   Result := CreateComObject(CLASS_SpSharedRecoContext) as ISpeechRecoContext;
@@ -7806,360 +5220,6 @@ class function CoSpSharedRecoContext.CreateRemote(const MachineName: string): IS
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_SpSharedRecoContext) as ISpeechRecoContext;
 end;
-
-procedure TSpSharedRecoContext.InitServerData;
-const
-  CServerData: TServerData = (
-    ClassID:   '{47206204-5ECA-11D2-960F-00C04F8EE628}';
-    IntfIID:   '{580AA49D-7E1E-4809-B8E2-57DA806104B8}';
-    EventIID:  '{7B8FCB42-0E9D-4F00-A048-7B04D6179D3D}';
-    LicenseKey: nil;
-    Version: 500);
-begin
-  ServerData := @CServerData;
-end;
-
-procedure TSpSharedRecoContext.Connect;
-var
-  punk: IUnknown;
-begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    ConnectEvents(punk);
-    Fintf:= punk as ISpeechRecoContext;
-  end;
-end;
-
-procedure TSpSharedRecoContext.ConnectTo(svrIntf: ISpeechRecoContext);
-begin
-  Disconnect;
-  FIntf := svrIntf;
-  ConnectEvents(FIntf);
-end;
-
-procedure TSpSharedRecoContext.DisConnect;
-begin
-  if Fintf <> nil then
-  begin
-    DisconnectEvents(FIntf);
-    FIntf := nil;
-  end;
-end;
-
-function TSpSharedRecoContext.GetDefaultInterface: ISpeechRecoContext;
-begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call ''Connect'' or ''ConnectTo'' before this operation');
-  Result := FIntf;
-end;
-
-constructor TSpSharedRecoContext.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps := TSpSharedRecoContextProperties.Create(Self);
-{$ENDIF}
-end;
-
-destructor TSpSharedRecoContext.Destroy;
-begin
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps.Free;
-{$ENDIF}
-  inherited Destroy;
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-function TSpSharedRecoContext.GetServerProperties: TSpSharedRecoContextProperties;
-begin
-  Result := FProps;
-end;
-{$ENDIF}
-
-procedure TSpSharedRecoContext.InvokeEvent(DispID: TDispID; var Params: TVariantArray);
-begin
-  case DispID of
-    -1: Exit;  // DISPID_UNKNOWN
-   1: if Assigned(FOnStartStream) then
-            FOnStartStream(Self, Params[0] {Integer}, Params[1] {OleVariant});
-   2: if Assigned(FOnEndStream) then
-            FOnEndStream(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {WordBool});
-   3: if Assigned(FOnBookmark) then
-            FOnBookmark(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {OleVariant}, Params[3] {SpeechBookmarkOptions});
-   4: if Assigned(FOnSoundStart) then
-            FOnSoundStart(Self, Params[0] {Integer}, Params[1] {OleVariant});
-   5: if Assigned(FOnSoundEnd) then
-            FOnSoundEnd(Self, Params[0] {Integer}, Params[1] {OleVariant});
-   6: if Assigned(FOnPhraseStart) then
-            FOnPhraseStart(Self, Params[0] {Integer}, Params[1] {OleVariant});
-   7: if Assigned(FOnRecognition) then
-            FOnRecognition(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {SpeechRecognitionType}, Params[3] {const ISpeechRecoResult});
-   8: if Assigned(FOnHypothesis) then
-            FOnHypothesis(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {const ISpeechRecoResult});
-   9: if Assigned(FOnPropertyNumberChange) then
-            FOnPropertyNumberChange(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {const WideString}, Params[3] {Integer});
-   10: if Assigned(FOnPropertyStringChange) then
-            FOnPropertyStringChange(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {const WideString}, Params[3] {const WideString});
-   11: if Assigned(FOnFalseRecognition) then
-            FOnFalseRecognition(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {const ISpeechRecoResult});
-   12: if Assigned(FOnInterference) then
-            FOnInterference(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {SpeechInterference});
-   13: if Assigned(FOnRequestUI) then
-            FOnRequestUI(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {const WideString});
-   14: if Assigned(FOnRecognizerStateChange) then
-            FOnRecognizerStateChange(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {SpeechRecognizerState});
-   15: if Assigned(FOnAdaptation) then
-            FOnAdaptation(Self, Params[0] {Integer}, Params[1] {OleVariant});
-   16: if Assigned(FOnRecognitionForOtherContext) then
-            FOnRecognitionForOtherContext(Self, Params[0] {Integer}, Params[1] {OleVariant});
-   17: if Assigned(FOnAudioLevel) then
-            FOnAudioLevel(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {Integer});
-   18: if Assigned(FOnEnginePrivate) then
-            FOnEnginePrivate(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {OleVariant});
-  end; {case DispID}
-end;
-
-function  TSpSharedRecoContext.Get_Recognizer: ISpeechRecognizer;
-begin
-  Result := DefaultInterface.Get_Recognizer;
-end;
-
-function  TSpSharedRecoContext.Get_AudioInputInterferenceStatus: SpeechInterference;
-begin
-  Result := DefaultInterface.Get_AudioInputInterferenceStatus;
-end;
-
-function  TSpSharedRecoContext.Get_RequestedUIType: WideString;
-begin
-  Result := DefaultInterface.Get_RequestedUIType;
-end;
-
-procedure TSpSharedRecoContext.Set_Voice(const Voice: ISpeechVoice);
-begin
-  DefaultInterface.Set_Voice(Voice);
-end;
-
-function  TSpSharedRecoContext.Get_Voice: ISpeechVoice;
-begin
-  Result := DefaultInterface.Get_Voice;
-end;
-
-procedure TSpSharedRecoContext.Set_AllowVoiceFormatMatchingOnNextSet(pAllow: WordBool);
-begin
-  DefaultInterface.Set_AllowVoiceFormatMatchingOnNextSet(pAllow);
-end;
-
-function  TSpSharedRecoContext.Get_AllowVoiceFormatMatchingOnNextSet: WordBool;
-begin
-  Result := DefaultInterface.Get_AllowVoiceFormatMatchingOnNextSet;
-end;
-
-procedure TSpSharedRecoContext.Set_VoicePurgeEvent(EventInterest: SpeechRecoEvents);
-begin
-  DefaultInterface.Set_VoicePurgeEvent(EventInterest);
-end;
-
-function  TSpSharedRecoContext.Get_VoicePurgeEvent: SpeechRecoEvents;
-begin
-  Result := DefaultInterface.Get_VoicePurgeEvent;
-end;
-
-procedure TSpSharedRecoContext.Set_EventInterests(EventInterest: SpeechRecoEvents);
-begin
-  DefaultInterface.Set_EventInterests(EventInterest);
-end;
-
-function  TSpSharedRecoContext.Get_EventInterests: SpeechRecoEvents;
-begin
-  Result := DefaultInterface.Get_EventInterests;
-end;
-
-procedure TSpSharedRecoContext.Set_CmdMaxAlternates(MaxAlternates: Integer);
-begin
-  DefaultInterface.Set_CmdMaxAlternates(MaxAlternates);
-end;
-
-function  TSpSharedRecoContext.Get_CmdMaxAlternates: Integer;
-begin
-  Result := DefaultInterface.Get_CmdMaxAlternates;
-end;
-
-procedure TSpSharedRecoContext.Set_State(State: SpeechRecoContextState);
-begin
-  DefaultInterface.Set_State(State);
-end;
-
-function  TSpSharedRecoContext.Get_State: SpeechRecoContextState;
-begin
-  Result := DefaultInterface.Get_State;
-end;
-
-procedure TSpSharedRecoContext.Set_RetainedAudio(Option: SpeechRetainedAudioOptions);
-begin
-  DefaultInterface.Set_RetainedAudio(Option);
-end;
-
-function  TSpSharedRecoContext.Get_RetainedAudio: SpeechRetainedAudioOptions;
-begin
-  Result := DefaultInterface.Get_RetainedAudio;
-end;
-
-procedure TSpSharedRecoContext.Set_RetainedAudioFormat(const Format: ISpeechAudioFormat);
-begin
-  DefaultInterface.Set_RetainedAudioFormat(Format);
-end;
-
-function  TSpSharedRecoContext.Get_RetainedAudioFormat: ISpeechAudioFormat;
-begin
-  Result := DefaultInterface.Get_RetainedAudioFormat;
-end;
-
-procedure TSpSharedRecoContext.Pause;
-begin
-  DefaultInterface.Pause;
-end;
-
-procedure TSpSharedRecoContext.Resume;
-begin
-  DefaultInterface.Resume;
-end;
-
-function  TSpSharedRecoContext.CreateGrammar: ISpeechRecoGrammar;
-begin
-  Result := DefaultInterface.CreateGrammar(EmptyParam);
-end;
-
-function  TSpSharedRecoContext.CreateGrammar(GrammarId: OleVariant): ISpeechRecoGrammar;
-begin
-  Result := DefaultInterface.CreateGrammar(GrammarId);
-end;
-
-function  TSpSharedRecoContext.CreateResultFromMemory(var ResultBlock: OleVariant): ISpeechRecoResult;
-begin
-  Result := DefaultInterface.CreateResultFromMemory(ResultBlock);
-end;
-
-procedure TSpSharedRecoContext.Bookmark(Options: SpeechBookmarkOptions; StreamPos: OleVariant; 
-                                        BookmarkId: OleVariant);
-begin
-  DefaultInterface.Bookmark(Options, StreamPos, BookmarkId);
-end;
-
-procedure TSpSharedRecoContext.SetAdaptationData(const AdaptationString: WideString);
-begin
-  DefaultInterface.SetAdaptationData(AdaptationString);
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-constructor TSpSharedRecoContextProperties.Create(AServer: TSpSharedRecoContext);
-begin
-  inherited Create;
-  FServer := AServer;
-end;
-
-function TSpSharedRecoContextProperties.GetDefaultInterface: ISpeechRecoContext;
-begin
-  Result := FServer.DefaultInterface;
-end;
-
-function  TSpSharedRecoContextProperties.Get_Recognizer: ISpeechRecognizer;
-begin
-  Result := DefaultInterface.Get_Recognizer;
-end;
-
-function  TSpSharedRecoContextProperties.Get_AudioInputInterferenceStatus: SpeechInterference;
-begin
-  Result := DefaultInterface.Get_AudioInputInterferenceStatus;
-end;
-
-function  TSpSharedRecoContextProperties.Get_RequestedUIType: WideString;
-begin
-  Result := DefaultInterface.Get_RequestedUIType;
-end;
-
-procedure TSpSharedRecoContextProperties.Set_Voice(const Voice: ISpeechVoice);
-begin
-  DefaultInterface.Set_Voice(Voice);
-end;
-
-function  TSpSharedRecoContextProperties.Get_Voice: ISpeechVoice;
-begin
-  Result := DefaultInterface.Get_Voice;
-end;
-
-procedure TSpSharedRecoContextProperties.Set_AllowVoiceFormatMatchingOnNextSet(pAllow: WordBool);
-begin
-  DefaultInterface.Set_AllowVoiceFormatMatchingOnNextSet(pAllow);
-end;
-
-function  TSpSharedRecoContextProperties.Get_AllowVoiceFormatMatchingOnNextSet: WordBool;
-begin
-  Result := DefaultInterface.Get_AllowVoiceFormatMatchingOnNextSet;
-end;
-
-procedure TSpSharedRecoContextProperties.Set_VoicePurgeEvent(EventInterest: SpeechRecoEvents);
-begin
-  DefaultInterface.Set_VoicePurgeEvent(EventInterest);
-end;
-
-function  TSpSharedRecoContextProperties.Get_VoicePurgeEvent: SpeechRecoEvents;
-begin
-  Result := DefaultInterface.Get_VoicePurgeEvent;
-end;
-
-procedure TSpSharedRecoContextProperties.Set_EventInterests(EventInterest: SpeechRecoEvents);
-begin
-  DefaultInterface.Set_EventInterests(EventInterest);
-end;
-
-function  TSpSharedRecoContextProperties.Get_EventInterests: SpeechRecoEvents;
-begin
-  Result := DefaultInterface.Get_EventInterests;
-end;
-
-procedure TSpSharedRecoContextProperties.Set_CmdMaxAlternates(MaxAlternates: Integer);
-begin
-  DefaultInterface.Set_CmdMaxAlternates(MaxAlternates);
-end;
-
-function  TSpSharedRecoContextProperties.Get_CmdMaxAlternates: Integer;
-begin
-  Result := DefaultInterface.Get_CmdMaxAlternates;
-end;
-
-procedure TSpSharedRecoContextProperties.Set_State(State: SpeechRecoContextState);
-begin
-  DefaultInterface.Set_State(State);
-end;
-
-function  TSpSharedRecoContextProperties.Get_State: SpeechRecoContextState;
-begin
-  Result := DefaultInterface.Get_State;
-end;
-
-procedure TSpSharedRecoContextProperties.Set_RetainedAudio(Option: SpeechRetainedAudioOptions);
-begin
-  DefaultInterface.Set_RetainedAudio(Option);
-end;
-
-function  TSpSharedRecoContextProperties.Get_RetainedAudio: SpeechRetainedAudioOptions;
-begin
-  Result := DefaultInterface.Get_RetainedAudio;
-end;
-
-procedure TSpSharedRecoContextProperties.Set_RetainedAudioFormat(const Format: ISpeechAudioFormat);
-begin
-  DefaultInterface.Set_RetainedAudioFormat(Format);
-end;
-
-function  TSpSharedRecoContextProperties.Get_RetainedAudioFormat: ISpeechAudioFormat;
-begin
-  Result := DefaultInterface.Get_RetainedAudioFormat;
-end;
-
-{$ENDIF}
 
 class function CoSpInprocRecognizer.Create: ISpeechRecognizer;
 begin
@@ -8171,305 +5231,6 @@ begin
   Result := CreateRemoteComObject(MachineName, CLASS_SpInprocRecognizer) as ISpeechRecognizer;
 end;
 
-procedure TSpInprocRecognizer.InitServerData;
-const
-  CServerData: TServerData = (
-    ClassID:   '{41B89B6B-9399-11D2-9623-00C04F8EE628}';
-    IntfIID:   '{2D5F1C0C-BD75-4B08-9478-3B11FEA2586C}';
-    EventIID:  '';
-    LicenseKey: nil;
-    Version: 500);
-begin
-  ServerData := @CServerData;
-end;
-
-procedure TSpInprocRecognizer.Connect;
-var
-  punk: IUnknown;
-begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    Fintf:= punk as ISpeechRecognizer;
-  end;
-end;
-
-procedure TSpInprocRecognizer.ConnectTo(svrIntf: ISpeechRecognizer);
-begin
-  Disconnect;
-  FIntf := svrIntf;
-end;
-
-procedure TSpInprocRecognizer.DisConnect;
-begin
-  if Fintf <> nil then
-  begin
-    FIntf := nil;
-  end;
-end;
-
-function TSpInprocRecognizer.GetDefaultInterface: ISpeechRecognizer;
-begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call ''Connect'' or ''ConnectTo'' before this operation');
-  Result := FIntf;
-end;
-
-constructor TSpInprocRecognizer.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps := TSpInprocRecognizerProperties.Create(Self);
-{$ENDIF}
-end;
-
-destructor TSpInprocRecognizer.Destroy;
-begin
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps.Free;
-{$ENDIF}
-  inherited Destroy;
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-function TSpInprocRecognizer.GetServerProperties: TSpInprocRecognizerProperties;
-begin
-  Result := FProps;
-end;
-{$ENDIF}
-
-procedure TSpInprocRecognizer.Set_Recognizer(const Recognizer: ISpeechObjectToken);
-begin
-  DefaultInterface.Set_Recognizer(Recognizer);
-end;
-
-function  TSpInprocRecognizer.Get_Recognizer: ISpeechObjectToken;
-begin
-  Result := DefaultInterface.Get_Recognizer;
-end;
-
-procedure TSpInprocRecognizer.Set_AllowAudioInputFormatChangesOnNextSet(Allow: WordBool);
-begin
-  DefaultInterface.Set_AllowAudioInputFormatChangesOnNextSet(Allow);
-end;
-
-function  TSpInprocRecognizer.Get_AllowAudioInputFormatChangesOnNextSet: WordBool;
-begin
-  Result := DefaultInterface.Get_AllowAudioInputFormatChangesOnNextSet;
-end;
-
-procedure TSpInprocRecognizer.Set_AudioInput(const AudioInput: ISpeechObjectToken);
-begin
-  DefaultInterface.Set_AudioInput(AudioInput);
-end;
-
-function  TSpInprocRecognizer.Get_AudioInput: ISpeechObjectToken;
-begin
-  Result := DefaultInterface.Get_AudioInput;
-end;
-
-procedure TSpInprocRecognizer.Set_AudioInputStream(const AudioInputStream: ISpeechBaseStream);
-begin
-  DefaultInterface.Set_AudioInputStream(AudioInputStream);
-end;
-
-function  TSpInprocRecognizer.Get_AudioInputStream: ISpeechBaseStream;
-begin
-  Result := DefaultInterface.Get_AudioInputStream;
-end;
-
-function  TSpInprocRecognizer.Get_IsShared: WordBool;
-begin
-  Result := DefaultInterface.Get_IsShared;
-end;
-
-procedure TSpInprocRecognizer.Set_State(State: SpeechRecognizerState);
-begin
-  DefaultInterface.Set_State(State);
-end;
-
-function  TSpInprocRecognizer.Get_State: SpeechRecognizerState;
-begin
-  Result := DefaultInterface.Get_State;
-end;
-
-function  TSpInprocRecognizer.Get_Status: ISpeechRecognizerStatus;
-begin
-  Result := DefaultInterface.Get_Status;
-end;
-
-procedure TSpInprocRecognizer.Set_Profile(const Profile: ISpeechObjectToken);
-begin
-  DefaultInterface.Set_Profile(Profile);
-end;
-
-function  TSpInprocRecognizer.Get_Profile: ISpeechObjectToken;
-begin
-  Result := DefaultInterface.Get_Profile;
-end;
-
-procedure TSpInprocRecognizer.EmulateRecognition(TextElements: OleVariant; 
-                                                 var ElementDisplayAttributes: OleVariant; 
-                                                 LanguageId: Integer);
-begin
-  DefaultInterface.EmulateRecognition(TextElements, ElementDisplayAttributes, LanguageId);
-end;
-
-function  TSpInprocRecognizer.CreateRecoContext: ISpeechRecoContext;
-begin
-  Result := DefaultInterface.CreateRecoContext;
-end;
-
-function  TSpInprocRecognizer.GetFormat(Type_: SpeechFormatType): ISpeechAudioFormat;
-begin
-  Result := DefaultInterface.GetFormat(Type_);
-end;
-
-function  TSpInprocRecognizer.SetPropertyNumber(const Name: WideString; Value: Integer): WordBool;
-begin
-  Result := DefaultInterface.SetPropertyNumber(Name, Value);
-end;
-
-function  TSpInprocRecognizer.GetPropertyNumber(const Name: WideString; var Value: Integer): WordBool;
-begin
-  Result := DefaultInterface.GetPropertyNumber(Name, Value);
-end;
-
-function  TSpInprocRecognizer.SetPropertyString(const Name: WideString; const Value: WideString): WordBool;
-begin
-  Result := DefaultInterface.SetPropertyString(Name, Value);
-end;
-
-function  TSpInprocRecognizer.GetPropertyString(const Name: WideString; var Value: WideString): WordBool;
-begin
-  Result := DefaultInterface.GetPropertyString(Name, Value);
-end;
-
-function  TSpInprocRecognizer.IsUISupported(const TypeOfUI: WideString): WordBool;
-begin
-  Result := DefaultInterface.IsUISupported(TypeOfUI, EmptyParam);
-end;
-
-function  TSpInprocRecognizer.IsUISupported(const TypeOfUI: WideString; var ExtraData: OleVariant): WordBool;
-begin
-  Result := DefaultInterface.IsUISupported(TypeOfUI, ExtraData);
-end;
-
-procedure TSpInprocRecognizer.DisplayUI(hWndParent: Integer; const Title: WideString; 
-                                        const TypeOfUI: WideString);
-begin
-  DefaultInterface.DisplayUI(hWndParent, Title, TypeOfUI, EmptyParam);
-end;
-
-procedure TSpInprocRecognizer.DisplayUI(hWndParent: Integer; const Title: WideString; 
-                                        const TypeOfUI: WideString; var ExtraData: OleVariant);
-begin
-  DefaultInterface.DisplayUI(hWndParent, Title, TypeOfUI, ExtraData);
-end;
-
-function  TSpInprocRecognizer.GetRecognizers(const RequiredAttributes: WideString; 
-                                             const OptionalAttributes: WideString): ISpeechObjectTokens;
-begin
-  Result := DefaultInterface.GetRecognizers(RequiredAttributes, OptionalAttributes);
-end;
-
-function  TSpInprocRecognizer.GetAudioInputs(const RequiredAttributes: WideString; 
-                                             const OptionalAttributes: WideString): ISpeechObjectTokens;
-begin
-  Result := DefaultInterface.GetAudioInputs(RequiredAttributes, OptionalAttributes);
-end;
-
-function  TSpInprocRecognizer.GetProfiles(const RequiredAttributes: WideString; 
-                                          const OptionalAttributes: WideString): ISpeechObjectTokens;
-begin
-  Result := DefaultInterface.GetProfiles(RequiredAttributes, OptionalAttributes);
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-constructor TSpInprocRecognizerProperties.Create(AServer: TSpInprocRecognizer);
-begin
-  inherited Create;
-  FServer := AServer;
-end;
-
-function TSpInprocRecognizerProperties.GetDefaultInterface: ISpeechRecognizer;
-begin
-  Result := FServer.DefaultInterface;
-end;
-
-procedure TSpInprocRecognizerProperties.Set_Recognizer(const Recognizer: ISpeechObjectToken);
-begin
-  DefaultInterface.Set_Recognizer(Recognizer);
-end;
-
-function  TSpInprocRecognizerProperties.Get_Recognizer: ISpeechObjectToken;
-begin
-  Result := DefaultInterface.Get_Recognizer;
-end;
-
-procedure TSpInprocRecognizerProperties.Set_AllowAudioInputFormatChangesOnNextSet(Allow: WordBool);
-begin
-  DefaultInterface.Set_AllowAudioInputFormatChangesOnNextSet(Allow);
-end;
-
-function  TSpInprocRecognizerProperties.Get_AllowAudioInputFormatChangesOnNextSet: WordBool;
-begin
-  Result := DefaultInterface.Get_AllowAudioInputFormatChangesOnNextSet;
-end;
-
-procedure TSpInprocRecognizerProperties.Set_AudioInput(const AudioInput: ISpeechObjectToken);
-begin
-  DefaultInterface.Set_AudioInput(AudioInput);
-end;
-
-function  TSpInprocRecognizerProperties.Get_AudioInput: ISpeechObjectToken;
-begin
-  Result := DefaultInterface.Get_AudioInput;
-end;
-
-procedure TSpInprocRecognizerProperties.Set_AudioInputStream(const AudioInputStream: ISpeechBaseStream);
-begin
-  DefaultInterface.Set_AudioInputStream(AudioInputStream);
-end;
-
-function  TSpInprocRecognizerProperties.Get_AudioInputStream: ISpeechBaseStream;
-begin
-  Result := DefaultInterface.Get_AudioInputStream;
-end;
-
-function  TSpInprocRecognizerProperties.Get_IsShared: WordBool;
-begin
-  Result := DefaultInterface.Get_IsShared;
-end;
-
-procedure TSpInprocRecognizerProperties.Set_State(State: SpeechRecognizerState);
-begin
-  DefaultInterface.Set_State(State);
-end;
-
-function  TSpInprocRecognizerProperties.Get_State: SpeechRecognizerState;
-begin
-  Result := DefaultInterface.Get_State;
-end;
-
-function  TSpInprocRecognizerProperties.Get_Status: ISpeechRecognizerStatus;
-begin
-  Result := DefaultInterface.Get_Status;
-end;
-
-procedure TSpInprocRecognizerProperties.Set_Profile(const Profile: ISpeechObjectToken);
-begin
-  DefaultInterface.Set_Profile(Profile);
-end;
-
-function  TSpInprocRecognizerProperties.Get_Profile: ISpeechObjectToken;
-begin
-  Result := DefaultInterface.Get_Profile;
-end;
-
-{$ENDIF}
-
 class function CoSpSharedRecognizer.Create: ISpeechRecognizer;
 begin
   Result := CreateComObject(CLASS_SpSharedRecognizer) as ISpeechRecognizer;
@@ -8479,305 +5240,6 @@ class function CoSpSharedRecognizer.CreateRemote(const MachineName: string): ISp
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_SpSharedRecognizer) as ISpeechRecognizer;
 end;
-
-procedure TSpSharedRecognizer.InitServerData;
-const
-  CServerData: TServerData = (
-    ClassID:   '{3BEE4890-4FE9-4A37-8C1E-5E7E12791C1F}';
-    IntfIID:   '{2D5F1C0C-BD75-4B08-9478-3B11FEA2586C}';
-    EventIID:  '';
-    LicenseKey: nil;
-    Version: 500);
-begin
-  ServerData := @CServerData;
-end;
-
-procedure TSpSharedRecognizer.Connect;
-var
-  punk: IUnknown;
-begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    Fintf:= punk as ISpeechRecognizer;
-  end;
-end;
-
-procedure TSpSharedRecognizer.ConnectTo(svrIntf: ISpeechRecognizer);
-begin
-  Disconnect;
-  FIntf := svrIntf;
-end;
-
-procedure TSpSharedRecognizer.DisConnect;
-begin
-  if Fintf <> nil then
-  begin
-    FIntf := nil;
-  end;
-end;
-
-function TSpSharedRecognizer.GetDefaultInterface: ISpeechRecognizer;
-begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call ''Connect'' or ''ConnectTo'' before this operation');
-  Result := FIntf;
-end;
-
-constructor TSpSharedRecognizer.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps := TSpSharedRecognizerProperties.Create(Self);
-{$ENDIF}
-end;
-
-destructor TSpSharedRecognizer.Destroy;
-begin
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps.Free;
-{$ENDIF}
-  inherited Destroy;
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-function TSpSharedRecognizer.GetServerProperties: TSpSharedRecognizerProperties;
-begin
-  Result := FProps;
-end;
-{$ENDIF}
-
-procedure TSpSharedRecognizer.Set_Recognizer(const Recognizer: ISpeechObjectToken);
-begin
-  DefaultInterface.Set_Recognizer(Recognizer);
-end;
-
-function  TSpSharedRecognizer.Get_Recognizer: ISpeechObjectToken;
-begin
-  Result := DefaultInterface.Get_Recognizer;
-end;
-
-procedure TSpSharedRecognizer.Set_AllowAudioInputFormatChangesOnNextSet(Allow: WordBool);
-begin
-  DefaultInterface.Set_AllowAudioInputFormatChangesOnNextSet(Allow);
-end;
-
-function  TSpSharedRecognizer.Get_AllowAudioInputFormatChangesOnNextSet: WordBool;
-begin
-  Result := DefaultInterface.Get_AllowAudioInputFormatChangesOnNextSet;
-end;
-
-procedure TSpSharedRecognizer.Set_AudioInput(const AudioInput: ISpeechObjectToken);
-begin
-  DefaultInterface.Set_AudioInput(AudioInput);
-end;
-
-function  TSpSharedRecognizer.Get_AudioInput: ISpeechObjectToken;
-begin
-  Result := DefaultInterface.Get_AudioInput;
-end;
-
-procedure TSpSharedRecognizer.Set_AudioInputStream(const AudioInputStream: ISpeechBaseStream);
-begin
-  DefaultInterface.Set_AudioInputStream(AudioInputStream);
-end;
-
-function  TSpSharedRecognizer.Get_AudioInputStream: ISpeechBaseStream;
-begin
-  Result := DefaultInterface.Get_AudioInputStream;
-end;
-
-function  TSpSharedRecognizer.Get_IsShared: WordBool;
-begin
-  Result := DefaultInterface.Get_IsShared;
-end;
-
-procedure TSpSharedRecognizer.Set_State(State: SpeechRecognizerState);
-begin
-  DefaultInterface.Set_State(State);
-end;
-
-function  TSpSharedRecognizer.Get_State: SpeechRecognizerState;
-begin
-  Result := DefaultInterface.Get_State;
-end;
-
-function  TSpSharedRecognizer.Get_Status: ISpeechRecognizerStatus;
-begin
-  Result := DefaultInterface.Get_Status;
-end;
-
-procedure TSpSharedRecognizer.Set_Profile(const Profile: ISpeechObjectToken);
-begin
-  DefaultInterface.Set_Profile(Profile);
-end;
-
-function  TSpSharedRecognizer.Get_Profile: ISpeechObjectToken;
-begin
-  Result := DefaultInterface.Get_Profile;
-end;
-
-procedure TSpSharedRecognizer.EmulateRecognition(TextElements: OleVariant; 
-                                                 var ElementDisplayAttributes: OleVariant; 
-                                                 LanguageId: Integer);
-begin
-  DefaultInterface.EmulateRecognition(TextElements, ElementDisplayAttributes, LanguageId);
-end;
-
-function  TSpSharedRecognizer.CreateRecoContext: ISpeechRecoContext;
-begin
-  Result := DefaultInterface.CreateRecoContext;
-end;
-
-function  TSpSharedRecognizer.GetFormat(Type_: SpeechFormatType): ISpeechAudioFormat;
-begin
-  Result := DefaultInterface.GetFormat(Type_);
-end;
-
-function  TSpSharedRecognizer.SetPropertyNumber(const Name: WideString; Value: Integer): WordBool;
-begin
-  Result := DefaultInterface.SetPropertyNumber(Name, Value);
-end;
-
-function  TSpSharedRecognizer.GetPropertyNumber(const Name: WideString; var Value: Integer): WordBool;
-begin
-  Result := DefaultInterface.GetPropertyNumber(Name, Value);
-end;
-
-function  TSpSharedRecognizer.SetPropertyString(const Name: WideString; const Value: WideString): WordBool;
-begin
-  Result := DefaultInterface.SetPropertyString(Name, Value);
-end;
-
-function  TSpSharedRecognizer.GetPropertyString(const Name: WideString; var Value: WideString): WordBool;
-begin
-  Result := DefaultInterface.GetPropertyString(Name, Value);
-end;
-
-function  TSpSharedRecognizer.IsUISupported(const TypeOfUI: WideString): WordBool;
-begin
-  Result := DefaultInterface.IsUISupported(TypeOfUI, EmptyParam);
-end;
-
-function  TSpSharedRecognizer.IsUISupported(const TypeOfUI: WideString; var ExtraData: OleVariant): WordBool;
-begin
-  Result := DefaultInterface.IsUISupported(TypeOfUI, ExtraData);
-end;
-
-procedure TSpSharedRecognizer.DisplayUI(hWndParent: Integer; const Title: WideString; 
-                                        const TypeOfUI: WideString);
-begin
-  DefaultInterface.DisplayUI(hWndParent, Title, TypeOfUI, EmptyParam);
-end;
-
-procedure TSpSharedRecognizer.DisplayUI(hWndParent: Integer; const Title: WideString; 
-                                        const TypeOfUI: WideString; var ExtraData: OleVariant);
-begin
-  DefaultInterface.DisplayUI(hWndParent, Title, TypeOfUI, ExtraData);
-end;
-
-function  TSpSharedRecognizer.GetRecognizers(const RequiredAttributes: WideString; 
-                                             const OptionalAttributes: WideString): ISpeechObjectTokens;
-begin
-  Result := DefaultInterface.GetRecognizers(RequiredAttributes, OptionalAttributes);
-end;
-
-function  TSpSharedRecognizer.GetAudioInputs(const RequiredAttributes: WideString; 
-                                             const OptionalAttributes: WideString): ISpeechObjectTokens;
-begin
-  Result := DefaultInterface.GetAudioInputs(RequiredAttributes, OptionalAttributes);
-end;
-
-function  TSpSharedRecognizer.GetProfiles(const RequiredAttributes: WideString; 
-                                          const OptionalAttributes: WideString): ISpeechObjectTokens;
-begin
-  Result := DefaultInterface.GetProfiles(RequiredAttributes, OptionalAttributes);
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-constructor TSpSharedRecognizerProperties.Create(AServer: TSpSharedRecognizer);
-begin
-  inherited Create;
-  FServer := AServer;
-end;
-
-function TSpSharedRecognizerProperties.GetDefaultInterface: ISpeechRecognizer;
-begin
-  Result := FServer.DefaultInterface;
-end;
-
-procedure TSpSharedRecognizerProperties.Set_Recognizer(const Recognizer: ISpeechObjectToken);
-begin
-  DefaultInterface.Set_Recognizer(Recognizer);
-end;
-
-function  TSpSharedRecognizerProperties.Get_Recognizer: ISpeechObjectToken;
-begin
-  Result := DefaultInterface.Get_Recognizer;
-end;
-
-procedure TSpSharedRecognizerProperties.Set_AllowAudioInputFormatChangesOnNextSet(Allow: WordBool);
-begin
-  DefaultInterface.Set_AllowAudioInputFormatChangesOnNextSet(Allow);
-end;
-
-function  TSpSharedRecognizerProperties.Get_AllowAudioInputFormatChangesOnNextSet: WordBool;
-begin
-  Result := DefaultInterface.Get_AllowAudioInputFormatChangesOnNextSet;
-end;
-
-procedure TSpSharedRecognizerProperties.Set_AudioInput(const AudioInput: ISpeechObjectToken);
-begin
-  DefaultInterface.Set_AudioInput(AudioInput);
-end;
-
-function  TSpSharedRecognizerProperties.Get_AudioInput: ISpeechObjectToken;
-begin
-  Result := DefaultInterface.Get_AudioInput;
-end;
-
-procedure TSpSharedRecognizerProperties.Set_AudioInputStream(const AudioInputStream: ISpeechBaseStream);
-begin
-  DefaultInterface.Set_AudioInputStream(AudioInputStream);
-end;
-
-function  TSpSharedRecognizerProperties.Get_AudioInputStream: ISpeechBaseStream;
-begin
-  Result := DefaultInterface.Get_AudioInputStream;
-end;
-
-function  TSpSharedRecognizerProperties.Get_IsShared: WordBool;
-begin
-  Result := DefaultInterface.Get_IsShared;
-end;
-
-procedure TSpSharedRecognizerProperties.Set_State(State: SpeechRecognizerState);
-begin
-  DefaultInterface.Set_State(State);
-end;
-
-function  TSpSharedRecognizerProperties.Get_State: SpeechRecognizerState;
-begin
-  Result := DefaultInterface.Get_State;
-end;
-
-function  TSpSharedRecognizerProperties.Get_Status: ISpeechRecognizerStatus;
-begin
-  Result := DefaultInterface.Get_Status;
-end;
-
-procedure TSpSharedRecognizerProperties.Set_Profile(const Profile: ISpeechObjectToken);
-begin
-  DefaultInterface.Set_Profile(Profile);
-end;
-
-function  TSpSharedRecognizerProperties.Get_Profile: ISpeechObjectToken;
-begin
-  Result := DefaultInterface.Get_Profile;
-end;
-
-{$ENDIF}
 
 class function CoSpLexicon.Create: ISpeechLexicon;
 begin
@@ -8789,154 +5251,6 @@ begin
   Result := CreateRemoteComObject(MachineName, CLASS_SpLexicon) as ISpeechLexicon;
 end;
 
-procedure TSpLexicon.InitServerData;
-const
-  CServerData: TServerData = (
-    ClassID:   '{0655E396-25D0-11D3-9C26-00C04F8EF87C}';
-    IntfIID:   '{3DA7627A-C7AE-4B23-8708-638C50362C25}';
-    EventIID:  '';
-    LicenseKey: nil;
-    Version: 500);
-begin
-  ServerData := @CServerData;
-end;
-
-procedure TSpLexicon.Connect;
-var
-  punk: IUnknown;
-begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    Fintf:= punk as ISpeechLexicon;
-  end;
-end;
-
-procedure TSpLexicon.ConnectTo(svrIntf: ISpeechLexicon);
-begin
-  Disconnect;
-  FIntf := svrIntf;
-end;
-
-procedure TSpLexicon.DisConnect;
-begin
-  if Fintf <> nil then
-  begin
-    FIntf := nil;
-  end;
-end;
-
-function TSpLexicon.GetDefaultInterface: ISpeechLexicon;
-begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call ''Connect'' or ''ConnectTo'' before this operation');
-  Result := FIntf;
-end;
-
-constructor TSpLexicon.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps := TSpLexiconProperties.Create(Self);
-{$ENDIF}
-end;
-
-destructor TSpLexicon.Destroy;
-begin
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps.Free;
-{$ENDIF}
-  inherited Destroy;
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-function TSpLexicon.GetServerProperties: TSpLexiconProperties;
-begin
-  Result := FProps;
-end;
-{$ENDIF}
-
-function  TSpLexicon.Get_GenerationId: Integer;
-begin
-  Result := DefaultInterface.Get_GenerationId;
-end;
-
-function  TSpLexicon.GetWords(Flags: SpeechLexiconType; out GenerationId: Integer): ISpeechLexiconWords;
-begin
-  Result := DefaultInterface.GetWords(Flags, GenerationId);
-end;
-
-procedure TSpLexicon.AddPronunciation(const bstrWord: WideString; LangId: Integer; 
-                                      PartOfSpeech: SpeechPartOfSpeech; 
-                                      const bstrPronunciation: WideString);
-begin
-  DefaultInterface.AddPronunciation(bstrWord, LangId, PartOfSpeech, bstrPronunciation);
-end;
-
-procedure TSpLexicon.AddPronunciationByPhoneIds(const bstrWord: WideString; LangId: Integer; 
-                                                PartOfSpeech: SpeechPartOfSpeech);
-begin
-  DefaultInterface.AddPronunciationByPhoneIds(bstrWord, LangId, PartOfSpeech, EmptyParam);
-end;
-
-procedure TSpLexicon.AddPronunciationByPhoneIds(const bstrWord: WideString; LangId: Integer; 
-                                                PartOfSpeech: SpeechPartOfSpeech; 
-                                                var PhoneIds: OleVariant);
-begin
-  DefaultInterface.AddPronunciationByPhoneIds(bstrWord, LangId, PartOfSpeech, PhoneIds);
-end;
-
-procedure TSpLexicon.RemovePronunciation(const bstrWord: WideString; LangId: Integer; 
-                                         PartOfSpeech: SpeechPartOfSpeech; 
-                                         const bstrPronunciation: WideString);
-begin
-  DefaultInterface.RemovePronunciation(bstrWord, LangId, PartOfSpeech, bstrPronunciation);
-end;
-
-procedure TSpLexicon.RemovePronunciationByPhoneIds(const bstrWord: WideString; LangId: Integer; 
-                                                   PartOfSpeech: SpeechPartOfSpeech);
-begin
-  DefaultInterface.RemovePronunciationByPhoneIds(bstrWord, LangId, PartOfSpeech, EmptyParam);
-end;
-
-procedure TSpLexicon.RemovePronunciationByPhoneIds(const bstrWord: WideString; LangId: Integer; 
-                                                   PartOfSpeech: SpeechPartOfSpeech; 
-                                                   var PhoneIds: OleVariant);
-begin
-  DefaultInterface.RemovePronunciationByPhoneIds(bstrWord, LangId, PartOfSpeech, PhoneIds);
-end;
-
-function  TSpLexicon.GetPronunciations(const bstrWord: WideString; LangId: Integer; 
-                                       TypeFlags: SpeechLexiconType): ISpeechLexiconPronunciations;
-begin
-  Result := DefaultInterface.GetPronunciations(bstrWord, LangId, TypeFlags);
-end;
-
-function  TSpLexicon.GetGenerationChange(var GenerationId: Integer): ISpeechLexiconWords;
-begin
-  Result := DefaultInterface.GetGenerationChange(GenerationId);
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-constructor TSpLexiconProperties.Create(AServer: TSpLexicon);
-begin
-  inherited Create;
-  FServer := AServer;
-end;
-
-function TSpLexiconProperties.GetDefaultInterface: ISpeechLexicon;
-begin
-  Result := FServer.DefaultInterface;
-end;
-
-function  TSpLexiconProperties.Get_GenerationId: Integer;
-begin
-  Result := DefaultInterface.Get_GenerationId;
-end;
-
-{$ENDIF}
-
 class function CoSpUnCompressedLexicon.Create: ISpeechLexicon;
 begin
   Result := CreateComObject(CLASS_SpUnCompressedLexicon) as ISpeechLexicon;
@@ -8947,158 +5261,6 @@ begin
   Result := CreateRemoteComObject(MachineName, CLASS_SpUnCompressedLexicon) as ISpeechLexicon;
 end;
 
-procedure TSpUnCompressedLexicon.InitServerData;
-const
-  CServerData: TServerData = (
-    ClassID:   '{C9E37C15-DF92-4727-85D6-72E5EEB6995A}';
-    IntfIID:   '{3DA7627A-C7AE-4B23-8708-638C50362C25}';
-    EventIID:  '';
-    LicenseKey: nil;
-    Version: 500);
-begin
-  ServerData := @CServerData;
-end;
-
-procedure TSpUnCompressedLexicon.Connect;
-var
-  punk: IUnknown;
-begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    Fintf:= punk as ISpeechLexicon;
-  end;
-end;
-
-procedure TSpUnCompressedLexicon.ConnectTo(svrIntf: ISpeechLexicon);
-begin
-  Disconnect;
-  FIntf := svrIntf;
-end;
-
-procedure TSpUnCompressedLexicon.DisConnect;
-begin
-  if Fintf <> nil then
-  begin
-    FIntf := nil;
-  end;
-end;
-
-function TSpUnCompressedLexicon.GetDefaultInterface: ISpeechLexicon;
-begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call ''Connect'' or ''ConnectTo'' before this operation');
-  Result := FIntf;
-end;
-
-constructor TSpUnCompressedLexicon.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps := TSpUnCompressedLexiconProperties.Create(Self);
-{$ENDIF}
-end;
-
-destructor TSpUnCompressedLexicon.Destroy;
-begin
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps.Free;
-{$ENDIF}
-  inherited Destroy;
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-function TSpUnCompressedLexicon.GetServerProperties: TSpUnCompressedLexiconProperties;
-begin
-  Result := FProps;
-end;
-{$ENDIF}
-
-function  TSpUnCompressedLexicon.Get_GenerationId: Integer;
-begin
-  Result := DefaultInterface.Get_GenerationId;
-end;
-
-function  TSpUnCompressedLexicon.GetWords(Flags: SpeechLexiconType; out GenerationId: Integer): ISpeechLexiconWords;
-begin
-  Result := DefaultInterface.GetWords(Flags, GenerationId);
-end;
-
-procedure TSpUnCompressedLexicon.AddPronunciation(const bstrWord: WideString; LangId: Integer; 
-                                                  PartOfSpeech: SpeechPartOfSpeech; 
-                                                  const bstrPronunciation: WideString);
-begin
-  DefaultInterface.AddPronunciation(bstrWord, LangId, PartOfSpeech, bstrPronunciation);
-end;
-
-procedure TSpUnCompressedLexicon.AddPronunciationByPhoneIds(const bstrWord: WideString; 
-                                                            LangId: Integer; 
-                                                            PartOfSpeech: SpeechPartOfSpeech);
-begin
-  DefaultInterface.AddPronunciationByPhoneIds(bstrWord, LangId, PartOfSpeech, EmptyParam);
-end;
-
-procedure TSpUnCompressedLexicon.AddPronunciationByPhoneIds(const bstrWord: WideString; 
-                                                            LangId: Integer; 
-                                                            PartOfSpeech: SpeechPartOfSpeech; 
-                                                            var PhoneIds: OleVariant);
-begin
-  DefaultInterface.AddPronunciationByPhoneIds(bstrWord, LangId, PartOfSpeech, PhoneIds);
-end;
-
-procedure TSpUnCompressedLexicon.RemovePronunciation(const bstrWord: WideString; LangId: Integer; 
-                                                     PartOfSpeech: SpeechPartOfSpeech; 
-                                                     const bstrPronunciation: WideString);
-begin
-  DefaultInterface.RemovePronunciation(bstrWord, LangId, PartOfSpeech, bstrPronunciation);
-end;
-
-procedure TSpUnCompressedLexicon.RemovePronunciationByPhoneIds(const bstrWord: WideString; 
-                                                               LangId: Integer; 
-                                                               PartOfSpeech: SpeechPartOfSpeech);
-begin
-  DefaultInterface.RemovePronunciationByPhoneIds(bstrWord, LangId, PartOfSpeech, EmptyParam);
-end;
-
-procedure TSpUnCompressedLexicon.RemovePronunciationByPhoneIds(const bstrWord: WideString; 
-                                                               LangId: Integer; 
-                                                               PartOfSpeech: SpeechPartOfSpeech; 
-                                                               var PhoneIds: OleVariant);
-begin
-  DefaultInterface.RemovePronunciationByPhoneIds(bstrWord, LangId, PartOfSpeech, PhoneIds);
-end;
-
-function  TSpUnCompressedLexicon.GetPronunciations(const bstrWord: WideString; LangId: Integer; 
-                                                   TypeFlags: SpeechLexiconType): ISpeechLexiconPronunciations;
-begin
-  Result := DefaultInterface.GetPronunciations(bstrWord, LangId, TypeFlags);
-end;
-
-function  TSpUnCompressedLexicon.GetGenerationChange(var GenerationId: Integer): ISpeechLexiconWords;
-begin
-  Result := DefaultInterface.GetGenerationChange(GenerationId);
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-constructor TSpUnCompressedLexiconProperties.Create(AServer: TSpUnCompressedLexicon);
-begin
-  inherited Create;
-  FServer := AServer;
-end;
-
-function TSpUnCompressedLexiconProperties.GetDefaultInterface: ISpeechLexicon;
-begin
-  Result := FServer.DefaultInterface;
-end;
-
-function  TSpUnCompressedLexiconProperties.Get_GenerationId: Integer;
-begin
-  Result := DefaultInterface.Get_GenerationId;
-end;
-
-{$ENDIF}
-
 class function CoSpCompressedLexicon.Create: ISpLexicon;
 begin
   Result := CreateComObject(CLASS_SpCompressedLexicon) as ISpLexicon;
@@ -9107,6 +5269,16 @@ end;
 class function CoSpCompressedLexicon.CreateRemote(const MachineName: string): ISpLexicon;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_SpCompressedLexicon) as ISpLexicon;
+end;
+
+class function CoSpShortcut.Create: ISpShortcut;
+begin
+  Result := CreateComObject(CLASS_SpShortcut) as ISpShortcut;
+end;
+
+class function CoSpShortcut.CreateRemote(const MachineName: string): ISpShortcut;
+begin
+  Result := CreateRemoteComObject(MachineName, CLASS_SpShortcut) as ISpShortcut;
 end;
 
 class function CoSpPhoneConverter.Create: ISpeechPhoneConverter;
@@ -9119,117 +5291,15 @@ begin
   Result := CreateRemoteComObject(MachineName, CLASS_SpPhoneConverter) as ISpeechPhoneConverter;
 end;
 
-procedure TSpPhoneConverter.InitServerData;
-const
-  CServerData: TServerData = (
-    ClassID:   '{9185F743-1143-4C28-86B5-BFF14F20E5C8}';
-    IntfIID:   '{C3E4F353-433F-43D6-89A1-6A62A7054C3D}';
-    EventIID:  '';
-    LicenseKey: nil;
-    Version: 500);
+class function CoSpPhoneticAlphabetConverter.Create: ISpPhoneticAlphabetConverter;
 begin
-  ServerData := @CServerData;
+  Result := CreateComObject(CLASS_SpPhoneticAlphabetConverter) as ISpPhoneticAlphabetConverter;
 end;
 
-procedure TSpPhoneConverter.Connect;
-var
-  punk: IUnknown;
+class function CoSpPhoneticAlphabetConverter.CreateRemote(const MachineName: string): ISpPhoneticAlphabetConverter;
 begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    Fintf:= punk as ISpeechPhoneConverter;
-  end;
+  Result := CreateRemoteComObject(MachineName, CLASS_SpPhoneticAlphabetConverter) as ISpPhoneticAlphabetConverter;
 end;
-
-procedure TSpPhoneConverter.ConnectTo(svrIntf: ISpeechPhoneConverter);
-begin
-  Disconnect;
-  FIntf := svrIntf;
-end;
-
-procedure TSpPhoneConverter.DisConnect;
-begin
-  if Fintf <> nil then
-  begin
-    FIntf := nil;
-  end;
-end;
-
-function TSpPhoneConverter.GetDefaultInterface: ISpeechPhoneConverter;
-begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call ''Connect'' or ''ConnectTo'' before this operation');
-  Result := FIntf;
-end;
-
-constructor TSpPhoneConverter.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps := TSpPhoneConverterProperties.Create(Self);
-{$ENDIF}
-end;
-
-destructor TSpPhoneConverter.Destroy;
-begin
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps.Free;
-{$ENDIF}
-  inherited Destroy;
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-function TSpPhoneConverter.GetServerProperties: TSpPhoneConverterProperties;
-begin
-  Result := FProps;
-end;
-{$ENDIF}
-
-function  TSpPhoneConverter.Get_LanguageId: Integer;
-begin
-  Result := DefaultInterface.Get_LanguageId;
-end;
-
-procedure TSpPhoneConverter.Set_LanguageId(LanguageId: Integer);
-begin
-  DefaultInterface.Set_LanguageId(LanguageId);
-end;
-
-function  TSpPhoneConverter.PhoneToId(const Phonemes: WideString): OleVariant;
-begin
-  Result := DefaultInterface.PhoneToId(Phonemes);
-end;
-
-function  TSpPhoneConverter.IdToPhone(IdArray: OleVariant): WideString;
-begin
-  Result := DefaultInterface.IdToPhone(IdArray);
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-constructor TSpPhoneConverterProperties.Create(AServer: TSpPhoneConverter);
-begin
-  inherited Create;
-  FServer := AServer;
-end;
-
-function TSpPhoneConverterProperties.GetDefaultInterface: ISpeechPhoneConverter;
-begin
-  Result := FServer.DefaultInterface;
-end;
-
-function  TSpPhoneConverterProperties.Get_LanguageId: Integer;
-begin
-  Result := DefaultInterface.Get_LanguageId;
-end;
-
-procedure TSpPhoneConverterProperties.Set_LanguageId(LanguageId: Integer);
-begin
-  DefaultInterface.Set_LanguageId(LanguageId);
-end;
-
-{$ENDIF}
 
 class function CoSpNullPhoneConverter.Create: ISpPhoneConverter;
 begin
@@ -9251,168 +5321,6 @@ begin
   Result := CreateRemoteComObject(MachineName, CLASS_SpTextSelectionInformation) as ISpeechTextSelectionInformation;
 end;
 
-procedure TSpTextSelectionInformation.InitServerData;
-const
-  CServerData: TServerData = (
-    ClassID:   '{0F92030A-CBFD-4AB8-A164-FF5985547FF6}';
-    IntfIID:   '{3B9C7E7A-6EEE-4DED-9092-11657279ADBE}';
-    EventIID:  '';
-    LicenseKey: nil;
-    Version: 500);
-begin
-  ServerData := @CServerData;
-end;
-
-procedure TSpTextSelectionInformation.Connect;
-var
-  punk: IUnknown;
-begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    Fintf:= punk as ISpeechTextSelectionInformation;
-  end;
-end;
-
-procedure TSpTextSelectionInformation.ConnectTo(svrIntf: ISpeechTextSelectionInformation);
-begin
-  Disconnect;
-  FIntf := svrIntf;
-end;
-
-procedure TSpTextSelectionInformation.DisConnect;
-begin
-  if Fintf <> nil then
-  begin
-    FIntf := nil;
-  end;
-end;
-
-function TSpTextSelectionInformation.GetDefaultInterface: ISpeechTextSelectionInformation;
-begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call ''Connect'' or ''ConnectTo'' before this operation');
-  Result := FIntf;
-end;
-
-constructor TSpTextSelectionInformation.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps := TSpTextSelectionInformationProperties.Create(Self);
-{$ENDIF}
-end;
-
-destructor TSpTextSelectionInformation.Destroy;
-begin
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps.Free;
-{$ENDIF}
-  inherited Destroy;
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-function TSpTextSelectionInformation.GetServerProperties: TSpTextSelectionInformationProperties;
-begin
-  Result := FProps;
-end;
-{$ENDIF}
-
-procedure TSpTextSelectionInformation.Set_ActiveOffset(ActiveOffset: Integer);
-begin
-  DefaultInterface.Set_ActiveOffset(ActiveOffset);
-end;
-
-function  TSpTextSelectionInformation.Get_ActiveOffset: Integer;
-begin
-  Result := DefaultInterface.Get_ActiveOffset;
-end;
-
-procedure TSpTextSelectionInformation.Set_ActiveLength(ActiveLength: Integer);
-begin
-  DefaultInterface.Set_ActiveLength(ActiveLength);
-end;
-
-function  TSpTextSelectionInformation.Get_ActiveLength: Integer;
-begin
-  Result := DefaultInterface.Get_ActiveLength;
-end;
-
-procedure TSpTextSelectionInformation.Set_SelectionOffset(SelectionOffset: Integer);
-begin
-  DefaultInterface.Set_SelectionOffset(SelectionOffset);
-end;
-
-function  TSpTextSelectionInformation.Get_SelectionOffset: Integer;
-begin
-  Result := DefaultInterface.Get_SelectionOffset;
-end;
-
-procedure TSpTextSelectionInformation.Set_SelectionLength(SelectionLength: Integer);
-begin
-  DefaultInterface.Set_SelectionLength(SelectionLength);
-end;
-
-function  TSpTextSelectionInformation.Get_SelectionLength: Integer;
-begin
-  Result := DefaultInterface.Get_SelectionLength;
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-constructor TSpTextSelectionInformationProperties.Create(AServer: TSpTextSelectionInformation);
-begin
-  inherited Create;
-  FServer := AServer;
-end;
-
-function TSpTextSelectionInformationProperties.GetDefaultInterface: ISpeechTextSelectionInformation;
-begin
-  Result := FServer.DefaultInterface;
-end;
-
-procedure TSpTextSelectionInformationProperties.Set_ActiveOffset(ActiveOffset: Integer);
-begin
-  DefaultInterface.Set_ActiveOffset(ActiveOffset);
-end;
-
-function  TSpTextSelectionInformationProperties.Get_ActiveOffset: Integer;
-begin
-  Result := DefaultInterface.Get_ActiveOffset;
-end;
-
-procedure TSpTextSelectionInformationProperties.Set_ActiveLength(ActiveLength: Integer);
-begin
-  DefaultInterface.Set_ActiveLength(ActiveLength);
-end;
-
-function  TSpTextSelectionInformationProperties.Get_ActiveLength: Integer;
-begin
-  Result := DefaultInterface.Get_ActiveLength;
-end;
-
-procedure TSpTextSelectionInformationProperties.Set_SelectionOffset(SelectionOffset: Integer);
-begin
-  DefaultInterface.Set_SelectionOffset(SelectionOffset);
-end;
-
-function  TSpTextSelectionInformationProperties.Get_SelectionOffset: Integer;
-begin
-  Result := DefaultInterface.Get_SelectionOffset;
-end;
-
-procedure TSpTextSelectionInformationProperties.Set_SelectionLength(SelectionLength: Integer);
-begin
-  DefaultInterface.Set_SelectionLength(SelectionLength);
-end;
-
-function  TSpTextSelectionInformationProperties.Get_SelectionLength: Integer;
-begin
-  Result := DefaultInterface.Get_SelectionLength;
-end;
-
-{$ENDIF}
-
 class function CoSpPhraseInfoBuilder.Create: ISpeechPhraseInfoBuilder;
 begin
   Result := CreateComObject(CLASS_SpPhraseInfoBuilder) as ISpeechPhraseInfoBuilder;
@@ -9422,93 +5330,6 @@ class function CoSpPhraseInfoBuilder.CreateRemote(const MachineName: string): IS
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_SpPhraseInfoBuilder) as ISpeechPhraseInfoBuilder;
 end;
-
-procedure TSpPhraseInfoBuilder.InitServerData;
-const
-  CServerData: TServerData = (
-    ClassID:   '{C23FC28D-C55F-4720-8B32-91F73C2BD5D1}';
-    IntfIID:   '{3B151836-DF3A-4E0A-846C-D2ADC9334333}';
-    EventIID:  '';
-    LicenseKey: nil;
-    Version: 500);
-begin
-  ServerData := @CServerData;
-end;
-
-procedure TSpPhraseInfoBuilder.Connect;
-var
-  punk: IUnknown;
-begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    Fintf:= punk as ISpeechPhraseInfoBuilder;
-  end;
-end;
-
-procedure TSpPhraseInfoBuilder.ConnectTo(svrIntf: ISpeechPhraseInfoBuilder);
-begin
-  Disconnect;
-  FIntf := svrIntf;
-end;
-
-procedure TSpPhraseInfoBuilder.DisConnect;
-begin
-  if Fintf <> nil then
-  begin
-    FIntf := nil;
-  end;
-end;
-
-function TSpPhraseInfoBuilder.GetDefaultInterface: ISpeechPhraseInfoBuilder;
-begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call ''Connect'' or ''ConnectTo'' before this operation');
-  Result := FIntf;
-end;
-
-constructor TSpPhraseInfoBuilder.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps := TSpPhraseInfoBuilderProperties.Create(Self);
-{$ENDIF}
-end;
-
-destructor TSpPhraseInfoBuilder.Destroy;
-begin
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps.Free;
-{$ENDIF}
-  inherited Destroy;
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-function TSpPhraseInfoBuilder.GetServerProperties: TSpPhraseInfoBuilderProperties;
-begin
-  Result := FProps;
-end;
-{$ENDIF}
-
-function  TSpPhraseInfoBuilder.RestorePhraseFromMemory(var PhraseInMemory: OleVariant): ISpeechPhraseInfo;
-begin
-  Result := DefaultInterface.RestorePhraseFromMemory(PhraseInMemory);
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-constructor TSpPhraseInfoBuilderProperties.Create(AServer: TSpPhraseInfoBuilder);
-begin
-  inherited Create;
-  FServer := AServer;
-end;
-
-function TSpPhraseInfoBuilderProperties.GetDefaultInterface: ISpeechPhraseInfoBuilder;
-begin
-  Result := FServer.DefaultInterface;
-end;
-
-{$ENDIF}
 
 class function CoSpAudioFormat.Create: ISpeechAudioFormat;
 begin
@@ -9520,138 +5341,6 @@ begin
   Result := CreateRemoteComObject(MachineName, CLASS_SpAudioFormat) as ISpeechAudioFormat;
 end;
 
-procedure TSpAudioFormat.InitServerData;
-const
-  CServerData: TServerData = (
-    ClassID:   '{9EF96870-E160-4792-820D-48CF0649E4EC}';
-    IntfIID:   '{E6E9C590-3E18-40E3-8299-061F98BDE7C7}';
-    EventIID:  '';
-    LicenseKey: nil;
-    Version: 500);
-begin
-  ServerData := @CServerData;
-end;
-
-procedure TSpAudioFormat.Connect;
-var
-  punk: IUnknown;
-begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    Fintf:= punk as ISpeechAudioFormat;
-  end;
-end;
-
-procedure TSpAudioFormat.ConnectTo(svrIntf: ISpeechAudioFormat);
-begin
-  Disconnect;
-  FIntf := svrIntf;
-end;
-
-procedure TSpAudioFormat.DisConnect;
-begin
-  if Fintf <> nil then
-  begin
-    FIntf := nil;
-  end;
-end;
-
-function TSpAudioFormat.GetDefaultInterface: ISpeechAudioFormat;
-begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call ''Connect'' or ''ConnectTo'' before this operation');
-  Result := FIntf;
-end;
-
-constructor TSpAudioFormat.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps := TSpAudioFormatProperties.Create(Self);
-{$ENDIF}
-end;
-
-destructor TSpAudioFormat.Destroy;
-begin
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps.Free;
-{$ENDIF}
-  inherited Destroy;
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-function TSpAudioFormat.GetServerProperties: TSpAudioFormatProperties;
-begin
-  Result := FProps;
-end;
-{$ENDIF}
-
-function  TSpAudioFormat.Get_Type_: SpeechAudioFormatType;
-begin
-  Result := DefaultInterface.Get_Type_;
-end;
-
-procedure TSpAudioFormat.Set_Type_(AudioFormat: SpeechAudioFormatType);
-begin
-  DefaultInterface.Set_Type_(AudioFormat);
-end;
-
-function  TSpAudioFormat.Get_Guid: WideString;
-begin
-  Result := DefaultInterface.Get_Guid;
-end;
-
-procedure TSpAudioFormat.Set_Guid(const Guid: WideString);
-begin
-  DefaultInterface.Set_Guid(Guid);
-end;
-
-function  TSpAudioFormat.GetWaveFormatEx: ISpeechWaveFormatEx;
-begin
-  Result := DefaultInterface.GetWaveFormatEx;
-end;
-
-procedure TSpAudioFormat.SetWaveFormatEx(const WaveFormatEx: ISpeechWaveFormatEx);
-begin
-  DefaultInterface.SetWaveFormatEx(WaveFormatEx);
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-constructor TSpAudioFormatProperties.Create(AServer: TSpAudioFormat);
-begin
-  inherited Create;
-  FServer := AServer;
-end;
-
-function TSpAudioFormatProperties.GetDefaultInterface: ISpeechAudioFormat;
-begin
-  Result := FServer.DefaultInterface;
-end;
-
-function  TSpAudioFormatProperties.Get_Type_: SpeechAudioFormatType;
-begin
-  Result := DefaultInterface.Get_Type_;
-end;
-
-procedure TSpAudioFormatProperties.Set_Type_(AudioFormat: SpeechAudioFormatType);
-begin
-  DefaultInterface.Set_Type_(AudioFormat);
-end;
-
-function  TSpAudioFormatProperties.Get_Guid: WideString;
-begin
-  Result := DefaultInterface.Get_Guid;
-end;
-
-procedure TSpAudioFormatProperties.Set_Guid(const Guid: WideString);
-begin
-  DefaultInterface.Set_Guid(Guid);
-end;
-
-{$ENDIF}
-
 class function CoSpWaveFormatEx.Create: ISpeechWaveFormatEx;
 begin
   Result := CreateComObject(CLASS_SpWaveFormatEx) as ISpeechWaveFormatEx;
@@ -9661,228 +5350,6 @@ class function CoSpWaveFormatEx.CreateRemote(const MachineName: string): ISpeech
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_SpWaveFormatEx) as ISpeechWaveFormatEx;
 end;
-
-procedure TSpWaveFormatEx.InitServerData;
-const
-  CServerData: TServerData = (
-    ClassID:   '{C79A574C-63BE-44B9-801F-283F87F898BE}';
-    IntfIID:   '{7A1EF0D5-1581-4741-88E4-209A49F11A10}';
-    EventIID:  '';
-    LicenseKey: nil;
-    Version: 500);
-begin
-  ServerData := @CServerData;
-end;
-
-procedure TSpWaveFormatEx.Connect;
-var
-  punk: IUnknown;
-begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    Fintf:= punk as ISpeechWaveFormatEx;
-  end;
-end;
-
-procedure TSpWaveFormatEx.ConnectTo(svrIntf: ISpeechWaveFormatEx);
-begin
-  Disconnect;
-  FIntf := svrIntf;
-end;
-
-procedure TSpWaveFormatEx.DisConnect;
-begin
-  if Fintf <> nil then
-  begin
-    FIntf := nil;
-  end;
-end;
-
-function TSpWaveFormatEx.GetDefaultInterface: ISpeechWaveFormatEx;
-begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call ''Connect'' or ''ConnectTo'' before this operation');
-  Result := FIntf;
-end;
-
-constructor TSpWaveFormatEx.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps := TSpWaveFormatExProperties.Create(Self);
-{$ENDIF}
-end;
-
-destructor TSpWaveFormatEx.Destroy;
-begin
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps.Free;
-{$ENDIF}
-  inherited Destroy;
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-function TSpWaveFormatEx.GetServerProperties: TSpWaveFormatExProperties;
-begin
-  Result := FProps;
-end;
-{$ENDIF}
-
-function  TSpWaveFormatEx.Get_FormatTag: Smallint;
-begin
-  Result := DefaultInterface.Get_FormatTag;
-end;
-
-procedure TSpWaveFormatEx.Set_FormatTag(FormatTag: Smallint);
-begin
-  DefaultInterface.Set_FormatTag(FormatTag);
-end;
-
-function  TSpWaveFormatEx.Get_Channels: Smallint;
-begin
-  Result := DefaultInterface.Get_Channels;
-end;
-
-procedure TSpWaveFormatEx.Set_Channels(Channels: Smallint);
-begin
-  DefaultInterface.Set_Channels(Channels);
-end;
-
-function  TSpWaveFormatEx.Get_SamplesPerSec: Integer;
-begin
-  Result := DefaultInterface.Get_SamplesPerSec;
-end;
-
-procedure TSpWaveFormatEx.Set_SamplesPerSec(SamplesPerSec: Integer);
-begin
-  DefaultInterface.Set_SamplesPerSec(SamplesPerSec);
-end;
-
-function  TSpWaveFormatEx.Get_AvgBytesPerSec: Integer;
-begin
-  Result := DefaultInterface.Get_AvgBytesPerSec;
-end;
-
-procedure TSpWaveFormatEx.Set_AvgBytesPerSec(AvgBytesPerSec: Integer);
-begin
-  DefaultInterface.Set_AvgBytesPerSec(AvgBytesPerSec);
-end;
-
-function  TSpWaveFormatEx.Get_BlockAlign: Smallint;
-begin
-  Result := DefaultInterface.Get_BlockAlign;
-end;
-
-procedure TSpWaveFormatEx.Set_BlockAlign(BlockAlign: Smallint);
-begin
-  DefaultInterface.Set_BlockAlign(BlockAlign);
-end;
-
-function  TSpWaveFormatEx.Get_BitsPerSample: Smallint;
-begin
-  Result := DefaultInterface.Get_BitsPerSample;
-end;
-
-procedure TSpWaveFormatEx.Set_BitsPerSample(BitsPerSample: Smallint);
-begin
-  DefaultInterface.Set_BitsPerSample(BitsPerSample);
-end;
-
-function  TSpWaveFormatEx.Get_ExtraData: OleVariant;
-begin
-  Result := DefaultInterface.Get_ExtraData;
-end;
-
-procedure TSpWaveFormatEx.Set_ExtraData(ExtraData: OleVariant);
-begin
-  DefaultInterface.Set_ExtraData(ExtraData);
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-constructor TSpWaveFormatExProperties.Create(AServer: TSpWaveFormatEx);
-begin
-  inherited Create;
-  FServer := AServer;
-end;
-
-function TSpWaveFormatExProperties.GetDefaultInterface: ISpeechWaveFormatEx;
-begin
-  Result := FServer.DefaultInterface;
-end;
-
-function  TSpWaveFormatExProperties.Get_FormatTag: Smallint;
-begin
-  Result := DefaultInterface.Get_FormatTag;
-end;
-
-procedure TSpWaveFormatExProperties.Set_FormatTag(FormatTag: Smallint);
-begin
-  DefaultInterface.Set_FormatTag(FormatTag);
-end;
-
-function  TSpWaveFormatExProperties.Get_Channels: Smallint;
-begin
-  Result := DefaultInterface.Get_Channels;
-end;
-
-procedure TSpWaveFormatExProperties.Set_Channels(Channels: Smallint);
-begin
-  DefaultInterface.Set_Channels(Channels);
-end;
-
-function  TSpWaveFormatExProperties.Get_SamplesPerSec: Integer;
-begin
-  Result := DefaultInterface.Get_SamplesPerSec;
-end;
-
-procedure TSpWaveFormatExProperties.Set_SamplesPerSec(SamplesPerSec: Integer);
-begin
-  DefaultInterface.Set_SamplesPerSec(SamplesPerSec);
-end;
-
-function  TSpWaveFormatExProperties.Get_AvgBytesPerSec: Integer;
-begin
-  Result := DefaultInterface.Get_AvgBytesPerSec;
-end;
-
-procedure TSpWaveFormatExProperties.Set_AvgBytesPerSec(AvgBytesPerSec: Integer);
-begin
-  DefaultInterface.Set_AvgBytesPerSec(AvgBytesPerSec);
-end;
-
-function  TSpWaveFormatExProperties.Get_BlockAlign: Smallint;
-begin
-  Result := DefaultInterface.Get_BlockAlign;
-end;
-
-procedure TSpWaveFormatExProperties.Set_BlockAlign(BlockAlign: Smallint);
-begin
-  DefaultInterface.Set_BlockAlign(BlockAlign);
-end;
-
-function  TSpWaveFormatExProperties.Get_BitsPerSample: Smallint;
-begin
-  Result := DefaultInterface.Get_BitsPerSample;
-end;
-
-procedure TSpWaveFormatExProperties.Set_BitsPerSample(BitsPerSample: Smallint);
-begin
-  DefaultInterface.Set_BitsPerSample(BitsPerSample);
-end;
-
-function  TSpWaveFormatExProperties.Get_ExtraData: OleVariant;
-begin
-  Result := DefaultInterface.Get_ExtraData;
-end;
-
-procedure TSpWaveFormatExProperties.Set_ExtraData(ExtraData: OleVariant);
-begin
-  DefaultInterface.Set_ExtraData(ExtraData);
-end;
-
-{$ENDIF}
 
 class function CoSpInProcRecoContext.Create: ISpeechRecoContext;
 begin
@@ -9894,360 +5361,6 @@ begin
   Result := CreateRemoteComObject(MachineName, CLASS_SpInProcRecoContext) as ISpeechRecoContext;
 end;
 
-procedure TSpInProcRecoContext.InitServerData;
-const
-  CServerData: TServerData = (
-    ClassID:   '{73AD6842-ACE0-45E8-A4DD-8795881A2C2A}';
-    IntfIID:   '{580AA49D-7E1E-4809-B8E2-57DA806104B8}';
-    EventIID:  '{7B8FCB42-0E9D-4F00-A048-7B04D6179D3D}';
-    LicenseKey: nil;
-    Version: 500);
-begin
-  ServerData := @CServerData;
-end;
-
-procedure TSpInProcRecoContext.Connect;
-var
-  punk: IUnknown;
-begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    ConnectEvents(punk);
-    Fintf:= punk as ISpeechRecoContext;
-  end;
-end;
-
-procedure TSpInProcRecoContext.ConnectTo(svrIntf: ISpeechRecoContext);
-begin
-  Disconnect;
-  FIntf := svrIntf;
-  ConnectEvents(FIntf);
-end;
-
-procedure TSpInProcRecoContext.DisConnect;
-begin
-  if Fintf <> nil then
-  begin
-    DisconnectEvents(FIntf);
-    FIntf := nil;
-  end;
-end;
-
-function TSpInProcRecoContext.GetDefaultInterface: ISpeechRecoContext;
-begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call ''Connect'' or ''ConnectTo'' before this operation');
-  Result := FIntf;
-end;
-
-constructor TSpInProcRecoContext.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps := TSpInProcRecoContextProperties.Create(Self);
-{$ENDIF}
-end;
-
-destructor TSpInProcRecoContext.Destroy;
-begin
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps.Free;
-{$ENDIF}
-  inherited Destroy;
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-function TSpInProcRecoContext.GetServerProperties: TSpInProcRecoContextProperties;
-begin
-  Result := FProps;
-end;
-{$ENDIF}
-
-procedure TSpInProcRecoContext.InvokeEvent(DispID: TDispID; var Params: TVariantArray);
-begin
-  case DispID of
-    -1: Exit;  // DISPID_UNKNOWN
-   1: if Assigned(FOnStartStream) then
-            FOnStartStream(Self, Params[0] {Integer}, Params[1] {OleVariant});
-   2: if Assigned(FOnEndStream) then
-            FOnEndStream(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {WordBool});
-   3: if Assigned(FOnBookmark) then
-            FOnBookmark(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {OleVariant}, Params[3] {SpeechBookmarkOptions});
-   4: if Assigned(FOnSoundStart) then
-            FOnSoundStart(Self, Params[0] {Integer}, Params[1] {OleVariant});
-   5: if Assigned(FOnSoundEnd) then
-            FOnSoundEnd(Self, Params[0] {Integer}, Params[1] {OleVariant});
-   6: if Assigned(FOnPhraseStart) then
-            FOnPhraseStart(Self, Params[0] {Integer}, Params[1] {OleVariant});
-   7: if Assigned(FOnRecognition) then
-            FOnRecognition(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {SpeechRecognitionType}, Params[3] {const ISpeechRecoResult});
-   8: if Assigned(FOnHypothesis) then
-            FOnHypothesis(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {const ISpeechRecoResult});
-   9: if Assigned(FOnPropertyNumberChange) then
-            FOnPropertyNumberChange(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {const WideString}, Params[3] {Integer});
-   10: if Assigned(FOnPropertyStringChange) then
-            FOnPropertyStringChange(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {const WideString}, Params[3] {const WideString});
-   11: if Assigned(FOnFalseRecognition) then
-            FOnFalseRecognition(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {const ISpeechRecoResult});
-   12: if Assigned(FOnInterference) then
-            FOnInterference(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {SpeechInterference});
-   13: if Assigned(FOnRequestUI) then
-            FOnRequestUI(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {const WideString});
-   14: if Assigned(FOnRecognizerStateChange) then
-            FOnRecognizerStateChange(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {SpeechRecognizerState});
-   15: if Assigned(FOnAdaptation) then
-            FOnAdaptation(Self, Params[0] {Integer}, Params[1] {OleVariant});
-   16: if Assigned(FOnRecognitionForOtherContext) then
-            FOnRecognitionForOtherContext(Self, Params[0] {Integer}, Params[1] {OleVariant});
-   17: if Assigned(FOnAudioLevel) then
-            FOnAudioLevel(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {Integer});
-   18: if Assigned(FOnEnginePrivate) then
-            FOnEnginePrivate(Self, Params[0] {Integer}, Params[1] {OleVariant}, Params[2] {OleVariant});
-  end; {case DispID}
-end;
-
-function  TSpInProcRecoContext.Get_Recognizer: ISpeechRecognizer;
-begin
-  Result := DefaultInterface.Get_Recognizer;
-end;
-
-function  TSpInProcRecoContext.Get_AudioInputInterferenceStatus: SpeechInterference;
-begin
-  Result := DefaultInterface.Get_AudioInputInterferenceStatus;
-end;
-
-function  TSpInProcRecoContext.Get_RequestedUIType: WideString;
-begin
-  Result := DefaultInterface.Get_RequestedUIType;
-end;
-
-procedure TSpInProcRecoContext.Set_Voice(const Voice: ISpeechVoice);
-begin
-  DefaultInterface.Set_Voice(Voice);
-end;
-
-function  TSpInProcRecoContext.Get_Voice: ISpeechVoice;
-begin
-  Result := DefaultInterface.Get_Voice;
-end;
-
-procedure TSpInProcRecoContext.Set_AllowVoiceFormatMatchingOnNextSet(pAllow: WordBool);
-begin
-  DefaultInterface.Set_AllowVoiceFormatMatchingOnNextSet(pAllow);
-end;
-
-function  TSpInProcRecoContext.Get_AllowVoiceFormatMatchingOnNextSet: WordBool;
-begin
-  Result := DefaultInterface.Get_AllowVoiceFormatMatchingOnNextSet;
-end;
-
-procedure TSpInProcRecoContext.Set_VoicePurgeEvent(EventInterest: SpeechRecoEvents);
-begin
-  DefaultInterface.Set_VoicePurgeEvent(EventInterest);
-end;
-
-function  TSpInProcRecoContext.Get_VoicePurgeEvent: SpeechRecoEvents;
-begin
-  Result := DefaultInterface.Get_VoicePurgeEvent;
-end;
-
-procedure TSpInProcRecoContext.Set_EventInterests(EventInterest: SpeechRecoEvents);
-begin
-  DefaultInterface.Set_EventInterests(EventInterest);
-end;
-
-function  TSpInProcRecoContext.Get_EventInterests: SpeechRecoEvents;
-begin
-  Result := DefaultInterface.Get_EventInterests;
-end;
-
-procedure TSpInProcRecoContext.Set_CmdMaxAlternates(MaxAlternates: Integer);
-begin
-  DefaultInterface.Set_CmdMaxAlternates(MaxAlternates);
-end;
-
-function  TSpInProcRecoContext.Get_CmdMaxAlternates: Integer;
-begin
-  Result := DefaultInterface.Get_CmdMaxAlternates;
-end;
-
-procedure TSpInProcRecoContext.Set_State(State: SpeechRecoContextState);
-begin
-  DefaultInterface.Set_State(State);
-end;
-
-function  TSpInProcRecoContext.Get_State: SpeechRecoContextState;
-begin
-  Result := DefaultInterface.Get_State;
-end;
-
-procedure TSpInProcRecoContext.Set_RetainedAudio(Option: SpeechRetainedAudioOptions);
-begin
-  DefaultInterface.Set_RetainedAudio(Option);
-end;
-
-function  TSpInProcRecoContext.Get_RetainedAudio: SpeechRetainedAudioOptions;
-begin
-  Result := DefaultInterface.Get_RetainedAudio;
-end;
-
-procedure TSpInProcRecoContext.Set_RetainedAudioFormat(const Format: ISpeechAudioFormat);
-begin
-  DefaultInterface.Set_RetainedAudioFormat(Format);
-end;
-
-function  TSpInProcRecoContext.Get_RetainedAudioFormat: ISpeechAudioFormat;
-begin
-  Result := DefaultInterface.Get_RetainedAudioFormat;
-end;
-
-procedure TSpInProcRecoContext.Pause;
-begin
-  DefaultInterface.Pause;
-end;
-
-procedure TSpInProcRecoContext.Resume;
-begin
-  DefaultInterface.Resume;
-end;
-
-function  TSpInProcRecoContext.CreateGrammar: ISpeechRecoGrammar;
-begin
-  Result := DefaultInterface.CreateGrammar(EmptyParam);
-end;
-
-function  TSpInProcRecoContext.CreateGrammar(GrammarId: OleVariant): ISpeechRecoGrammar;
-begin
-  Result := DefaultInterface.CreateGrammar(GrammarId);
-end;
-
-function  TSpInProcRecoContext.CreateResultFromMemory(var ResultBlock: OleVariant): ISpeechRecoResult;
-begin
-  Result := DefaultInterface.CreateResultFromMemory(ResultBlock);
-end;
-
-procedure TSpInProcRecoContext.Bookmark(Options: SpeechBookmarkOptions; StreamPos: OleVariant; 
-                                        BookmarkId: OleVariant);
-begin
-  DefaultInterface.Bookmark(Options, StreamPos, BookmarkId);
-end;
-
-procedure TSpInProcRecoContext.SetAdaptationData(const AdaptationString: WideString);
-begin
-  DefaultInterface.SetAdaptationData(AdaptationString);
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-constructor TSpInProcRecoContextProperties.Create(AServer: TSpInProcRecoContext);
-begin
-  inherited Create;
-  FServer := AServer;
-end;
-
-function TSpInProcRecoContextProperties.GetDefaultInterface: ISpeechRecoContext;
-begin
-  Result := FServer.DefaultInterface;
-end;
-
-function  TSpInProcRecoContextProperties.Get_Recognizer: ISpeechRecognizer;
-begin
-  Result := DefaultInterface.Get_Recognizer;
-end;
-
-function  TSpInProcRecoContextProperties.Get_AudioInputInterferenceStatus: SpeechInterference;
-begin
-  Result := DefaultInterface.Get_AudioInputInterferenceStatus;
-end;
-
-function  TSpInProcRecoContextProperties.Get_RequestedUIType: WideString;
-begin
-  Result := DefaultInterface.Get_RequestedUIType;
-end;
-
-procedure TSpInProcRecoContextProperties.Set_Voice(const Voice: ISpeechVoice);
-begin
-  DefaultInterface.Set_Voice(Voice);
-end;
-
-function  TSpInProcRecoContextProperties.Get_Voice: ISpeechVoice;
-begin
-  Result := DefaultInterface.Get_Voice;
-end;
-
-procedure TSpInProcRecoContextProperties.Set_AllowVoiceFormatMatchingOnNextSet(pAllow: WordBool);
-begin
-  DefaultInterface.Set_AllowVoiceFormatMatchingOnNextSet(pAllow);
-end;
-
-function  TSpInProcRecoContextProperties.Get_AllowVoiceFormatMatchingOnNextSet: WordBool;
-begin
-  Result := DefaultInterface.Get_AllowVoiceFormatMatchingOnNextSet;
-end;
-
-procedure TSpInProcRecoContextProperties.Set_VoicePurgeEvent(EventInterest: SpeechRecoEvents);
-begin
-  DefaultInterface.Set_VoicePurgeEvent(EventInterest);
-end;
-
-function  TSpInProcRecoContextProperties.Get_VoicePurgeEvent: SpeechRecoEvents;
-begin
-  Result := DefaultInterface.Get_VoicePurgeEvent;
-end;
-
-procedure TSpInProcRecoContextProperties.Set_EventInterests(EventInterest: SpeechRecoEvents);
-begin
-  DefaultInterface.Set_EventInterests(EventInterest);
-end;
-
-function  TSpInProcRecoContextProperties.Get_EventInterests: SpeechRecoEvents;
-begin
-  Result := DefaultInterface.Get_EventInterests;
-end;
-
-procedure TSpInProcRecoContextProperties.Set_CmdMaxAlternates(MaxAlternates: Integer);
-begin
-  DefaultInterface.Set_CmdMaxAlternates(MaxAlternates);
-end;
-
-function  TSpInProcRecoContextProperties.Get_CmdMaxAlternates: Integer;
-begin
-  Result := DefaultInterface.Get_CmdMaxAlternates;
-end;
-
-procedure TSpInProcRecoContextProperties.Set_State(State: SpeechRecoContextState);
-begin
-  DefaultInterface.Set_State(State);
-end;
-
-function  TSpInProcRecoContextProperties.Get_State: SpeechRecoContextState;
-begin
-  Result := DefaultInterface.Get_State;
-end;
-
-procedure TSpInProcRecoContextProperties.Set_RetainedAudio(Option: SpeechRetainedAudioOptions);
-begin
-  DefaultInterface.Set_RetainedAudio(Option);
-end;
-
-function  TSpInProcRecoContextProperties.Get_RetainedAudio: SpeechRetainedAudioOptions;
-begin
-  Result := DefaultInterface.Get_RetainedAudio;
-end;
-
-procedure TSpInProcRecoContextProperties.Set_RetainedAudioFormat(const Format: ISpeechAudioFormat);
-begin
-  DefaultInterface.Set_RetainedAudioFormat(Format);
-end;
-
-function  TSpInProcRecoContextProperties.Get_RetainedAudioFormat: ISpeechAudioFormat;
-begin
-  Result := DefaultInterface.Get_RetainedAudioFormat;
-end;
-
-{$ENDIF}
-
 class function CoSpCustomStream.Create: ISpeechCustomStream;
 begin
   Result := CreateComObject(CLASS_SpCustomStream) as ISpeechCustomStream;
@@ -10257,143 +5370,6 @@ class function CoSpCustomStream.CreateRemote(const MachineName: string): ISpeech
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_SpCustomStream) as ISpeechCustomStream;
 end;
-
-procedure TSpCustomStream.InitServerData;
-const
-  CServerData: TServerData = (
-    ClassID:   '{8DBEF13F-1948-4AA8-8CF0-048EEBED95D8}';
-    IntfIID:   '{1A9E9F4F-104F-4DB8-A115-EFD7FD0C97AE}';
-    EventIID:  '';
-    LicenseKey: nil;
-    Version: 500);
-begin
-  ServerData := @CServerData;
-end;
-
-procedure TSpCustomStream.Connect;
-var
-  punk: IUnknown;
-begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    Fintf:= punk as ISpeechCustomStream;
-  end;
-end;
-
-procedure TSpCustomStream.ConnectTo(svrIntf: ISpeechCustomStream);
-begin
-  Disconnect;
-  FIntf := svrIntf;
-end;
-
-procedure TSpCustomStream.DisConnect;
-begin
-  if Fintf <> nil then
-  begin
-    FIntf := nil;
-  end;
-end;
-
-function TSpCustomStream.GetDefaultInterface: ISpeechCustomStream;
-begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call ''Connect'' or ''ConnectTo'' before this operation');
-  Result := FIntf;
-end;
-
-constructor TSpCustomStream.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps := TSpCustomStreamProperties.Create(Self);
-{$ENDIF}
-end;
-
-destructor TSpCustomStream.Destroy;
-begin
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps.Free;
-{$ENDIF}
-  inherited Destroy;
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-function TSpCustomStream.GetServerProperties: TSpCustomStreamProperties;
-begin
-  Result := FProps;
-end;
-{$ENDIF}
-
-function  TSpCustomStream.Get_Format: ISpeechAudioFormat;
-begin
-  Result := DefaultInterface.Get_Format;
-end;
-
-procedure TSpCustomStream.Set_Format(const AudioFormat: ISpeechAudioFormat);
-begin
-  DefaultInterface.Set_Format(AudioFormat);
-end;
-
-function  TSpCustomStream.Get_BaseStream: IUnknown;
-begin
-  Result := DefaultInterface.Get_BaseStream;
-end;
-
-procedure TSpCustomStream.Set_BaseStream(const ppUnkStream: IUnknown);
-begin
-  DefaultInterface.Set_BaseStream(ppUnkStream);
-end;
-
-function  TSpCustomStream.Read(out Buffer: OleVariant; NumberOfBytes: Integer): Integer;
-begin
-  Result := DefaultInterface.Read(Buffer, NumberOfBytes);
-end;
-
-function  TSpCustomStream.Write(Buffer: OleVariant): Integer;
-begin
-  Result := DefaultInterface.Write(Buffer);
-end;
-
-function  TSpCustomStream.Seek(Position: OleVariant; Origin: SpeechStreamSeekPositionType): OleVariant;
-begin
-  Result := DefaultInterface.Seek(Position, Origin);
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-constructor TSpCustomStreamProperties.Create(AServer: TSpCustomStream);
-begin
-  inherited Create;
-  FServer := AServer;
-end;
-
-function TSpCustomStreamProperties.GetDefaultInterface: ISpeechCustomStream;
-begin
-  Result := FServer.DefaultInterface;
-end;
-
-function  TSpCustomStreamProperties.Get_Format: ISpeechAudioFormat;
-begin
-  Result := DefaultInterface.Get_Format;
-end;
-
-procedure TSpCustomStreamProperties.Set_Format(const AudioFormat: ISpeechAudioFormat);
-begin
-  DefaultInterface.Set_Format(AudioFormat);
-end;
-
-function  TSpCustomStreamProperties.Get_BaseStream: IUnknown;
-begin
-  Result := DefaultInterface.Get_BaseStream;
-end;
-
-procedure TSpCustomStreamProperties.Set_BaseStream(const ppUnkStream: IUnknown);
-begin
-  DefaultInterface.Set_BaseStream(ppUnkStream);
-end;
-
-{$ENDIF}
 
 class function CoSpFileStream.Create: ISpeechFileStream;
 begin
@@ -10405,134 +5381,6 @@ begin
   Result := CreateRemoteComObject(MachineName, CLASS_SpFileStream) as ISpeechFileStream;
 end;
 
-procedure TSpFileStream.InitServerData;
-const
-  CServerData: TServerData = (
-    ClassID:   '{947812B3-2AE1-4644-BA86-9E90DED7EC91}';
-    IntfIID:   '{AF67F125-AB39-4E93-B4A2-CC2E66E182A7}';
-    EventIID:  '';
-    LicenseKey: nil;
-    Version: 500);
-begin
-  ServerData := @CServerData;
-end;
-
-procedure TSpFileStream.Connect;
-var
-  punk: IUnknown;
-begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    Fintf:= punk as ISpeechFileStream;
-  end;
-end;
-
-procedure TSpFileStream.ConnectTo(svrIntf: ISpeechFileStream);
-begin
-  Disconnect;
-  FIntf := svrIntf;
-end;
-
-procedure TSpFileStream.DisConnect;
-begin
-  if Fintf <> nil then
-  begin
-    FIntf := nil;
-  end;
-end;
-
-function TSpFileStream.GetDefaultInterface: ISpeechFileStream;
-begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call ''Connect'' or ''ConnectTo'' before this operation');
-  Result := FIntf;
-end;
-
-constructor TSpFileStream.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps := TSpFileStreamProperties.Create(Self);
-{$ENDIF}
-end;
-
-destructor TSpFileStream.Destroy;
-begin
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps.Free;
-{$ENDIF}
-  inherited Destroy;
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-function TSpFileStream.GetServerProperties: TSpFileStreamProperties;
-begin
-  Result := FProps;
-end;
-{$ENDIF}
-
-function  TSpFileStream.Get_Format: ISpeechAudioFormat;
-begin
-  Result := DefaultInterface.Get_Format;
-end;
-
-procedure TSpFileStream.Set_Format(const AudioFormat: ISpeechAudioFormat);
-begin
-  DefaultInterface.Set_Format(AudioFormat);
-end;
-
-function  TSpFileStream.Read(out Buffer: OleVariant; NumberOfBytes: Integer): Integer;
-begin
-  Result := DefaultInterface.Read(Buffer, NumberOfBytes);
-end;
-
-function  TSpFileStream.Write(Buffer: OleVariant): Integer;
-begin
-  Result := DefaultInterface.Write(Buffer);
-end;
-
-function  TSpFileStream.Seek(Position: OleVariant; Origin: SpeechStreamSeekPositionType): OleVariant;
-begin
-  Result := DefaultInterface.Seek(Position, Origin);
-end;
-
-procedure TSpFileStream.Open(const FileName: WideString; FileMode: SpeechStreamFileMode; 
-                             DoEvents: WordBool);
-begin
-  DefaultInterface.Open(FileName, FileMode, DoEvents);
-end;
-
-procedure TSpFileStream.Close;
-begin
-  DefaultInterface.Close;
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-constructor TSpFileStreamProperties.Create(AServer: TSpFileStream);
-begin
-  inherited Create;
-  FServer := AServer;
-end;
-
-function TSpFileStreamProperties.GetDefaultInterface: ISpeechFileStream;
-begin
-  Result := FServer.DefaultInterface;
-end;
-
-function  TSpFileStreamProperties.Get_Format: ISpeechAudioFormat;
-begin
-  Result := DefaultInterface.Get_Format;
-end;
-
-procedure TSpFileStreamProperties.Set_Format(const AudioFormat: ISpeechAudioFormat);
-begin
-  DefaultInterface.Set_Format(AudioFormat);
-end;
-
-{$ENDIF}
-
 class function CoSpMemoryStream.Create: ISpeechMemoryStream;
 begin
   Result := CreateComObject(CLASS_SpMemoryStream) as ISpeechMemoryStream;
@@ -10541,141 +5389,6 @@ end;
 class function CoSpMemoryStream.CreateRemote(const MachineName: string): ISpeechMemoryStream;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_SpMemoryStream) as ISpeechMemoryStream;
-end;
-
-procedure TSpMemoryStream.InitServerData;
-const
-  CServerData: TServerData = (
-    ClassID:   '{5FB7EF7D-DFF4-468A-B6B7-2FCBD188F994}';
-    IntfIID:   '{EEB14B68-808B-4ABE-A5EA-B51DA7588008}';
-    EventIID:  '';
-    LicenseKey: nil;
-    Version: 500);
-begin
-  ServerData := @CServerData;
-end;
-
-procedure TSpMemoryStream.Connect;
-var
-  punk: IUnknown;
-begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    Fintf:= punk as ISpeechMemoryStream;
-  end;
-end;
-
-procedure TSpMemoryStream.ConnectTo(svrIntf: ISpeechMemoryStream);
-begin
-  Disconnect;
-  FIntf := svrIntf;
-end;
-
-procedure TSpMemoryStream.DisConnect;
-begin
-  if Fintf <> nil then
-  begin
-    FIntf := nil;
-  end;
-end;
-
-function TSpMemoryStream.GetDefaultInterface: ISpeechMemoryStream;
-begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call ''Connect'' or ''ConnectTo'' before this operation');
-  Result := FIntf;
-end;
-
-constructor TSpMemoryStream.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps := TSpMemoryStreamProperties.Create(Self);
-{$ENDIF}
-end;
-
-destructor TSpMemoryStream.Destroy;
-begin
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps.Free;
-{$ENDIF}
-  inherited Destroy;
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-function TSpMemoryStream.GetServerProperties: TSpMemoryStreamProperties;
-begin
-  Result := FProps;
-end;
-{$ENDIF}
-
-function  TSpMemoryStream.Get_Format: ISpeechAudioFormat;
-begin
-  Result := DefaultInterface.Get_Format;
-end;
-
-procedure TSpMemoryStream.Set_Format(const AudioFormat: ISpeechAudioFormat);
-begin
-  DefaultInterface.Set_Format(AudioFormat);
-end;
-
-function  TSpMemoryStream.Read(out Buffer: OleVariant; NumberOfBytes: Integer): Integer;
-begin
-  Result := DefaultInterface.Read(Buffer, NumberOfBytes);
-end;
-
-function  TSpMemoryStream.Write(Buffer: OleVariant): Integer;
-begin
-  Result := DefaultInterface.Write(Buffer);
-end;
-
-function  TSpMemoryStream.Seek(Position: OleVariant; Origin: SpeechStreamSeekPositionType): OleVariant;
-begin
-  Result := DefaultInterface.Seek(Position, Origin);
-end;
-
-procedure TSpMemoryStream.SetData(Data: OleVariant);
-begin
-  DefaultInterface.SetData(Data);
-end;
-
-function  TSpMemoryStream.GetData: OleVariant;
-begin
-  Result := DefaultInterface.GetData;
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-constructor TSpMemoryStreamProperties.Create(AServer: TSpMemoryStream);
-begin
-  inherited Create;
-  FServer := AServer;
-end;
-
-function TSpMemoryStreamProperties.GetDefaultInterface: ISpeechMemoryStream;
-begin
-  Result := FServer.DefaultInterface;
-end;
-
-function  TSpMemoryStreamProperties.Get_Format: ISpeechAudioFormat;
-begin
-  Result := DefaultInterface.Get_Format;
-end;
-
-procedure TSpMemoryStreamProperties.Set_Format(const AudioFormat: ISpeechAudioFormat);
-begin
-  DefaultInterface.Set_Format(AudioFormat);
-end;
-
-{$ENDIF}
-
-procedure Register;
-begin
-  RegisterComponents('SAPI 5.1',[TSpObjectTokenCategory, TSpObjectToken, TSpMMAudioIn, TSpMMAudioOut, 
-    TSpVoice, TSpSharedRecoContext, TSpInprocRecognizer, TSpSharedRecognizer, TSpLexicon, 
-    TSpUnCompressedLexicon, TSpPhoneConverter, TSpTextSelectionInformation, TSpPhraseInfoBuilder, TSpAudioFormat, 
-    TSpWaveFormatEx, TSpInProcRecoContext, TSpCustomStream, TSpFileStream, TSpMemoryStream]);
 end;
 
 end.

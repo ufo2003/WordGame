@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls;
+  Dialogs, StdCtrls,System.Hash;
 
 type
   TForm_save = class(TForm)
@@ -54,7 +54,7 @@ var
   Form_save: TForm_save;
 
 implementation
-    uses unit1,unit_data,SHFolder,shellapi,md5;
+    uses unit1,unit_data,SHFolder,shellapi;
 {$R *.dfm}
 
 procedure TForm_save.FormShow(Sender: TObject);
@@ -279,7 +279,7 @@ screen.Cursor:= crhourglass;
                if checkbox1.Checked then
                    begin
                      str1:= Tstringlist.Create;
-                      str1.Append(StrMD5(edit1.text));
+                      str1.Append(THashMD5.GetHashString(edit1.text));
                      str1.SaveToFile(ss+'\role.dat');
                      str1.Free;
                      edit1.Text:= '';
@@ -429,28 +429,28 @@ ListBox1.Canvas.FillRect(Rect);
       if ListBox1.Items[Index] = '' then
         begin
         ListBox1.Canvas.Font.Color:= clgreen;
-        ListBox1.Canvas.TextOut(Rect.Left+2, Rect.Top, 'ø’');
+        ListBox1.Canvas.TextOut(Rect.Left+round(2 * dpi_bilv), Rect.Top, 'ø’');
         end else begin
                      if pos('!',ListBox1.Items[Index])> 0 then
                       begin
                         ListBox1.Canvas.Font.Color:= clred;
-                        ListBox1.Canvas.TextOut(Rect.Left+2, Rect.Top, '√‹');
+                        ListBox1.Canvas.TextOut(Rect.Left+round(2 * dpi_bilv), Rect.Top, '√‹');
                       end else begin
                                  ListBox1.Canvas.Font.Color:= clblue;
-                                 ListBox1.Canvas.TextOut(Rect.Left+2, Rect.Top, '¥Ê');
+                                 ListBox1.Canvas.TextOut(Rect.Left+round(2 * dpi_bilv), Rect.Top, '¥Ê');
                                end;
                        end;
 
     ListBox1.Canvas.Font.Size:= 12;
     ListBox1.Canvas.Font.Style:= [];
     ListBox1.Canvas.Font.Color:= clwindowtext;
-  ListBox1.Canvas.TextOut(Rect.Left+26, Rect.Top+ 3, ListBox1.Items[Index]);
+  ListBox1.Canvas.TextOut(Rect.Left+round(26 * dpi_bilv), Rect.Top+ 3, ListBox1.Items[Index]);
 end;
 
 procedure TForm_save.ListBox1MeasureItem(Control: TWinControl;
   Index: Integer; var Height: Integer);
 begin
- Height:= 26;
+ Height:= round(26 * dpi_bilv);
 end;
 
 function TForm_save.get_app_data_path: string;
@@ -502,6 +502,7 @@ end;
 
 function TForm_save.check_password(const s: string): boolean;
 var str1: Tstringlist;
+
 begin
    if FileExists(s) then
     begin
@@ -517,7 +518,8 @@ begin
            result:= false;
            messagebox(handle,'∏√µµ∞∏±ªº”√‹£¨«Î ‰»Î√‹¬Î°£',' ‰»Î√‹¬Î',mb_ok);
           end else begin
-                    if CompareStr( str1.Strings[0],StrMD5(edit1.text))<> 0 then
+
+                    if CompareText( str1.Strings[0],THashMD5.GetHashString(edit1.text))<> 0 then
                      begin
                        result:= false;
                        messagebox(handle,'√‹¬Î¥ÌŒÛ°£','√‹¬Î¥ÌŒÛ',mb_ok);

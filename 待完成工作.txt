@@ -1,0 +1,119 @@
+升级到delphi xe目前存在的问题
+//1.做标记无法显示
+//2.内部gpic协议改用内置http服务器实现，效率低（改为了临时缓存文件，仅需生成一次，第二次直接读取。显示速度明显提高）
+//3.捡物品还不正常
+//4.人物怪物的选中高亮还不正常
+5.单词选中后的颜色不好看
+6.渐变半透明还没实现
+7.五子棋不能正常运行
+8.泡泡龙不能正常运行
+9.退出时报错
+10.运行中偶尔报get values的索引越位错误
+11.值飘动数字太小
+//12.弹出页面背单词窗口有问题
+//13.读取加密存档有问题
+//14.页面定时器没有显示
+//15.页面渲染当中偶尔出现panel底色
+//16.战斗结束后结果没显示
+
+zip: TEncryptedZipFile;
+
+zip:= TEncryptedZipFile.create(ss + '%N');
+
+
+       zip.read(n,stream1,ZipHeader1);
+
+       zip.free;
+
+particle_int
+jian_int
+dao_int
+wohuifu_f_d_int
+wofashugong_D_int
+wogong_q_int
+wowugong_d_int
+wupinhuifu_d_int
+wohuifu_q_int
+guaigong_q_int
+gong_int
+gong_xiaoguo_int
+
+bubble_int
+
+
+stream1: TMemoryStream;
+
+       stream1:= TMemoryStream.create;
+
+           bmp.SaveToStream(stream1);
+           stream1.Position:= 0;
+         image_word:= EngineImages.AddFromStream('image_word.bmp',stream1);
+stream1.free;
+
+bmp.SaveToStream(stream1);
+                            stream1.Position:= 0;
+                             EngineImages[image_cn1].loadFromStream('image_cn1.bmp',stream1);
+
+add_img_engine
+
+update_img
+
+EngineTimer
+
+bubble_int
+
+EngineCanvas.UseImagePx(EngineImages[image_bg_1_1], Quad(0, 0, 512, 512));
+
+     EngineCanvas.TexQuad(Quad(0, 0, 512, 512),
+
+change_html_by_id('','');
+visible_html_by_id('',true);
+
+THashMD5.GetHashString
+
+zip2: TVCLUnZip;
+zip2:= TVCLUnZip.Create(nil);
+         zip2.Password:= 'APP2433N';
+         zip2.ZipName:= ss_addr;
+         zip2.UnZipToStreamByIndex(stream1,0);
+         stream1.Position:= 0;
+
+       str1.LoadFromStream(stream1);
+
+          zip2.free;
+
+
+g_result_w1:= round(256 * dpi_bilv);  //结果显示 384
+   g_result_h1:= round(128 * dpi_bilv);
+   game_bmp_h1:= round(42 * dpi_bilv);  // 单词的高度
+   game_bmp_h2:= round(32 * dpi_bilv);   //解释的高度
+game_bmp_role_h= 48;  //怪和我方人物的高度
+   game_bmp_role_width:= round(80 * dpi_bilv); //怪和我方人物的宽度
+    G_C_role_top:= round(400 * dpi_bilv);  //我方人物顶点
+    G_C_guai_top:= round(40 * dpi_bilv);    //怪物顶点
+    G_C_role_left1:= round(20 * dpi_bilv);   //我方人物和怪物的左边坐标
+    G_C_role_left2:= round(140 * dpi_bilv);
+    G_C_role_left3:= round(260 * dpi_bilv);
+    G_C_role_left4:= round(380 * dpi_bilv);
+    G_C_role_left5:= round(500 * dpi_bilv);
+        G_C_danci_top:= round(170 * dpi_bilv); 单词的top
+    G_C_jieshi1_top:= round(220 * dpi_bilv);
+    G_C_jieshi2_top:= round(260 * dpi_bilv);
+    G_C_jieshi3_top:= round(300 * dpi_bilv);
+        g_boll_w_cn:= round(30 * dpi_bilv); //球网格的宽和高
+    g_boll_h_cn:= round(26 * dpi_bilv);
+
+DisplaySize.x
+
+
+TBlendingEffect.Shadow 效果变黑
+TBlendingEffect.Add 模糊并稍有透明
+TBlendingEffect.Multiply 比较透明并带颜色
+InverseMultiply  变蓝微透
+SourceColor 模糊并微透，SourceColorAdd 相同
+Normal 标准，加黄色，Unknown，none 相同
+
+ColorRectTranslucentWhite  TBlendingEffect.Multiply 带背景透明
+ColorRectWhite,TBlendingEffect.Add 去黑色背景透明
+ColorRectWhite,TBlendingEffect.SourceColorAdd 去黑色背景透明
+ColorRectTranslucentWhite,TBlendingEffect.SourceColorAdd 去黑色背景透明

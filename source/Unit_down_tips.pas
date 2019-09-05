@@ -3,7 +3,8 @@ unit Unit_down_tips;
 interface
 
 uses
-  Classes,SysUtils;
+  Classes,SysUtils,System.Net.URLClient,
+  System.Net.HttpClient, System.Net.HttpClientComponent;
 
 type
   down_tips = class(TThread)
@@ -12,9 +13,10 @@ type
   protected
     procedure Execute; override;
   end;
-
+  var
+   down_tip1: down_tips;
 implementation
-   uses unit_data,URLMon,windows,unit1;
+   uses unit_data,windows,unit1;
 { Important: Methods and properties of objects in VCL or CLX can only be used
   in a method called using Synchronize, for example,
 
@@ -30,9 +32,8 @@ implementation
 { down_tips }
 
 procedure down_tips.Execute;
-var str1,str2: Tstringlist;
-    i: integer;
-    ss,ss_file,ss_down: string;
+var     ss: string;
+    nethttpclient1: Tnethttpclient;
 begin
   { Place thread code here
   先检测文件是否存在
@@ -40,46 +41,33 @@ begin
   如果存在，那么追加
   }
 
-  str1:= Tstringlist.Create;
-  ss_file:= game_doc_path_G +'save/read.dat';
-  ss_down:= game_doc_path_G +'save/read.dwn';
-  if FileExists(ss_file) then
-      str1.LoadFromFile(ss_file);
 
-     ss:= 'http://www.finer2.com/NetBook_re.asp?page='+ inttostr(str1.Count div 10);
+    nethttpclient1:= Tnethttpclient.Create(nil);
 
-     if UrlDownloadToFile(nil, Pchar(ss), Pchar(ss_down), 0, nil)= 0 then
+     ss:= 'http://download.abcd666.cn/readtext/get_text.php';
+     repeat
+      //如果允许下载，那么下载阅读材料，每次下载一条，不然从文件加载阅读材料
+       if game_bg_music_rc_g.down_readfile then
         begin
-           sleep(600);
-           str2:= Tstringlist.Create;
-            str2.LoadFromFile(ss_down);
-            if str2.Count > 0 then
-             begin
-              for i:=str2.Count-1 downto 0 do //清理头尾 需要 if then 优化开启
-                  if (str2.Strings[i]= '') or (str2.Strings[i][1]='<') then
-                     str2.Delete(i);
+         try
+           show_share_text:= nethttpclient1.Get(ss).ContentAsString(tencoding.UTF8);
+         except
+           show_share_text:= '';
+         end;
 
-              ss_down:= str2.Text;
-               ss_down:= StringReplace(ss_down, #13#10, '', [rfReplaceAll]);
-               ss_down:= StringReplace(ss_down, '<::>', #13#10, [rfReplaceAll]);
-                 str2.Text:= ss_down;
-                 if str2.Count > 0 then
-                 begin
-                  for i:= str2.Count-1 downto str1.Count mod 10 do
-                      str1.Append(str2.Strings[i]); //拷贝多下载的进入
-
-                      str1.SaveToFile(ss_file);
-                 end;
-             end;
-           str2.Free;
         end;
 
-  if str1.Count > 0 then
-    begin
-        //添加到阅读文件内
-      game_read_stringlist.AddStrings(str1);
-    end;
-  str1.Free;
+          if show_share_text='' then
+           begin
+             if FileExists(game_app_path_G +'dat\read.txt') then
+               Game_read_stringlist.LoadFromFile(game_app_path_G +'dat\read.txt')
+               else
+                 Game_read_stringlist.Add('阅读材料不存在。http://www.finer2.com/wordgame/');
+           end;
+       Suspend; //线程挂起
+     until Terminated;
+
+  nethttpclient1.Free;
 end;
 
 end.

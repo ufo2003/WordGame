@@ -662,6 +662,8 @@ var
 
   wkeSetHostWindow: procedure(webWindow: wkeWebView; hostWindow: HWND); cdecl;
   wkeGetHostWindow: function (webWindow: wkeWebView): HWND; cdecl;
+  //wkeOnBeforeBrowse: procedure(browser: wkeWebView; frame: HWND; const request: Putf8; user_gesture, isRedirect: Boolean; out Result: Boolean) cdecl;
+
 
   //================================JScript============================
 
@@ -891,7 +893,6 @@ begin
 
       @wkeSetHostWindow := GetProcAddressEx(DLLHandle, 'wkeSetHostWindow'); //procedure(webWindow: wkeWebView; hostWindow: HWND); cdecl;
       @wkeGetHostWindow := GetProcAddressEx(DLLHandle, 'wkeGetHostWindow'); //function (webWindow: wkeWebView): HWND; cdecl;
-
       //================================JScript============================
 
       @wkeJSBindFunction := GetProcAddressEx(DLLHandle, 'wkeJSBindFunction'); //procedure(name: PAnsiChar; fn: jsNativeFunction; AArgCount: LongInt); cdecl;

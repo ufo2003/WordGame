@@ -66,7 +66,7 @@ var
   Form_ZJ_LY: TForm_ZJ_LY;
 
 implementation
-     uses unit1,Unit_player,unit_data,unit_goods,faststrings;
+     uses unit1,Unit_player,unit_data,unit_goods,unit_pop;
 {$R *.dfm}
 
 function TForm_ZJ_LY.can_next(id: integer;write: boolean): integer;
@@ -375,7 +375,7 @@ end;
 procedure TForm_ZJ_LY.ListBox1MeasureItem(Control: TWinControl;
   Index: Integer; var Height: Integer);
 begin
-  height:= 19;
+  height:= round(19 * dpi_bilv);
 end;
 
 procedure TForm_ZJ_LY.ListBox1DrawItem(Control: TWinControl;
@@ -385,12 +385,12 @@ Tlistbox(control).Canvas.FillRect(Rect);
  if fastcharpos(Tlistbox(control).Items[index],'-',1)= 1 then
     begin
      Tlistbox(control).Canvas.Font.Style:= [];
-     Tlistbox(control).Canvas.TextOut(Rect.Left+2, Rect.Top+ 3, Tlistbox(control).Items[Index]);
+     Tlistbox(control).Canvas.TextOut(Rect.Left+round(2 * dpi_bilv), Rect.Top+ round(3 * dpi_bilv), Tlistbox(control).Items[Index]);
     end else begin
               Tlistbox(control).Canvas.Font.Style:= [fsbold];
-              Tlistbox(control).Canvas.TextOut(Rect.Left+20, Rect.Top+ 3, Tlistbox(control).Items[Index]);
+              Tlistbox(control).Canvas.TextOut(Rect.Left+round(20 * dpi_bilv), Rect.Top+ round(3 * dpi_bilv), Tlistbox(control).Items[Index]);
              end;
-  data2.ImageList_sml.Draw(Tlistbox(control).Canvas,rect.left+2,rect.top+3,
+  data2.ImageList_sml.Draw(Tlistbox(control).Canvas,rect.left+round(2 * dpi_bilv),rect.top+round(3 * dpi_bilv),
                         Game_goods_Index_G[form_goods.get_goods_id(Tlistbox(control).Items[Index])]);
 end;
 
@@ -457,13 +457,17 @@ begin
    TStringGrid(Sender).Canvas.Brush.Color := clWhite;
  end;
 
+ //第一行不重绘
+  if arow=0 then
+   exit;
+
    TStringGrid(Sender).Canvas.FillRect(Rect);
     TStringGrid(Sender).Canvas.Font.Color:= clwindowtext;
-   TStringGrid(Sender).Canvas.TextRect(Rect, Rect.Left + 20, Rect.Top + 2,
+   TStringGrid(Sender).Canvas.TextRect(Rect, Rect.Left + getBilv(20), Rect.Top + getBilv(2),
                        TStringGrid(Sender).Cells[ACol, ARow]);
 
    if acol= 0 then
-   data2.ImageList_sml.Draw(TStringGrid(Sender).Canvas,rect.left+2,rect.top+3,
+   data2.ImageList_sml.Draw(TStringGrid(Sender).Canvas,rect.left+getBilv(2),rect.top+getBilv(3),
                         Game_goods_Index_G[form_goods.get_goods_id(TStringGrid(Sender).Cells[ACol, ARow])]);
 end;
 

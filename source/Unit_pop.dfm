@@ -4,7 +4,7 @@ object Form_pop: TForm_pop
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Form_pop'
   ClientHeight = 563
-  ClientWidth = 697
+  ClientWidth = 681
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,6 +17,7 @@ object Form_pop: TForm_pop
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnResize = FormResize
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -221,7 +222,6 @@ object Form_pop: TForm_pop
     Height = 21
     Hint = #36873#25321#35789#24211
     Style = csDropDownList
-    ItemHeight = 13
     ParentShowHint = False
     ShowHint = True
     TabOrder = 3
@@ -229,9 +229,9 @@ object Form_pop: TForm_pop
     OnEnter = ComboBox1Enter
   end
   object CheckBox8: TCheckBox
-    Left = 144
+    Left = 142
     Top = 0
-    Width = 129
+    Width = 122
     Height = 17
     Hint = #22914#38656#31435#21363#26174#31034#21333#35789#35299#37322#65292#35831#22312#28216#25103#20869#30340#26434#36135#38138#36141#20080#26102#38388#21152#36895#20024#24182#21462#28040#36825#37324#30340#25171#38057#12290
     Caption = #21333#35789#35299#37322#24310#36831#26174#31034
@@ -249,7 +249,7 @@ object Form_pop: TForm_pop
   object StatusBar1: TStatusBar
     Left = 0
     Top = 544
-    Width = 697
+    Width = 681
     Height = 19
     AutoHint = True
     Panels = <
@@ -265,7 +265,6 @@ object Form_pop: TForm_pop
     Top = 24
     Width = 640
     Height = 480
-    Caption = #38656#35201'DirectX 9.0'#21450#20197#19978#29256#26412#25903#25345#65292#25110#32773#37325#26032#21551#21160#30005#33041#35797#35797
     TabOrder = 6
     OnMouseDown = Panel1MouseDown
     OnMouseMove = Panel1MouseMove
@@ -515,9 +514,9 @@ object Form_pop: TForm_pop
     end
   end
   object Button11: TButton
-    Left = 288
+    Left = 376
     Top = -1
-    Width = 97
+    Width = 69
     Height = 19
     Hint = #28857#27492#25353#38062#26469#25511#21046#21160#30011#21644#36879#26126#25928#26524#20197#21450#24618#29289#38899#25928
     Caption = #26356#22810#36873#39033
@@ -542,14 +541,23 @@ object Form_pop: TForm_pop
     OnKeyUp = Edit1KeyUp
   end
   object Button14: TButton
-    Left = 406
-    Top = 5
-    Width = 34
+    Left = 654
+    Top = 4
+    Width = 19
     Height = 14
     Caption = 'go'
     TabOrder = 9
     Visible = False
     OnClick = Button14Click
+  end
+  object CheckBox1: TCheckBox
+    Left = 270
+    Top = 1
+    Width = 97
+    Height = 17
+    Caption = #20851#38381#25171#24618#21483#22768
+    TabOrder = 10
+    OnMouseUp = CheckBox1MouseUp
   end
   object OpenDialog1: TOpenDialog
     Filter = #35789#24211#25991#20214'|*.ini|'#28216#25103#33050#26412'|*.dat|'#25152#26377#25991#20214'|*.*'
@@ -590,61 +598,11 @@ object Form_pop: TForm_pop
     Left = 8
     Top = 264
   end
-  object AsphyreDevice1: TAsphyreDevice
-    Width = 640
-    Height = 480
-    BitDepth = bdHigh
-    Refresh = 0
-    Windowed = True
-    VSync = False
-    HardwareTL = True
-    DepthBuffer = False
-    WindowHandle = 0
-    OnInitialize = AsphyreDevice1Initialize
-    OnRender = AsphyreDevice1Render
-    Left = 208
-    Top = 48
-  end
-  object AsphyreTimer1: TAsphyreTimer
-    Speed = 60.000000000000000000
-    MaxFPS = 100
-    Enabled = False
-    OnTimer = AsphyreTimer1Timer
-    OnProcess = AsphyreTimer1Process
-    Left = 240
-    Top = 48
-  end
-  object AsphyreCanvas1: TAsphyreCanvas
-    Publisher = AsphyreDevice1
-    AlphaTesting = True
-    VertexCache = 4096
-    Antialias = True
-    Dithering = False
-    Left = 272
-    Top = 48
-  end
-  object AsphyreImages1: TAsphyreImages
-    Publisher = AsphyreDevice1
-    MipMappping = False
-    Left = 304
-    Top = 48
-  end
-  object AsphyreFonts1: TAsphyreFonts
-    Publisher = AsphyreDevice1
-    Canvas = AsphyreCanvas1
-    Left = 344
-    Top = 48
-  end
   object Timer_donghua: TTimer
     Enabled = False
     OnTimer = Timer_donghuaTimer
     Left = 216
     Top = 96
-  end
-  object ASDb1: TASDb
-    OpenMode = opUpdate
-    Left = 384
-    Top = 48
   end
   object ActionList1: TActionList
     OnExecute = ActionList1Execute
@@ -788,13 +746,6 @@ object Form_pop: TForm_pop
       OnExecute = Action25Execute
     end
   end
-  object AsphyreParticles1: TAsphyreParticles
-    Publisher = AsphyreDevice1
-    Canvas = AsphyreCanvas1
-    Images = AsphyreImages1
-    Left = 424
-    Top = 48
-  end
   object PopupMenu1: TPopupMenu
     OnPopup = PopupMenu1Popup
     Left = 280
@@ -864,18 +815,6 @@ object Form_pop: TForm_pop
       Caption = #24674#22797#40664#35748#20540
       OnClick = N12Click
     end
-  end
-  object DXSound1: TDXSound
-    AutoInitialize = True
-    Options = []
-    Left = 160
-    Top = 88
-  end
-  object DXWaveList1: TDXWaveList
-    DXSound = DXSound1
-    Items = <>
-    Left = 160
-    Top = 128
   end
   object Timer_auto_attack: TTimer
     Enabled = False

@@ -36,7 +36,7 @@ type
   end;
 
 implementation
-    uses faststrings,unit_data,unit1;
+    uses unit_data,unit1,unit_pop;
 { Important: Methods and properties of objects in VCL or CLX can only be used
   in a method called using Synchronize, for example,
 
@@ -125,7 +125,7 @@ var
   hSession, hConnect, hRequest: hInternet;
   HostName, FileName: String;
   f: File;
-  Buf: Pointer;
+  Buf: Pansichar;
   dwBufLen, dwIndex: DWord;
   Data: Array[0..$400] of Char;
   TempStr: String;
@@ -196,7 +196,7 @@ begin
     if FTUseCache then InternetFlag := 0
     else InternetFlag := INTERNET_FLAG_RELOAD;
 
-    AcceptType := PChar('Accept: ' + FTAcceptTypes);
+    AcceptType := PansiChar('Accept: ' + FTAcceptTypes);
     hRequest := HttpOpenRequest(hConnect, RequestMethod, PChar(FileName), 'HTTP/1.0',
                 PChar(FTReferer), @AcceptType, InternetFlag, 0);
 

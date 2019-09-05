@@ -6,11 +6,12 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, ComCtrls, ExtCtrls,
-  Unit_player,Unit_data,jpeg,KSVOICELib_TLB,
-  {$IFDEF MS_SPK}OleServer,SpeechLib_TLB,{$ENDIF} AsphyreDb, AsphyreFonts,
-  AsphyreImages, AsphyreSubsc, AsphyreDevices, Asphyre2D, AsphyreCanvas,
-  AsphyreTimers,AsphyreDef,shellapi, ActnList, AsphyreParticles, Menus,
-  DXSounds,unit_glb,Unit_wuziqi,SHDocVw;
+  Unit_player,Unit_data,jpeg,
+  {$IFDEF MS_SPK}OleServer,SpeechLib_TLB,{$ENDIF}
+       shellapi, ActnList, Menus,
+  unit_glb,Unit_wuziqi,SHDocVw,PXL.TypeDef, PXL.Types, PXL.Timing, PXL.ImageFormats, PXL.Devices, PXL.Textures, PXL.Canvas,
+  PXL.SwapChains, PXL.Images, PXL.Fonts, PXL.Providers,PXL.Classes, PXL.ImageFormats.Auto, PXL.Providers.Auto,Engine.Particles,
+  System.Actions;
 
 
 
@@ -21,11 +22,6 @@ uses
    jit_delay= 60;
    jit_words_i_c= 2; //默认连续显示的数量为3
 
-   game_bmp_h1= 42;  // 单词的高度
-
-   game_bmp_h2= 32;   //解释的高度
-   game_bmp_role_width= 80; //怪和我方人物的宽度
-   game_bmp_role_h= 48;  //怪和我方人物的高度
    G_all_pic_n= 0;  //全局gl对象禁止选中
    G_words_Pic_y=1; //单词答案gl对象可选
    G_g_pic_y=2; //怪物gl对象可选中
@@ -34,30 +30,15 @@ uses
    gl_role_show_count= 5; //全部可上场战斗的允许人物数
    game_amt_length= 60; //动画帧
    game_amt_delay= 30; //延时毫秒
-   g_result_w1= 256;  //结果显示 384
-   g_result_h1= 128;
 
-    G_C_role_top= 400;  //我方人物顶点
-    G_C_guai_top= 40;    //怪物顶点
-    G_C_role_left1= 20;   //我方人物和怪物的左边坐标
-    G_C_role_left2= 140;
-    G_C_role_left3= 260;
-    G_C_role_left4= 380;
-    G_C_role_left5= 500;
-
-    G_checked_color:TColor4 =($00FFFFFF, $00FFFFFF, $FFFFAF00, $FFFFAF00); //单词选中后的颜色
+    G_checked_color:TColor4 =($00EE82EE, $00EE82EE, $FFFF00FF, $FFFF00FF); //单词选中后的颜色
     G_right_color:TColor4 =($00FFFFFF, $00FFFFFF, $FFFF00AF, $FFFF00AF); //单词正确的颜色
-    G_checked_guai_color:TColor4 =($FF8060A0, $FF8060A0, $FF8060A0, $FF8060A0); //怪选中后的颜色
-    G_checked_role_color:TColor4 =($FF8060A0, $FF8060A0, $FF8060A0, $FF8060A0); //role选中后的颜色
+    G_checked_guai_color:TColor4 =($FF8060FF, $FF806045, $FF806000, $FF8060A0); //怪选中后的颜色
+    G_checked_role_color:TColor4 =($FF8060FF, $FF806045, $FF806000, $FF8060A0); //role选中后的颜色
 
-    G_C_danci_top= 170;
-    G_C_jieshi1_top= 220;
-    G_C_jieshi2_top= 260;
-    G_C_jieshi3_top= 300;
+
 
     g_C_DonghuaQianWenZi= 400; //动画前文字显示时间 毫秒
-    g_boll_w_cn= 30; //球网格的宽和高
-    g_boll_h_cn= 26;
     g_boll_21_cn= 20;  //球的列数 21列
     g_boll_14_cn= 14; //球的行数 15行
     g_ball_color_cpt= 1;
@@ -213,13 +194,13 @@ type
     Timer4: TTimer;
     Label1: TLabel;
     Panel1: TPanel;
-    AsphyreDevice1: TAsphyreDevice;
-    AsphyreTimer1: TAsphyreTimer;
-    AsphyreCanvas1: TAsphyreCanvas;
-    AsphyreImages1: TAsphyreImages;
-    AsphyreFonts1: TAsphyreFonts;
+   // AsphyreDevice1: TAsphyreDevice;
+   // AsphyreTimer1: TAsphyreTimer;
+   // AsphyreCanvas1: TAsphyreCanvas;
+   // AsphyreImages1: TAsphyreImages;
+   // AsphyreFonts1: TAsphyreFonts;
     Timer_donghua: TTimer;
-    ASDb1: TASDb;
+    //ASDb1: TASDb;
     ActionList1: TActionList;
     Action1: TAction;
     Action2: TAction;
@@ -236,7 +217,7 @@ type
     Action13: TAction;
     Action14: TAction;
     Action15: TAction;
-    AsphyreParticles1: TAsphyreParticles;
+   // AsphyreParticles1: TAsphyreParticles;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -268,8 +249,8 @@ type
     N7: TMenuItem;
     N8: TMenuItem;
     N9: TMenuItem;
-    DXSound1: TDXSound;
-    DXWaveList1: TDXWaveList;
+    //DXSound1: TDXSound;
+   // DXWaveList1: TDXWaveList;
     N10: TMenuItem;
     N11: TMenuItem;
     N12: TMenuItem;
@@ -298,6 +279,7 @@ type
     Button12: TButton;
     Button13: TButton;
     Button14: TButton;
+    CheckBox1: TCheckBox;
     procedure FormShow(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormDestroy(Sender: TObject);
@@ -326,7 +308,6 @@ type
     procedure AsphyreDevice1Initialize(Sender: TObject;
       var Success: Boolean);
     procedure AsphyreTimer1Timer(Sender: TObject);
-    procedure AsphyreDevice1Render(Sender: TObject);
     procedure Panel1MouseMove(Sender: TObject; Shift: TShiftState; X,
       Y: Integer);
     procedure Panel1MouseDown(Sender: TObject; Button: TMouseButton;
@@ -356,7 +337,6 @@ type
     procedure Action13Execute(Sender: TObject);
     procedure Action14Execute(Sender: TObject);
     procedure Action15Execute(Sender: TObject);
-    procedure AsphyreTimer1Process(Sender: TObject);
     procedure ListBox1MouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure ListBox1DragOver(Sender, Source: TObject; X, Y: Integer;
@@ -408,6 +388,9 @@ type
     procedure Button12Click(Sender: TObject);
     procedure N14Click(Sender: TObject);
     procedure Button14Click(Sender: TObject);
+    procedure FormResize(Sender: TObject);
+    procedure CheckBox1MouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
   private
     { Private declarations }
     jit_koucu: integer; //已经扣除，用作升级的金钱
@@ -460,14 +443,17 @@ type
        G_mus_at: T_Mouse_at; //当前鼠标所在的位置
        g_danci_donghua_id,G_danci_donghua_count: integer; //动画编号和动画即时
        game_word_qianzhui,game_word_houzhui: Tstringlist;
-       image_word,image_cn1,image_cn2,image_cn3,image_up,image_down :TAsphyreImage;
-       image_guai1,image_guai2,image_guai3,image_guai4,image_guai5: TAsphyreImage;
-       image_role1,image_role2,image_role3,image_role4,image_role5: TAsphyreImage;
-       image_result1: TAsphyreImage; //场景结束图片
-       g_icon_image: TAsphyreImage;
-       image_bg_1_1,image_bg_1_2: TAsphyreImage; //背景图片
-       image_bubble,imgae_arrow: TAsphyreImage;
-
+       image_word,image_cn1,image_cn2,image_cn3,image_up,image_down :integer;  //pxl 图片都改为索引
+       image_guai1,image_guai2,image_guai3,image_guai4,image_guai5: integer;
+       image_role1,image_role2,image_role3,image_role4,image_role5: integer;
+       image_result1: integer; //场景结束图片
+       g_icon_image: integer;
+       image_bg_1_1,image_bg_1_2: integer; //背景图片
+       image_bubble,imgae_arrow: integer;
+       bubble_int: integer;
+        particle_int,jian_int,dao_int,wohuifu_f_d_int,wofashugong_D_int: integer; //攻击恢复类动画
+       wogong_q_int,wowugong_d_int,wupinhuifu_d_int,wohuifu_q_int: integer;
+       guaigong_q_int,gong_int,gong_xiaoguo_int: integer;
        //单体法术攻击，单体物品攻击，单体法术恢复，单体物品恢复
        g_DanTiFaShuGongJi,G_dantiWuPinGongji,G_DanTiFaShuHuiFu,G_DanTiWuPinHuiFu: T_donghua_weizhi;
        G_QuanTiFaShuGongji,G_Quantifashuhuifu,G_Guai_Fashu: T_donghua_weizhi;
@@ -489,6 +475,9 @@ type
        game_guai_fanghu_xishu_f: integer; //怪防护系数
        game_state_answer: boolean; //为false表示初始显示，为true表示答案显示
        game_edit1_bmp: Tbitmap;
+
+
+
           // WebBrowser1: TWebBrowser;
       procedure word_lib_save;
       function get_filename_ck(isNew: boolean): string; //返回词库文件名
@@ -623,6 +612,16 @@ type
       procedure show_wuziqi_on_src; //显示五子棋到屏幕
       procedure show_a_word_on_wzq; //在五子棋时显示一个单词
       procedure create_top_ad; //创建一个网页广告小窗口
+      //pxl
+       procedure ApplicationIdle(Sender: TObject; var Done: Boolean);
+
+        procedure EngineTiming(const Sender: TObject);
+        procedure EngineProcess(const Sender: TObject);
+
+        procedure RenderWindow;
+        procedure RenderScene;
+        procedure update_img(id: integer;bmp: tbitmap); //更新引擎内的一个图片
+        function add_img_engine(n: string; bmp: tbitmap): integer;   // 添加新图片到引擎 参数为图片名称和bitmap
   public
     { Public declarations }
     game_pop_count: integer; //单词显示的次数
@@ -644,7 +643,7 @@ type
     stringlist_abhs_d1,stringlist_abhs_d2,stringlist_abhs_d4,stringlist_abhs_d7,stringlist_abhs_d15: Tstringlist;
       game_kaoshi: integer; //考试次数的倒计时
       wordlist1: Tstringlist;
-      SpVoice1: TSpVoice;
+      SpVoice1: ISpeechVoice;
      function get_word_safe(i: integer): string;  //带错误检查的获取单词，一般用此函数返回
      procedure show_ck;    //载入词库
      procedure show_ad(add_i: integer); //刷新广告显示
@@ -718,6 +717,9 @@ type
 
   function get_caoshi_list_value(sid: word): boolean;     //取得是否超时，默认2次即被托管
   procedure set_caoshi_list_value(sid: word); //增加超时次数一，如果sid为无效值，则初始化
+  function FastPos(const aSourceString, aFindString : string; const aSourceLen, aFindLen, StartPos : Integer) : Integer;
+  function FastPosNoCase(const aSourceString, aFindString : string; const aSourceLen, aFindLen, StartPos : Integer) : Integer;
+  function FastCharPos(const aSource : string; const C: Char; StartPos : Integer) : Integer;
 var
   Form_pop: TForm_pop;
   GameSave1:TGameSave;
@@ -738,14 +740,122 @@ var
   bubble_data1: Tbubble_data;
   wuziqi_tread: Twuziqi;
   wuziqi_rec1: twuziqi_rec; //五子棋状态记录
+
+  game_bmp_role_h: integer;  //怪和我方人物的高度
+  g_result_w1: integer;  //结果显示 384
+   g_result_h1: integer;
+   game_bmp_h1: integer;  // 单词的高度
+   game_bmp_h2: integer;   //解释的高度
+   game_bmp_role_width: integer; //怪和我方人物的宽度
+    G_C_role_top: integer;  //我方人物顶点
+    G_C_guai_top: integer;    //怪物顶点
+    G_C_role_left1: integer;   //我方人物和怪物的左边坐标
+    G_C_role_left2: integer;
+    G_C_role_left3: integer;
+    G_C_role_left4: integer;
+    G_C_role_left5: integer;
+        G_C_danci_top: integer;
+    G_C_jieshi1_top: integer;
+    G_C_jieshi2_top: integer;
+    G_C_jieshi3_top: integer;
+        g_boll_w_cn: integer; //球网格的宽和高
+    g_boll_h_cn: integer;
+    show_w_g,show_h_g: integer;
+
+    ImageFormatManager: TImageFormatManager;
+        ImageFormatHandler: TCustomImageFormatHandler;
+
+        DeviceProvider: TGraphicsDeviceProvider;
+
+        EngineDevice: TCustomSwapChainDevice;
+        EngineCanvas: TCustomCanvas;
+        EngineImages: TAtlasImages;
+        EngineFonts: TBitmapFonts;
+        EngineTimer: TMultimediaTimer;
+         Particles1: TParticles;
+        DisplaySize: TPoint2i;
+        EngineTicks: Integer;
+
+        FontTahoma: Integer;
+          test_cn: integer;
+
   {$IFDEF IBM_SPK}
   jit_spk1: Tjit_spk;
   jit_h: thandle;
   {$ENDIF}
 implementation
-   uses { VectorGeometry, } unit1, Unit_goods, AAFont, inifiles,FastStrings,
-        Registry,unit_net,unit_chinese,unit_mp3_yodao,unit_show,unit_msg;
+   uses { VectorGeometry, } unit1, Unit_goods, AAFont, inifiles,
+        Registry,unit_net,unit_chinese,unit_mp3_yodao,unit_show,unit_msg,Sound.Globals,bass,unit_down_tips;
 {$R *.dfm}
+function FastCharPos(const aSource : string; const C: Char; StartPos : Integer) : Integer;
+var
+  I: Integer;
+begin
+result:= 0;
+   for I := startpos to length(asource) do
+      if asource[i]= c then
+       begin
+         result:= i;
+         exit;
+       end;
+end;
+function FastPosNoCase(const aSourceString, aFindString : string; const aSourceLen, aFindLen, StartPos : Integer) : Integer;
+var
+  I: Integer;
+  j: Integer;
+begin
+  Result := 0;
+ if aFindLen < 1 then begin
+
+    exit;
+  end;
+  if aFindLen > aSourceLen then begin
+
+    exit;
+  end;
+  for I := startpos to asourcelen-afindlen do
+    begin
+      for j := 1 to afindlen do
+       begin
+        if UpCase(aSourceString[i+j-1])<> UpCase(aFindString[j]) then
+           break;
+        if j=afindlen then
+         begin
+          //如果全部匹配，那么返回
+          result:= i;
+          exit;
+         end;
+       end;
+
+    end;
+
+end;
+function FastPos(const aSourceString, aFindString : string; const aSourceLen, aFindLen, StartPos : Integer) : Integer;
+var
+  I: Integer;
+begin
+  Result := 0;
+ if aFindLen < 1 then begin
+
+    exit;
+  end;
+  if aFindLen > aSourceLen then begin
+
+    exit;
+  end;
+  for I := startpos to asourcelen-afindlen do
+    begin
+      if CompareMem(@aSourceString[i],@aFindString[1], aFindLen *2) then
+         begin
+          //如果全部匹配，那么返回
+          result:= i;
+          exit;
+         end;
+
+
+    end;
+end;
+
 function get_caoshi_list_value(sid: word): boolean;     //取得是否超时，默认2次即被托管
 var i: integer;
 begin
@@ -897,8 +1007,8 @@ begin
           begin
            dec(r);
            LongRec(bubble_boll_g_array[i,j]).Bytes[3]:= Random(7)+1;
-           LongRec(bubble_boll_g_array[i,j]).Bytes[1]:= 32; //宽
-           LongRec(bubble_boll_g_array[i,j]).Bytes[2]:= 32; //高
+           LongRec(bubble_boll_g_array[i,j]).Bytes[1]:= round(32 * dpi_bilv); //宽
+           LongRec(bubble_boll_g_array[i,j]).Bytes[2]:= round(32 * dpi_bilv); //高
           end;
       end;
    end;
@@ -912,7 +1022,7 @@ var i: integer;
 begin
   button14.Visible:= DebugHook=1;
  //如果联网的，设置本小队内的自由派人物隐藏
- AsphyreTimer1.Enabled:= true;
+ //AsphyreTimer1.Enabled:= true;
     set_caoshi_list_value(g_nil_user_c);
   if game_at_net_g then
    begin
@@ -1091,26 +1201,26 @@ begin
         show_text(false,'左右箭头移动，向上箭头发射');
 
         //加载泡泡龙图片
-        if not assigned(image_bubble) then
+        if image_bubble>-1 then
           begin
-           image_bubble:= tasphyreimage.Create;
+          { image_bubble:= tasphyreimage.Create;
            with image_bubble do
            begin
            Size:= point(128,64);
            VisibleSize:= point(128,64); //设置大小
            PatternSize:= point(128,64);
-           end;
-            image_bubble.LoadFromFile(game_app_path_G+ 'img\bubble2.bmp',true,0,0);
-           imgae_arrow:= tasphyreimage.Create;
+           end;}
+            image_bubble:= EngineImages.AddFromFile(game_app_path_G+ 'img\bubble2.bmp');
+          { imgae_arrow:= tasphyreimage.Create;
            with imgae_arrow do
            begin
            Size:= point(64,64);
            VisibleSize:= point(64,64); //设置大小
            PatternSize:= point(64,64);
-           end;
-            imgae_arrow.LoadFromFile(game_app_path_G+ 'img\zhizhen.bmp',true,0,0);
+           end;   }
+            imgae_arrow:= EngineImages.AddFromFile(game_app_path_G+ 'img\zhizhen.bmp');
+            bubble_int:= EngineImages.AddFromFile(game_app_path_G+'img\bubble.png');
 
-           AsphyreImages1.AddFromFile(game_app_path_G+ 'img\bubble.png',point(32,32),point(32,32),point(64,128),aqMedium,alMask,true,$FF000000,0);
           end;
         bubble_data1.next_color:= Random(7); //初始化待发射泡泡颜色
         bubble_data1.arrow_Angle:= 0; //初始化箭头位置
@@ -1165,9 +1275,10 @@ begin
         //状态设置为进入泡泡龙
         pk_zhihui_g.game_zt:= 1; //背单词状态
         //加载图片
-        if AsphyreImages1.Image['bubble.png']=nil then
+        if bubble_int=-1 then
           begin
-           AsphyreImages1.AddFromFile(game_app_path_G+ 'img\bubble.png',point(32,32),point(32,32),point(64,128),aqMedium,alMask,true,$FF000000,0);
+          // AsphyreImages1.AddFromFile(game_app_path_G+ 'img\bubble.png',point(32,32),point(32,32),point(64,128),aqMedium,alMask,true,$FF000000,0);
+          bubble_int:= EngineImages.AddFromFile(game_app_path_G+'img\bubble.png');
           end;
          g_dangqian_zhuangtai:= g_wuziqi1; //设置状态为可下子
          if not Assigned(form_chinese) then
@@ -1175,7 +1286,7 @@ begin
          end; //end 7
    end; //end case
 
-
+ //showmessage(DisplaySize.X.ToString +' '+DisplaySize.Y.ToString);
 try
    draw_game_role(-1); //显示人物
 except
@@ -1189,19 +1300,22 @@ end;
 
   game_is_a:= false; //显示完成后设置为不显示
     game_musmv_ready:= true;
-     AsphyreTimer1.Enabled:= game_init_Success_G;
+     //AsphyreTimer1.Enabled:= game_init_Success_G;
 
     if game_beijing_index_cur <> game_beijing_index_i then
      begin
-     image_bg_1_1.LoadFromFile(game_app_path_G+ 'img\bg'+ inttostr(game_beijing_index_i)+'-1.jpg',false,0,0);
-     image_bg_1_2.LoadFromFile(game_app_path_G+ 'img\bg'+ inttostr(game_beijing_index_i)+'-2.jpg',false,0,0);
+     image_bg_1_1:=EngineImages.AddFromFile(game_app_path_G+ 'img\bg'+ inttostr(game_beijing_index_i)+'-1.jpg');
+     image_bg_1_2:= EngineImages.AddFromFile(game_app_path_G+ 'img\bg'+ inttostr(game_beijing_index_i)+'-2.jpg');
 
       game_beijing_index_cur:= game_beijing_index_i;
      end;
 
   show_hint_button; //显示按钮提示;
-
+   EngineTimer.Enabled:= true;
   Timer_donghua.Enabled:= true;
+
+  checkbox1.Checked:=  GameSave1.tip6<> 0;
+
 end;
 
 function kongge2(const s: string): integer;
@@ -1297,11 +1411,11 @@ begin
    end else     
            begin
                 try
-                if SpVoice1= nil then
-                  SpVoice1:= TSpVoice.Create(application);
+                //if SpVoice1= nil then
+                 // SpVoice1:= iSpVoice.Create(application);
 
 
-                 SpVoice1.Speak(s, SVSFlagsAsync);
+                 SpVoice1.Speak(pwidechar(s), SVSFlagsAsync);
                 except
                   game_bg_music_rc_g.yodao_sound:= true;
                   showmessage('初始化tts组件出错，已经启动百度语音，接下来可以继续朗读。');
@@ -1313,7 +1427,7 @@ end;
 
 procedure TForm_pop.skp_string_tongbu(const s: string);
 begin
-   SpVoice1.Speak(s, SVSFDefault);
+   SpVoice1.Speak(pwidechar(s), SVSFDefault);
 end;
 
 procedure TForm_pop.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -1426,28 +1540,28 @@ begin
              end;
        end;
       for i:= stringlist_abhs5.Count- 1  downto 0 do
-          if jit_word_p = strtoint2(copy(stringlist_abhs5.Strings[i],fastcharpos(stringlist_abhs5.Strings[i],',',1)+1,5)) then
+          if jit_word_p = strtoint2(copy(stringlist_abhs5.Strings[i],pos(',',stringlist_abhs5.Strings[i])+1,5)) then
              stringlist_abhs5.Delete(i);
         for i:= stringlist_abhs_d15.Count- 1  downto 0 do
-          if jit_word_p = strtoint2(copy(stringlist_abhs_d15.Strings[i],fastcharpos(stringlist_abhs_d15.Strings[i],',',1)+1,5)) then
+          if jit_word_p = strtoint2(copy(stringlist_abhs_d15.Strings[i],pos(',',stringlist_abhs_d15.Strings[i])+1,5)) then
              stringlist_abhs_d15.Delete(i);
         for i:= stringlist_abhs_d7.Count- 1  downto 0 do
-          if jit_word_p = strtoint2(copy(stringlist_abhs_d7.Strings[i],fastcharpos(stringlist_abhs_d7.Strings[i],',',1)+1,5)) then
+          if jit_word_p = strtoint2(copy(stringlist_abhs_d7.Strings[i],pos(',',stringlist_abhs_d7.Strings[i])+1,5)) then
              stringlist_abhs_d7.Delete(i);
        for i:= stringlist_abhs_d4.Count- 1  downto 0 do
-          if jit_word_p = strtoint2(copy(stringlist_abhs_d4.Strings[i],fastcharpos(stringlist_abhs_d4.Strings[i],',',1)+1,5)) then
+          if jit_word_p = strtoint2(copy(stringlist_abhs_d4.Strings[i],pos(',',stringlist_abhs_d4.Strings[i])+1,5)) then
              stringlist_abhs_d4.Delete(i);
       for i:= stringlist_abhs_d2.Count- 1  downto 0 do
-          if jit_word_p = strtoint2(copy(stringlist_abhs_d2.Strings[i],fastcharpos(stringlist_abhs_d2.Strings[i],',',1)+1,5)) then
+          if jit_word_p = strtoint2(copy(stringlist_abhs_d2.Strings[i],pos(',',stringlist_abhs_d2.Strings[i])+1,5)) then
              stringlist_abhs_d2.Delete(i);
      for i:= stringlist_abhs_d1.Count- 1  downto 0 do
-          if jit_word_p = strtoint2(copy(stringlist_abhs_d1.Strings[i],fastcharpos(stringlist_abhs_d1.Strings[i],',',1)+1,5)) then
+          if jit_word_p = strtoint2(copy(stringlist_abhs_d1.Strings[i],pos(',',stringlist_abhs_d1.Strings[i])+1,5)) then
              stringlist_abhs_d1.Delete(i);
     for i:= stringlist_abhs240.Count- 1  downto 0 do
-          if jit_word_p = strtoint2(copy(stringlist_abhs240.Strings[i],fastcharpos(stringlist_abhs240.Strings[i],',',1)+1,5)) then
+          if jit_word_p = strtoint2(copy(stringlist_abhs240.Strings[i],pos(',',stringlist_abhs240.Strings[i])+1,5)) then
              stringlist_abhs240.Delete(i);
       for i:= stringlist_abhs30.Count- 1  downto 0 do
-          if jit_word_p = strtoint2(copy(stringlist_abhs30.Strings[i],fastcharpos(stringlist_abhs30.Strings[i],',',1)+1,5)) then
+          if jit_word_p = strtoint2(copy(stringlist_abhs30.Strings[i],pos(',',stringlist_abhs30.Strings[i])+1,5)) then
              stringlist_abhs30.Delete(i);
    jit_del:= true;
    start_show_word(false);
@@ -1480,8 +1594,31 @@ begin
 
 end;
 
-procedure TForm_pop.FormDestroy(Sender: TObject);
+procedure DoneBass;
+var
+  I: Integer;
 begin
+  if MusicModule <> 0 then
+  begin
+    BASS_MusicFree(MusicModule);
+    MusicModule := 0;
+  end;
+
+  for I := 0 to High(EffectSamples) do
+    if EffectSamples[I] <> 0 then
+    begin
+      BASS_SampleFree(EffectSamples[I]);
+      EffectSamples[I] := 0;
+    end;
+
+  BASS_Free;
+end;
+
+procedure TForm_pop.FormDestroy(Sender: TObject);
+var i: integer;
+begin
+ if Assigned(mp3_yodao1) then
+  mp3_yodao1.Terminate;
 
   if jit_del then
   begin
@@ -1489,6 +1626,15 @@ begin
      word_lib_save;
 
   end;
+    EngineTimer.Free;
+  EngineFonts.Free;
+  EngineImages.Free;
+  EngineCanvas.Free;
+  EngineDevice.Free;
+  DeviceProvider.Free;
+  ImageFormatHandler.Free;
+  ImageFormatManager.Free;
+    Particles1.free;
 
   {$IFDEF IBM_SPK}
   if Assigned(jit_spk1) then
@@ -1499,6 +1645,11 @@ begin
    end;
    {$ENDIF}
 
+   if Assigned(SpVoice1) then
+   begin
+
+    SpVoice1:= nil;
+   end;
    wordlist1.Free;
 
    if Assigned(goods_time_list) then
@@ -1517,37 +1668,30 @@ begin
 
  fashu_wupin_kuaijie_list.Free;
 
-    image_word.Free;
-    image_cn1.Free ;
-    image_cn2.Free ;
-    image_cn3.Free ;
-    image_up.Free  ;
-    image_down.Free;
 
-    image_guai1.Free;
-    image_guai2.Free;
-    image_guai3.Free;
-    image_guai4.Free;
-    image_guai5.Free;
+down_tip1.Terminate; //结束迷宫阅读材料下载线程
+    //image_result1.Free;
 
-       image_role1.Free;
-       image_role2.Free;
-       image_role3.Free;
-       image_role4.Free;
-       image_role5.Free;
-
-    image_result1.Free;
-     g_icon_image.Free;
-     image_bg_1_1.Free;
-     image_bg_1_2.Free;
-  if assigned(image_bubble) then
-     image_bubble.Free;
-  if assigned(imgae_arrow) then
-     imgae_arrow.Free;
   if Assigned(game_edit1_bmp) then
         game_edit1_bmp.Free;
 
- AsphyreDevice1.Finalize();
+ //AsphyreDevice1.Finalize();
+  DoneBass;
+
+end;
+
+procedure TForm_pop.FormResize(Sender: TObject);
+begin
+  show_w_g:= panel1.Width;  //显示窗口的宽
+    show_h_g:= panel1.Height;  //显示窗口的高
+   DisplaySize := Point2i(show_w_g, show_h_g);
+
+  if (EngineDevice <> nil) and (EngineTimer <> nil) and EngineDevice.Initialized then
+  begin
+    EngineDevice.Resize(0, DisplaySize);
+    RenderWindow;
+    EngineTimer.Reset;
+  end;
 end;
 
 procedure TForm_pop.show_check(i: integer);
@@ -1641,7 +1785,7 @@ if combobox1.ItemIndex= -1 then
              begin
                if pos('句',combobox1.Text)> 0 then
                  begin
-                  if game_bmp_width<> 512 then
+                  if game_bmp_width<> round(512 * dpi_bilv) then
                    begin
                     messagebox(handle,'您启用的词库包含句子，词条可能比较长,会显示不完全。建议您在游戏的“系统设置页面”内开启“单词栏双倍宽度”功能。','提示',mb_ok);
                    end;
@@ -1658,7 +1802,7 @@ if combobox1.ItemIndex= -1 then
 
   if wordlist1.Count < 3 then
    begin
-    messagebox(handle,'词库单词数过少，可能导致选词循环死锁。','严重错误',mb_ok or MB_ICONERROR);
+    messagebox(handle,'词库单词数过少，可能导致选词循环死锁。','错误',mb_ok or MB_ICONERROR);
     wordlist1.Add('aa=请修改词库');
     wordlist1.Add('bb=单词太少了');
     wordlist1.Add('cc=请增加单词');
@@ -1680,6 +1824,15 @@ begin
  combobox1.ItemIndex:= 0;
 end;
 
+procedure TForm_pop.CheckBox1MouseUp(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+   if checkbox1.Checked then
+      GameSave1.tip6:= 1
+      else
+       GameSave1.tip6:= 0;
+end;
+
 procedure TForm_pop.CheckBox3Click(Sender: TObject);
 begin
  if checkbox3.Checked then
@@ -1690,6 +1843,17 @@ begin
             checkbox2.Checked:= true;
             checkbox2.Enabled:= true;
            end;
+end;
+
+function TForm_pop.add_img_engine(n: string; bmp: tbitmap): integer;
+var stream1: TMemoryStream;
+begin
+   //添加新图片到引擎
+  stream1:= TMemoryStream.create;
+  bmp.SaveToStream(stream1);
+  stream1.Position:= 0;
+   result:= EngineImages.AddFromStream(n,stream1);
+  stream1.free;
 end;
 
 procedure TForm_pop.add_lib;  //导入词库文件
@@ -1864,7 +2028,7 @@ b:= 0; //使用在易错词库内，起到混淆作用
     ss:= get_word_safe(jit_word_p);
    end;
 
-    c:= fastcharpos(ss,'=',1);
+    c:= pos('=',ss);
 
     if checkbox3.Checked then
      Jit_words:= copy(ss,c+1,64)    //反向学习
@@ -2330,18 +2494,81 @@ begin
   result:= copy(result,2,17);
 end;
 
+
+procedure LoadSounds;
+var
+  Stream: TMemoryStream;
+  I: Integer;
+begin
+
+  Stream := TMemoryStream.Create;
+  try
+    for I := 0 to 15 do
+    begin
+      Stream.Clear;
+       Stream.loadfromfile('music\w'+ inttostr(i+1)+'.wav');
+
+
+      EffectSamples[I] := BASS_SampleLoad(True, Stream.Memory, 0, Stream.Size, 8, 0);
+      if EffectSamples[I] = 0 then
+      begin
+        DoneBass;
+        MessageDlg('载入声音失败!', mtError, [mbOK], 0);
+        Application.Terminate;
+        Exit;
+      end;
+    end;
+  finally
+    Stream.Free;
+  end;
+end;
+
 procedure TForm_pop.FormCreate(Sender: TObject);
 var str1: Tstringlist;
     ss,ss2: string;
     i: integer;
+    b: boolean;
 begin
-
+g_result_w1:= round(256 * dpi_bilv);  //结果显示 384
+   g_result_h1:= round(128 * dpi_bilv);
+   game_bmp_h1:= round(42 * dpi_bilv);  // 单词的高度
+   game_bmp_h2:= round(32 * dpi_bilv);   //解释的高度
+   game_bmp_role_width:= round(80 * dpi_bilv); //怪和我方人物的宽度
+    G_C_role_top:= round(400 * dpi_bilv);  //我方人物顶点
+    G_C_guai_top:= round(40 * dpi_bilv);    //怪物顶点
+    G_C_role_left1:= round(20 * dpi_bilv);   //我方人物和怪物的左边坐标
+    G_C_role_left2:= round(140 * dpi_bilv);
+    G_C_role_left3:= round(260 * dpi_bilv);
+    G_C_role_left4:= round(380 * dpi_bilv);
+    G_C_role_left5:= round(500 * dpi_bilv);
+        G_C_danci_top:= round(170 * dpi_bilv);
+    G_C_jieshi1_top:= round(220 * dpi_bilv);
+    G_C_jieshi2_top:= round(260 * dpi_bilv);
+    G_C_jieshi3_top:= round(300 * dpi_bilv);
+        g_boll_w_cn:= round(30 * dpi_bilv); //球网格的宽和高
+    g_boll_h_cn:= round(26 * dpi_bilv);
+    game_bmp_role_h:= round(48 * dpi_bilv);  //怪和我方人物的高度
+    show_w_g:= panel1.Width;  //显示窗口的宽
+    show_h_g:= panel1.Height;  //显示窗口的高
    jit_kssj:= now;  //保存开始时间
    game_beijing_index_cur:= -1;
+   bubble_int:= -1;
 // 初始化 Asphyre Device
-   form_show.show_info('初始化DirectX设备……3%');
-  AsphyreDevice1.WindowHandle:= panel1.Handle;
-  if (not AsphyreDevice1.Initialize()) then begin
+   form_show.show_info('初始化DirectX设备……5%');
+   ReportMemoryLeaksOnShutdown := True;
+
+  ImageFormatManager := TImageFormatManager.Create;
+  ImageFormatHandler := CreateDefaultImageFormatHandler(ImageFormatManager);
+
+  DeviceProvider := CreateDefaultProvider(ImageFormatManager);
+
+  EngineDevice := DeviceProvider.CreateDevice as TCustomSwapChainDevice;
+
+  DisplaySize := Point2i(show_w_g, show_h_g);
+  EngineDevice.SwapChains.Add(panel1.Handle, DisplaySize);
+
+  if not EngineDevice.Initialize then
+  begin
     if Messagebox(handle,'游戏初始化DirectX环境失败，请确认显卡的硬件加速已启用。或者请先重新启动电脑试试，点击“是”查看常见原因和解决方法。', '初始化失败',mb_yesno)
        =mryes then
        ShellExecute(handle,'open',pchar(game_app_path_G+'dat\error.txt'),nil,nil,sw_shownormal);
@@ -2350,13 +2577,55 @@ begin
     Exit;
   end;
 
+  EngineCanvas := DeviceProvider.CreateCanvas(EngineDevice);
+  if not EngineCanvas.Initialize then
+  begin
+    MessageDlg('错误，不能初始化 PXL 画布.', mtError, [mbOk], 0);
+    Application.Terminate;
+    Exit;
+  end;
+ //showmessage(DisplaySize.X.ToString+ ' '+ DisplaySize.Y.ToString);
+ //showmessage(EngineCanvas.X.ToString+ ' '+ DisplaySize.Y.ToString);
+  EngineImages := TAtlasImages.Create(EngineDevice);
+   {
+  ImageLenna := EngineImages.AddFromFile(CrossFixFileName('..\..\..\Media\Lenna.png'));
+  if ImageLenna = -1 then
+  begin
+    MessageDlg('Could not load Lenna image.', mtError, [mbOk], 0);
+    Application.Terminate;
+    Exit;
+  end;  }
+
+  EngineFonts := TBitmapFonts.Create(EngineDevice);
+  EngineFonts.Canvas := EngineCanvas;
+
+
+  FontTahoma := EngineFonts.AddFromBinaryFile('Tahoma9b.font');
+  if FontTahoma = -1 then
+  begin
+    MessageDlg('Could not load Tahoma font.', mtError, [mbOk], 0);
+    Application.Terminate;
+    Exit;
+  end;
+   EngineFonts[FontTahoma].Scale:= dpi_bilv;
+  EngineTimer := TMultimediaTimer.Create;
+   EngineTimer.Enabled:= false;
+  EngineTimer.OnTimer := EngineTiming;
+  EngineTimer.OnProcess := EngineProcess;
+  EngineTimer.MaxFPS := 80;
+
+   Particles1:= TParticles.create;
+  Application.OnIdle := ApplicationIdle;
+  EngineTicks := 0;
+
+
   form_show.show_info('加载配置信息……20%');
    //初始化随机数
    Randomize; //初始化随机数
    str1:= Tstringlist.Create;  //初始化背单词文本和背景颜色
    if not FileExists(game_app_path_G+'dat\set.txt') then
     begin
-     messagebox(handle,'set.txt，设置文件不存在，可能游戏安装不完成。请从http://www.finer2.com/wordgame/ 下载完整版本。','错误',mb_ok);
+     messagebox(handle,'set.txt，设置文件不存在，可能游戏安装不完整。请从http://www.finer2.com/wordgame/ 下载新版本。','错误',mb_ok);
      application.Terminate;
     end;
 
@@ -2397,14 +2666,14 @@ begin
 
           if str1.Values['game_width'] = '1' then
            begin
-             game_bmp_width:= 512;
-             g_word_show_left:= 64; //单词和解释显示的左边位置
+             game_bmp_width:= round(512 * dpi_bilv);
+             g_word_show_left:= round(64* dpi_bilv); //单词和解释显示的左边位置
            end   else  begin
-                game_bmp_width:= 256; //单词兰宽度系数
-                g_word_show_left:= 192; //单词和解释显示的左边位置
+                game_bmp_width:= round(256 * dpi_bilv); //单词兰宽度系数
+                g_word_show_left:= round(192* dpi_bilv); //单词和解释显示的左边位置
                        end;
-    if strtoint2(str1.Values['delay_show_word']) < 3000 then
-       timer1.Interval:= 3000
+    if strtoint2(str1.Values['delay_show_word']) < 1000 then
+       timer1.Interval:= 1000
        else
         timer1.Interval:= strtoint2(str1.Values['delay_show_word']);
 
@@ -2509,6 +2778,8 @@ begin
       clear_errorword_list; //初始化单词错误列表
 
     form_show.show_info('加载图片资源……65%');
+    AsphyreDevice1Initialize(nil,b);
+    {
    image_word := TAsphyreImage.Create; //创建图
     image_cn1 := TAsphyreImage.Create;
     image_cn2 := TAsphyreImage.Create;
@@ -2602,7 +2873,7 @@ begin
      image_bg_1_1.PatternSize:= point(512,480);
       image_bg_1_2.VisibleSize:= point(128,480);
      image_bg_1_2.PatternSize:= point(128,480);
-
+                             }
   form_show.show_info('载入abhs表……80%');
 
   if fileExists(game_doc_path_G+'save\default.sav') then
@@ -2645,13 +2916,14 @@ begin
 
    form_show.show_info('载入声音效果……85%');
    //载入声音 效果
-   for i:= 1 to 16 do
-   with DXWaveList1 do
-    begin
-    Items.add;
-    Items[i-1].Wave.LoadFromFile(ss+'music\w'+ inttostr(i)+'.wav');
-    Items[i-1].Restore;
-    end;
+        if not BASS_Init(-1, 44100, 0, handle, nil) then
+      begin
+       MessageDlg('载入bass dll 失败!', mtError, [mbOK], 0);
+       exit;
+      end;
+
+   LoadSounds;
+
 
   if DebugHook = 0 then
      CreateMutexes('finer_gameword'); //内核互斥对象，安装检测用，程序退出时会自动清理
@@ -2668,9 +2940,9 @@ begin
       begin
          try
            //SpVoice1.Rate:= round(5 / 0);
-          SpVoice1:= TSpVoice.Create(application);
-          SpVoice1.Rate:=  strtoint2(str1.Values['game_tts_rate']);
-            SpVoice1.Volume:= strtoint2(str1.Values['game_tts_vol']);
+          SpVoice1:= coSpVoice.Create;
+          SpVoice1.Rate:=strtoint2(str1.Values['game_tts_rate']);
+            SpVoice1.Volume:=strtoint2(str1.Values['game_tts_vol']);
 
             if str1.Values['game_tts_sooth'] = '1' then
               game_kptts_init;   //初始化金山真人朗读控件
@@ -2699,6 +2971,7 @@ begin
          str1.saveToFile(game_doc_path_g+'dat\set.txt');
       end;
    str1.Free;
+ down_tip1:= down_tips.Create(false); //下载或加载本地在线阅读内容
 end;
 
 procedure TForm_pop.draw_asw(s: string; flag: integer; c: integer=0); //参数c为1表示红色，2表示绿色文字
@@ -2707,10 +2980,14 @@ var
    r1: Trect;
    qianhouzhui: T_word_QianHouZhui; //返回前后坠的位置
    a,b: string;
+   stream1: TMemoryStream;
+   L,T: integer;
 begin
  game_pic_check_area:= G_words_Pic_y; //单词可被选中
-
+    L:= round(5 * dpi_bilv);
+    T:= round(8 * dpi_bilv);
  bmp:=TBitmap.Create;
+ stream1:= TMemoryStream.Create;
       bmp.PixelFormat:=pf24bit;
          if flag= 0 then
           begin
@@ -2725,7 +3002,7 @@ begin
              if (timer_daojishi.Enabled=false) and (g_tiankong=false) and (game_tingli_i> 0)
                  and (Game_base_random(game_tingli_i)=0) and (checkbox3.Checked= false) then
               begin
-               bmp.Canvas.TextOut(5, 8, '听力测试(按R键重听)'); //有斜杠的表示有填空出现 不听力
+               bmp.Canvas.TextOut(L, T, '听力测试(按R键重听)'); //有斜杠的表示有填空出现 不听力
                g_is_tingli_b:= true;
               end else  begin
                          g_is_tingli_b:= false;
@@ -2738,7 +3015,7 @@ begin
                         DrawTextEx(bmp.Canvas.Handle,pchar(s),length(s),r1,DT_WORDBREAK,nil);
 
                       end else begin
-                           bmp.Canvas.TextOut(5, 8, s);
+                           bmp.Canvas.TextOut(L, T, s);
                             if (game_m_color > 0) and (pos(' ',s)=0) then
                              begin
                               //下面开始单词分色显示
@@ -2748,22 +3025,24 @@ begin
                                //前缀着色
                                b:= copy(s,qianhouzhui.qian_start,qianhouzhui.qian_end);
                                bmp.Canvas.Font.Color:= rgb(game_WB_color_R,game_WB_color_G,game_WB_color_B);
-                               bmp.Canvas.TextOut(5, 8, b);
+                               bmp.Canvas.TextOut(L, T, b);
                                end;
                              if qianhouzhui.hou_start > 0 then
                                begin
                                //后缀着色
                                a:= copy(s,qianhouzhui.hou_start,qianhouzhui.hou_end);
                                bmp.Canvas.Font.Color:= rgb(game_WA_color_R,game_WA_color_G,game_WA_color_B);
-                               bmp.Canvas.TextOut(5+ bmp.Canvas.TextWidth(copy(s,1,qianhouzhui.hou_start-1)), 8, A);
+                               bmp.Canvas.TextOut(L+ bmp.Canvas.TextWidth(copy(s,1,qianhouzhui.hou_start-1)), T, A);
                                end;
                              end;
                                 end; //end 换行
                         end;
-              with image_word do
-               begin
-                LoadFromBitmap(bmp,false,0,0); //更新到屏幕
-               end;
+                 stream1.Clear;
+                 bmp.SaveToStream(stream1);
+                 stream1.Position:= 0;
+                EngineImages[image_word].LoadFromStream('.bmp',stream1);
+
+
           end else begin
                     bmp.Width:=game_bmp_width;
                     bmp.Height:=game_bmp_h2;
@@ -2819,33 +3098,34 @@ begin
                         DrawTextEx(bmp.Canvas.Handle,pchar(s),length(s),r1,DT_WORDBREAK,nil);
 
                       end else
-                            bmp.Canvas.TextOut(5, 8, s);
+                            bmp.Canvas.TextOut(L, T, s);
 
                      case flag of
                       1: begin
-                          with image_cn1 do
-                           begin
-
-                          LoadFromBitmap(bmp,false,0,0);
-                            end;
+                          stream1.Clear;
+                           bmp.SaveToStream(stream1);
+                           stream1.Position:= 0;
+                          EngineImages[image_cn1].LoadFromStream('.bmp',stream1);
                          end;
                       2: begin
-                          with image_cn2 do
-                          LoadFromBitmap(bmp,false,0,0);
+                          stream1.Clear;
+                           bmp.SaveToStream(stream1);
+                           stream1.Position:= 0;
+                          EngineImages[image_cn2].LoadFromStream('.bmp',stream1);
 
                          end;
                       3: begin
-                          with image_cn3 do
-                           begin
-
-                          LoadFromBitmap(bmp,false,0,0);
-                            end;
+                           stream1.Clear;
+                           bmp.SaveToStream(stream1);
+                           stream1.Position:= 0;
+                          EngineImages[image_cn3].LoadFromStream('.bmp',stream1);
                          end;
                       end;
                    end;
 
 
       // GLMaterialLibrary1.Materials.Items[flag].Material.Texture.image.Assign(bmp);
+      stream1.Free;
       bmp.Free;
 // G_dangqian_zhuangtai:=G_word;  转移到动画内
 end;
@@ -2853,12 +3133,15 @@ end;
 procedure TForm_pop.game_intl_pic;
 var
    bmp : TBitmap;
+   stream1: TMemoryStream;
+   L,T: integer;
 begin
    // 初始化图片
-
+       L:= round(5 * dpi_bilv);
+    T:= round(8 * dpi_bilv);
       bmp:=TBitmap.Create;
       bmp.PixelFormat:=pf24bit;
-
+       stream1:= TMemoryStream.create;
      // bmp.LoadFromFile(game_app_path_G+ 'sg.BMP');
         bmp.Width:=game_bmp_width;
         bmp.Height:=game_bmp_h1;
@@ -2866,12 +3149,18 @@ begin
       bmp.Canvas.Font.Size:= 21;
       bmp.Canvas.Brush.Style:= bsClear;
 
-         bmp.Canvas.TextOut(5, 8, '武侠游戏背单词');
+         bmp.Canvas.TextOut(L, T, '武侠游戏背单词');
      // bmp.Canvas.TextOut(3, 65, 'ufo2003@126.com');
-         with image_word do
-         begin
-         LoadFromBitmap(bmp,false,0,0);
-         end;
+           bmp.SaveToStream(stream1);
+           stream1.Position:= 0;
+         image_word:= EngineImages.AddFromStream('.bmp',stream1);
+
+         bmp.Width:=g_result_w1;
+        bmp.Height:=g_result_h1;
+           stream1.Clear;
+           bmp.SaveToStream(stream1);
+           stream1.Position:= 0;
+         image_result1:= EngineImages.AddFromStream('.bmp',stream1);
 
 
 
@@ -2880,21 +3169,20 @@ begin
         bmp.Height:=game_bmp_h2;
         bmp.Canvas.Brush.Color:=rgb(165,255,255);
         bmp.Canvas.FillRect(rect(0,0,game_bmp_width,game_bmp_h2));
-         bmp.Canvas.TextOut(5, 5, 'ufo2003@126.com');
+         bmp.Canvas.TextOut(L, T, 'ufo2003@126.com');
 
-       with image_cn1 do
-         begin
-         LoadFromBitmap(bmp,false,0,0);
-         end;
-       with image_cn2 do
-         begin
-         LoadFromBitmap(bmp,false,0,0);
-         end;
-        with image_cn3 do
-         begin
-         LoadFromBitmap(bmp,false,0,0);
-         end;
-
+         stream1.Clear;
+         bmp.SaveToStream(stream1);
+           stream1.Position:= 0;
+         image_cn1:= EngineImages.AddFromStream('.bmp',stream1);
+          stream1.Position:= 0;
+         image_cn2:= EngineImages.AddFromStream('.bmp',stream1);
+          stream1.Position:= 0;
+         image_cn3:= EngineImages.AddFromStream('.bmp',stream1);
+          stream1.Position:= 0;
+         image_up:= EngineImages.AddFromStream('.bmp',stream1);
+          stream1.Position:= 0;
+         image_down:= EngineImages.AddFromStream('.bmp',stream1);
 
        //怪物和人物区域初始化
          bmp.Canvas.Font.Size:= 12;
@@ -2902,9 +3190,33 @@ begin
         bmp.Height:=game_bmp_role_h;
         bmp.Canvas.Brush.Color:=rgb(255,255,255);
         bmp.Canvas.FillRect(rect(0,0,game_bmp_role_width,game_bmp_role_h));
-         bmp.Canvas.TextOut(5, 2, '人物');
+         bmp.Canvas.TextOut(L, round(2 * dpi_bilv), '人物');
 
+        stream1.Clear;
+         bmp.SaveToStream(stream1);
 
+           stream1.Position:= 0;
+         image_guai1:= EngineImages.AddFromStream('.bmp',stream1);
+          stream1.Position:= 0;
+         image_guai2:= EngineImages.AddFromStream('.bmp',stream1);
+          stream1.Position:= 0;
+         image_guai3:= EngineImages.AddFromStream('.bmp',stream1);
+          stream1.Position:= 0;
+         image_guai4:= EngineImages.AddFromStream('.bmp',stream1);
+          stream1.Position:= 0;
+         image_guai5:= EngineImages.AddFromStream('.bmp',stream1);
+          stream1.Position:= 0;
+         image_role1:= EngineImages.AddFromStream('.bmp',stream1);
+         stream1.Position:= 0;
+         image_role2:= EngineImages.AddFromStream('.bmp',stream1);
+          stream1.Position:= 0;
+         image_role3:= EngineImages.AddFromStream('.bmp',stream1);
+          stream1.Position:= 0;
+         image_role4:= EngineImages.AddFromStream('.bmp',stream1);
+          stream1.Position:= 0;
+         image_role5:= EngineImages.AddFromStream('.bmp',stream1);
+          stream1.Position:= 0;
+         g_icon_image:= EngineImages.AddFromStream('.bmp',stream1);
       bmp.Free;
 
 
@@ -2913,10 +3225,12 @@ end;
 procedure TForm_pop.draw_random_pic; //生成随机图像
 var
    bmp : TBitmap;
+   stream1: TMemoryStream;
 begin
 game_pic_check_area:= G_all_pic_n; //答案显示等待期，全局gl对象禁止选中。
  bmp:=TBitmap.Create;
       bmp.PixelFormat:=pf24bit;
+       stream1:= TMemoryStream.create;
                     bmp.Width:=game_bmp_width;
                     bmp.Height:=game_bmp_h2;
                          //背景填充随机颜色
@@ -2924,26 +3238,16 @@ game_pic_check_area:= G_all_pic_n; //答案显示等待期，全局gl对象禁止选中。
                     bmp.Canvas.FillRect(rect(0,0,game_bmp_width,game_bmp_h2));
 
               draw_random_pic_base(bmp);
+                            bmp.SaveToStream(stream1);
+                            stream1.Position:= 0;
+                             EngineImages[image_cn1].loadFromStream('.bmp',stream1);
 
-                          with image_cn1 do
-                           begin
+                            stream1.Position:= 0;
+                             EngineImages[image_cn2].loadFromStream('.bmp',stream1);
+                            stream1.Position:= 0;
+                             EngineImages[image_cn3].loadFromStream('.bmp',stream1);
 
-                          LoadFromBitmap(bmp,false,0,0);
-                            end;
-
-                          with image_cn2 do
-                           begin
-
-                          LoadFromBitmap(bmp,false,0,0);
-                            end;
-
-
-                          with image_cn3 do
-                           begin
-                          
-                          LoadFromBitmap(bmp,false,0,0);
-                            end;
-
+      stream1.free;
       bmp.Free;
 
 end;
@@ -2983,7 +3287,7 @@ var FGenPointFrom: tpoint;
           else   
           begin   
               Result.X   :=   GenPointFrom.X   +   Trunc(GenLength   *   cos(GenAngle   +   GEN_ANGLE_DEVIATION));
-              Result.Y   :=   GenPointFrom.Y   +   Trunc(GenLength   *   sin(GenAngle   +   GEN_ANGLE_DEVIATION));   
+              Result.Y   :=   GenPointFrom.Y   +   Trunc(GenLength   *   sin(GenAngle   +   GEN_ANGLE_DEVIATION));
           end;   
       end;
 
@@ -3248,6 +3552,7 @@ end;
 procedure TForm_pop.show_text(up: boolean; const s: string);
 var
    bmp : TBitmap;
+   stream1: TMemoryStream;
 begin
 
   if s= '' then
@@ -3260,6 +3565,7 @@ begin
    end;
  bmp:=TBitmap.Create;
       bmp.PixelFormat:=pf24bit;
+      stream1:= TMemoryStream.create;
         bmp.Canvas.Font.Name:='宋体';
 
            bmp.Width:=game_bmp_width;
@@ -3270,25 +3576,20 @@ begin
            bmp.Canvas.Brush.Style:= bsClear;
             bmp.Canvas.Brush.Color:=clwindowtext;
             bmp.Canvas.FillRect(rect(0,0,game_bmp_width,game_bmp_h2));
-            bmp.Canvas.TextOut(5, 8, s);
+            bmp.Canvas.TextOut(round(5 * dpi_bilv), round(8 * dpi_bilv), s);
+            bmp.SaveToStream(stream1);
        if up then
         begin
-          with image_up do
-         begin
-
-         LoadFromBitmap(bmp,true,0,0);
-         end;
-
+          stream1.Position:= 0;
+          EngineImages[image_up].loadFromStream('.bmp',stream1);
         g_show_text_up:= true;
         end else begin
-                  with image_down do
-         begin
-         
-         LoadFromBitmap(bmp,true,0,0);
-         end;
+                   stream1.Position:= 0;
+                   EngineImages[image_down].loadFromStream('.bmp',stream1);
 
-           g_show_text_down:= true;
+                  g_show_text_down:= true;
                  end;
+      stream1.free;
       bmp.Free;
 
 end;
@@ -3359,13 +3660,13 @@ begin
 
 end;
 procedure TForm_pop.draw_game_role_base2(p: integer; tpl: Tplayer);   //绘制人物图标
-  const lt= 32;
 var
       bmp : TBitmap;
       ss: string;
-      i: integer;
-
+      i,lt,j: integer;
+      stream1: TMemoryStream;
 begin
+    lt:= round(32* dpi_bilv);
       if not Assigned(tpl) then
          exit;
       try
@@ -3381,7 +3682,7 @@ begin
 
 
       bmp:=TBitmap.Create;
-
+       stream1:= TMemoryStream.create;
       bmp.PixelFormat:=pf24bit;
       bmp.Width:=game_bmp_role_width;
       bmp.Height:=game_bmp_role_h;
@@ -3398,19 +3699,23 @@ begin
                game_p_list[p]:= 0; //死亡角色的速度为零
                end;
       FillRect(rect(0,0,game_bmp_role_width,game_bmp_role_h));
-      data2.ImageList2.Draw(bmp.Canvas,33,0,tpl.plvalues[ord(g_Icon_index)]+ 1);
+      data2.ImageList2.Draw(bmp.Canvas,round(33 * dpi_bilv),0,tpl.plvalues[ord(g_Icon_index)]+ 1);
       //把当前人物图像拷贝到一个icon内，画入攻击策略窗口用
       Brush.Style:= bsClear;
 
-      TextOut(3, 2, tpl.get_name_and_touxian);
+      TextOut(round(3 * dpi_bilv), round(2 * dpi_bilv), tpl.get_name_and_touxian);
       Pen.Mode:=pmCopy;
+
          Pen.Color:= clwhite;
-         MoveTo(3,game_bmp_role_h);
-         LineTo(3,game_bmp_role_h-lt);
-         MoveTo(4,game_bmp_role_h);
-         LineTo(4,game_bmp_role_h-lt);
-         MoveTo(5,game_bmp_role_h);
-         LineTo(5,game_bmp_role_h-lt);
+         for j := 0 to round(3* dpi_bilv) do
+          begin
+           MoveTo(round(3* dpi_bilv)+j,game_bmp_role_h);  //画出命
+           LineTo(round(3* dpi_bilv)+j,game_bmp_role_h -lt);
+          end;
+        { MoveTo(round(4 * dpi_bilv),game_bmp_role_h);
+         LineTo(round(4 * dpi_bilv),game_bmp_role_h-lt);
+         MoveTo(round(5 * dpi_bilv),game_bmp_role_h);
+         LineTo(round(5 * dpi_bilv),game_bmp_role_h-lt); }
 
         // 生命值
           if tpl.plvalues[ord(g_life)]<= 0 then
@@ -3429,41 +3734,50 @@ begin
                                  Pen.Color:= clgreen;
                                  ss:= format('状态：良好 |生命值：%d / %d',[tpl.plvalues[ord(g_life)],tpl.plvalues[ord(g_gdsmz27)]]);
                                 end;
-          i:= round(tpl.plvalues[ord(g_life)] / tpl.plvalues[ord(g_gdsmz27)] * (lt-3))+3;
+          i:= round(tpl.plvalues[ord(g_life)] / tpl.plvalues[ord(g_gdsmz27)] * (lt-3 *dpi_bilv))+round(3 * dpi_bilv);
          if tpl.plvalues[ord(g_life)] > 0 then
           begin
-          MoveTo(3,game_bmp_role_h);
-         LineTo(3,game_bmp_role_h-i);
-         MoveTo(4,game_bmp_role_h);
-         LineTo(4,game_bmp_role_h-i);
-         MoveTo(5,game_bmp_role_h);
-         LineTo(5,game_bmp_role_h-i);
+         for j := 0 to round(3* dpi_bilv) do
+          begin
+           MoveTo(round(3* dpi_bilv)+j,game_bmp_role_h);  //画出命
+           LineTo(round(3* dpi_bilv)+j,game_bmp_role_h -i);
+          end;
+        { MoveTo(round(4 * dpi_bilv),game_bmp_role_h);
+         LineTo(round(4 * dpi_bilv),game_bmp_role_h-i);
+         MoveTo(round(5 * dpi_bilv),game_bmp_role_h);
+         LineTo(round(5 * dpi_bilv),game_bmp_role_h-i);}
           end;
         // 体力
           
-          i:= round(tpl.plvalues[ord(g_tili)] / tpl.plvalues[ord(g_gdtl25)] * (lt-3))+3;
+          i:= round(tpl.plvalues[ord(g_tili)] / tpl.plvalues[ord(g_gdtl25)] * (lt-3 * dpi_bilv))+round(3 * dpi_bilv);
 
             ss:= ss + format(' |体力：%d / %d',[tpl.plvalues[ord(g_tili)],tpl.plvalues[ord(g_gdtl25)]]);
          if tpl.plvalues[ord(g_tili)]> 0 then
           begin
           Pen.Color:= clwhite;
-          MoveTo(12,game_bmp_role_h);
-         LineTo(12,game_bmp_role_h-lt);
-         MoveTo(13,game_bmp_role_h);
-         LineTo(13,game_bmp_role_h-lt);
-         MoveTo(14,game_bmp_role_h);
-         LineTo(14,game_bmp_role_h-lt);
+          for j := 0 to round(3* dpi_bilv) do
+          begin
+           MoveTo(round(12* dpi_bilv)+j,game_bmp_role_h);  //画出命
+           LineTo(round(12* dpi_bilv)+j,game_bmp_role_h -lt);
+          end;
+       {  MoveTo(round(13 * dpi_bilv),game_bmp_role_h);
+         LineTo(round(13 * dpi_bilv),game_bmp_role_h-lt);
+         MoveTo(round(14 * dpi_bilv),game_bmp_role_h);
+         LineTo(round(14 * dpi_bilv),game_bmp_role_h-lt); }
           Pen.Color:= clblue;
-          MoveTo(12,game_bmp_role_h);
-         LineTo(12,game_bmp_role_h-i);
-         MoveTo(13,game_bmp_role_h);
-         LineTo(13,game_bmp_role_h-i);
-         MoveTo(14,game_bmp_role_h);
-         LineTo(14,game_bmp_role_h-i);
+          for j := 0 to round(3* dpi_bilv) do
+          begin
+           MoveTo(round(12* dpi_bilv)+j,game_bmp_role_h);  //画出命
+           LineTo(round(12* dpi_bilv)+j,game_bmp_role_h -i);
+          end;
+        { MoveTo(round(13 * dpi_bilv),game_bmp_role_h);
+         LineTo(round(13 * dpi_bilv),game_bmp_role_h-i);
+         MoveTo(round(14 * dpi_bilv),game_bmp_role_h);
+         LineTo(round(14 * dpi_bilv),game_bmp_role_h-i);  }
           end;
         // 灵力
           
-          i:= round(tpl.plvalues[ord(g_lingli)] / tpl.plvalues[ord(g_gdll26)] * (lt-3))+3;
+          i:= round(tpl.plvalues[ord(g_lingli)] / tpl.plvalues[ord(g_gdll26)] * (lt-3 * dpi_bilv))+round(3 * dpi_bilv);
           if i<= 3 then
              i:= 3;
 
@@ -3471,64 +3785,56 @@ begin
           if tpl.plvalues[ord(g_lingli)]> 0 then
           begin
           Pen.Color:= clwhite;
-          MoveTo(21,game_bmp_role_h);
-         LineTo(21,game_bmp_role_h-lt);
-         MoveTo(22,game_bmp_role_h);
-         LineTo(22,game_bmp_role_h-lt);
-         MoveTo(23,game_bmp_role_h);
-         LineTo(23,game_bmp_role_h-lt);
+          for j := 0 to round(3* dpi_bilv) do
+          begin
+           MoveTo(round(21* dpi_bilv)+j,game_bmp_role_h);  //画出命
+           LineTo(round(21* dpi_bilv)+j,game_bmp_role_h -lt);
+          end;
+        { MoveTo(round(22 * dpi_bilv),game_bmp_role_h);
+         LineTo(round(22 * dpi_bilv),game_bmp_role_h-lt);
+         MoveTo(round(23 * dpi_bilv),game_bmp_role_h);
+         LineTo(round(23 * dpi_bilv),game_bmp_role_h-lt); }
            Pen.Color:= clpurple;
-           MoveTo(21,game_bmp_role_h);
-         LineTo(21,game_bmp_role_h-i);
-         MoveTo(22,game_bmp_role_h);
-         LineTo(22,game_bmp_role_h-i);
-         MoveTo(23,game_bmp_role_h);
-         LineTo(23,game_bmp_role_h-i);
+          for j := 0 to round(3* dpi_bilv) do
+          begin
+           MoveTo(round(21* dpi_bilv)+j,game_bmp_role_h);  //画出命
+           LineTo(round(21* dpi_bilv)+j,game_bmp_role_h -i);
+          end;
+        { MoveTo(round(22 * dpi_bilv),game_bmp_role_h);
+         LineTo(round(22 * dpi_bilv),game_bmp_role_h-i);
+         MoveTo(round(23 * dpi_bilv),game_bmp_role_h);
+         LineTo(round(23 * dpi_bilv),game_bmp_role_h-i); }
           end;
         end; //end with
 
           if tpl.plvalues[ord(g_life)]<= 0 then
              M_bmp_bw(bmp); //彩色转黑白
-
+             bmp.SaveToStream(stream1);
+             stream1.Position:= 0;
        case p of
           0: begin
-                          with image_role1 do
-                           begin
-
-                          LoadFromBitmap(bmp,false,0,0);
-                            end;
-                         end;
+             EngineImages[image_role1].loadFromStream('.bmp',stream1);
+             end;
           1: begin
-                          with image_role2 do
-                           begin
+              EngineImages[image_role2].loadFromStream('.bmp',stream1);
 
-                          LoadFromBitmap(bmp,false,0,0);
-                            end;
                          end;
           2: begin
-                          with image_role3 do
-                           begin
+               EngineImages[image_role3].loadFromStream('.bmp',stream1);
 
-                          LoadFromBitmap(bmp,false,0,0);
-                            end;
                          end;
           3: begin
-                          with image_role4 do
-                           begin
+               EngineImages[image_role4].loadFromStream('.bmp',stream1);
 
-                          LoadFromBitmap(bmp,false,0,0);
-                            end;
                          end;
           4: begin
-                          with image_role5 do
-                           begin
-                          
-                          LoadFromBitmap(bmp,false,0,0);
-                            end;
+              EngineImages[image_role5].loadFromStream('.bmp',stream1);
+
                          end;
           end;
       bmp.Free;
-       
+      stream1.free;
+
       ss:= ss + format(' |速度：%d |防：%d',[tpl.plvalues[ord(g_speed)],tpl.plvalues[ord(g_defend)]]);
       g_hint_array_g[p]:= ss;
    case p of
@@ -3703,15 +4009,18 @@ begin
 end;
 
 procedure TForm_pop.draw_game_guai_base(p: integer);
-const lt= 32;
+
 var
       bmp : TBitmap;
       ss: string;
       i: integer;
+      stream1: TMemoryStream;
+      lt: integer;
+  j: integer;
 begin
 if p>= 5 then
    p:= p -5;
-
+      lt:= round(32 * dpi_bilv);
      if net_guai_g[p].ming<= 0 then
         begin
          game_p_list[p+5]:= 0; //死亡怪的速度为零
@@ -3727,18 +4036,25 @@ if p>= 5 then
 
       bmp:=TBitmap.Create;
       bmp.PixelFormat:=pf24bit;
+       stream1:= TMemoryStream.create;
       bmp.Width:=game_bmp_role_width;
       bmp.Height:=game_bmp_role_h;
 
      with bmp.Canvas do    //命值底色
        begin
+        FillRect(rect(0,0,game_bmp_role_width,game_bmp_role_h));
            Pen.Color:= clwhite;
-          MoveTo(3,game_bmp_role_h);
-         LineTo(3,game_bmp_role_h-lt);
-         MoveTo(4,game_bmp_role_h);
-         LineTo(4,game_bmp_role_h-lt);
-         MoveTo(5,game_bmp_role_h);
-         LineTo(5,game_bmp_role_h-lt);
+
+
+         for j := 0 to round(3* dpi_bilv) do
+          begin
+           MoveTo(round(3* dpi_bilv)+j,game_bmp_role_h);  //画出命底色
+           LineTo(round(3* dpi_bilv)+j,game_bmp_role_h -lt);
+          end;
+        { MoveTo(round(4 * dpi_bilv),game_bmp_role_h);
+         LineTo(round(4 * dpi_bilv),game_bmp_role_h-lt);
+         MoveTo(round(5 * dpi_bilv),game_bmp_role_h);
+         LineTo(round(5 * dpi_bilv),game_bmp_role_h-lt); }
        end;
         // 生命值
           if net_guai_g[p].ming_gu* 4 > net_guai_g[p].ming * 10 then
@@ -3756,112 +4072,115 @@ if p>= 5 then
 
           ss:= ss + format(' |速度：%d |防：%d',[game_get_guai_su(p),net_guai_g[p].fang]);
 
-          i:= round(net_guai_g[p].ming / net_guai_g[p].ming_gu * (lt-3))+3;
+          i:= round(net_guai_g[p].ming / net_guai_g[p].ming_gu * (lt-3 * dpi_bilv))+round(3 * dpi_bilv);
 
      with bmp.Canvas do
        begin
       Font.Name:='宋体';
       Font.Size:= 10;
       //Brush.Color:=rgb(213,206,180);   //怪物正常背景色
-      FillRect(rect(0,0,game_bmp_role_width,game_bmp_role_h));
+
 
       if loc_guai_g[p].icon > 0 then
-          data2.ImageList2.Draw(bmp.Canvas,33,0,loc_guai_g[p].icon + 1);
+          data2.ImageList2.Draw(bmp.Canvas,round(33* dpi_bilv),0,loc_guai_g[p].icon + 1);
 
       Brush.Style:= bsClear;
-      TextOut(3, 2, loc_guai_g[p].name1);
-      
-          MoveTo(3,game_bmp_role_h);  //画出命
-         LineTo(3,game_bmp_role_h -i);
-         MoveTo(4,game_bmp_role_h);
-         LineTo(4,game_bmp_role_h -i);
-         MoveTo(5,game_bmp_role_h);
-         LineTo(5,game_bmp_role_h -i);
+      TextOut(round(3* dpi_bilv), round(2* dpi_bilv), loc_guai_g[p].name1);
+         for j := 0 to round(3* dpi_bilv) do
+          begin
+           MoveTo(round(3* dpi_bilv)+j,game_bmp_role_h);  //画出命
+           LineTo(round(3* dpi_bilv)+j,game_bmp_role_h -i);
+          end;
+       {  MoveTo(round(4* dpi_bilv),game_bmp_role_h);
+         LineTo(round(4* dpi_bilv),game_bmp_role_h -i);
+         MoveTo(round(5* dpi_bilv),game_bmp_role_h);
+         LineTo(round(5* dpi_bilv),game_bmp_role_h -i); }
 
          //画出体和灵
 
         // 体力
 
-          i:= round(net_guai_g[p].ti / net_guai_g[p].ti_gu * (lt-3))+3;
+          i:= round(net_guai_g[p].ti / net_guai_g[p].ti_gu * (lt-3*  dpi_bilv))+round(3* dpi_bilv);
 
            // ss:= ss + format(' |体力：%d / %d',[tpl.plvalues[ord(g_tili)],tpl.plvalues[ord(g_gdtl25)]]);
 
           Pen.Color:= clwhite;
-          MoveTo(12,game_bmp_role_h);
-         LineTo(12,game_bmp_role_h-lt);
-         MoveTo(13,game_bmp_role_h);
-         LineTo(13,game_bmp_role_h-lt);
-         MoveTo(14,game_bmp_role_h);
-         LineTo(14,game_bmp_role_h-lt);
+          for j := 0 to round(3* dpi_bilv) do
+          begin
+           MoveTo(round(12* dpi_bilv)+j,game_bmp_role_h);  //画出命
+           LineTo(round(12* dpi_bilv)+j,game_bmp_role_h -lt);
+          end;
+       {  MoveTo(round(13* dpi_bilv),game_bmp_role_h);
+         LineTo(round(13* dpi_bilv),game_bmp_role_h-lt);
+         MoveTo(round(14* dpi_bilv),game_bmp_role_h);
+         LineTo(round(14* dpi_bilv),game_bmp_role_h-lt);  }
           Pen.Color:= clblue;
-          MoveTo(12,game_bmp_role_h);
-         LineTo(12,game_bmp_role_h-i);
-         MoveTo(13,game_bmp_role_h);
-         LineTo(13,game_bmp_role_h-i);
-         MoveTo(14,game_bmp_role_h);
-         LineTo(14,game_bmp_role_h-i);
+          for j := 0 to round(3* dpi_bilv) do
+          begin
+           MoveTo(round(12* dpi_bilv)+j,game_bmp_role_h);  //画出命
+           LineTo(round(12* dpi_bilv)+j,game_bmp_role_h -i);
+          end;
+        { MoveTo(round(13* dpi_bilv),game_bmp_role_h);
+         LineTo(round(13* dpi_bilv),game_bmp_role_h-i);
+         MoveTo(round(14* dpi_bilv),game_bmp_role_h);
+         LineTo(round(14* dpi_bilv),game_bmp_role_h-i); }
 
         // 灵力
           
-          i:= round(net_guai_g[p].ling / net_guai_g[p].ling_gu * (lt-3))+3;
+          i:= round(net_guai_g[p].ling / net_guai_g[p].ling_gu * (lt-3* dpi_bilv))+round(3* dpi_bilv);
 
            // ss:= ss + format(' |灵力：%d / %d',[tpl.plvalues[ord(g_lingli)],tpl.plvalues[ord(g_gdll26)]]);
 
           Pen.Color:= clwhite;
-          MoveTo(21,game_bmp_role_h);
-         LineTo(21,game_bmp_role_h-lt);
-         MoveTo(22,game_bmp_role_h);
-         LineTo(22,game_bmp_role_h-lt);
-         MoveTo(23,game_bmp_role_h);
-         LineTo(23,game_bmp_role_h-lt);
+
+          for j := 0 to round(3* dpi_bilv) do
+          begin
+           MoveTo(round(21* dpi_bilv)+j,game_bmp_role_h);  //画出命
+           LineTo(round(21* dpi_bilv)+j,game_bmp_role_h -lt);
+          end;
+         //MoveTo(round(22* dpi_bilv),game_bmp_role_h);
+        // LineTo(round(22* dpi_bilv),game_bmp_role_h-lt);
+         //MoveTo(round(23* dpi_bilv),game_bmp_role_h);
+        // LineTo(round(23* dpi_bilv),game_bmp_role_h-lt);
            Pen.Color:= clpurple;
-           MoveTo(21,game_bmp_role_h);
-         LineTo(21,game_bmp_role_h-i);
-         MoveTo(22,game_bmp_role_h);
-         LineTo(22,game_bmp_role_h-i);
-         MoveTo(23,game_bmp_role_h);
-         LineTo(23,game_bmp_role_h-i);
+           for j := 0 to round(3* dpi_bilv) do
+          begin
+           MoveTo(round(21* dpi_bilv)+j,game_bmp_role_h);  //画出命
+           LineTo(round(21* dpi_bilv)+j,game_bmp_role_h -i);
+          end;
+        { MoveTo(round(22* dpi_bilv),game_bmp_role_h);
+         LineTo(round(22* dpi_bilv),game_bmp_role_h-i);
+         MoveTo(round(23* dpi_bilv),game_bmp_role_h);
+         LineTo(round(23* dpi_bilv),game_bmp_role_h-i); }
        end;
+          bmp.SaveToStream(stream1);
+           stream1.Position:= 0;
 
          case p of
           0: begin
-                          with image_guai1 do
-                           begin
+              EngineImages[image_guai1].loadFromStream('.bmp',stream1);
 
-                          LoadFromBitmap(bmp,false,0,0);
-                            end;
                          end;
           1: begin
-                          with image_guai2 do
-                           begin
+               EngineImages[image_guai2].loadFromStream('.bmp',stream1);
 
-                          LoadFromBitmap(bmp,false,0,0);
-                            end;
                          end;
           2: begin
-                          with image_guai3 do
-                           begin
+               EngineImages[image_guai3].loadFromStream('.bmp',stream1);
 
-                          LoadFromBitmap(bmp,false,0,0);
-                            end;
                          end;
           3: begin
-                          with image_guai4 do
-                           begin
+               EngineImages[image_guai4].loadFromStream('.bmp',stream1);
 
-                          LoadFromBitmap(bmp,false,0,0);
-                            end;
                          end;
           4: begin
-                          with image_guai5 do
-                           begin
-                          
-                          LoadFromBitmap(bmp,false,0,0);
-                            end;
+               EngineImages[image_guai5].loadFromStream('.bmp',stream1);
+
                          end;
           end;
       // GLMaterialLibrary1.Materials.Items[p+ 4].Material.Texture.image.Assign(bmp);
       bmp.Free;
+      stream1.free;
     g_hint_array_g[p+ 5]:= ss; //添加提示
    case p of
     0: begin
@@ -3911,8 +4230,8 @@ time_list1.Timer_donghua:= false;
    show_text(true,'您可以用法术，物品或者攻击');
    G_dangqian_zhuangtai:=G_chelue;
    //groupbox3.Visible:= true;
-   g_gong.weizhi.Top:= 165;
-   g_gong.weizhi.Left:= 640-180;
+   g_gong.weizhi.Top:= round(165 * dpi_bilv);
+   g_gong.weizhi.Left:= round(640* dpi_bilv)- round(180 * dpi_bilv);
    g_gong.time:= game_amt_length;
 
    time_list1.timer_gong:= true;
@@ -4322,7 +4641,18 @@ begin
    else if (id= 4) then
    g_role_jialiang5:= false;
 end;
-            {通过上场id 0--4 来获得在人物列表内的编号，因为有不上场人物的存在，才需要这样做}
+procedure TForm_pop.update_img(id: integer; bmp: tbitmap);
+var stream1: TMemoryStream;
+begin
+   //更新图片
+  stream1:= TMemoryStream.create;
+  bmp.SaveToStream(stream1);
+  stream1.Position:= 0;
+  EngineImages[id].loadFromStream('.bmp',stream1);
+stream1.free;
+end;
+
+{通过上场id 0--4 来获得在人物列表内的编号，因为有不上场人物的存在，才需要这样做}
 function TForm_pop.get_pid_from_showId(i: integer): integer;
 var j,k: integer;
 begin
@@ -4952,8 +5282,8 @@ begin
                 show_text(true,'您可以用法术，物品或者攻击');
                Fgame_my_cu:= g_wo_guai_dangqian;
                highlight_my(Fgame_my_cu);  //加亮
-                g_gong.weizhi.Top:= 165;
-                   g_gong.weizhi.Left:= 640-180;
+                g_gong.weizhi.Top:= round(165 * dpi_bilv);
+                   g_gong.weizhi.Left:= round(640 * dpi_bilv)- round(180 * dpi_bilv);
                    g_gong.time:= game_amt_length;
 
                time_list1.Timer_gong:= true;
@@ -5035,18 +5365,18 @@ procedure TForm_pop.go_amt_02(t: integer);
 begin  //从右到左
      if GameSave1.tip1= 0 then
       begin
-    g_danci_weizhi.weizi.Left:= 640- round(t / game_amt_length *(640 - g_word_show_left));
-    g_danci_weizhi.weizi.Right:= 640- round(t / game_amt_length *(640 - g_word_show_left))+ game_bmp_width;
-      
-    g_jieshi_weizhi1.weizi.Left:= 640- round(t / game_amt_length *(640 - g_word_show_left));
-    g_jieshi_weizhi1.weizi.Right:= 640- round(t / game_amt_length *(640 - g_word_show_left))+ game_bmp_width;
+    g_danci_weizhi.weizi.Left:= round(640 * dpi_bilv)- round(t / game_amt_length *(round(640 * dpi_bilv) - g_word_show_left));
+    g_danci_weizhi.weizi.Right:= round(640 * dpi_bilv)- round(t / game_amt_length *(round(640 * dpi_bilv) - g_word_show_left))+ game_bmp_width;
 
-    g_jieshi_weizhi2.weizi.Left:= 640- round(t / game_amt_length *(640 - g_word_show_left));
+    g_jieshi_weizhi1.weizi.Left:= round(640 * dpi_bilv)- round(t / game_amt_length *(round(640 * dpi_bilv) - g_word_show_left));
+    g_jieshi_weizhi1.weizi.Right:= round(640 * dpi_bilv)- round(t / game_amt_length *(round(640 * dpi_bilv) - g_word_show_left))+ game_bmp_width;
 
-    g_jieshi_weizhi2.weizi.Right:= 640- round(t / game_amt_length *(640 - g_word_show_left))+ game_bmp_width;
+    g_jieshi_weizhi2.weizi.Left:= round(640 * dpi_bilv)- round(t / game_amt_length *(round(640 * dpi_bilv) - g_word_show_left));
 
-    g_jieshi_weizhi3.weizi.Left:= 640- round(t / game_amt_length *(640 - g_word_show_left));
-    g_jieshi_weizhi3.weizi.Right:= 640- round(t / game_amt_length *(640 - g_word_show_left))+ game_bmp_width;
+    g_jieshi_weizhi2.weizi.Right:= round(640 * dpi_bilv)- round(t / game_amt_length *(round(640 * dpi_bilv) - g_word_show_left))+ game_bmp_width;
+
+    g_jieshi_weizhi3.weizi.Left:= round(640 * dpi_bilv)- round(t / game_amt_length *(round(640 * dpi_bilv) - g_word_show_left));
+    g_jieshi_weizhi3.weizi.Right:= round(640 * dpi_bilv)- round(t / game_amt_length *(round(640 * dpi_bilv) - g_word_show_left))+ game_bmp_width;
       end;
       if GameSave1.tip2= 0 then
       begin
@@ -5087,18 +5417,18 @@ begin
   //从下到上
    if GameSave1.tip1= 0 then
       begin
-  g_danci_weizhi.weizi.top:= 480- round(t / game_amt_length *(480 - G_C_danci_top))- weizhi_get_nn(t);
-  g_danci_weizhi.weizi.Bottom:= 480- round(t / game_amt_length *(480 - G_C_danci_top))+ game_bmp_h1- weizhi_get_nn(t);
+  g_danci_weizhi.weizi.top:= round(480 * dpi_bilv)- round(t / game_amt_length *(round(480 * dpi_bilv) - G_C_danci_top))- weizhi_get_nn(t);
+  g_danci_weizhi.weizi.Bottom:= round(480 * dpi_bilv)- round(t / game_amt_length *(round(480 * dpi_bilv) - G_C_danci_top))+ game_bmp_h1- weizhi_get_nn(t);
       
 
-  g_jieshi_weizhi1.weizi.top:= 480- round(t / game_amt_length *(480 - G_C_jieshi1_top))- weizhi_get_nn(t);
-  g_jieshi_weizhi1.weizi.Bottom:= 480- round(t / game_amt_length *(480 - G_C_jieshi1_top))+ game_bmp_h2- weizhi_get_nn(t);
+  g_jieshi_weizhi1.weizi.top:= round(480 * dpi_bilv)- round(t / game_amt_length *(round(480 * dpi_bilv) - G_C_jieshi1_top))- weizhi_get_nn(t);
+  g_jieshi_weizhi1.weizi.Bottom:= round(480 * dpi_bilv)- round(t / game_amt_length *(round(480 * dpi_bilv) - G_C_jieshi1_top))+ game_bmp_h2- weizhi_get_nn(t);
 
-  g_jieshi_weizhi2.weizi.top:= 480- round(t / game_amt_length *(480 - G_C_jieshi2_top))- weizhi_get_nn(t);
-  g_jieshi_weizhi2.weizi.Bottom:= 480- round(t / game_amt_length *(480 - G_C_jieshi2_top))+ game_bmp_h2- weizhi_get_nn(t);
+  g_jieshi_weizhi2.weizi.top:= round(480 * dpi_bilv)- round(t / game_amt_length *(round(480 * dpi_bilv) - G_C_jieshi2_top))- weizhi_get_nn(t);
+  g_jieshi_weizhi2.weizi.Bottom:= round(480 * dpi_bilv)- round(t / game_amt_length *(round(480 * dpi_bilv) - G_C_jieshi2_top))+ game_bmp_h2- weizhi_get_nn(t);
 
-  g_jieshi_weizhi3.weizi.top:= 480- round(t / game_amt_length *(480 - G_C_jieshi3_top))- weizhi_get_nn(t);
-  g_jieshi_weizhi3.weizi.Bottom:= 480- round(t / game_amt_length *(480 - G_C_jieshi3_top))+ game_bmp_h2- weizhi_get_nn(t);
+  g_jieshi_weizhi3.weizi.top:= round(480 * dpi_bilv)- round(t / game_amt_length *(round(480 * dpi_bilv) - G_C_jieshi3_top))- weizhi_get_nn(t);
+  g_jieshi_weizhi3.weizi.Bottom:= round(480 * dpi_bilv)- round(t / game_amt_length *(round(480 * dpi_bilv) - G_C_jieshi3_top))+ game_bmp_h2- weizhi_get_nn(t);
       end;
       if GameSave1.tip2= 0 then
       begin
@@ -5113,17 +5443,17 @@ procedure TForm_pop.go_amt_05(t: integer);
 begin  //从右到左，翻转
      if GameSave1.tip1= 0 then
       begin
-    g_danci_weizhi.weizi.Left:= 640- round(t / game_amt_length *(640 - g_word_show_left));
+    g_danci_weizhi.weizi.Left:= round(640 * dpi_bilv)- round(t / game_amt_length *(round(640 * dpi_bilv) - g_word_show_left));
     //g_danci_weizhi.weizi.Right:= 640- round(t / game_amt_length *(640 - g_word_show_left))+ game_bmp_width;
       
-    g_jieshi_weizhi1.weizi.Left:= 640- round(t / game_amt_length *(640 - g_word_show_left));
+    g_jieshi_weizhi1.weizi.Left:= round(640 * dpi_bilv)- round(t / game_amt_length *(round(640 * dpi_bilv) - g_word_show_left));
    // g_jieshi_weizhi1.weizi.Right:= 640- round(t / game_amt_length *(640 - g_word_show_left))+ game_bmp_width;
 
-    g_jieshi_weizhi2.weizi.Left:= 640- round(t / game_amt_length *(640 - g_word_show_left));
+    g_jieshi_weizhi2.weizi.Left:= round(640 * dpi_bilv)- round(t / game_amt_length *(round(640 * dpi_bilv) - g_word_show_left));
 
    // g_jieshi_weizhi2.weizi.Right:= 640- round(t / game_amt_length *(640 - g_word_show_left))+ game_bmp_width;
 
-    g_jieshi_weizhi3.weizi.Left:= 640- round(t / game_amt_length *(640 - g_word_show_left));
+    g_jieshi_weizhi3.weizi.Left:= round(640 * dpi_bilv)- round(t / game_amt_length *(round(640 * dpi_bilv) - g_word_show_left));
     //g_jieshi_weizhi3.weizi.Right:= 640- round(t / game_amt_length *(640 - g_word_show_left))+ game_bmp_width;
       end;
       if GameSave1.tip2= 0 then
@@ -5644,6 +5974,446 @@ begin
             end;
 end;
 
+procedure TForm_pop.RenderScene;
+begin
+   //画2d内容 DisplaySize.x , DisplaySize.y
+  //渲染+++++++++++++++++++++开始
+
+//背景图
+   if game_not_bg_black then
+   begin
+
+    EngineCanvas.UseImagePx(EngineImages[image_bg_1_1], Quad(0, 0, 512, 480));
+     EngineCanvas.TexQuad(Quad(0, 0, show_w_g *0.8 , show_h_g),IntColorAlpha(255),TBlendingEffect.None);
+    EngineCanvas.UseImagePx(EngineImages[image_bg_1_2], Quad(0, 0, 128, 480));
+     EngineCanvas.TexQuad(Quad(show_w_g *0.8-1, 0, show_w_g *0.2 , show_h_g),IntColorAlpha(255),TBlendingEffect.None);
+
+   end;
+
+//启动动画
+
+   if game_pop_type= 6 then  //显示泡泡龙
+        show_bubble_on_scr;
+
+   if game_pop_type= 7 then  //显示五子棋
+      begin
+        show_wuziqi_on_src;
+        exit;
+      end;
+
+   if G_dangqian_zhuangtai =G_word then
+     begin
+     //单词图
+     EngineCanvas.UseImagePx(EngineImages[image_word], Quad(0, 0, game_bmp_width, game_bmp_h1));
+     EngineCanvas.TexQuad(Quad(g_danci_weizhi.weizi.Left, g_danci_weizhi.weizi.Top, game_bmp_width , game_bmp_h1),IntColorAlpha(g_danci_weizhi.alpha));
+     //解释图
+
+       EngineCanvas.UseImagePx(EngineImages[image_cn1], Quad(0, 0, game_bmp_width, game_bmp_h2));
+    if (game_pic_check_area = G_words_Pic_y) and (G_mus_at= mus_jieshi1) then //鼠标在上面时颜色
+     begin
+
+      if g_is_word_right then
+          EngineCanvas.TexQuad(Quad(g_jieshi_weizhi1.weizi.Left, g_jieshi_weizhi1.weizi.Top, game_bmp_width , game_bmp_h2),
+            IntColorRGB(G_right_color[0],G_right_color[1],G_right_color[2],G_right_color[3] ))
+       else
+           EngineCanvas.TexQuad(Quad(g_jieshi_weizhi1.weizi.Left, g_jieshi_weizhi1.weizi.Top, game_bmp_width , game_bmp_h2),
+           IntColorRGB(G_checked_color[0],G_checked_color[1],G_checked_color[2],G_checked_color[3] ),TBlendingEffect.Multiply );
+
+     end else
+       EngineCanvas.TexQuad(Quad(g_jieshi_weizhi1.weizi.Left, g_jieshi_weizhi1.weizi.Top, game_bmp_width , game_bmp_h2),IntColorAlpha(g_danci_weizhi.alpha));
+     // AsphyreCanvas1.DrawEx(image_cn1, g_jieshi_weizhi1.weizi,Cardinal( 255 or (255 shl 8) or (255 shl 16) or (g_danci_weizhi.alpha shl 24)), 0, fxBlend);
+
+      EngineCanvas.UseImagePx(EngineImages[image_cn2], Quad(0, 0, game_bmp_width, game_bmp_h2));
+    if (game_pic_check_area = G_words_Pic_y) and (G_mus_at= mus_jieshi2) then
+    begin
+      if g_is_word_right then
+      EngineCanvas.TexQuad(Quad(g_jieshi_weizhi2.weizi.Left, g_jieshi_weizhi2.weizi.Top, game_bmp_width , game_bmp_h2),
+            IntColorRGB(G_right_color[0],G_right_color[1],G_right_color[2],G_right_color[3] ))
+
+      else
+      EngineCanvas.TexQuad(Quad(g_jieshi_weizhi2.weizi.Left, g_jieshi_weizhi2.weizi.Top, game_bmp_width , game_bmp_h2),
+           IntColorRGB(G_checked_color[0],G_checked_color[1],G_checked_color[2],G_checked_color[3] ),TBlendingEffect.Multiply );
+
+   end else
+       EngineCanvas.TexQuad(Quad(g_jieshi_weizhi2.weizi.Left, g_jieshi_weizhi2.weizi.Top, game_bmp_width , game_bmp_h2),IntColorAlpha(g_danci_weizhi.alpha));
+
+     EngineCanvas.UseImagePx(EngineImages[image_cn3], Quad(0, 0, game_bmp_width, game_bmp_h2));
+    if (game_pic_check_area = G_words_Pic_y) and (G_mus_at= mus_jieshi3) then
+     begin
+      if g_is_word_right then
+      EngineCanvas.TexQuad(Quad(g_jieshi_weizhi3.weizi.Left, g_jieshi_weizhi3.weizi.Top, game_bmp_width , game_bmp_h2),
+            IntColorRGB(G_right_color[0],G_right_color[1],G_right_color[2],G_right_color[3] ))
+
+      else
+       EngineCanvas.TexQuad(Quad(g_jieshi_weizhi3.weizi.Left, g_jieshi_weizhi3.weizi.Top, game_bmp_width , game_bmp_h2),
+           IntColorRGB(G_checked_color[0],G_checked_color[1],G_checked_color[2],G_checked_color[3] ),TBlendingEffect.Multiply );
+
+    end else
+      EngineCanvas.TexQuad(Quad(g_jieshi_weizhi3.weizi.Left, g_jieshi_weizhi3.weizi.Top, game_bmp_width , game_bmp_h2),IntColorAlpha(g_danci_weizhi.alpha));
+
+    end;
+
+//怪方提示
+    if g_show_text_up then
+     begin
+       EngineCanvas.UseImagePx(EngineImages[image_up], Quad(0, 0, game_bmp_width, game_bmp_h2));
+       EngineCanvas.TexQuad(Quad(192 * dpi_bilv, 125 * dpi_bilv, game_bmp_width , game_bmp_h2),IntColorAlpha(126));
+     end;
+
+//我方提示
+   if g_show_text_down then
+   begin
+       EngineCanvas.UseImagePx(EngineImages[image_down], Quad(0, 0, game_bmp_width, game_bmp_h2));
+       EngineCanvas.TexQuad(Quad(192 * dpi_bilv, 340 * dpi_bilv, game_bmp_width , game_bmp_h2),IntColorAlpha(126));
+     end;
+
+
+   if game_pop_type= 6 then
+       exit; //泡泡龙时不再显示后面的内容
+
+
+//我方人物图
+    if g_role_show1 then
+      begin
+        EngineCanvas.UseImagePx(EngineImages[image_role1], Quad(0, 0, game_bmp_role_width, game_bmp_role_h));
+       if ((game_pic_check_area = G_my_pic_y) and (G_mus_at= mus_role1)) or g_role_jialiang1 then
+         EngineCanvas.TexQuad(Quad(G_C_role_left1, G_C_role_top, game_bmp_role_width , game_bmp_role_h),
+         IntColorRGB(G_checked_role_color[0],G_checked_role_color[1],G_checked_role_color[2],G_checked_role_color[3] ))
+
+       else
+       EngineCanvas.TexQuad(Quad(G_C_role_left1, G_C_role_top, game_bmp_role_width , game_bmp_role_h),ColorRectWhite,TBlendingEffect.None);
+      end;
+    if g_role_show2 then
+      begin
+        EngineCanvas.UseImagePx(EngineImages[image_role2], Quad(0, 0, game_bmp_role_width, game_bmp_role_h));
+       if ((game_pic_check_area = G_my_pic_y) and (G_mus_at= mus_role2)) or g_role_jialiang2 then
+         EngineCanvas.TexQuad(Quad(G_C_role_left2, G_C_role_top, game_bmp_role_width , game_bmp_role_h),
+         IntColorRGB(G_checked_role_color[0],G_checked_role_color[1],G_checked_role_color[2],G_checked_role_color[3] ))
+
+       else
+       EngineCanvas.TexQuad(Quad(G_C_role_left2, G_C_role_top, game_bmp_role_width , game_bmp_role_h),ColorRectWhite,TBlendingEffect.None);
+
+       end;
+   if g_role_show3 then
+     begin
+       EngineCanvas.UseImagePx(EngineImages[image_role3], Quad(0, 0, game_bmp_role_width, game_bmp_role_h));
+       if ((game_pic_check_area = G_my_pic_y) and (G_mus_at= mus_role3)) or g_role_jialiang3 then
+         EngineCanvas.TexQuad(Quad(G_C_role_left3, G_C_role_top, game_bmp_role_width , game_bmp_role_h),
+         IntColorRGB(G_checked_role_color[0],G_checked_role_color[1],G_checked_role_color[2],G_checked_role_color[3] ))
+
+       else
+       EngineCanvas.TexQuad(Quad(G_C_role_left3, G_C_role_top, game_bmp_role_width , game_bmp_role_h),ColorRectWhite,TBlendingEffect.None);
+     end;
+     if g_role_show4 then
+     begin
+      EngineCanvas.UseImagePx(EngineImages[image_role4], Quad(0, 0, game_bmp_role_width, game_bmp_role_h));
+       if ((game_pic_check_area = G_my_pic_y) and (G_mus_at= mus_role4)) or g_role_jialiang4 then
+         EngineCanvas.TexQuad(Quad(G_C_role_left4, G_C_role_top, game_bmp_role_width , game_bmp_role_h),
+         IntColorRGB(G_checked_role_color[0],G_checked_role_color[1],G_checked_role_color[2],G_checked_role_color[3] ))
+
+       else
+       EngineCanvas.TexQuad(Quad(G_C_role_left4, G_C_role_top, game_bmp_role_width , game_bmp_role_h),ColorRectWhite,TBlendingEffect.None);
+     end;
+   if g_role_show5 then
+     begin
+      EngineCanvas.UseImagePx(EngineImages[image_role5], Quad(0, 0, game_bmp_role_width, game_bmp_role_h));
+       if ((game_pic_check_area = G_my_pic_y) and (G_mus_at= mus_role5)) or g_role_jialiang5 then
+         EngineCanvas.TexQuad(Quad(G_C_role_left5, G_C_role_top, game_bmp_role_width , game_bmp_role_h),
+         IntColorRGB(G_checked_role_color[0],G_checked_role_color[1],G_checked_role_color[2],G_checked_role_color[3] ))
+
+       else
+       EngineCanvas.TexQuad(Quad(G_C_role_left5, G_C_role_top, game_bmp_role_width , game_bmp_role_h),ColorRectWhite,TBlendingEffect.None);
+     end;
+//怪物图
+    if g_guai_show1 then
+     begin
+      EngineCanvas.UseImagePx(EngineImages[image_guai1], Quad(0, 0, game_bmp_role_width, game_bmp_role_h));
+       if ((game_pic_check_area = G_g_pic_y) and (G_mus_at= mus_guai1)) or g_guai_jialiang1 then
+         EngineCanvas.TexQuad(Quad(G_C_role_left1, G_C_guai_top, game_bmp_role_width , game_bmp_role_h),
+         IntColorRGB(G_checked_guai_color[0],G_checked_guai_color[1],G_checked_guai_color[2],G_checked_guai_color[3] ))
+
+       else
+       EngineCanvas.TexQuad(Quad(G_C_role_left1, G_C_guai_top, game_bmp_role_width , game_bmp_role_h),ColorRectWhite,TBlendingEffect.None);
+
+     end;
+   if g_guai_show2 then
+    begin
+     EngineCanvas.UseImagePx(EngineImages[image_guai2], Quad(0, 0, game_bmp_role_width, game_bmp_role_h));
+       if ((game_pic_check_area = G_g_pic_y) and (G_mus_at= mus_guai2)) or g_guai_jialiang2 then
+         EngineCanvas.TexQuad(Quad(G_C_role_left2, G_C_guai_top, game_bmp_role_width , game_bmp_role_h),
+         IntColorRGB(G_checked_guai_color[0],G_checked_guai_color[1],G_checked_guai_color[2],G_checked_guai_color[3] ))
+
+       else
+       EngineCanvas.TexQuad(Quad(G_C_role_left2, G_C_guai_top, game_bmp_role_width , game_bmp_role_h),ColorRectWhite,TBlendingEffect.None);
+    end;
+   if g_guai_show3 then
+    begin
+     EngineCanvas.UseImagePx(EngineImages[image_guai3], Quad(0, 0, game_bmp_role_width, game_bmp_role_h));
+       if ((game_pic_check_area = G_g_pic_y) and (G_mus_at= mus_guai3)) or g_guai_jialiang3 then
+         EngineCanvas.TexQuad(Quad(G_C_role_left3, G_C_guai_top, game_bmp_role_width , game_bmp_role_h),
+         IntColorRGB(G_checked_guai_color[0],G_checked_guai_color[1],G_checked_guai_color[2],G_checked_guai_color[3] ))
+
+       else
+       EngineCanvas.TexQuad(Quad(G_C_role_left3, G_C_guai_top, game_bmp_role_width , game_bmp_role_h),ColorRectWhite,TBlendingEffect.None);
+    end;
+   if g_guai_show4 then
+    begin
+     EngineCanvas.UseImagePx(EngineImages[image_guai4], Quad(0, 0, game_bmp_role_width, game_bmp_role_h));
+       if ((game_pic_check_area = G_g_pic_y) and (G_mus_at= mus_guai4)) or g_guai_jialiang4 then
+         EngineCanvas.TexQuad(Quad(G_C_role_left4, G_C_guai_top, game_bmp_role_width , game_bmp_role_h),
+         IntColorRGB(G_checked_guai_color[0],G_checked_guai_color[1],G_checked_guai_color[2],G_checked_guai_color[3] ))
+
+       else
+       EngineCanvas.TexQuad(Quad(G_C_role_left4, G_C_guai_top, game_bmp_role_width , game_bmp_role_h),ColorRectWhite,TBlendingEffect.None);
+    end;
+   if g_guai_show5 then
+    begin
+     EngineCanvas.UseImagePx(EngineImages[image_guai5], Quad(0, 0, game_bmp_role_width, game_bmp_role_h));
+       if ((game_pic_check_area = G_g_pic_y) and (G_mus_at= mus_guai5)) or g_guai_jialiang5 then
+         EngineCanvas.TexQuad(Quad(G_C_role_left5, G_C_guai_top, game_bmp_role_width , game_bmp_role_h),
+         IntColorRGB(G_checked_guai_color[0],G_checked_guai_color[1],G_checked_guai_color[2],G_checked_guai_color[3] ))
+
+       else
+       EngineCanvas.TexQuad(Quad(G_C_role_left5, G_C_guai_top, game_bmp_role_width , game_bmp_role_h),ColorRectWhite,TBlendingEffect.None);
+
+    end;
+    //黑色透明测试
+    { EngineCanvas.UseImagePx(EngineImages[image_cn1], Quad(0, 0, game_bmp_width, game_bmp_h2));
+     EngineCanvas.TexQuad(Quad(0, 100+game_bmp_h2, game_bmp_width , game_bmp_h2),
+           IntColorRGB(G_checked_color[0],G_checked_color[1],G_checked_color[2],G_checked_color[3] ),TBlendingEffect.add );
+           EngineCanvas.UseImagePx(EngineImages[image_cn1], Quad(0, 0, game_bmp_width, game_bmp_h2));
+     EngineCanvas.TexQuad(Quad(0, 100+game_bmp_h2 *2, game_bmp_width , game_bmp_h2),
+           IntColorRGB(G_checked_color[0],G_checked_color[1],G_checked_color[2],G_checked_color[3] ),TBlendingEffect.Multiply );
+           EngineCanvas.UseImagePx(EngineImages[image_cn1], Quad(0, 0, game_bmp_width, game_bmp_h2));
+     EngineCanvas.TexQuad(Quad(0, 100+game_bmp_h2 *3, game_bmp_width , game_bmp_h2),
+           IntColorRGB(G_checked_color[0],G_checked_color[1],G_checked_color[2],G_checked_color[3] ),TBlendingEffect.Shadow );
+           EngineCanvas.UseImagePx(EngineImages[image_cn1], Quad(0, 0, game_bmp_width, game_bmp_h2));
+     EngineCanvas.TexQuad(Quad(0, 100+game_bmp_h2 *4, game_bmp_width , game_bmp_h2),
+           IntColorRGB(G_checked_color[0],G_checked_color[1],G_checked_color[2],G_checked_color[3] ),TBlendingEffect.InverseMultiply   );
+           EngineCanvas.UseImagePx(EngineImages[image_cn1], Quad(0, 0, game_bmp_width, game_bmp_h2));
+     EngineCanvas.TexQuad(Quad(0, 100+game_bmp_h2 *5, game_bmp_width , game_bmp_h2),
+           IntColorRGB(G_checked_color[0],G_checked_color[1],G_checked_color[2],G_checked_color[3] ),TBlendingEffect.Normal );
+          EngineCanvas.UseImagePx(EngineImages[image_cn1], Quad(0, 0, game_bmp_width, game_bmp_h2));
+     EngineCanvas.TexQuad(Quad(0, 100+game_bmp_h2 *6, game_bmp_width , game_bmp_h2),
+           IntColorRGB(G_checked_color[0],G_checked_color[1],G_checked_color[2],G_checked_color[3] ),TBlendingEffect.SourceColorAdd  );
+    test_cn:= 256;
+      EngineCanvas.UseImagePx(EngineImages[wowugong_d_int], Quad(0, 0, test_cn, test_cn));
+       EngineCanvas.TexQuad(Quad(10, 200, test_cn , test_cn),ColorRectTranslucentWhite,TBlendingEffect.SourceColorAdd);  // 1
+      EngineCanvas.UseImagePx(EngineImages[wowugong_d_int], Quad(0, 0, test_cn, test_cn));
+       EngineCanvas.TexQuad(Quad(10 + test_cn, 200, test_cn , test_cn),ColorRectTranslucentBlack,TBlendingEffect.SourceColorAdd);
+       EngineCanvas.UseImagePx(EngineImages[wowugong_d_int], Quad(0, 0, test_cn, test_cn));
+       EngineCanvas.TexQuad(Quad(10+ test_cn *2, 200, test_cn , test_cn),ColorRectWhite,TBlendingEffect.SourceColorAdd);  //3
+       EngineCanvas.UseImagePx(EngineImages[wowugong_d_int], Quad(0, 0, test_cn, test_cn));
+       EngineCanvas.TexQuad(Quad(10, 200+ test_cn, test_cn , test_cn),ColorRectBlack,TBlendingEffect.SourceColorAdd);
+
+       EngineCanvas.UseImagePx(EngineImages[wowugong_d_int], Quad(0, 0, test_cn, test_cn));
+       EngineCanvas.TexQuad(Quad(10+ test_cn, 200+ test_cn, test_cn , test_cn),ColorRectTranslucentWhite,TBlendingEffect.Add);
+       EngineCanvas.UseImagePx(EngineImages[wowugong_d_int], Quad(0, 0, test_cn, test_cn));
+       EngineCanvas.TexQuad(Quad(10+ test_cn *2, 200+test_cn, test_cn , test_cn),ColorRectTranslucentBlack,TBlendingEffect.Add);
+       EngineCanvas.UseImagePx(EngineImages[wowugong_d_int], Quad(0, 0, test_cn, test_cn));
+       EngineCanvas.TexQuad(Quad(10, 200 +test_cn*2, test_cn , test_cn),ColorRectWhite,TBlendingEffect.Add);  //7
+       EngineCanvas.UseImagePx(EngineImages[wowugong_d_int], Quad(0, 0, test_cn, test_cn));
+       EngineCanvas.TexQuad(Quad(10+ test_cn, 200+ test_cn*2, test_cn , test_cn),ColorRectBlack,TBlendingEffect.Add);
+
+       EngineCanvas.UseImagePx(EngineImages[wowugong_d_int], Quad(0, 0, test_cn, test_cn));
+       EngineCanvas.TexQuad(Quad(10+ test_cn *2, 200 + test_cn *2, test_cn , test_cn),ColorRectTranslucentWhite,TBlendingEffect.Multiply);
+       EngineCanvas.UseImagePx(EngineImages[wowugong_d_int], Quad(0, 0, test_cn, test_cn));
+       EngineCanvas.TexQuad(Quad(10 + test_cn *3, 200 +test_cn *2, test_cn , test_cn),ColorRectTranslucentBlack,TBlendingEffect.Multiply);
+       EngineCanvas.UseImagePx(EngineImages[wowugong_d_int], Quad(0, 0, test_cn, test_cn));
+       EngineCanvas.TexQuad(Quad(10, 200 + test_cn *3, test_cn , test_cn),ColorRectWhite,TBlendingEffect.Multiply);
+       EngineCanvas.UseImagePx(EngineImages[wowugong_d_int], Quad(0, 0, test_cn, test_cn));
+       EngineCanvas.TexQuad(Quad(10 + test_cn, 200 +test_cn *3, test_cn , test_cn),ColorRectBlack,TBlendingEffect.Multiply);   }
+    //测试结束
+//攻击动画图
+  with g_DanTiFaShuGongJi do //单体法术攻击
+   begin
+   if xianshi then
+    begin
+     EngineCanvas.UseImagePx(EngineImages[wofashugong_D_int], Quad(128 * (zhen mod 4), 128 * (zhen div 4), 128, 128));
+     EngineCanvas.TexQuad(Quad(weizhi.Left, weizhi.top, 128* dpi_bilv , 128* dpi_bilv),ColorRectWhite,TBlendingEffect.SourceColorAdd);
+    end;
+      //AsphyreCanvas1.Draw(AsphyreImages1.Image['wofashugong_D.jpg'],weizhi.Left, weizhi.top, zhen, fxBlendNA);
+   end;
+   with G_dantiWuPinGongji do //单体物品攻击
+   begin
+   if xianshi then
+    begin
+     EngineCanvas.UseImagePx(EngineImages[wowugong_d_int], Quad(128 * (zhen mod 4), 128 * (zhen div 4), 128, 128));
+     EngineCanvas.TexQuad(Quad(weizhi.Left, weizhi.top, 128* dpi_bilv , 128* dpi_bilv),ColorRectWhite,TBlendingEffect.SourceColorAdd);
+    end;
+      //AsphyreCanvas1.Draw(AsphyreImages1.Image['wowugong_d.jpg'],weizhi.Left, weizhi.top, zhen, fxBlendNA);
+   end;
+   with G_DanTiFaShuHuiFu do //单体法术--恢复
+   begin
+   if xianshi then
+    begin
+     EngineCanvas.UseImagePx(EngineImages[wohuifu_f_d_int], Quad(128 * (zhen mod 4), 128 * (zhen div 4), 128, 128));
+     EngineCanvas.TexQuad(Quad(weizhi.Left, weizhi.top, 128* dpi_bilv , 128* dpi_bilv),ColorRectWhite,TBlendingEffect.SourceColorAdd);
+    end;
+     // AsphyreCanvas1.Draw(AsphyreImages1.Image['wohuifu_f_d.jpg'],weizhi.Left, weizhi.top, zhen, fxBlendNA);
+   end;
+  with G_DanTiWuPinHuiFu do //单体物品--恢复 测试ok
+   begin
+     if xianshi then
+    begin
+     EngineCanvas.UseImagePx(EngineImages[wupinhuifu_d_int], Quad(128 * (zhen mod 4), 128 * (zhen div 4), 128, 128));
+     EngineCanvas.TexQuad(Quad(weizhi.Left, weizhi.top, 128* dpi_bilv , 128* dpi_bilv),ColorRectWhite,TBlendingEffect.SourceColorAdd);
+    end;
+      //AsphyreCanvas1.Draw(AsphyreImages1.Image['wupinhuifu_d.jpg'],weizhi.Left, weizhi.top, zhen, fxBlendNA);
+   end;
+
+    with G_QuanTiFaShuGongji do //全体--法术攻击 测试ok
+   begin
+   if xianshi then
+    begin
+     EngineCanvas.UseImagePx(EngineImages[wogong_q_int], Quad(256 * (zhen mod 2), 256 * (zhen div 2), 256, 256));
+     EngineCanvas.TexQuad(Quad(weizhi.Left, weizhi.top, 256 * dpi_bilv , 256 * dpi_bilv),ColorRectWhite,TBlendingEffect.SourceColorAdd);
+    end;
+      //AsphyreCanvas1.Draw(AsphyreImages1.Image['wogong_q.jpg'],weizhi.Left, weizhi.top, zhen, fxBlendNA);
+   end;
+   with G_Quantifashuhuifu do //全体--法术--恢复 测试ok
+   begin
+     if xianshi then
+      begin
+       EngineCanvas.UseImagePx(EngineImages[wohuifu_q_int], Quad(256 * (zhen mod 2), 256 * (zhen div 2), 256, 256));
+       EngineCanvas.TexQuad(Quad(weizhi.Left, weizhi.top, 256 * dpi_bilv , 256 * dpi_bilv),ColorRectWhite,TBlendingEffect.Add);
+      end;
+      //AsphyreCanvas1.Draw(AsphyreImages1.Image['wohuifu_q.jpg'],weizhi.Left, weizhi.top, zhen, fxBlendNA);
+   end;
+   with G_Guai_Fashu do //怪--法术--攻击全体 测试ok
+   begin
+    if xianshi then
+      begin
+       EngineCanvas.UseImagePx(EngineImages[guaigong_q_int], Quad(256 * (zhen mod 2), 256 * (zhen div 2), 256, 256));
+       EngineCanvas.TexQuad(Quad(weizhi.Left, weizhi.top, 256 * dpi_bilv , 256 * dpi_bilv),ColorRectWhite,TBlendingEffect.Add);
+      end;
+      //AsphyreCanvas1.Draw(AsphyreImages1.Image['guaigong_q.jpg'],weizhi.Left, weizhi.top, zhen, fxBlendNA);
+   end;
+   with G_PuTongGongji do //单体-- 普通攻击 测试ok
+   begin
+    if xianshi then
+      begin
+       EngineCanvas.UseImagePx(EngineImages[jian_int], Quad(64 * (zhen mod 4), 64 * (zhen div 4), 64, 64));
+       EngineCanvas.TexQuad(Quad(weizhi.Left, weizhi.top, 64* dpi_bilv , 64* dpi_bilv),ColorRectTranslucentWhite,TBlendingEffect.SourceColorAdd);
+      end;
+      //AsphyreCanvas1.Draw(AsphyreImages1.Image['jian.jpg'],weizhi.Left, weizhi.top, zhen, fxadd);
+   end;
+   with G_Guai_PuTongGongji do //怪--普通---攻击 测试ok
+   begin
+    if xianshi then
+      begin
+       EngineCanvas.UseImagePx(EngineImages[dao_int], Quad(64 * (zhen mod 4), 64 * (zhen div 4), 64, 64));
+       EngineCanvas.TexQuad(Quad(weizhi.Left, weizhi.top, 64* dpi_bilv , 64* dpi_bilv),ColorRectTranslucentWhite,TBlendingEffect.SourceColorAdd);
+      end;
+     // AsphyreCanvas1.Draw(AsphyreImages1.Image['dao.jpg'],weizhi.Left, weizhi.top, zhen, FXadd);
+   end;
+
+
+
+//胜利失败，结果tu
+
+  if g_show_result_b then
+   begin
+     EngineCanvas.UseImagePx(EngineImages[image_result1], Quad(0, 0, g_result_w1, g_result_h1));
+       EngineCanvas.TexQuad(Quad(192 * dpi_bilv, 176 * dpi_bilv, g_result_w1, g_result_h1),ColorRectWhite,TBlendingEffect.None);
+   end;
+     // AsphyreCanvas1.Draw(image_result1, 192,176 , 0, fxblend);
+
+//我方攻击策略窗口
+      with g_gong do
+      begin
+      if xianshi then
+       begin
+        EngineCanvas.UseImagePx(EngineImages[gong_int], Quad(0, 0, 225, 150));
+        EngineCanvas.TexQuad(Quad(weizhi.Left, weizhi.top, 225 * dpi_bilv , 150 * dpi_bilv),IntColorAlpha(g_gong.alpha));
+         //AsphyreCanvas1.Drawex(AsphyreImages1.Image['gong.bmp'],weizhi.Left, weizhi.top,
+         //Cardinal( 255 or (255 shl 8) or (255 shl 16) or (g_gong.alpha shl 24)),0, FXblend);
+
+         if g_icon.xianshi then
+          begin
+           EngineCanvas.UseImagePx(EngineImages[g_icon_image], Quad(0, 0, 48* dpi_bilv, 48* dpi_bilv));
+           EngineCanvas.TexQuad(Quad(g_icon.weizhi.Left, g_icon.weizhi.top, 48 * dpi_bilv , 48 * dpi_bilv),IntColorAlpha(g_gong.alpha));
+          end;
+           // AsphyreCanvas1.Drawex(g_icon_image, g_icon.weizhi.left, g_icon.weizhi.top,
+            // Cardinal( 255 or (255 shl 8) or (255 shl 16) or (g_gong.alpha shl 24)),0, fxBlend);
+         if g_gong_xiaoguo.xianshi then //攻术物防逃
+          begin
+           EngineCanvas.UseImagePx(EngineImages[gong_xiaoguo_int], Quad(g_gong_xiaoguo.zhen * 40, 0, 40, 36));
+           EngineCanvas.TexQuad(Quad(g_gong_xiaoguo.weizhi.Left, g_gong_xiaoguo.weizhi.top, 40 * dpi_bilv , 36 * dpi_bilv),IntColorAlpha(g_gong.alpha));
+          end;
+           // AsphyreCanvas1.Draw(AsphyreImages1.Image['gong_xiaoguo.bmp'],g_gong_xiaoguo.weizhi.Left, g_gong_xiaoguo.weizhi.top, g_gong_xiaoguo.zhen, FXblend);
+       end;
+      end;
+
+ //值飘动
+     with text_show_array_G[0] do
+      begin
+      if xianshi then
+      EngineFonts[FontTahoma].DrawText(Point2f(left1, top1),zhi,ColorPair(peise, xiaoguo));
+         // ColorPair($FFFFE887, $FFFF0000));
+         //AsphyreFonts1[0].TextOut(zhi,left1,top1,$FF808080, peise,xiaoguo);
+
+      end;
+      with text_show_array_G[1] do
+      begin
+      if xianshi then
+         EngineFonts[FontTahoma].DrawText(Point2f(left1, top1),zhi,ColorPair(peise, xiaoguo));
+         //AsphyreFonts1[0].TextOut(zhi,left1,top1,$FF808080, peise,xiaoguo);
+
+      end;
+       with text_show_array_G[2] do
+      begin
+      if xianshi then
+          EngineFonts[FontTahoma].DrawText(Point2f(left1, top1),zhi,ColorPair(peise, xiaoguo));
+         //AsphyreFonts1[0].TextOut(zhi,left1,top1,$FF808080, peise,xiaoguo);
+
+      end;
+        with text_show_array_G[3] do
+      begin
+      if xianshi then
+        EngineFonts[FontTahoma].DrawText(Point2f(left1, top1),zhi,ColorPair(peise, xiaoguo));
+         //AsphyreFonts1[0].TextOut(zhi,left1,top1,$FF808080, peise,xiaoguo);
+
+      end;
+       with text_show_array_G[4] do
+      begin
+      if xianshi then
+        EngineFonts[FontTahoma].DrawText(Point2f(left1, top1),zhi,ColorPair(peise, xiaoguo));
+        // AsphyreFonts1[0].TextOut(zhi,left1,top1,$FF808080, peise,xiaoguo);
+
+      end;
+       with text_show_array_G[5] do
+      begin
+      if xianshi then
+        EngineFonts[FontTahoma].DrawText(Point2f(left1, top1),zhi,ColorPair(peise, xiaoguo));
+        // AsphyreFonts1[0].TextOut(zhi,left1,top1,$FF808080, peise,xiaoguo);
+
+      end;
+   // AsphyreCanvas1.Draw(AsphyreImages1.Image['gunzi.image'], 240, 0, 0, fxBlend);
+   if g_particle_rec.xian then
+       Particles1.Render(nil);
+ //渲染结束
+end;
+
+procedure TForm_pop.RenderWindow;
+begin
+  if EngineDevice.BeginScene then
+  try
+    EngineDevice.Clear([TClearType.Color], 0);
+
+    if EngineCanvas.BeginScene then
+    try
+      RenderScene;
+    finally
+      EngineCanvas.EndScene;
+    end;
+
+    EngineTimer.Process;
+  finally
+    EngineDevice.EndScene;
+  end;
+end;
+
 function TForm_pop.get_r_role_all_count: integer;  //取得我方全部上场人物数量，包括已死角色
 var j: integer;
 begin
@@ -5917,6 +6687,7 @@ procedure TForm_pop.draw_text_17(const s: string; flag: integer; c: Tcolor; f_si
 var aafont: TAAFontEx;
     bmp : TBitmap;
     w,h: integer;
+
 begin
 
   if s= '' then
@@ -5964,11 +6735,8 @@ begin
       finally
         AAFont.Free;
       end;
+         update_img(image_result1,bmp);
 
-         with image_result1 do
-         begin
-         LoadFromBitmap(bmp,false,$FFFFFFFF,0);
-         end;
       bmp.Free;
       //画出特效文字
 
@@ -6093,13 +6861,13 @@ begin
      begin
       text_show_array_G[id].top1:= g_C_role_top;
      end else begin
-                  text_show_array_G[id].top1:= g_C_guai_top+ 40;
+                  text_show_array_G[id].top1:= g_C_guai_top+ round(40 * dpi_bilv);
 
               end;
 
      text_show_array_G[id].peise:= c;
       text_show_array_G[id].left1:= g_get_roleAndGuai_left(id);
-      text_show_array_G[id].xiaoguo:= fxAdd;
+      text_show_array_G[id].xiaoguo:= 0; //参数可能错误，待查
    if value > 0 then
       text_show_array_G[id].zhi:= '+'+ inttostr(value)
        else
@@ -6108,9 +6876,9 @@ begin
    text_show_array_G[id].xianshi:= true;
 
     if up then //向上或者向下飘
-     blood_show_list[id]:= 10
+     blood_show_list[id]:= round(10  * dpi_bilv)
       else
-       blood_show_list[id]:= -10;
+       blood_show_list[id]:= round(-10* dpi_bilv);
 
        //启动定时器
        
@@ -6564,7 +7332,7 @@ begin
       //  W := AAFont.TextWidth(S);
       //  H := AAFont.TextHeight(S);
         for i:= 0 to st1.Count- 1 do
-          AAFont.TextOut(16, I * 15+ 8, st1.Strings[i]);
+          AAFont.TextOut(getBilv(16), I * getBilv(15)+ getBilv(8), st1.Strings[i]);
 
         //AAFont.Canvas := Image1.Canvas; // 也可以切换到另一画布
         //AAFont.TextOut(10, 10, S); // 绘制时将使用Image1.Canvas的字体属性
@@ -6573,11 +7341,8 @@ begin
       end;
 
 
+         update_img(image_result1,bmp);
 
-         with image_result1 do
-         begin
-         LoadFromBitmap(bmp,false,0,0);
-         end;
 
       bmp.Free;
       //画出特效文字
@@ -6689,7 +7454,7 @@ end;
 
 procedure TForm_pop.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-
+  EngineTimer.Enabled:= false;
     text_show_array_G[5].xianshi:= false;
     edit1.Visible:= false;
     Timer_daojishi.Enabled:= false;
@@ -6697,7 +7462,7 @@ begin
      if g_particle_rec.xian then
       begin
        g_particle_rec.xian:= false;  //停止天气效果
-       AsphyreParticles1.Clear;
+       //AsphyreParticles1.Clear;
       end;
       //退出时清理掉物品定时器内的物品
 
@@ -6714,7 +7479,7 @@ begin
   Timer_donghua.Enabled:= false;
 
   edit1.text:= '';
-  AsphyreTimer1.Enabled:= false;
+  EngineTimer.Enabled:= false;
   if game_pop_type= 7 then
     begin
      if Assigned(wuziqi_tread) then
@@ -7104,7 +7869,7 @@ end;
 procedure TForm_pop.ListBox1MeasureItem(Control: TWinControl;
   Index: Integer; var Height: Integer);
 begin
-   height:= 22;
+   height:= round(22 * dpi_bilv);
 end;
 
 
@@ -7271,25 +8036,29 @@ begin       //取得单词分色
 
 end;
 
+procedure TForm_pop.ApplicationIdle(Sender: TObject; var Done: Boolean);
+begin
+ if EngineTimer.Enabled then
+   begin
+    EngineTimer.NotifyTick;
+    Done := False;
+   end;
+end;
+
 procedure TForm_pop.AsphyreDevice1Initialize(Sender: TObject;
   var Success: Boolean);
    var   ss: string;
 begin
+  //加载资源过程，继续使用
 
  if game_app_path_G= '' then
     game_app_path_G:= ExtractFilePath(application.ExeName);
  ss:= game_app_path_G;
 
-  // 装入字体
- ASDb1.FileName:= ss + 'fonts.asdb';
- Success:= AsphyreFonts1.LoadFromASDb(ASDb1);
- 
  game_beijing_index_i:= 1; //初始化背景编号为1
  // 装入图像
- if (Success) then
-    begin
-      Success:= AsphyreImages1.AddFromFile(ss+ 'img\particle.bmp',point(16,16),point(16,16),point(32,32),aqMedium,alMask,true,$FF000000,0);
-       if not Success then
+      particle_int:= EngineImages.AddFromFile(CrossFixFileName(ss+ 'img\particle.bmp'));
+        if particle_int=-1 then
         showmessage('载入粒子图像失败。'+ SysErrorMessage(getlasterror));
 
    {  for i:= 1 to 7 do
@@ -7297,383 +8066,73 @@ begin
 
       if not Success then
         showmessage('载入背景失败。'+ SysErrorMessage(getlasterror));  }
+
       //攻击类动画++
-      Success:= AsphyreImages1.AddFromFile(ss+ 'img\jian.jpg',point(64,64),point(64,64),point(256,256),aqMedium,alMask,true,0,0);
-       if not Success then
+      jian_int:= EngineImages.AddFromFile(ss+ 'img\jian.jpg');
+       if jian_int=-1 then
         showmessage('载入jian失败。'+ SysErrorMessage(getlasterror));
-      Success:= AsphyreImages1.AddFromFile(ss+ 'img\dao.jpg',point(64,64),point(64,64),point(256,256),aqMedium,almask,true,0,0);
-        if not Success then
+      dao_int:= EngineImages.AddFromFile(ss+ 'img\dao.jpg');
+         if dao_int=-1 then
         showmessage('载入dao失败。'+ SysErrorMessage(getlasterror));
        //我方  法术单体 恢复++
-      Success:= AsphyreImages1.AddFromFile(ss+ 'img\wohuifu_f_d.jpg',point(128,128),point(128,128),point(512,512),aqMedium,almask,true,$FF000000,0);
-        if not Success then
+       wohuifu_f_d_int:= EngineImages.AddFromFile(ss+ 'img\wohuifu_f_d.jpg');
+         if wohuifu_f_d_int=-1 then
         showmessage('载入wohuifu_f_d.bmp失败。'+ SysErrorMessage(getlasterror));
        //我方法术单体攻击++
-      Success:= AsphyreImages1.AddFromFile(ss+ 'img\wofashugong_D.jpg',point(128,128),point(128,128),point(512,512),aqMedium,almask,true,$FF000000,0);
-        if not Success then
+       wofashugong_D_int:= EngineImages.AddFromFile(ss+ 'img\wofashugong_D.jpg');
+        if wofashugong_D_int=-1 then
         showmessage('载入wofashugong_D.bmp失败。'+ SysErrorMessage(getlasterror));
       //我方法术全体攻击++
-      Success:= AsphyreImages1.AddFromFile(ss+ 'img\wogong_q.jpg',point(256,256),point(256,256),point(512,512),aqMedium,almask,true,0,0);
-         if not Success then
+        wogong_q_int:= EngineImages.AddFromFile(ss+ 'img\wogong_q.jpg');
+         if wogong_q_int=-1 then
         showmessage('载入wogong_q.jpg失败。'+ SysErrorMessage(getlasterror));
       //我方物品单体攻击++
-      Success:= AsphyreImages1.AddFromFile(ss+ 'img\wowugong_d.jpg',point(128,128),point(128,128),point(512,512),aqMedium,almask,true,0,0);
-        if not Success then
+       wowugong_d_int:= EngineImages.AddFromFile(ss+ 'img\wowugong_d.jpg');
+        if wowugong_d_int=-1 then
         showmessage('载入wowugong_d.bmp失败。'+ SysErrorMessage(getlasterror));
       //我方 物品恢复++
-      Success:= AsphyreImages1.AddFromFile(ss+ 'img\wupinhuifu_d.jpg',point(128,128),point(128,128),point(512,512),aqMedium,alMask,true,$FF000000,0);
-         if not Success then
+       wupinhuifu_d_int:= EngineImages.AddFromFile(ss+ 'img\wupinhuifu_d.jpg');
+         if wupinhuifu_d_int=-1 then
         showmessage('载入wupinhuifu_d.bmp失败。'+ SysErrorMessage(getlasterror));
       //我方法术全体恢复++
-      Success:= AsphyreImages1.AddFromFile(ss+ 'img\wohuifu_q.jpg',point(256,256),point(256,256),point(512,512),aqMedium,almask,true,0,0);
-          if not Success then
+       wohuifu_q_int:= EngineImages.AddFromFile(ss+ 'img\wohuifu_q.jpg');
+          if wohuifu_q_int=-1 then
         showmessage('载入wohuifu_q.jpg失败。'+ SysErrorMessage(getlasterror));
        //怪法术全体攻击++
-      Success:= AsphyreImages1.AddFromFile(ss+ 'img\guaigong_q.jpg',point(256,256),point(256,256),point(512,512),aqMedium,almask,true,0,0);
-         if not Success then
+        guaigong_q_int:= EngineImages.AddFromFile(ss+ 'img\guaigong_q.jpg');
+          if guaigong_q_int=-1 then
         showmessage('载入guaigong_q.jpg失败。'+ SysErrorMessage(getlasterror));
-      Success:= AsphyreImages1.AddFromFile(ss+ 'img\gong.bmp',point(225,150),point(225,150),point(256,256),aqMedium,alNone,false,0,0);
-         if not Success then
+        gong_int:= EngineImages.AddFromFile(ss+ 'img\gong.bmp');
+          if gong_int=-1 then
         showmessage('载入gong.bmp失败。'+ SysErrorMessage(getlasterror));
-      Success:= AsphyreImages1.AddFromFile(ss+ 'img\gong_xiaoguo.bmp',point(38,36),point(39,36),point(256,64),aqMedium,alNone,false,0,0);
-         if not Success then
+       gong_xiaoguo_int:= EngineImages.AddFromFile(ss+ 'img\gong_xiaoguo.bmp');
+          if gong_xiaoguo_int=-1 then
         showmessage('载入gong_xiaoguo.bmp失败。'+ SysErrorMessage(getlasterror));
-    end;
+
    game_init_Success_G:= Success;
 end;
 
 procedure TForm_pop.AsphyreTimer1Timer(Sender: TObject);
 begin
 // 画
-  AsphyreDevice1.Render(0, True);
-
-   AsphyreTimer1.Process(1.0);
+  //AsphyreDevice1.Render(0, True);
+  //
+   //AsphyreTimer1.Process(1.0);
   // 上演
-  AsphyreDevice1.Flip();
+ // AsphyreDevice1.Flip();
+end;
+
+ function cColor1(Color: Cardinal): TColor4;
+begin
+ Result[0]:= Color;
+ Result[1]:= Color;
+ Result[2]:= Color;
+ Result[3]:= Color;
 end;
 
 function RGBA(Red, Green, Blue, Alpha: Cardinal): tcolor4;
 begin
  Result:=cColor1( Red or (Green shl 8) or (Blue shl 16) or (Alpha shl 24));
-end;
-
-procedure TForm_pop.AsphyreDevice1Render(Sender: TObject);
-
-begin
-  //渲染+++++++++++++++++++++开始
-
-//背景图
-   if game_not_bg_black then
-   begin
-   AsphyreCanvas1.Draw(image_bg_1_1, 0, 0, 0, fxNone);
-   AsphyreCanvas1.Draw(image_bg_1_2, 512, 0, 0, fxNone);
-   end;
-   
-//启动动画
-
-   if game_pop_type= 6 then  //显示泡泡龙
-        show_bubble_on_scr;
-
-   if game_pop_type= 7 then  //显示五子棋
-      begin
-        show_wuziqi_on_src;
-        exit;
-      end;
-
-   if G_dangqian_zhuangtai =G_word then
-     begin
-     //单词图
-     AsphyreCanvas1.DrawEx(image_word,g_danci_weizhi.weizi,Cardinal( 255 or (255 shl 8)
-              or (255 shl 16) or (g_danci_weizhi.alpha shl 24)),0, fxBlend);
-     //解释图
-
-     
-    if (game_pic_check_area = G_words_Pic_y) and (G_mus_at= mus_jieshi1) then //鼠标在上面时颜色
-     begin
-      if g_is_word_right then
-        AsphyreCanvas1.TexMap(image_cn1,pBounds4(g_jieshi_weizhi1.weizi.Left,
-                                               g_jieshi_weizhi1.weizi.Top,
-                                               image_cn1.VisibleSize.X,
-                                               image_cn1.VisibleSize.Y),
-                                               G_right_color,tcNull,fxBlend)
-      else
-      AsphyreCanvas1.TexMap(image_cn1,pBounds4(g_jieshi_weizhi1.weizi.Left,
-                                               g_jieshi_weizhi1.weizi.Top,
-                                               image_cn1.VisibleSize.X,
-                                               image_cn1.VisibleSize.Y),
-                                               G_checked_color,tcNull,fxBlend);
-     end else
-      AsphyreCanvas1.DrawEx(image_cn1, g_jieshi_weizhi1.weizi,Cardinal( 255 or (255 shl 8) or (255 shl 16) or (g_danci_weizhi.alpha shl 24)), 0, fxBlend);
-
-    if (game_pic_check_area = G_words_Pic_y) and (G_mus_at= mus_jieshi2) then
-    begin
-      if g_is_word_right then
-       AsphyreCanvas1.TexMap(image_cn2,pBounds4(g_jieshi_weizhi2.weizi.Left,
-                                               g_jieshi_weizhi2.weizi.Top,
-                                               image_cn2.VisibleSize.X,
-                                               image_cn2.VisibleSize.Y),
-                                               G_right_color,tcNull,fxBlend)
-      else
-      AsphyreCanvas1.TexMap(image_cn2,pBounds4(g_jieshi_weizhi2.weizi.Left,
-                                               g_jieshi_weizhi2.weizi.Top,
-                                               image_cn2.VisibleSize.X,
-                                               image_cn2.VisibleSize.Y),
-                                               G_checked_color,tcNull,fxBlend);
-   end else
-    AsphyreCanvas1.DrawEx(image_cn2, g_jieshi_weizhi2.weizi,Cardinal( 255 or (255 shl 8) or (255 shl 16) or (g_danci_weizhi.alpha shl 24)), 0, fxBlend);
-
-    if (game_pic_check_area = G_words_Pic_y) and (G_mus_at= mus_jieshi3) then
-     begin
-      if g_is_word_right then
-       AsphyreCanvas1.TexMap(image_cn3,pBounds4(g_jieshi_weizhi3.weizi.Left,
-                                               g_jieshi_weizhi3.weizi.Top,
-                                               image_cn3.VisibleSize.X,
-                                               image_cn3.VisibleSize.Y),
-                                               G_right_color,tcNull,fxBlend)
-      else
-      AsphyreCanvas1.TexMap(image_cn3,pBounds4(g_jieshi_weizhi3.weizi.Left,
-                                               g_jieshi_weizhi3.weizi.Top,
-                                               image_cn3.VisibleSize.X,
-                                               image_cn3.VisibleSize.Y),
-                                               G_checked_color,tcNull,fxBlend);
-    end else
-    AsphyreCanvas1.DrawEx(image_cn3, g_jieshi_weizhi3.weizi,Cardinal( 255 or (255 shl 8) or (255 shl 16) or (g_danci_weizhi.alpha shl 24)), 0, fxBlend);
-    end;
-
-//怪方提示
-    if g_show_text_up then
-    AsphyreCanvas1.Draw(image_up, 192, 125, 0, fxBlend);
-//我方提示
-   if g_show_text_down then
-   AsphyreCanvas1.Draw(image_down, 192, 340, 0, fxBlend);
-
-   if game_pop_type= 6 then
-       exit; //泡泡龙时不再显示后面的内容
-
-
-//我方人物图
-    if g_role_show1 then
-      begin
-       if ((game_pic_check_area = G_my_pic_y) and (G_mus_at= mus_role1)) or g_role_jialiang1 then
-        AsphyreCanvas1.TexMap(image_role1,pBounds4(G_C_role_left1,
-                                               G_C_role_top,
-                                               game_bmp_role_width,
-                                               game_bmp_role_h),
-                                               G_checked_role_color,tcNull,fxBlend)
-       else
-       AsphyreCanvas1.Draw(image_role1, G_C_role_left1, G_C_role_top, 0, fxNone);
-      end;
-    if g_role_show2 then
-      begin
-       if ((game_pic_check_area = G_my_pic_y) and (G_mus_at= mus_role2)) or g_role_jialiang2 then
-        AsphyreCanvas1.TexMap(image_role2,pBounds4(G_C_role_left2,
-                                               G_C_role_top,
-                                               game_bmp_role_width,
-                                               game_bmp_role_h),
-                                               G_checked_role_color,tcNull,fxBlend)
-       else
-       AsphyreCanvas1.Draw(image_role2, G_C_role_left2, G_C_role_top, 0, fxNone);
-      end;
-    if g_role_show3 then
-     begin
-      if ((game_pic_check_area = G_my_pic_y) and (G_mus_at= mus_role3)) or g_role_jialiang3 then
-        AsphyreCanvas1.TexMap(image_role3,pBounds4(G_C_role_left3,
-                                               G_C_role_top,
-                                               game_bmp_role_width,
-                                               game_bmp_role_h),
-                                               G_checked_role_color,tcNull,fxBlend)
-       else
-       AsphyreCanvas1.Draw(image_role3, G_C_role_left3, G_C_role_top, 0, fxNone);
-     end;
-    if g_role_show4 then
-     begin
-      if ((game_pic_check_area = G_my_pic_y) and (G_mus_at= mus_role4)) or g_role_jialiang4 then
-        AsphyreCanvas1.TexMap(image_role4,pBounds4(G_C_role_left4,
-                                               G_C_role_top,
-                                               game_bmp_role_width,
-                                               game_bmp_role_h),
-                                               G_checked_role_color,tcNull,fxBlend)
-       else
-       AsphyreCanvas1.Draw(image_role4, G_C_role_left4, G_C_role_top, 0, fxNone);
-     end;
-    if g_role_show5 then
-     begin
-      if ((game_pic_check_area = G_my_pic_y) and (G_mus_at= mus_role5)) or g_role_jialiang5 then
-        AsphyreCanvas1.TexMap(image_role5,pBounds4(G_C_role_left5,
-                                               G_C_role_top,
-                                               game_bmp_role_width,
-                                               game_bmp_role_h),
-                                               G_checked_role_color,tcNull,fxBlend)
-       else
-       AsphyreCanvas1.Draw(image_role5, G_C_role_left5, G_C_role_top, 0, fxNone);
-     end;
-//怪物图
-   if g_guai_show1 then
-     begin
-      if ((game_pic_check_area = G_g_pic_y) and (G_mus_at= mus_guai1)) or g_guai_jialiang1 then
-        AsphyreCanvas1.TexMap(image_guai1,pBounds4(G_C_role_left1,
-                                               G_C_guai_top,
-                                               game_bmp_role_width,
-                                               game_bmp_role_h),
-                                               G_checked_guai_color,tcNull,fxBlend)
-       else
-       AsphyreCanvas1.Draw(image_guai1, G_C_role_left1, G_C_guai_top, 0, fxNone);
-     end;
-   if g_guai_show2 then
-    begin
-     if ((game_pic_check_area = G_g_pic_y) and (G_mus_at= mus_guai2))or g_guai_jialiang2 then
-        AsphyreCanvas1.TexMap(image_guai2,pBounds4(G_C_role_left2,
-                                               G_C_guai_top,
-                                               game_bmp_role_width,
-                                               game_bmp_role_h),
-                                               G_checked_guai_color,tcNull,fxBlend)
-       else
-     AsphyreCanvas1.Draw(image_guai2, G_C_role_left2, G_C_guai_top, 0, fxNone);
-    end;
-   if g_guai_show3 then
-    begin
-     if ((game_pic_check_area = G_g_pic_y) and (G_mus_at= mus_guai3))or g_guai_jialiang3 then
-        AsphyreCanvas1.TexMap(image_guai3,pBounds4(G_C_role_left3,
-                                               G_C_guai_top,
-                                               game_bmp_role_width,
-                                               game_bmp_role_h),
-                                               G_checked_guai_color,tcNull,fxBlend)
-       else
-     AsphyreCanvas1.Draw(image_guai3, G_C_role_left3, G_C_guai_top, 0, fxNone);
-    end;
-   if g_guai_show4 then
-    begin
-     if ((game_pic_check_area = G_g_pic_y) and (G_mus_at= mus_guai4))or g_guai_jialiang4 then
-        AsphyreCanvas1.TexMap(image_guai4,pBounds4(G_C_role_left4,
-                                               G_C_guai_top,
-                                               game_bmp_role_width,
-                                               game_bmp_role_h),
-                                               G_checked_guai_color,tcNull,fxBlend)
-       else
-     AsphyreCanvas1.Draw(image_guai4, G_C_role_left4, G_C_guai_top, 0, fxNone);
-    end;
-   if g_guai_show5 then
-    begin
-     if ((game_pic_check_area = G_g_pic_y) and (G_mus_at= mus_guai5))or g_guai_jialiang5 then
-        AsphyreCanvas1.TexMap(image_guai5,pBounds4(G_C_role_left5,
-                                               G_C_guai_top,
-                                               game_bmp_role_width,
-                                               game_bmp_role_h),
-                                               G_checked_guai_color,tcNull,fxBlend)
-       else
-     AsphyreCanvas1.Draw(image_guai5, G_C_role_left5, G_C_guai_top, 0, fxNone);
-    end;
-//攻击动画图
-  with g_DanTiFaShuGongJi do //单体法术攻击
-   begin
-   if xianshi then
-      AsphyreCanvas1.Draw(AsphyreImages1.Image['wofashugong_D.jpg'],weizhi.Left, weizhi.top, zhen, fxBlendNA);
-   end;
-   with G_dantiWuPinGongji do //单体物品攻击
-   begin
-   if xianshi then
-      AsphyreCanvas1.Draw(AsphyreImages1.Image['wowugong_d.jpg'],weizhi.Left, weizhi.top, zhen, fxBlendNA);
-   end;
-   with G_DanTiFaShuHuiFu do //单体法术--恢复
-   begin
-   if xianshi then
-      AsphyreCanvas1.Draw(AsphyreImages1.Image['wohuifu_f_d.jpg'],weizhi.Left, weizhi.top, zhen, fxBlendNA);
-   end;
-   with G_DanTiWuPinHuiFu do //单体物品--恢复
-   begin
-   if xianshi then
-      AsphyreCanvas1.Draw(AsphyreImages1.Image['wupinhuifu_d.jpg'],weizhi.Left, weizhi.top, zhen, fxBlendNA);
-   end;
-   with G_QuanTiFaShuGongji do //全体--法术攻击
-   begin
-   if xianshi then
-      AsphyreCanvas1.Draw(AsphyreImages1.Image['wogong_q.jpg'],weizhi.Left, weizhi.top, zhen, fxBlendNA);
-   end;
-   with G_Quantifashuhuifu do //全体--法术--恢复
-   begin
-   if xianshi then
-      AsphyreCanvas1.Draw(AsphyreImages1.Image['wohuifu_q.jpg'],weizhi.Left, weizhi.top, zhen, fxBlendNA);
-   end;
-   with G_Guai_Fashu do //怪--法术--攻击全体
-   begin
-   if xianshi then
-      AsphyreCanvas1.Draw(AsphyreImages1.Image['guaigong_q.jpg'],weizhi.Left, weizhi.top, zhen, fxBlendNA);
-   end;
-   with G_PuTongGongji do //单体-- 普通攻击
-   begin
-   if xianshi then
-      AsphyreCanvas1.Draw(AsphyreImages1.Image['jian.jpg'],weizhi.Left, weizhi.top, zhen, fxadd);
-   end;
-   with G_Guai_PuTongGongji do //怪--普通---攻击
-   begin
-   if xianshi then
-      AsphyreCanvas1.Draw(AsphyreImages1.Image['dao.jpg'],weizhi.Left, weizhi.top, zhen, FXadd);
-   end;
-
-
-
-//胜利失败，结果tu
-
-   if g_show_result_b then
-      AsphyreCanvas1.Draw(image_result1, 192,176 , 0, fxblend);
-
-//我方攻击策略窗口
-     with g_gong do
-      begin
-      if xianshi then
-       begin
-         AsphyreCanvas1.Drawex(AsphyreImages1.Image['gong.bmp'],weizhi.Left, weizhi.top,
-         Cardinal( 255 or (255 shl 8) or (255 shl 16) or (g_gong.alpha shl 24)),0, FXblend);
-
-         if g_icon.xianshi then
-            AsphyreCanvas1.Drawex(g_icon_image, g_icon.weizhi.left, g_icon.weizhi.top,
-             Cardinal( 255 or (255 shl 8) or (255 shl 16) or (g_gong.alpha shl 24)),0, fxBlend);
-         if g_gong_xiaoguo.xianshi then //攻术物防逃
-            AsphyreCanvas1.Draw(AsphyreImages1.Image['gong_xiaoguo.bmp'],g_gong_xiaoguo.weizhi.Left, g_gong_xiaoguo.weizhi.top, g_gong_xiaoguo.zhen, FXblend);
-       end;
-      end;
-
- //值飘动
-     with text_show_array_G[0] do
-      begin
-      if xianshi then
-         AsphyreFonts1[0].TextOut(zhi,left1,top1,$FF808080, peise,xiaoguo);
-
-      end;
-       with text_show_array_G[1] do
-      begin
-      if xianshi then
-         AsphyreFonts1[0].TextOut(zhi,left1,top1,$FF808080, peise,xiaoguo);
-
-      end;
-       with text_show_array_G[2] do
-      begin
-      if xianshi then
-         AsphyreFonts1[0].TextOut(zhi,left1,top1,$FF808080, peise,xiaoguo);
-
-      end;
-       with text_show_array_G[3] do
-      begin
-      if xianshi then
-         AsphyreFonts1[0].TextOut(zhi,left1,top1,$FF808080, peise,xiaoguo);
-
-      end;
-       with text_show_array_G[4] do
-      begin
-      if xianshi then
-         AsphyreFonts1[0].TextOut(zhi,left1,top1,$FF808080, peise,xiaoguo);
-
-      end;
-       with text_show_array_G[5] do
-      begin
-      if xianshi then
-         AsphyreFonts1[0].TextOut(zhi,left1,top1,$FF808080, peise,xiaoguo);
-
-      end;
-   // AsphyreCanvas1.Draw(AsphyreImages1.Image['gunzi.image'], 240, 0, 0, fxBlend);
-   if g_particle_rec.xian then
-      AsphyreParticles1.Render;
- //渲染结束
 end;
 
 procedure TForm_pop.Panel1MouseMove(Sender: TObject; Shift: TShiftState; X,
@@ -7791,40 +8250,40 @@ begin
      begin
       if g_gong.time=0 then
       begin
-      if (y> 270) and (y < 306) then
+      if (y> round(270 * dpi_bilv)) and (y < round(306 * dpi_bilv)) then
       begin
-       if (x > 349) and (x< 386)  then
+       if (x > round(349 * dpi_bilv)) and (x< round(386 * dpi_bilv))  then
           begin
-          g_gong_xiaoguo.weizhi.Left:= 349;
-          g_gong_xiaoguo.weizhi.Top:= 270;
+          g_gong_xiaoguo.weizhi.Left:= round(349 * dpi_bilv);
+          g_gong_xiaoguo.weizhi.Top:= round(270 * dpi_bilv);
           g_gong_xiaoguo.xianshi:= true;
           g_gong_xiaoguo.zhen:= 0;
           show_text_hint('对怪使用武器攻击。快捷键 G');
-          end else if (x > 392) and (x< 430) then
+          end else if (x > round(392 * dpi_bilv)) and (x< round(430 * dpi_bilv)) then
           begin
-          g_gong_xiaoguo.weizhi.Left:= 392;
-          g_gong_xiaoguo.weizhi.Top:= 270;
+          g_gong_xiaoguo.weizhi.Left:= round(392 * dpi_bilv);
+          g_gong_xiaoguo.weizhi.Top:= round(270 * dpi_bilv);
           g_gong_xiaoguo.xianshi:= true;
           g_gong_xiaoguo.zhen:= 1;
           show_text_hint('处于防护状态，可减轻伤害。快捷键 F');
-          end else if (x > 437) and (x< 475) then
+          end else if (x > round(437 * dpi_bilv)) and (x< round(475 * dpi_bilv)) then
           begin
-          g_gong_xiaoguo.weizhi.Left:= 436;
-          g_gong_xiaoguo.weizhi.Top:= 270;
+          g_gong_xiaoguo.weizhi.Left:= round(436 * dpi_bilv);
+          g_gong_xiaoguo.weizhi.Top:= round(270 * dpi_bilv);
           g_gong_xiaoguo.xianshi:= true;
           g_gong_xiaoguo.zhen:= 2;
           show_text_hint('选择一个法术，法术能提供更大的攻击效果。快捷键 S');
-          end else if (x > 480) and (x< 518) then
+          end else if (x > round(480 * dpi_bilv)) and (x< round(518 * dpi_bilv)) then
           begin
-          g_gong_xiaoguo.weizhi.Left:= 481;
-          g_gong_xiaoguo.weizhi.Top:= 270;
+          g_gong_xiaoguo.weizhi.Left:= round(481 * dpi_bilv);
+          g_gong_xiaoguo.weizhi.Top:= round(270 * dpi_bilv);
           g_gong_xiaoguo.xianshi:= true;
           g_gong_xiaoguo.zhen:= 3;
           show_text_hint('使用物品补充生命值，灵力等，或者使用暗器攻击。快捷键 W');
-          end else if (x > 521) and (x< 550) then
+          end else if (x > round(521 * dpi_bilv)) and (x< round(550 * dpi_bilv)) then
           begin
-          g_gong_xiaoguo.weizhi.Left:= 521;
-          g_gong_xiaoguo.weizhi.Top:= 270;
+          g_gong_xiaoguo.weizhi.Left:= round(521 * dpi_bilv);
+          g_gong_xiaoguo.weizhi.Top:= round(270 * dpi_bilv);
           g_gong_xiaoguo.xianshi:= true;
           g_gong_xiaoguo.zhen:= 4;
           show_text_hint('退出战斗，但逃跑不一定能成功，这和你的速度值有关。快捷键 T');
@@ -8234,15 +8693,15 @@ procedure TForm_pop.g_game_delay(i: integer);
 begin
   t:= GetTickCount;
   t2:= i;
-    AsphyreTimer1.Enabled:= false;
+    EngineTimer.Enabled:= false;
     while GetTickCount - t < t2 do
      begin
-      AsphyreTimer1Timer(self);
-      AsphyreTimer1Process(self);
+      EngineTiming(self);
+      //AsphyreTimer1Process(self);
       application.ProcessMessages;
        sleep(10);
      end;
-     AsphyreTimer1.Enabled:= true;
+     EngineTimer.Enabled:= true;
 end;
 
 procedure TForm_pop.g_guai_A_next;
@@ -8288,7 +8747,7 @@ begin
         //1。获取攻击者左边坐标，获取被攻击者左边坐标，取得差值
        //2.获取攻击者top和被攻击者top，取得差值
 
-       G_PuTongGongji.zhen:= (game_amt_length- G_PuTongGongji.time) div 4;
+       G_PuTongGongji.zhen:= (game_amt_length- G_PuTongGongji.time) div 16;
        G_PuTongGongji.weizhi.Top:= round(G_C_role_top * (G_PuTongGongji.time / game_amt_length)) + G_C_guai_top;
         if sid_to_roleId(mtl_game_cmd_dh1.fq_sid)= sid_to_roleId(mtl_game_cmd_dh1.js_sid) then  //如果位置相同，直接使用固定坐标
           G_PuTongGongji.weizhi.Left:= g_get_roleAndGuai_left(sid_to_roleId(mtl_game_cmd_dh1.fq_sid))
@@ -8320,7 +8779,7 @@ procedure TForm_pop.Timer_guai_gongjiTimer;
 begin
    //怪物攻击动画 定时 16 zhen
 
-       G_Guai_PuTongGongji.zhen:= (game_amt_length- G_Guai_PuTongGongji.time) div 4;
+       G_Guai_PuTongGongji.zhen:= (game_amt_length- G_Guai_PuTongGongji.time) div 16;
 
        G_Guai_PuTongGongji.weizhi.Top:= G_C_role_top- round((G_C_role_top- G_C_Guai_top) * (G_Guai_PuTongGongji.time / game_amt_length));
 
@@ -8357,9 +8816,9 @@ begin
 
  if sid_to_roleId(mtl_game_cmd_dh1.js_sid)= -1 then //全体攻击动画 4 帧，用十帧，后面几帧固定不动
   begin
-     g_quanTiFaShuGongJi.zhen:= (game_amt_length-g_quanTiFaShuGongJi.time) div 6;
-     g_quanTiFaShuGongJi.weizhi.Left:= 160;
-     g_quanTiFaShuGongJi.weizhi.top:= 120;
+     g_quanTiFaShuGongJi.zhen:= (game_amt_length-g_quanTiFaShuGongJi.time) div 4;
+     g_quanTiFaShuGongJi.weizhi.Left:= round(160 * dpi_bilv);
+     g_quanTiFaShuGongJi.weizhi.top:= round(120 * dpi_bilv);
     g_quanTiFaShuGongJi.xianshi:= true;
     if g_quanTiFaShuGongJi.time= 0 then
     begin
@@ -8375,7 +8834,7 @@ begin
     dec(g_quanTiFaShuGongJi.time);
   end else begin
                //单体攻击 16 zhen
-                g_DanTiFaShuGongJi.zhen:= (game_amt_length- g_DanTiFaShuGongJi.time) div 4;
+                g_DanTiFaShuGongJi.zhen:= (game_amt_length- g_DanTiFaShuGongJi.time) div 16;  //原先是div 4
                 g_DanTiFaShuGongJi.weizhi.Left:= g_get_roleAndGuai_left(sid_to_roleId(mtl_game_cmd_dh1.js_sid));  //怪的坐标
                 g_DanTiFaShuGongJi.weizhi.top:= G_C_Guai_top;
               g_DanTiFaShuGongJi.xianshi:= true;
@@ -8396,10 +8855,10 @@ end;
 
 procedure TForm_pop.Timer_guai_fashugongjiTimer;
 begin
-    //怪法术攻击 全体 动画定时 10 帧
-                  G_Guai_Fashu.zhen:= (game_amt_length- G_Guai_Fashu.time) div 6;
-                  G_Guai_Fashu.weizhi.Left:= 160;
-                  G_Guai_Fashu.weizhi.top:= 120;
+    //怪法术攻击 全体 动画定时 10 帧,实际4帧
+                  G_Guai_Fashu.zhen:= (game_amt_length- G_Guai_Fashu.time) div 4;
+                  G_Guai_Fashu.weizhi.Left:= round(160 * dpi_bilv);
+                  G_Guai_Fashu.weizhi.top:= round(120 * dpi_bilv);
             G_Guai_Fashu.xianshi:= true;
            if G_Guai_Fashu.time= 0 then
                 begin
@@ -8421,7 +8880,7 @@ procedure TForm_pop.Timer_wupin_gongjiTimer;
 begin
     //我方物品攻击 动画定时 16 帧
 
-         G_dantiWuPinGongji.zhen:= 15- G_dantiWuPinGongji.time div 4;
+         G_dantiWuPinGongji.zhen:= 15- G_dantiWuPinGongji.time div 16;
          G_dantiWuPinGongji.weizhi.Left:= g_get_roleAndGuai_left(sid_to_roleId(mtl_game_cmd_dh1.js_sid));  //怪
          G_dantiWuPinGongji.weizhi.top:= G_C_Guai_top;
 
@@ -8445,9 +8904,9 @@ end;
 procedure TForm_pop.Timer_wupin_huifuTimer;
 begin
   //我方物品 恢复 动画定时 16 帧
-             G_DanTiWuPinHuiFu.zhen:= (game_amt_length- G_DanTiWuPinHuiFu.time) div 4;
+             G_DanTiWuPinHuiFu.zhen:= (game_amt_length- G_DanTiWuPinHuiFu.time) div 16;
              G_DanTiWuPinHuiFu.weizhi.Left:= g_get_roleAndGuai_left(sid_to_roleId(mtl_game_cmd_dh1.js_sid));
-             G_DanTiWuPinHuiFu.weizhi.top:= G_C_role_top + game_bmp_role_h -156; //减去图像高
+             G_DanTiWuPinHuiFu.weizhi.top:= G_C_role_top + game_bmp_role_h -round(156 * dpi_bilv); //减去图像高
      G_DanTiWuPinHuiFu.xianshi:= true;
    if G_DanTiWuPinHuiFu.time= 0 then
        begin
@@ -8470,9 +8929,9 @@ begin
 
    if sid_to_roleId(mtl_game_cmd_dh1.js_sid)= -1 then //全体法术恢复 10帧
   begin
-           G_quanTiFaShuHuiFu.zhen:= (game_amt_length- G_quanTiFaShuHuiFu.time) div 6;
-           G_quanTiFaShuHuiFu.weizhi.Left:= 160;
-           G_quanTiFaShuHuiFu.weizhi.top:= 120;
+           G_quanTiFaShuHuiFu.zhen:= (game_amt_length- G_quanTiFaShuHuiFu.time) div 4;
+           G_quanTiFaShuHuiFu.weizhi.Left:= round(160 * dpi_bilv);
+           G_quanTiFaShuHuiFu.weizhi.top:= round(120 * dpi_bilv);
     G_quanTiFaShuHuiFu.xianshi:= true;
     if G_quanTiFaShuHuiFu.time<= 0 then
     begin
@@ -8488,9 +8947,9 @@ begin
     dec(G_quanTiFaShuHuiFu.time);
   end else begin
                //单体法术恢复 16 帧
-                    G_DanTiFaShuHuiFu.zhen:= (game_amt_length- G_DanTiFaShuHuiFu.time) div 4;
+                    G_DanTiFaShuHuiFu.zhen:= (game_amt_length- G_DanTiFaShuHuiFu.time) div 16;
                     G_DanTiFaShuHuiFu.weizhi.Left:= g_get_roleAndGuai_left(sid_to_roleId(mtl_game_cmd_dh1.js_sid));
-                    G_DanTiFaShuHuiFu.weizhi.top:= G_C_role_top+ game_bmp_role_h -156; //减去图像高;
+                    G_DanTiFaShuHuiFu.weizhi.top:= G_C_role_top+ game_bmp_role_h -round(156 * dpi_bilv); //减去图像高;
                G_DanTiFaShuHuiFu.xianshi:= true;
              if G_DanTiFaShuHuiFu.time= 0 then
                 begin
@@ -8542,24 +9001,25 @@ begin
     //我方攻击窗口出现的动画
      if GameSave1.tip3=0 then
       begin
-    g_gong.weizhi.Left:= g_gong.weizhi.Left- 2;
-    g_icon.weizhi.Left:= g_gong.weizhi.Left + 81; //小头像位置
-     g_icon.weizhi.top:= g_gong.weizhi.top + 37;
+    g_gong.weizhi.Left:= g_gong.weizhi.Left- round(2 * dpi_bilv);
+     if g_gong.time= 0 then
+        g_gong.weizhi.Left:= round(340 * dpi_bilv); //防止dpi_bilv不为整数时位置不正常
+        //round(349 * dpi_bilv)
+    g_icon.weizhi.Left:= g_gong.weizhi.Left + round(81 * dpi_bilv); //小头像位置
+     g_icon.weizhi.top:= g_gong.weizhi.top + round(37* dpi_bilv);
       end else begin
-                 g_gong.weizhi.Left:= 340;
-                 g_icon.weizhi.Left:= g_gong.weizhi.Left + 81; //小头像位置
-                 g_icon.weizhi.top:= g_gong.weizhi.top + 37;
+                 g_gong.weizhi.Left:= round(340* dpi_bilv);
+                 g_icon.weizhi.Left:= g_gong.weizhi.Left + round(81* dpi_bilv); //小头像位置
+                 g_icon.weizhi.top:= g_gong.weizhi.top + round(37* dpi_bilv);
                end;
 
      if g_gong.time= game_amt_length then
       begin
         bmp:= tbitmap.Create;
         tpl:= game_get_role_from_i(Fgame_my_cu);
-        with g_icon_image do
-        begin
         data2.ImageList2.GetBitmap(tpl.plvalues[ord(g_Icon_index)]+ 1,bmp);
-        LoadFromBitmap(bmp,false,0,0);
-        end;
+        update_img(g_icon_image,bmp);
+
        bmp.Free;
        g_icon.xianshi:= true;
        show_fashuwupin_k(tpl.pl_old_name);
@@ -8832,29 +9292,6 @@ if not game_musmv_ready then
               end; //end case
 end;
 
-procedure TForm_pop.AsphyreTimer1Process(Sender: TObject);
-begin
-    if g_particle_rec.xian then
-     begin
-      if Random(3)= 0 then
-       begin
-       with AsphyreParticles1.CreateImage(0, Point2(Random(600), 1), 180, fxBlendNA) do
-     begin
-      // set random speed
-       Patt:= g_particle_rec.xuli;
-      Velocity:= Point2((Random(10) - 5) / 20,  (Random(20) / 5));
-      // set particle acceleration
-       if g_particle_rec.xiaoguo= 0 then //随机飘落
-          Accel:= Point2((0.002 + ((Random(10)-3) / 300)), (0.002 + (Random(10) / 300)))
-          else if g_particle_rec.xiaoguo= 1 then //固定方向
-            Accel:= Point2(0, (0.502 + (Random(10) / 300)));
-     end;
-      end;
- // move the particles
-      AsphyreParticles1.Update();
-     end;
-end;
-
 procedure draw_grass(b: tbitmap; x, y: integer; angle: double;
   len, minlen: single);
   var x1,y1: integer;
@@ -8885,7 +9322,7 @@ function floattobyte(f: single): byte;
 begin
   result:= lo(round(f));
 end;
-procedure TForm_pop.draw_random_XX(bt: Tbitmap;flag: integer);  //画随机分析图
+procedure TForm_pop.draw_random_XX(bt: Tbitmap;flag: integer);  //画随机分形图
 var x,y,newx,newy,a,b,c,d,e,f,r,y_c1,Y_C2,x_c1,X_C2: single;
    n,i,j: integer;
    m: array[0..6,0..6] of single;
@@ -9717,7 +10154,7 @@ var g: array[0..9,0..1] of integer;
        end else begin
      if L > 4 then
       begin
-       //敌放编号
+       //敌方编号
        result:= loc_guai_g[l-5].name1;
       end else begin
                 t:= game_get_role_from_i(l);
@@ -10022,13 +10459,7 @@ end;
 
 procedure TForm_pop.play_sound(i: integer);
 begin
-   Assert(i<>-1,'索引越位');
-    With DXWaveList1.items[i] Do
-    Begin
-      volume := -1000;
-      pan := 0;
-      play(false);
-    End;
+   PlaySample(EffectSamples[i], 80);
 end;
 
 procedure TForm_pop.Button11Click(Sender: TObject);
@@ -10167,7 +10598,7 @@ begin
      Bottom:= top + game_bmp_h2;
      end;
      g_jieshi_weizhi3.alpha:= 255;
-
+         {
      with image_word do
        begin
        Size:= point(game_bmp_width,64);
@@ -10180,33 +10611,12 @@ begin
        Size:= point(game_bmp_width,32);
        PatternSize:= point(game_bmp_width,game_bmp_h2);
        VisibleSize:= point(game_bmp_width,game_bmp_h2);
-       end;
-     with image_cn2 do
-       begin
-       Size:= point(game_bmp_width,32);
-       PatternSize:= point(game_bmp_width,game_bmp_h2);
-       VisibleSize:= point(game_bmp_width,game_bmp_h2);
-       end;
-     with image_cn3 do
-       begin
-      Size:= point(game_bmp_width,32);
-      PatternSize:= point(game_bmp_width,game_bmp_h2);
-       VisibleSize:= point(game_bmp_width,game_bmp_h2);
-       end;
+       end;  }
 
 
-     with image_up do
-      begin
-      Size:= point(game_bmp_width,32);
-      PatternSize:= point(game_bmp_width,32);
-       VisibleSize:= point(game_bmp_width,32);
-      end;
-    with image_down do
-      begin
-       Size:= point(game_bmp_width,32);
-       PatternSize:= point(game_bmp_width,32);
-       VisibleSize:= point(game_bmp_width,32);
-      end;
+
+
+
       game_intl_pic;
       
 end;
@@ -10726,7 +11136,7 @@ begin
     if game_at_net_g then
      set_caoshi_list_value(g_nil_user_c); //初始化超时记录表
 
-    result:= '<table align=center style="font-size:28pt;"><tr><td align=right><font size=3>'+ inttostr(game_pop_count) + '</font></td></tr>';
+    result:= '<table align=center style="font-size:18pt;"><tr><td align=right><font size=3>'+ inttostr(game_pop_count) + '</font></td></tr>';
     dec(game_pop_count);
         jit_num:= 1;
     result:= result+ start_show_word(true) + '</table>';
@@ -10737,7 +11147,7 @@ function TForm_pop.html_asw_string(c: integer): string;
 begin
     //获取选择答案后的字符串
 
-    result:= '<table align=center style="font-size:28pt;"><tr><td align=right><font size=3>'+ inttostr(game_pop_count) + '</font></td></tr>' +
+    result:= '<table align=center style="font-size:18pt;"><tr><td align=right><font size=3>'+ inttostr(game_pop_count) + '</font></td></tr>' +
              check_asw(c,true) + '</table>';
 
 end;
@@ -10864,7 +11274,7 @@ result:= 0;
 
 
      text_show_array_G[5].peise:= $FF00887C;
-      text_show_array_G[5].xiaoguo:= fxNone;
+      text_show_array_G[5].xiaoguo:= 0;   //参数待查，可能有误
 
 
     //0--4，我方编号，5--9，敌方编号
@@ -11609,6 +12019,36 @@ begin
     edit1.Repaint;
 end;
 
+procedure TForm_pop.EngineProcess(const Sender: TObject);
+begin
+  // Inc(EngineTicks);
+   if g_particle_rec.xian then
+     begin
+      if Random(3)= 0 then
+       begin  {天气效果
+       with Particles1.CreateImage(0, Point2f(Random(600), 1), 180, fxBlendNA) do
+     begin
+      // set random speed
+       Patt:= g_particle_rec.xuli;
+      Velocity:= Point2((Random(10) - 5) / 20,  (Random(20) / 5));
+      // set particle acceleration
+       if g_particle_rec.xiaoguo= 0 then //随机飘落
+          Accel:= Point2((0.002 + ((Random(10)-3) / 300)), (0.002 + (Random(10) / 300)))
+          else if g_particle_rec.xiaoguo= 1 then //固定方向
+            Accel:= Point2(0, (0.502 + (Random(10) / 300)));
+     end;  }
+      end;
+ // move the particles
+      Particles1.Update;
+     end;
+
+end;
+
+procedure TForm_pop.EngineTiming(const Sender: TObject);
+begin
+   RenderWindow;
+end;
+
 procedure TForm_pop.set_Action_az;
 var st: Tshortcut;
     i: integer;
@@ -11746,6 +12186,7 @@ end;
 procedure TForm_pop.show_bubble_on_scr;  //显示泡泡龙到屏幕
 var r: Trect;
     i,j: integer;
+    w,h: integer;
 begin
   {位置信息：包括颜色球索引，为零的不显示，宽和高}
   {bubble_boll_g_array,0..3byte，3表示颜色球索引，1表示宽，2表示高，0表示是否处于同色统计内}
@@ -11756,28 +12197,39 @@ begin
         begin
           r.Left:= j * g_boll_w_cn + ((i mod 2) * g_boll_w_cn div 2);
           r.Top:= i * g_boll_h_cn;
-          r.Right:= r.Left + LongRec(bubble_boll_g_array[i,j]).Bytes[1];
-          r.Bottom:=r.Top + LongRec(bubble_boll_g_array[i,j]).Bytes[2];
-          AsphyreCanvas1.DrawEx(AsphyreImages1.Image['bubble.png'], r,$FFFFFFFF, LongRec(bubble_boll_g_array[i,j]).Bytes[3]-1, fxBlendNA);
+           w:= LongRec(bubble_boll_g_array[i,j]).Bytes[1];
+          r.Right:= r.Left + w;
+           h:= LongRec(bubble_boll_g_array[i,j]).Bytes[2];
+          r.Bottom:=r.Top + h;
+          EngineCanvas.UseImagePx(EngineImages[bubble_int], Quad(0, 0,
+               32*((LongRec(bubble_boll_g_array[i,j]).Bytes[3]-1) mod 2),
+               32* ((LongRec(bubble_boll_g_array[i,j]).Bytes[3]-1) div 2)));
+          EngineCanvas.TexQuad(Quad(r.Left, r.Top, w, h),ColorRectTranslucentWhite,TBlendingEffect.SourceColorAdd );
+          //AsphyreCanvas1.DrawEx(AsphyreImages1.Image['bubble.png'], r,$FFFFFFFF, LongRec(bubble_boll_g_array[i,j]).Bytes[3]-1, fxBlendNA);
         end;
      end;
 
-  AsphyreCanvas1.Draw(image_bubble, 256,416, 0, fxBlend); //画出泡泡发射台
+  EngineCanvas.UseImagePx(EngineImages[image_bubble], Quad(0, 0, 128, 64));
+  EngineCanvas.TexQuad(Quad(256 * dpi_bilv, 416* dpi_bilv, 128* dpi_bilv, 64* dpi_bilv),ColorRectWhite,TBlendingEffect.Add);
+  //AsphyreCanvas1.Draw(image_bubble, 256,416, 0, fxBlend); //画出泡泡发射台
   //画出发射台上的泡泡
-    AsphyreCanvas1.DrawEx(AsphyreImages1.Image['bubble.png'], rect(271,433,303,465)
-    ,$FFFFFFFF,bubble_data1.next_color, fxBlendNA); //此处color没有减去一
+     EngineCanvas.UseImagePx(EngineImages[bubble_int], Quad(0, 0, 32, 32));
+     EngineCanvas.TexQuad(Quad(271* dpi_bilv, 433* dpi_bilv, w, h),ColorRectWhite,TBlendingEffect.Add);
+    //AsphyreCanvas1.DrawEx(AsphyreImages1.Image['bubble.png'], rect(271,433,303,465)
+   // ,$FFFFFFFF,bubble_data1.next_color, fxBlendNA); //此处color没有减去一
 
-   //画出横线
-   AsphyreCanvas1.Line(0,390,640,390,$FF1E90DF,$FF1E90DF,fxNone);
+   //画出横线  $FF1E90DF,$FF1E90DF,
+
+   EngineCanvas.Line(0,390* dpi_bilv,640* dpi_bilv,390* dpi_bilv,ColorPair($FF1E90DF, $FF5F5F5F));
     if (g_dangqian_zhuangtai= g_bubble)  and (bubble_data1.dot_line_count<= 0) then
      begin
        //画出瞄准线
-       bubble_data1.start_X:= 336;
-       bubble_data1.start_Y:= 432; //指针原点
-       bubble_data1.boll_path_length:= 22;
+       bubble_data1.start_X:= round(336* dpi_bilv);
+       bubble_data1.start_Y:= round(432* dpi_bilv); //指针原点
+       bubble_data1.boll_path_length:= round(22* dpi_bilv);
        while true do
         begin
-          
+
           bubble_path_to_xy;
 
           i:= (bubble_data1.boll_top+ g_boll_h_cn div 2) div g_boll_h_cn;
@@ -11786,14 +12238,14 @@ begin
                 else
                  j:= bubble_data1.boll_left div g_boll_w_cn; //奇数行
          if boll_can_stk(i,j,bubble_data1.boll_left mod g_boll_w_cn)
-           or (bubble_data1.boll_path_length> 640) then
+           or (bubble_data1.boll_path_length> 640* dpi_bilv) then
             break; //可停靠时中断
 
            ball_at_left_right(0); //检测是否运行到边缘，球
-          inc(bubble_data1.boll_left,16);
-          inc(bubble_data1.boll_top,16);
-         AsphyreCanvas1.PutPixel(bubble_data1.boll_left,bubble_data1.boll_top,$FFFFFFFF,fxnone);
-         inc(bubble_data1.boll_path_length,2);
+          inc(bubble_data1.boll_left,round(16* dpi_bilv));
+          inc(bubble_data1.boll_top,round(16* dpi_bilv));
+         EngineCanvas.PutPixel(bubble_data1.boll_left,bubble_data1.boll_top,$FFFFFFFF);
+         inc(bubble_data1.boll_path_length,round(2* dpi_bilv));
         end;
      end;
 
@@ -11804,15 +12256,19 @@ begin
        begin
        Left:= bubble_data1.boll_left;
        Top:= bubble_data1.boll_top;
-       Right:= Left + 32;
-       Bottom:=Top + 32;
+       Right:= Left + round(32* dpi_bilv);
+       Bottom:=Top + round(32* dpi_bilv);
        end;
-    AsphyreCanvas1.DrawEx(AsphyreImages1.Image['bubble.png'], r,$FFFFFFFF, bubble_data1.boll_color -1, fxBlendNA);
+     EngineCanvas.UseImagePx(EngineImages[bubble_int], Quad(0, 0, 32, 32));
+     EngineCanvas.TexQuad(Quad(r.Left, r.Top, 32* dpi_bilv, 32* dpi_bilv),ColorRectWhite,TBlendingEffect.Add);
+    //AsphyreCanvas1.DrawEx(AsphyreImages1.Image['bubble.png'], r,$FFFFFFFF, bubble_data1.boll_color -1, fxBlendNA);
 
    end;
 
-  //画出指针
-  AsphyreCanvas1.DrawRot(imgae_arrow,336,432,bubble_data1.arrow_Angle * pi /180,1,$FFFFFFFF, 0, fxBlendNA);
+
+   EngineCanvas.UseImagePx(EngineImages[imgae_arrow], Quad(0, 0, 64, 64));
+   EngineCanvas.TexQuad(TQuad.Rotated(Point2f(336* dpi_bilv, 432* dpi_bilv), Point2f(64* dpi_bilv, 64* dpi_bilv),bubble_data1.arrow_Angle * pi /180),ColorRectTranslucentWhite,TBlendingEffect.SourceColorAdd );
+  //AsphyreCanvas1.DrawRot(imgae_arrow,336,432,bubble_data1.arrow_Angle * pi /180,1,$FFFFFFFF, 0, fxBlendNA);
 
  {image_bubble) then
      image_bubble.Free;
@@ -11825,8 +12281,8 @@ begin
   if g_dangqian_zhuangtai= g_bubble then
    begin
     show_text(false,'');
-    if bubble_data1.arrow_Angle > -70 then
-       bubble_data1.arrow_Angle:= bubble_data1.arrow_Angle-7;
+    if bubble_data1.arrow_Angle > -70 * dpi_bilv then
+       bubble_data1.arrow_Angle:= bubble_data1.arrow_Angle-7* dpi_bilv;
    end;
 end;
 
@@ -11836,8 +12292,8 @@ begin
    if g_dangqian_zhuangtai= g_bubble then
    begin
       show_text(false,'');
-     if bubble_data1.arrow_Angle < 70 then
-       bubble_data1.arrow_Angle:= bubble_data1.arrow_Angle+7;
+     if bubble_data1.arrow_Angle < 70* dpi_bilv then
+       bubble_data1.arrow_Angle:= bubble_data1.arrow_Angle+7* dpi_bilv;
    end;
 end;
 
@@ -11857,10 +12313,10 @@ begin
      dec(bubble_data1.sycs); //剩余发球数量减去一
      bubble_data1.boll_color:= bubble_data1.next_color+1; //next color是以零为最小数的，所以需要加一
      bubble_data1.next_color:= Random(7); //待发射球换新
-     bubble_data1.start_X:= 336;
-     bubble_data1.start_Y:= 432; //指针原点
+     bubble_data1.start_X:= round(336* dpi_bilv);
+     bubble_data1.start_Y:= round(432* dpi_bilv); //指针原点
       //球位置移动到箭头
-       bubble_data1.boll_path_length:= 48; //轨迹长度
+       bubble_data1.boll_path_length:= round(48* dpi_bilv); //轨迹长度
        //计算球坐标
        bubble_path_to_xy;
      bubble_data1.zt:= 0; //状态，0表示球移动，1表示球消失
@@ -11977,8 +12433,8 @@ procedure TForm_pop.Timer_bubbleTimer;  //泡泡龙，球动画
               begin
                bubble_data1.boll_show:= false;
                longrec(bubble_boll_g_array[y,x]).Bytes[3]:= bubble_data1.boll_color;
-               LongRec(bubble_boll_g_array[y,x]).Bytes[1]:= 32;
-               LongRec(bubble_boll_g_array[y,x]).Bytes[2]:= 32;
+               LongRec(bubble_boll_g_array[y,x]).Bytes[1]:= round(32* dpi_bilv);
+               LongRec(bubble_boll_g_array[y,x]).Bytes[2]:= round(32* dpi_bilv);
                bubble_data1.last_y:= y;
                bubble_data1.last_x:= x;
                if y= g_boll_14_cn then
@@ -12394,18 +12850,19 @@ begin
                  fillchar(wuziqi_send, sizeof(wuziqi_send), #0);
                  i:= length(s);
                  move(pchar(s)^,wuziqi_send,i);
-                 byte(wuziqi_send[wuziqi_char_count_cn]):= lo(i);
+                 wuziqi_send[wuziqi_char_count_cn]:= chr(lo(i));    //强制类型转换，可能有问题
                //wuziqi_send
 
                wuziqi_flag:= 6; //待发送数据写入完毕
     LeaveCriticalSection(wuziqi_CriticalSection);
 end;
 procedure quad_wuziqi(tp: Tpoint;L: integer; C: dword);
-var C4: Tcolor4;
-    T4: Tpoint4;
+//var C4: Tcolor4;
+   // T4: Tpoint4;
 begin
     //画出矩形
-   T4[0].x:= tp.X- L;
+   EngineCanvas.FillRect(tp.x,tp.y,l,L,c);
+  { T4[0].x:= tp.X- L;
    T4[0].y:= tp.y- L;
     T4[1].x:= tp.X+ L;
    T4[1].y:= tp.y- L;
@@ -12418,40 +12875,44 @@ begin
    C4[1]:= C;
    C4[2]:= C;
    C4[3]:= C;
-   Form_pop.AsphyreCanvas1.Quad(T4,C4,fxnone);
+   Form_pop.AsphyreCanvas1.Quad(T4,C4,fxnone);   }
 end;
 
 procedure quad_wuziqi2(tp: Tpoint;L: integer; C: dword);
 begin
     //画出十字
-
-   Form_pop.AsphyreCanvas1.Line(tp.x-L,tp.y,tp.x+L,tp.y,c,c,fxnone);
-   Form_pop.AsphyreCanvas1.Line(tp.x,tp.y-L,tp.x,tp.y+L,c,c,fxnone);
+   EngineCanvas.line(tp.x-L,tp.y,tp.x+L,tp.y,c);
+   EngineCanvas.line(tp.x,tp.y-L,tp.x,tp.y+L,c);
+   //Form_pop.AsphyreCanvas1.Line(tp.x-L,tp.y,tp.x+L,tp.y,c,c,fxnone);
+   //Form_pop.AsphyreCanvas1.Line(tp.x,tp.y-L,tp.x,tp.y+L,c,c,fxnone);
 end;
 
 procedure TForm_pop.show_wuziqi_on_src; //显示五子棋到屏幕
- const w=32;
+
 var r: Trect;
-    i,j: integer;
+    i,j,w: integer;
     t: tpoint;
 begin
   {位置信息：包括颜色球索引，为零的不显示，宽和高}
   {bubble_boll_g_array,0..3byte，3表示颜色球索引，1表示宽，2表示高，0表示是否处于同色统计内}
+    w:= round(32 * dpi_bilv);
   for i:= 0 to 14 do
     for j:= 0 to 14 do
      begin
       if LongRec(bubble_boll_g_array[i,j]).Bytes[3]> 0 then
         begin
-          r.Left:= j * w + w+ 20;
+          r.Left:= j * w + w+ round(20 * dpi_bilv);
           r.Top:= i * w;
-          r.Right:= r.Left + 32;
-          r.Bottom:=r.Top + 32;
-          AsphyreCanvas1.DrawEx(AsphyreImages1.Image['bubble.png'], r,$FFFFFFFF, LongRec(bubble_boll_g_array[i,j]).Bytes[3]-1, fxBlend);
+          r.Right:= r.Left + round(32 * dpi_bilv);
+          r.Bottom:=r.Top + round(32 * dpi_bilv);
+          EngineCanvas.UseImagePx(EngineImages[bubble_int], Quad(0, 0, 32, 32));
+          EngineCanvas.TexQuad(Quad(r.left,r.top,w,w),ColorRectblack);
+          //AsphyreCanvas1.DrawEx(AsphyreImages1.Image['bubble.png'], r,$FFFFFFFF, LongRec(bubble_boll_g_array[i,j]).Bytes[3]-1, fxBlend);
           //如果该子是最后下的子，那么画十字上去
           if (i= wuziqi_rec1.row) and (j= wuziqi_rec1.col) then
              begin
-             t.X:= r.Left+16;
-             t.Y:= r.Top+16;
+             t.X:= r.Left+round(16* dpi_bilv);
+             t.Y:= r.Top+round(16* dpi_bilv);
              quad_wuziqi2(t,5, $FF1E90DF);
              end;
         end;
@@ -12459,22 +12920,37 @@ begin
 
 
        //画出右边的两个棋子
-    AsphyreCanvas1.DrawEx(AsphyreImages1.Image['bubble.png'],576,90 ,$FFFFFFFF, 0, fxBlend);
-    AsphyreCanvas1.DrawEx(AsphyreImages1.Image['bubble.png'],576,314,$FFFFFFFF, 2, fxBlend);
+     EngineCanvas.UseImagePx(EngineImages[bubble_int], Quad(0, 0, 32, 32));
+     EngineCanvas.TexQuad(Quad(576 * dpi_bilv,90 * dpi_bilv,w,w),ColorRectblack);
+    //AsphyreCanvas1.DrawEx(AsphyreImages1.Image['bubble.png'],576,90 ,$FFFFFFFF, 0, fxBlend);
+     EngineCanvas.UseImagePx(EngineImages[bubble_int], Quad(0, 0, 32, 32));
+     EngineCanvas.TexQuad(Quad(576 * dpi_bilv,314 * dpi_bilv,w,w),ColorRectblack);
+   // AsphyreCanvas1.DrawEx(AsphyreImages1.Image['bubble.png'],576,314,$FFFFFFFF, 2, fxBlend);
      //画出步数
-     AsphyreFonts1[0].TextOut(inttostr(wuziqi_rec1.cpt_count),576,154,$FFD08080, $FFD08080,fxBlend);
-     AsphyreFonts1[0].TextOut(inttostr(wuziqi_rec1.me_count),576,376,$FFD08080, $FFD08080,fxBlend);
+      EngineFonts[FontTahoma].DrawText(
+    Point2f(576 * dpi_bilv, 154 * dpi_bilv),
+    inttostr(wuziqi_rec1.cpt_count),
+    ColorPair($FFD08080, $FFFF0000));
+      EngineFonts[FontTahoma].DrawText(
+    Point2f(576 * dpi_bilv, 376 * dpi_bilv),
+    inttostr(wuziqi_rec1.cpt_count),
+    ColorPair($FFD08080, $FFFF0000));
+     //AsphyreFonts1[0].TextOut(inttostr(wuziqi_rec1.cpt_count),576,154,$FFD08080, $FFD08080,fxBlend);
+     //AsphyreFonts1[0].TextOut(inttostr(wuziqi_rec1.me_count),576,376,$FFD08080, $FFD08080,fxBlend);
      if wuziqi_rec1.xy0 then
-       form_pop.AsphyreCanvas1.Line(wuziqi_rec1.x0
-                                   ,wuziqi_rec1.y0,wuziqi_rec1.x1,wuziqi_rec1.y1,$FFFFFFFF,$FFFFFFFF, fxnone);
+       EngineCanvas.line(wuziqi_rec1.x0,wuziqi_rec1.y0,wuziqi_rec1.x1,wuziqi_rec1.y1,$FFFFFFFF);
+       //form_pop.AsphyreCanvas1.Line(wuziqi_rec1.x0
+                                  // ,wuziqi_rec1.y0,wuziqi_rec1.x1,wuziqi_rec1.y1,$FFFFFFFF,$FFFFFFFF, fxnone);
 
      if wuziqi_rec1.word_showing then  //显示单词
        begin
-       r.Left:= wuziqi_rec1.cpt_col * w + 52;
+       r.Left:= wuziqi_rec1.cpt_col * w + round(52 * dpi_bilv);
        r.Top:= wuziqi_rec1.cpt_row * w;
        r.Right:= r.Left + game_bmp_width;
        r.Bottom:=r.Top + game_bmp_h1;
-       AsphyreCanvas1.DrawEx(image_word,r,$AAFFFFFF,0, fxBlend);
+       EngineCanvas.UseImagePx(EngineImages[image_word], Quad(0, 0, game_bmp_width, game_bmp_h1));
+       EngineCanvas.TexQuad(Quad(r.Left,r.Top,game_bmp_width,game_bmp_h1),ColorRectblack);
+      // AsphyreCanvas1.DrawEx(image_word,r,$AAFFFFFF,0, fxBlend);
        end;
 
      //画出可下子点的小矩形，该过程位于最后
@@ -12483,14 +12959,14 @@ begin
        //鼠标位置转换为矩阵，如果该点没有棋子，那么画一个矩形上去
        GetCursorPos(T);
        t:= panel1.ScreenToClient(t);
-       if (t.X< 52) or (t.X> 531) or (t.Y< 0) or (t.Y>479) then
+       if (t.X< round(52 * dpi_bilv)) or (t.X> round(531 * dpi_bilv)) or (t.Y< 0) or (t.Y>round(479 * dpi_bilv)) then
          exit;
-       if LongRec(bubble_boll_g_array[t.Y div w,(t.X-52) div w]).Bytes[3]= 0 then
+       if LongRec(bubble_boll_g_array[t.Y div w,(t.X-round(52 * dpi_bilv)) div w]).Bytes[3]= 0 then
          begin
           if (t.Y mod w in[8..24]) and ((t.X-52) mod w in[8..24]) then
            begin
-             t.Y:= t.Y div w * w+16;
-             t.X:=(t.X-52) div w * w+ 68;
+             t.Y:= t.Y div w * w+round(16 * dpi_bilv);
+             t.X:=(t.X-52) div w * w+ round(68 * dpi_bilv);
              quad_wuziqi(t,8, $FFFFFFFF);
            end;
          end;

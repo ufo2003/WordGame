@@ -3,7 +3,7 @@ unit Unit2;
 interface
 
 uses
-  Classes,SysUtils,windows,URLMon,unit_data;
+  Classes,SysUtils,windows,URLMon,unit_data,System.Zip;
 
 type
   Tkill = class(TThread)
@@ -16,7 +16,7 @@ type
   end;
  var kill1: Tkill;
 implementation
-   uses unit1,VCLUnZip;
+   uses unit1;
 { Important: Methods and properties of objects in VCL or CLX can only be used
   in a method called using Synchronize, for example,
 
@@ -63,17 +63,16 @@ end;
 
 procedure Tkill.Execute;
 var
-     Res: DWORD;
-     h: HWND;
+     //h: HWND;
      str1: Tstringlist;
-     i,j: integer;
+     j: integer;
      b: boolean;
      ss: string;
      label pp;
 begin
   { Place thread code here }
   FreeOnTerminate:=true;//
-   h:= form1.Handle;
+   //h:= form1.Handle;
    b:= false;
 
    j:= 0;
@@ -179,16 +178,8 @@ end;
 
 procedure Tkill.unzip;
 begin
-  with data2.VCLUnZip1 do
-   begin
-   password:= '';
-  ZipName:= ss_2;
-  DestDir := ss_3;//解压路径
-  RecreateDirs := True;//是否创建子目录
-  DoAll := True;
-  OverwriteMode := Always; //是否覆盖
-  UnZip;
-   end;
+     TZipFile.ExtractZipFile(ss_2, ss_3);
+
 end;
 
 end.

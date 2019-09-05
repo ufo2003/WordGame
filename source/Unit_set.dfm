@@ -802,7 +802,7 @@ object Form_set: TForm_set
           Width = 65
           Height = 21
           TabOrder = 0
-          Text = '3000'
+          Text = '1000'
         end
         object Edit3: TEdit
           Left = 8
@@ -825,7 +825,6 @@ object Form_set: TForm_set
           Height = 21
           Hint = #21333#35789#25353#35789#26681#65292#35789#32512#20998#33394#26174#31034
           Style = csDropDownList
-          ItemHeight = 13
           ItemIndex = 0
           ParentShowHint = False
           ShowHint = True
@@ -845,7 +844,6 @@ object Form_set: TForm_set
           Height = 21
           Hint = #20986#29616#38169#35823#21333#35789#26102#65292#26159#21542#20877#27425#37325#29616#35813#21333#35789
           Style = csDropDownList
-          ItemHeight = 13
           ItemIndex = 0
           ParentShowHint = False
           ShowHint = True
@@ -867,7 +865,6 @@ object Form_set: TForm_set
           Width = 145
           Height = 21
           Style = csDropDownList
-          ItemHeight = 13
           TabOrder = 5
           Items.Strings = (
             #19981#38543#26426#21548#35835
@@ -1116,7 +1113,6 @@ object Form_set: TForm_set
       Height = 21
       Hint = #36873#25321#19968#20010'TTS'#21333#35789#21457#38899#21512#25104#24341#25806
       Style = csDropDownList
-      ItemHeight = 13
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
@@ -1250,6 +1246,7 @@ object Form_set: TForm_set
       ParentShowHint = False
       ShowHint = True
       TabOrder = 5
+      Visible = False
       OnClick = CheckBox1Click
     end
     object CheckBox18: TCheckBox
@@ -1259,6 +1256,12 @@ object Form_set: TForm_set
       Height = 17
       Hint = #20351#29992#30334#24230#30340#35821#38899#21512#25104#25216#26415
       Caption = #20248#20808#20351#29992#30334#24230#35821#38899#22312#32447#21512#25104#65288#25512#33616#65289
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = #23435#20307
+      Font.Style = [fsBold]
+      ParentFont = False
       ParentShowHint = False
       ShowHint = True
       TabOrder = 6

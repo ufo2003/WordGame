@@ -3,8 +3,8 @@ unit Unit_data;
 interface
 
 uses
-  SysUtils, Classes, VCLZip, VCLUnZip,md5,IniFiles, ImgList, Controls,windows,Unit_net,unit_player,unit_glb,
-  ShellCtrls;
+  SysUtils, Classes,IniFiles, ImgList, Controls,windows,Unit_net,unit_player,unit_glb,
+  ShellCtrls,System.Zip, System.ImageList,System.Hash,VCLUnZip,VCLZip;
 
 
 //function QueryPerformanceCounter(var lpPerformanceCount: int64): BOOLean; stdcall;
@@ -78,8 +78,6 @@ type
   Tgame_s_type=(G_nil,G_action,G_description,G_chat);
 
   TData2 = class(TDataModule)
-    VCLUnZip1: TVCLUnZip;
-    VCLZip1: TVCLZip;
     ImageList1: TImageList;
     ImageList2: TImageList;
     ImageList_sml: TImageList;
@@ -90,7 +88,7 @@ type
     procedure ShellChangeNotifier1Change;
   private
     { Private declarations }
-    
+
     function read_game_scene(source,dest: Tstringlist):boolean;//解析场景
     function explain_scene_html(const s: string): string; //对场景内的html文件进行解释
     procedure explain_scene_html_base(var s: string);
@@ -222,8 +220,9 @@ var
   read_text_index_g: integer;
   part_size_g: array of integer; //每局循环背诵的单词数
   game_guid: string;
+  ZipHeader1: TZipHeader;
 implementation
-   uses unit1,FastStrings,unit_downhttp,forms,Unit_mp3_yodao,unit_show;
+   uses unit1,unit_downhttp,forms,Unit_mp3_yodao,unit_show,unit_pop;
 {$R *.dfm}
 
 function get_second: int64;
@@ -482,7 +481,7 @@ function char_not_in_az(a: char): boolean;
 procedure TData2.Load_file_ini(const n: string; st1: Tstringlist);
                      {载入物品描述ini文件}
 var
-    ss: string;
+  //  ss: string;
     i: integer;
 begin
 
@@ -490,17 +489,17 @@ begin
        load_file_upp(n,st1);
      // st1.LoadFromFile(n);
 
-                     ss:= st1.Strings[st1.count-1];
+                   {  ss:= st1.Strings[st1.count-1];
                      st1.Delete(st1.count-1);
                      st1.Append('Code=fuchengrong@hotmail.com');
                      delete(ss,1,5);
-                      if CompareStr( ss,StrMD5(st1.text))<> 0 then
+                      if Comparetext( ss,THashMD5.GetHashString(st1.text))<> 0 then
                        begin
                          st1.clear;
                          st1.Append('游戏物品文件数字水印无效。');
                        end else begin
                                   st1.Delete(st1.count-1);
-                                end;
+                                end;  }
 
 
  for i:= st1.Count-1 downto 0 do
@@ -511,9 +510,10 @@ end;
             {载入人物，怪物，等}
 procedure TData2.Load_file_upp(const n: string; st1: Tstringlist);
 var
-    stream1: TMemoryStream;
+    stream1: TStream;
     ss: string;
     i: integer;
+    zip: TVCLUnZip;
 begin
   st1.Clear;
 
@@ -528,14 +528,18 @@ begin
    // vclzip1.ZipName:= opendialog1.FileName;
    ss:= ss+ '@'+ inttostr(3);
     //vclzip1.Password:= 'AGP2@3%N';
-      vclzip1.Password:= ss + '%N';
+    zip:= TVCLUnZip.create(nil);
+
+      zip.Password:= ss + '%N';
      stream1:= TMemoryStream.Create;
-     vclzip1.ZipName:= n;
-      vclzip1.UnZipToStream(stream1,ExtractFileName(n));
+     zip.ZipName:= n;
+      //vclzip1.UnZipToStream(stream1,ExtractFileName(n));
+
+        zip.UnZipToStreamByIndex(stream1,0);
       // vclzip1.UnZip;
        stream1.Position:= 0;
        st1.LoadFromStream(stream1);
-
+       zip.free;
    stream1.Free;
 
    if Comparetext( ExtractFileExt(n),'.usp')<> 0  then  //物品文件不在这里清理分号
@@ -578,10 +582,11 @@ end;
 
 procedure TData2.load_scene(id: string; St1: Tstringlist);
 var str1: Tstringlist;
-    stream1: TMemoryStream;
+    stream1: TStream;
     ss: string;
     ss_addr: string;
     k,m: integer;
+    zip2: TVCLUnZip;
     label pp;
      function FileExists_ugm: boolean;
       var t: dword;
@@ -651,15 +656,22 @@ k:= 0;
   if FileExists_ugm then
    begin
     str1:= Tstringlist.Create;
-    vclzip1.Password:= 'APP2433N';
-     stream1:= TMemoryStream.Create;
-     vclzip1.ZipName:= ss_addr;
+    //vclzip1.Password:= 'APP2433N';
+
         pp:
-       stream1.Position:= 0;
-      vclzip1.UnZipToStream(stream1,id);
-       str1.Clear;
-       stream1.Position:= 0;
+         str1.Clear;
+         stream1:= TMemoryStream.Create;
+         zip2:= TVCLUnZip.Create(nil);
+         zip2.Password:= 'APP2433N';
+         zip2.ZipName:= ss_addr;
+         zip2.UnZipToStreamByIndex(stream1,0);
+         stream1.Position:= 0;
+
        str1.LoadFromStream(stream1);
+
+          zip2.free;
+          stream1.Free;
+
        if str1.Count= 0 then
         begin
          inc(k);
@@ -684,19 +696,21 @@ k:= 0;
 
                      ss:= str1.Strings[str1.count-1];
                      str1.Delete(str1.count-1);
-                     str1.Append('Code=ufo2003a@gmail.com');
+                     {str1.Append('Code=ufo2003a@gmail.com');
 
                      delete(ss,1,5);
-                      if CompareStr( ss,StrMD5(str1.text))<> 0 then
+                      if CompareStr( ss,THashMD5.GetHashString(str1.text))<> 0 then
                        begin
                          str1.Clear;
                          St1.Add('游戏场景文件无效。<a href="game_goto_home(0)" title="">回城</a>');
                        end else begin
                                   str1.Delete(str1.count-1);
 
-                                end;
-
-                      ss:= str1.Strings[str1.count-1];
+                                end;   }
+                       if str1.count>0 then
+                         ss:= str1.Strings[str1.count-1]
+                         else
+                          ss:= '';
 
 
                            if ss<> '' then
@@ -710,7 +724,7 @@ k:= 0;
                     end;
 
 
-     stream1.Free;
+     //stream1.Free;
 
 
       if str1.Count > 0 then
@@ -747,7 +761,7 @@ end;
 
 procedure TData2.out_save(s: string; outfilename: string);
 var str1: Tstringlist;
-    zip1: tvclzip;
+
 begin
    str1:= tstringlist.Create;
     str1.Add(s);
@@ -756,7 +770,8 @@ begin
 
 
   screen.Cursor:= crhourglass;
-       zip1:= tvclzip.Create(nil);
+    TZipFile.ZipDirectoryContents(outfilename, s+ '\'); //指定目录全部压缩
+    {   zip1:= tvclzip.Create(nil);
        with zip1 do
        begin
          RootDir:= extractfilepath(outfilename);
@@ -768,7 +783,7 @@ begin
          //RecreateDirs:=true;
          Zip;
        end;
-         zip1.Free;
+         zip1.Free; }
   screen.Cursor:= crdefault;
 end;
 
@@ -833,7 +848,7 @@ begin
 
 
 
-             result:= result+ ' src="file://'+ temp_pic_file_g +'" style="float:right;">';
+             result:= result+ ' src="file:///'+ temp_pic_file_g +'" style="float:right;">';
              if not not_show_img_tip_g then
               begin
                result:= result+ '图片来自关键字搜索：<b>';
@@ -853,11 +868,51 @@ begin
           down_http.Create(get_down_img_url,'',(temp_sch_key_g<>''));
 end;
 
+function CrossFixFileName(const FileName: String): String;
+const
+  PrevChar = '\';
+  NewChar = '/';
+
+var
+  I: Integer;
+begin
+  Result := FileName;
+
+  for I := 1 to Length(Result) do
+    if Result[I] = PrevChar then
+      Result[I] := NewChar;
+end;
+
+function StringToHex(str: ansistring): string;
+var
+   i : integer;
+   s : string;
+begin
+   for i:=1 to length(str) do begin
+       s := s + InttoHex(Integer(str[i]),2);
+   end;
+   Result:=s;
+end;
+function create_img_file(const s: string): string; //创建一个图片文件并返回文件名
+begin
+    //jpg用大写，以区别图片生成里面的小写来实现不同功能
+   result:= Game_app_img_path_G+ THashMD5.GetHashString(s).Substring(8,16) +'.JPG';
+   if not FileExists(result) then
+    begin
+     //OutputDebugString(pchar(ss));
+
+      form1.game_pic_from_text(nil,s,result);
+
+      //strem1.Free;
+    end;
+
+end;
+
 function TData2.read_game_scene(source, dest: Tstringlist): boolean;
-var i,k: integer;
+var i,k,j: integer;
     s_type: Tgame_s_type; //场景内的资源类型
      b,b2,b3: boolean;
-     ss,s_functions: string;
+     ss,s_functions,tmp_ss,kuan: string;
      label pp;
 begin
 result:= false;
@@ -926,7 +981,7 @@ Game_cannot_runOff:= false;
   begin
    if source.Strings[i]= '' then
     Continue;
-   if fastpos(source.Strings[i],';;',length(source.Strings[i]),2,1)> 0 then
+   if fastpos(source.Strings[i],';;',10,2,1)> 0 then
      Continue; //忽略双分号的注释行
 
    if fastcharpos(source.Strings[i],'{',1)> 0 then
@@ -1017,7 +1072,8 @@ Game_cannot_runOff:= false;
                                      if game_at_net_g then
                                      dest.Append('<table><tr><td id=cell_net1></td></tr><tr><td><a href="game_reshow_online(0)" title="点击此按钮可重新获取在线玩家数据">刷新在线玩家</a></td></tr></table>');
                                      //添加聊天显示代码
-                                        dest.Append('<div id=layer_chat1 style="position:absolute; top:expression(document.body.clientHeight-this.style.pixelHeight-180); left:10px; width:'+inttostr(form1.WebBrowser1.Width-40) +'px; height:160px; background-color:FFFFFF; overflow:auto; z-index:64;display:none;"><table width=100% cellpadding=4 cellspacing=0 rules=none><tr><td id=cell_chat1></td><td valign=top><a href="game_chat_cleans2(0)">关闭</a></td></tr></table></div>');
+                                        dest.Append('<div id=layer_chat1 style="position:absolute; top:60%; left:10px; width:90%; height:160px; background-color:FFFFFF; overflow:auto; z-index:64;display:none;">'+
+                                        '<table width=70% cellpadding=4 cellspacing=0 rules=none><tr><td id=cell_chat1></td><td valign=top><a href="game_chat_cleans2(0)">关闭</a></td></tr></table></div>');
                                     b3:= false;
                                   end;
                                 end else begin // end b3
@@ -1049,8 +1105,8 @@ Game_cannot_runOff:= false;
              begin
               if fastpos(Game_chat_list.Strings[i],'$apppath$',
                          length(Game_chat_list.Strings[i]),9,1)> 0 then
-                 Game_chat_list.Strings[i]:= FastReplace(Game_chat_list.Strings[i],
-                                                               '$apppath$',game_app_path_G,true);
+                 Game_chat_list.Strings[i]:= CrossFixFileName(stringReplace(Game_chat_list.Strings[i],
+                                                               '$apppath$','file:///'+game_app_path_G,[rfReplaceAll]));
                Game_chat_list.Strings[i]:=function_re_string2(Game_chat_list.Strings[i]); //对含有返回字符串的函数进行返回值读取
              end; //end for
 
@@ -1065,9 +1121,41 @@ Game_cannot_runOff:= false;
 
             for i:= 0 to dest.Count -1 do    //替换为真实路径，以显示图片
              begin
-              if fastpos(dest.Strings[i],'$apppath$',length(dest.Strings[i]),9,1)> 0 then
-                 dest.Strings[i]:= FastReplace(dest.Strings[i],'$apppath$',game_app_path_G,true);
+                //不支持自定义协议，于是把这个改为url，然后用临时文件代替
+              //if fastpos(dest.Strings[i],'charset=gb2312',length(dest.Strings[i]),14,1)> 0 then
+               //  dest.Strings[i]:=stringReplace(dest.Strings[i],'charset=gb2312','charset=ISO-8859-1',[rfReplaceAll]);
+               tmp_ss:= dest.Strings[i];
+              if fastpos(tmp_ss,'gpic://',length(tmp_ss),7,1)> 0 then
+               begin
+                  k:= fastpos(tmp_ss,'gpic://',length(tmp_ss),7,1);
+                  j:= pos('.bmp',tmp_ss);
+                  ss:= copy(tmp_ss,k+7,j+3);
 
+                  kuan:= copy(ss,1,pos(',',ss)-1);  //设置img标签宽度属性
+                  // ss:= StringToHex(ss);
+
+                   if tmp_ss[j+4]=')' then
+                    begin
+                     kuan:= 'background-size:'+kuan+'px;';
+                     insert(kuan,tmp_ss,pos(';',tmp_ss)+1);
+                    end else begin
+                              kuan:= 'width="'+kuan+'"';
+                              insert(kuan,tmp_ss,j+5);
+                             end;
+
+
+                    //创建文件并返回路径
+
+                 tmp_ss:= copy(tmp_ss,1,k-1)+ 'file:///'+ create_img_file(ss)+
+                                   copy(tmp_ss,j+4,512);
+                 //stringReplace(dest.Strings[i],'gpic://','http://127.0.0.1:8081/a?p='+ ss+'&v=a.bmp',[rfReplaceAll]);
+               end;
+
+                 //替换为实际的文件名
+              if fastpos(tmp_ss,'$apppath$',length(tmp_ss),9,1)> 0 then
+                 tmp_ss:=CrossFixFileName(stringReplace(tmp_ss,'$apppath$','file:///'+game_app_path_G,[rfReplaceAll]));
+
+                dest.Strings[i]:=CrossFixFileName(stringReplace(tmp_ss,'file://f','f',[rfReplaceAll]));
              end; //end for
                   if game_bg_music_rc_g.sch_enable and
                   (game_bg_music_rc_g.sch_img_sty= 1) then
@@ -1320,35 +1408,41 @@ end;
                  {载入事件文件，base}
 procedure TData2.Load_file_event(const n: string; st1: Tstringlist);
 var
-    stream1: TMemoryStream;
+    stream1: TStream;
+    zip2: TVCLUnZip;
 begin
 
    if not FileExists(n) then
     exit;
+    zip2:= TVCLUnZip.Create(nil);
+   zip2.Password:= 'E1v2e#n%T';
 
-    vclzip1.Password:= 'E1v2e#n%T';
      stream1:= TMemoryStream.Create;
-     vclzip1.ZipName:= n;
-      vclzip1.UnZipToStream(stream1,ExtractFileName(n));
+     zip2.ZipName:= n;
+      //vclzip1.UnZipToStream(stream1,ExtractFileName(n));
+
+       zip2.UnZipToStreamByIndex(stream1,0);
       // vclzip1.UnZip;
        st1.Clear;
        stream1.Position:= 0;
        st1.LoadFromStream(stream1);
-
+       zip2.free;
    stream1.Free;
 
 end;
               {保存事件文件 公开}
 procedure TData2.save_file_event(const n: string);
 var
-    stream1: TMemoryStream;
+    stream1: TStream;
     st1: Tstringlist;
+    vclzip1: TVCLZip;
 begin
   if n= '' then
    exit;
 
  if Assigned(game_memini_event) then
     begin
+      vclzip1:= TVCLZip.Create(nil);
       vclzip1.Password:= 'E1v2e#n%T';
      stream1:= TMemoryStream.Create;
      vclzip1.ZipName:= n;
@@ -1362,6 +1456,7 @@ begin
 
        st1.Free;
        stream1.Free;
+       vclzip1.Free;
     end;
 end;
 
@@ -1373,24 +1468,25 @@ end;
 procedure TData2.in_save(s: string; saveDir: string);
 begin
  //导入存档文件
-
+   //savedir检查看后面是否有杠
 screen.Cursor:= crhourglass;
-
-   vclunzip1.ZipName:= s;
+     TZipFile.ExtractZipFile(s, saveDir+'\');
+ {  vclunzip1.ZipName:= s;
    vclunzip1.DestDir:= saveDir;
    //VCLUnZip1.RecreateDirs := True;//是否创建子目录
    VCLUnZip1.DoAll := True;
    VCLUnZip1.OverwriteMode := always;
-    VCLUnZip1.UnZip;
+    VCLUnZip1.UnZip;   }
 
   screen.Cursor:= crdefault;
 end;
 
 procedure TData2.save_file_upp(const n: string; st1: Tstringlist);   //保存人物，怪物文件
 var
-    stream1: TMemoryStream;
+    stream1: TStream;
     i: integer;
     ss: string;
+    vclzip1: tvclzip;
 begin
   if not Assigned(st1) then
      exit;
@@ -1407,8 +1503,8 @@ begin
      ss:= copy(ss,1,4);
 
    ss:= ss+ '@'+ inttostr(3);
-
-      vclzip1.Password:= ss + '%N';
+     vclzip1:= tvclzip.Create(nil);
+    vclzip1.Password:= ss + '%N';
 
      stream1:= TMemoryStream.Create;
      vclzip1.ZipName:= n;
@@ -1419,7 +1515,7 @@ begin
        vclzip1.ZipFromStream(stream1,ExtractFileName(n));
 
        stream1.Free;
-         
+        vclzip1.Free;
 
 
 end;
@@ -1517,8 +1613,9 @@ in_code:= false;
       if (s[i]= ':') and (s[i+1]= '>') then
        begin
          i_len:= i- i_start; //代码长
-         setlength(ss,i_len);
-         Move(s[I_start],ss[1],I_len);
+         //setlength(ss,i_len);
+         //Move(s[I_start],ss[1],I_len); move是按字节算，ss是双字节，所以有问题
+         ss:= s.Substring(I_start-1,i_len); //substring 从零开始
           explain_scene_html_base(ss); //处理
           result:= result + ss;   //合并
 

@@ -42,7 +42,7 @@ object Form_msg: TForm_msg
   end
   object Timer1: TTimer
     Enabled = False
-    Interval = 4000
+    Interval = 3000
     OnTimer = Timer1Timer
     Left = 248
     Top = 64

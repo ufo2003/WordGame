@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 194
   Top = 112
   Cursor = crHourGlass
-  Caption = #32972#21333#35789#28216#25103#27494#20384#29256' 2018'
+  Caption = #32972#21333#35789#28216#25103#27494#20384#29256' 2019'
   ClientHeight = 547
   ClientWidth = 982
   Color = clBtnFace
@@ -27,30 +27,9 @@ object Form1: TForm1
     Align = alClient
     Caption = #22330#26223
     TabOrder = 0
-    object WebBrowser1: TWebBrowser
-      Left = 2
-      Top = 15
-      Width = 978
-      Height = 481
-      Align = alClient
-      PopupMenu = PopupMenu3
-      TabOrder = 0
-      OnStatusTextChange = WebBrowser2StatusTextChange
-      OnBeforeNavigate2 = WebBrowser1BeforeNavigate2
-      OnNewWindow2 = WebBrowser1NewWindow2
-      OnNavigateComplete2 = WebBrowser1NavigateComplete2
-      ExplicitWidth = 733
-      ExplicitHeight = 477
-      ControlData = {
-        4C00000014650000B63100000000000000000000000000000000000000000000
-        000000004C000000000000000000000001000000E0D057007335CF11AE690800
-        2B2E126208000000000000004C0000000114020000000000C000000000000046
-        8000000000000000000000000000000000000000000000000000000000000000
-        00000000000000000100000000000000000000000000000000000000}
-    end
     object Edit1: TEdit
-      Left = 568
-      Top = 24
+      Left = 576
+      Top = 27
       Width = 137
       Height = 29
       BorderStyle = bsNone
@@ -61,7 +40,7 @@ object Form1: TForm1
       Font.Style = [fsBold]
       ParentFont = False
       ReadOnly = True
-      TabOrder = 1
+      TabOrder = 0
       Text = #21097#20313#65306'600'#31186
       Visible = False
     end
@@ -103,7 +82,7 @@ object Form1: TForm1
       ParentFont = False
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 5
+      TabOrder = 0
       OnClick = Button1Click
     end
     object Button2: TButton
@@ -115,7 +94,7 @@ object Form1: TForm1
       Caption = #38136#21073#21644#28860#33647
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 0
+      TabOrder = 1
       OnClick = Button2Click
     end
     object Button3: TButton
@@ -133,7 +112,7 @@ object Form1: TForm1
       ParentFont = False
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 1
+      TabOrder = 2
       OnClick = Button3Click
     end
     object Button4: TButton
@@ -145,7 +124,7 @@ object Form1: TForm1
       Caption = #19978#35770#22363#35752#35770
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 2
+      TabOrder = 3
       OnClick = Button4Click
     end
     object Button13: TButton
@@ -157,7 +136,7 @@ object Form1: TForm1
       Caption = #21457#34920#30041#35328#35780#35770
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 3
+      TabOrder = 4
       OnClick = Button13Click
     end
     object ComboBox2: TComboBox
@@ -177,7 +156,7 @@ object Form1: TForm1
       ParentFont = False
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 4
+      TabOrder = 5
       Visible = False
       OnDrawItem = ComboBox2DrawItem
       OnKeyPress = ComboBox2KeyPress
@@ -241,6 +220,7 @@ object Form1: TForm1
       ShowHint = True
       TabOrder = 10
       Visible = False
+      OnClick = CheckBox1Click
     end
     object Button9: TButton
       Left = 268
@@ -256,7 +236,10 @@ object Form1: TForm1
       Top = 8
       Width = 66
       Height = 25
-      Caption = #26391#35835#25991#26412
+      Hint = #24744#21487#20197#28155#21152#26032#30340#20013#33521#25991#23545#29031#38405#35835#26448#26009#20849#20139#32473#22823#23478
+      Caption = #38405#35835#28155#21152
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 12
       OnClick = Button10Click
     end

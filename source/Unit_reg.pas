@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls;
+  Dialogs, StdCtrls,System.Hash;
 
 type
   TForm_reg = class(TForm)
@@ -64,7 +64,7 @@ var
   Form_reg: TForm_reg;
 
 implementation
-     uses unit_net,unit_glb,unit_data,md5;
+     uses unit_net,unit_glb,unit_data;
 {$R *.dfm}
 
 procedure TForm_reg.Button3Click(Sender: TObject);
@@ -94,7 +94,7 @@ var t: cardinal;
     i: integer;
 begin
 result:= false;
-   if Data_net.g_start_udpserver(Game_server_addr_g) then
+   if Data_net.g_start_udpserver2(Game_server_addr_g) then
    begin
     Game_wait_ok1_g:= false;
     game_wait_integer_g:= 0;
@@ -181,7 +181,7 @@ begin
       ss:= '    '+ edit1.Text+'|' + edit2.Text;
       i:= byte_to_integer(g_player_reg_c,false);
       move(i,Pointer(ss)^,4); //写入头信息
-      ss:= ss + '|' + StrMD5(edit3.text) +'|' + combobox1.Text;
+      ss:= ss + '|' + THashMD5.GetHashString(edit3.text) +'|' + combobox1.Text;
       ss:= ss + '|' + edit5.Text +'|' + edit6.Text + '|' +edit7.Text;
       ss:= ss + '|' + edit8.Text +'|' + edit9.Text + '|' +edit10.Text;
       ss:= ss + '|' + edit11.Text +'|' + edit12.Text + '|' +edit13.Text;

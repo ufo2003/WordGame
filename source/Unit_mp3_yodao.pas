@@ -3,8 +3,7 @@ unit Unit_mp3_yodao;
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes,IdBaseComponent, IdComponent, IdTCPConnection, IdTCPClient, IdHTTP, IdIOHandler, IdIOHandlerSocket,
-  IdIOHandlerStack, IdSSL, IdSSLOpenSSL;
+  Windows, Messages, SysUtils, Classes,System.Net.URLClient, System.Net.HttpClient, System.Net.HttpClientComponent;
 
 type
   Tmp3_yodao = class(TThread)
@@ -72,29 +71,24 @@ var
 
   mem: TMemoryStream;
   memstr: TStringStream;
-    idhttp1: Tidhttp;
-     ssl: tIdSSLIOHandlerSocketOpenSSL;
+    NetHTTPClient1: TNetHTTPClient;
      i: integer;
      ss: string;
 begin
    postmessage(fhandle,WM_USER + $7127,1022,0);
-    idhttp1:= tidhttp.Create(nil);
-
+    NetHTTPClient1:= TNetHTTPClient.Create(nil);
+    nethttpclient1.SecureProtocols:= [THTTPSecureProtocol.ssl3];
      if token='' then
       begin
         //先取得授权
        memstr:= TStringStream.Create('');
-       ssl:= tIdSSLIOHandlerSocketOpenSSL.Create(nil);
-       idhttp1.ReadTimeout:= 15000;
-       idhttp1.ConnectTimeout := 15000;
-       idhttp1.IOHandler:= ssl;
-        ssl.SSLOptions.Method:= sslvSSLv3;
+
        try
-      IdHTTP1.get('https://openapi.baidu.com/oauth/2.0/token?grant_type=client_credentials&client_id=zaEIK0oDtjlaiPyq6tyN2ume&client_secret=AMzfP4j6RDLgaGzZ3wq0pSFlNVDu7O7l',memstr);
+      NetHTTPClient1.get('https://openapi.baidu.com/oauth/2.0/token?grant_type=client_credentials&client_id=zaEIK0oDtjlaiPyq6tyN2ume&client_secret=AMzfP4j6RDLgaGzZ3wq0pSFlNVDu7O7l',memstr);
      except
         postmessage(fhandle,WM_USER + $7127,1024,0); //获取授权出错
         memstr.Free;
-        idhttp1.Free;
+        NetHTTPClient1.Free;
        exit;
      end;
 
@@ -119,7 +113,6 @@ begin
         if token_expires=0 then
            postmessage(fhandle,WM_USER + $7127,1024,0); //获取授权出错
       memstr.Free;
-      ssl.Free;
       end;
     postmessage(fhandle,WM_USER + $7127,1023,0);  //保存新的token
    {
@@ -142,7 +135,7 @@ begin
      mem.SaveToFile(file_path+ file_name +'.mp3');
      mem.Free;
                  }
-    idhttp1.Free;
+    NetHTTPClient1.Free;
 
 end;
 
@@ -154,9 +147,9 @@ begin
 Result:='';
 if (Length(S) = 0) then
 exit;
-len:=MultiByteToWideChar(CP_ACP, 0, PChar(s), -1, nil, 0);
+len:=MultiByteToWideChar(CP_ACP, 0, PansiChar(s), -1, nil, 0);
 SetLength(ws, len);
-MultiByteToWideChar(CP_ACP, 0, PChar(s), -1, PWideChar(ws), len);
+MultiByteToWideChar(CP_ACP, 0, PansiChar(s), -1, PWideChar(ws), len);
 Result:=ws;
 end; 
 
@@ -170,7 +163,7 @@ if (Length(WS) = 0) then
 exit;
 len:=WideCharToMultiByte(CP_UTF8, 0, PWideChar(WS), -1, nil, 0, nil, nil);
 SetLength(us, len);
-WideCharToMultiByte(CP_UTF8, 0, PWideChar(WS), -1, PChar(us), len, nil, nil);
+WideCharToMultiByte(CP_UTF8, 0, PWideChar(WS), -1, PansiChar(us), len, nil, nil);
 Result:=us;
 end;
 function URLEncode(const S: string; const InQueryString: Boolean): string;
@@ -199,14 +192,12 @@ var strs: HSTREAM;
     act: DWORD;
     TempStr: utf8string;
     mem: TMemoryStream;
-    idhttp1: Tidhttp;
+    idhttp1: TNetHTTPClient;
     ss: string;
    // const msg_langdu_huancong= WM_USER + $7127;
 begin
-
-    if not BASS_Init(-1, 44100, 0, fhandle, nil) then
-      exit;
-
+  idhttp1:= tNetHTTPClient.Create(nil);
+  idhttp1.SecureProtocols:= [THTTPSecureProtocol.ssl3];
    repeat
      baidu_busy:= true;
      ss:= '';
@@ -246,12 +237,12 @@ begin
      begin
        //下载
        mem:= TMemoryStream.Create;
-       idhttp1:= tidhttp.Create(nil);
+
       idhttp1.Get(TempStr,mem);
      mem.Position:= 0;
      mem.SaveToFile(mp3FileName);
      mem.Free;
-      idhttp1.Free;
+
       strs:= BASS_StreamCreateFile(False, pchar(mp3FileName), 0, 0, 0);
       mp3FileName:= '';
      end else begin
@@ -292,6 +283,7 @@ begin
       Suspend; //线程挂起
     until Terminated;
 
+    idhttp1.Free;
    BASS_Free(); //释放bass 库
 end;
 

@@ -1,9 +1,9 @@
 object Form_net_set: TForm_net_set
   Left = 215
   Top = 112
-  Width = 514
-  Height = 451
   Caption = #30331#24405#26381#21153#22120
+  ClientHeight = 412
+  ClientWidth = 498
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -263,6 +263,7 @@ object Form_net_set: TForm_net_set
       ParentFont = False
       ReadOnly = True
       TabOrder = 7
+      Zoom = 100
       OnMouseDown = RichEdit1MouseDown
     end
   end

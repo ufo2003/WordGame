@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Menus,unit_data, ExtCtrls, ExtDlgs;
+  Dialogs, StdCtrls, Menus,unit_data, ExtCtrls, ExtDlgs, System.Net.URLClient,
+  System.Net.HttpClient, System.Net.HttpClientComponent,System.Hash;
 
 type
   TForm_langdu = class(TForm)
@@ -21,6 +22,13 @@ type
     CheckBox2: TCheckBox;
     MP31: TMenuItem;
     SaveDialog1: TSaveDialog;
+    Label2: TLabel;
+    Button4: TButton;
+    Label3: TLabel;
+    Label4: TLabel;
+    Button5: TButton;
+    NetHTTPClient1: TNetHTTPClient;
+    Label5: TLabel;
     procedure Button3Click(Sender: TObject);
     procedure CheckBox1Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -28,9 +36,13 @@ type
     procedure Memo1DblClick(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure MP31Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Memo1Change(Sender: TObject);
   private
     { Private declarations }
     line_index: integer;
+    duanluo_total: integer;
   public
     { Public declarations }
   end;
@@ -39,8 +51,31 @@ var
   Form_langdu: TForm_langdu;
 
 implementation
-      uses unit1,unit_mp3_yodao,unit_pop;
+      uses unit1,unit_mp3_yodao,unit_pop,speechlib_tlb;
 {$R *.dfm}
+function GetComputerName: string;
+var
+  buffer: array[0..MAX_COMPUTERNAME_LENGTH + 1] of Char;
+  Size: Cardinal;
+begin
+  Size := MAX_COMPUTERNAME_LENGTH + 1;
+  Windows.GetComputerName(@buffer, Size);
+  Result := strpas(buffer);
+end;
+
+function WideToUTF8(const WS: WideString): UTF8String;
+var
+len: integer;
+us: UTF8String;
+begin
+Result:='';
+if (Length(WS) = 0) then
+exit;
+len:=WideCharToMultiByte(CP_UTF8, 0, PWideChar(WS), -1, nil, 0, nil, nil);
+SetLength(us, len);
+WideCharToMultiByte(CP_UTF8, 0, PWideChar(WS), -1, PansiChar(us), len, nil, nil);
+Result:=trim(us);
+end;
 
 procedure TForm_langdu.Button1Click(Sender: TObject);
 begin
@@ -77,9 +112,128 @@ begin
     end;
 end;
 
+procedure TForm_langdu.Button4Click(Sender: TObject);
+var ss,md5_s,pc_name,err,city: string;
+  I,k: Integer;
+  str1: tstringlist;
+  //ss_utf8: utf8string;
+begin
+  //上传到服务器，先检测再上传
+
+  if length(memo1.Text)>50000 then
+   begin
+     showmessage('字数过多，不能大于50K。');
+     exit;
+   end;
+   err:= '';
+   ss:= '<p>';
+   k:= 0;
+   for I := 0 to memo1.Lines.Count-1 do
+    begin
+     if (trim(memo1.Lines.Strings[i])='') or (i=memo1.Lines.Count-1) then
+       begin
+         //统计单次上传的长度
+         if length(ss)>512 then
+          begin
+           Memo1.SelStart:=SendMessage(Memo1.Handle, EM_LINEINDEX, i, 0);
+           Memo1.SelLength := Length(Memo1.Lines[i]);
+           showmessage('第'+ inttostr(i)+'行所在的段落字数过多，段落之间需用空行隔开，迷宫每次显示一个段落，每个段落字数不能超过512个字符。');
+            exit;
+          end;
+         ss:= '<p>';
+       end else ss:= ss+ memo1.Lines.Strings[i] +'<br>';
+    end;
+
+    Button4.Enabled:= false;
+    screen.Cursor:= crhourglass;
+    city:= '';
+   ss:= '<p>';
+   str1:= tstringlist.Create;
+   for I := 0 to memo1.Lines.Count-1 do
+    begin
+     if (trim(memo1.Lines.Strings[i])='') or (i=memo1.Lines.Count-1) then
+       begin
+         //上传
+         if (i=memo1.Lines.Count-1) and (trim(memo1.Lines.Strings[i])<>'') then
+           ss:= ss+ memo1.Lines.Strings[i] +'<br>';
+
+        if length(ss)>30 then
+         begin
+           if duanluo_total>0 then
+             begin
+            label4.Caption:= '上传中'+k.ToString+ '/'+ duanluo_total.ToString+ ' 完成'+ formatfloat('0.0',k / duanluo_total * 100)+'%';
+            label4.update;
+             application.ProcessMessages;
+             end;
+
+           ss:= WideToUTF8(ss);
+           pc_name:= WideToUTF8(GetComputerName);
+           //ss_utf8:= pc_name + ss+ 'pxuv0583erql';
+           //md5_s:= THashMD5.GetHashString(ss_utf8);
+             md5_s:= THashMD5.GetHashString(pc_name + ss+ 'pxuv0583erql');
+           str1.Clear;
+           str1.Add('nm='+ pc_name);
+           str1.Add('text='+ss);
+           str1.Add('md5='+ md5_s);
+           str1.Add('city='+ WideToUTF8(city));
+           ss:= nethttpclient1.post('http://download.abcd666.cn/readtext/set_text.php',str1).ContentAsString(tencoding.UTF8);
+
+           if pos('ok:',ss)>0 then
+            begin
+            inc(k);
+            if city='' then
+               city:= ss.Substring(3,32);
+            end else err:= err+' '+ss;
+
+
+         end;
+         ss:= '<p>';
+       end else ss:= ss+ memo1.Lines.Strings[i] +'<br>';
+    end;
+    str1.Free;
+    Button4.Enabled:= true;
+    screen.Cursor:= crdefault;
+     label4.Caption:= '上传完成。';
+     label4.update;
+     application.ProcessMessages;
+
+    if err='' then
+     showmessage('成功提交了'+k.ToString+'段阅读材料，感谢您的分享，阅读材料将在后台审核后可用。')
+     else
+      showmessage('已提交'+k.ToString+'段阅读材料，并有错误信息：'+err);
+
+      label4.Caption:= '';
+end;
+
+procedure TForm_langdu.Button5Click(Sender: TObject);
+var str1: Tstringlist;
+begin
+   str1:= tstringlist.Create;
+    str1.Add('nm='+WideToUTF8(GetComputerName));
+     showmessage(nethttpclient1.post('http://download.abcd666.cn/readtext/get_count.php',str1).ContentAsString(tencoding.UTF8));
+   str1.Free;
+end;
+
 procedure TForm_langdu.CheckBox1Click(Sender: TObject);
 begin
  game_bg_music_rc_g.yodao_sound:= checkbox1.Checked;
+end;
+
+procedure TForm_langdu.Memo1Change(Sender: TObject);
+var
+  I: Integer;
+begin
+duanluo_total:= 0;
+ for I := 0 to memo1.Lines.Count-1 do
+    begin
+     if (trim(memo1.Lines.Strings[i])='') or (i=memo1.Lines.Count-1) then
+       inc(duanluo_total);
+    end;
+
+ label5.Caption:='迷宫内每次显示一段文字，字数不能少于30个，段与段之间用空行隔开，当前段落数：'+ duanluo_total.tostring+ ' 总字数：'+ length(memo1.Text).tostring;
+  if length(memo1.Text)>50000 then
+    label4.Caption:='字数过多不能大于50K';
+
 end;
 
 procedure TForm_langdu.Memo1DblClick(Sender: TObject);
@@ -177,7 +331,8 @@ begin
                   timer1.Enabled:= false;
                   exit;
                 end;
-              if form_pop.SpVoice1.Status.RunningState= 1 then //SRSEDone then
+
+              if form_pop.SpVoice1.Status.RunningState = 1 then //SRSEDone then
                 begin
                   ss:= trim(memo1.Lines.Strings[line_index]);
                   if checkbox2.Checked then

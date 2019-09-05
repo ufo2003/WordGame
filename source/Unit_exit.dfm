@@ -1,9 +1,9 @@
 object Form_exit: TForm_exit
   Left = 261
   Top = 240
-  Width = 504
-  Height = 168
   Caption = #36864#20986
+  ClientHeight = 129
+  ClientWidth = 488
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,6 +12,7 @@ object Form_exit: TForm_exit
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Button1: TButton

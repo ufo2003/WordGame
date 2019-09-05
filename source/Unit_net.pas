@@ -64,7 +64,7 @@ type
   procedure  InitializateClientServer(const ip: string);
   procedure  UnInitializateClientServer;
   procedure IntIdle;
-  function g_start_udpserver(const ip: string): boolean;  //启动服务
+  function g_start_udpserver2(const ip: string): boolean;  //启动服务
   procedure send_scene_integer(id,v: integer); //发送事件数值
   procedure send_scene_bool(id,v: integer); //发送事件bool
   procedure send_page_and_home_id(i,h,old: integer; ldui: boolean); //发送当前页面和home页面到服务器。是否领队
@@ -131,7 +131,7 @@ var
   net_guai_g: array[0..4] of Tnet_guai;  //5个来自网络的怪信息
   loc_guai_g: array[0..4] of T_loc_guai;  //本地怪的辅助信息
 implementation
-    uses FastStrings,unit_player,unit_data,unit1,unit_net_set,zlib,unit_note,Unit_chat,Dialogs,
+    uses unit_player,unit_data,unit1,unit_net_set,zlib,unit_note,Unit_chat,Dialogs,
   Unit_pop;
 {$R *.dfm}
 procedure send_pak_tt(const h: byte; Acmd,Adata1,Adata2: integer; As_id: word; r: TPacketReliability= RELIABLE);   //发包函数
@@ -1112,7 +1112,7 @@ begin   //收到数据
                            end;
        g_player_rq_c: begin
                      //收到服务器端返回的玩家数据
-                     DecompressBuf(p,c,0,p2,c2);
+                     ZDecompress(p,c,p2,c2);
                      if c2 > 20 then
                       begin
                       game_wait_integer_g:= game_add_player_from_net(p2,c2);
@@ -1122,7 +1122,7 @@ begin   //收到数据
                    end;
        g_wupin_rq_c: begin
                      //收到服务器端返回的玩家物品数据，游戏登录时
-                       DecompressBuf(p,c,0,p2,c2);
+                       ZDecompress(p,c,p2,c2);
                      if c2 > 20 then
                       begin
                       game_wait_integer_g:= game_add_goods_from_net(p2,c2);
@@ -1148,14 +1148,14 @@ begin   //收到数据
                    end;
        g_rep_online_page_data_c: begin
                     //收到了服务器发来的当前页面在线人物详细数据
-                    DecompressBuf(p,c,0,p2,c2);
+                    ZDecompress(p,c,p2,c2);
                     Data_net.game_page_online_data(p2,c2);
                     freemem(p2,c2);
                    end;
 
        g_rep_dwjh_c: begin
                        //收到dwjh数据 53
-                      DecompressBuf(p,c,0,p2,c2);
+                      ZDecompress(p,c,p2,c2);
                     Data_net.game_dwjh_data(p2,c2);
                     freemem(p2,c2);
                      end;
@@ -1369,7 +1369,7 @@ begin
  Data_net.MasterClient.Client.SendBuffer(pchar(s),length(s),MEDIUM_PRIORITY,RELIABLE,0);
 end;
 
-function TData_net.g_start_udpserver(const ip: string): boolean;  //开始监听
+function TData_net.g_start_udpserver2(const ip: string): boolean;  //开始监听
 begin
   if not MSConnected then
    begin
@@ -1484,6 +1484,7 @@ end;
 procedure TData_net.DataModuleCreate(Sender: TObject);
 var i: integer;
 begin
+{
    self.LibLoaded := InitRaknetC;
    my_s_id_G:= g_nil_user_c;
    setlength(user_info_time,200); //开辟200个id
@@ -1491,6 +1492,7 @@ begin
       user_info_time[i].s_id:= g_nil_user_c; //初始化s id
 
    setlength(dwjh_g,10); //初始化10个小队，江湖数组
+   }
 end;
 
 procedure TData_net.send_scene_integer(id, v: integer);  //发送场景integer值

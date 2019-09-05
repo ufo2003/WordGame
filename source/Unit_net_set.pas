@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, CheckLst,unit_net,unit_glb, ComCtrls,ShellApi,
+  Dialogs, StdCtrls, CheckLst,unit_net,unit_glb, ComCtrls,ShellApi,System.Hash,
   ExtCtrls;
 const
     msg_show_note=$0400 + 32672;
@@ -53,7 +53,7 @@ type
 var
   Form_net_set: TForm_net_set;
 implementation
-     uses unit1,unit_reg,unit_data,richedit,md5,Unit_player,unit_show;
+     uses unit1,unit_reg,unit_data,richedit,Unit_player,unit_show;
 {$R *.dfm}
 
 { TForm_net_set }
@@ -151,14 +151,14 @@ begin
     label9.Caption:= '正在连接服务器……';
     label9.Update;
 
-   if Data_net.g_start_udpserver(Game_server_addr_g) then
+   if Data_net.g_start_udpserver2(Game_server_addr_g) then
    begin
    Game_at_net_G:= true; //设置网络标志
     Game_wait_ok1_g:= false;
     game_wait_integer_g:= 0;
      t:= GetTickCount;
      //发送查询数据，然后等待查询结果
-      ss:= '    '+ edit2.Text+ '|' + StrMD5(edit3.Text) + '|' + banben_const;
+      ss:= '    '+ edit2.Text+ '|' + THashMD5.GetHashString(edit3.Text) + '|' + banben_const;
       i:= byte_to_integer(g_player_login_c,false);   //登录数据头信息
       move(i,Pointer(ss)^,4);
       screen.Cursor:= crhourglass;
@@ -379,7 +379,7 @@ screen.Cursor:= crhourglass;
    button3.Enabled:= false;
    button1.Enabled:= false;
 update;
-   if Data_net.g_start_udpserver(Game_server_addr_g) then
+   if Data_net.g_start_udpserver2(Game_server_addr_g) then
    begin
      //发送查询数据，然后等待查询结果
       timer1.Enabled:= false;

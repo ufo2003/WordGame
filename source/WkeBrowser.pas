@@ -80,6 +80,7 @@ type
     FOnConsoleMessage: TConsoleMessageEvent;
     FOnDownload: TDownloadEvent;
     FOnPaste: TNotifyEvent;
+    //FOnBeforeBrowse: TNotifyEvent; //添加自定义协议用
     FAfterCreateView: TNotifyEvent;
     
     procedure SetUserAgent(const Value: string);
@@ -383,9 +384,10 @@ end;
 
 procedure TWkeWebbrowser.DestroyWindowHandle;
 begin
+  inherited;
   if Assigned(FWebView) then
     FWebView.DestroyWebWindow;
-  inherited;
+
 end;
 
 procedure TWkeWebbrowser.DestroyWnd;

@@ -16,6 +16,7 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -28,10 +29,16 @@ var
 implementation
 
 {$R *.dfm}
-
+   uses unit1;
 procedure TForm_exit.Button4Click(Sender: TObject);
 begin
  self.ModalResult:= mrcancel;
+end;
+
+procedure TForm_exit.FormShow(Sender: TObject);
+begin
+  self.Width:= round(504 * dpi_bilv);
+  self.Height:= round(168 * dpi_bilv);
 end;
 
 procedure TForm_exit.Button1Click(Sender: TObject);

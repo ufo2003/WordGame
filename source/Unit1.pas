@@ -5,8 +5,9 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls,shellapi, ExtCtrls, ActnList, Menus,mmsystem, ImgList,
-  ComCtrls, OleCtrls, SHDocVw,mshtml,Activex,Unit_data, AppEvnts,Unit_player
-  {右键菜单,IEDocHostUIHandler,IEConst},DynamicNS_D3,inifiles, Buttons,Registry;
+  ComCtrls, OleCtrls, Activex,Unit_data, AppEvnts,Unit_player
+  {右键菜单,IEDocHostUIHandler,IEConst},inifiles, Buttons,Registry,Langji.Wke.Webbrowser,
+  Langji.Miniblink.types, Langji.Miniblink.libs,Langji.Wke.types,jpeg;
 
 const
   html_C=   WM_USER + $5101;
@@ -27,6 +28,7 @@ type
   //ie 加载时出现错误的处理类*****************************************************
       // Event types exposed from the Internet Explorer interface
   // Event component for Internet Explorer
+       {
   TIEEvents = class(TComponent, IUnknown, IDispatch)
   private
      // Private declarations
@@ -67,7 +69,7 @@ type
     property WebObj: IWebBrowser2 read FSource;
     property Connected: Boolean read FConnected;
   end;
-
+          }
   //类结束************************************************************************
 
   TForm1 = class(TForm)
@@ -76,7 +78,6 @@ type
     Button4: TButton;
     Button13: TButton;
     GroupBox5: TGroupBox;
-    WebBrowser1: TWebBrowser;
     GroupBox6: TGroupBox;
     ComboBox2: TComboBox;
     ApplicationEvents1: TApplicationEvents;
@@ -118,9 +119,7 @@ type
     procedure Button4Click(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure WebBrowser1BeforeNavigate2(Sender: TObject;
-      const pDisp: IDispatch; var URL, Flags, TargetFrameName, PostData,
-      Headers: OleVariant; var Cancel: WordBool);
+    procedure WebBrowser1BeforeNavigate2(Sender: TObject; sUrl: string; navigationType: wkeNavigationType; var Cancel: boolean);
     procedure Button1Click(Sender: TObject);
     procedure ComboBox2KeyPress(Sender: TObject; var Key: Char);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -133,8 +132,6 @@ type
     procedure N19Click(Sender: TObject);
     procedure ComboBox2Select(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure WebBrowser1NavigateComplete2(Sender: TObject;
-      const pDisp: IDispatch; var URL: OleVariant);
     procedure Button2Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
@@ -163,6 +160,7 @@ type
     procedure Button9Click(Sender: TObject);
     procedure Button10Click(Sender: TObject);
     procedure Timer_duihuaTimer(Sender: TObject);
+    procedure CheckBox1Click(Sender: TObject);
   private
     { Private declarations }
     //FDocHostUIHandler: TDocHostUIHandler;  //屏蔽右键菜单
@@ -176,6 +174,7 @@ type
     ad_mtl_time: dword; //命体灵 广告间隔定时器
     is_down_readlist: boolean;
     game_url: string;
+
     procedure TrayShow(Sender: TObject); //显示托盘图标
     procedure WMMyTrayIconCallBack(var Msg : TMessage); message WM_MYTRAYICONCALLBACK;
     procedure Game_action_exe_S(s: string);  //执行函数，不能带if then
@@ -186,12 +185,12 @@ type
     procedure initialize_role(n: string; new: integer);
     //function game_extfile_rename(oldname,newname: string): boolean; //修改人物对照文件
     procedure button_stat(b: boolean);
-    function WBLoadFromStream(const   AStream:   TStream;   WB:   TWebBrowser):   HRESULT;
+    //function WBLoadFromStream(const   AStream:   TStream;   WB:   TWebBrowser):   HRESULT;
     procedure game_script_message(var msg: TMessage); message game_const_script_after;
     procedure game_reset_role_chatid; //人物聊天id清零
     procedure OnContent(const url:String; var Stream:TStream);  //自定义协议传输的内容
     procedure OnAccept(const URL:String;var Accept:Boolean); //接受自定义协议
-    procedure game_pic_from_text(var Stream:TStream; s: string); //根据字符串返回图片数据
+
     procedure game_load_image_to_imglist;
     procedure game_page_id_change(new_id: integer); //场景变化
     function wait_scene_int_bool(b: boolean;id: integer): integer; //等待场景事件
@@ -209,10 +208,13 @@ type
     procedure msg_stop_c(var msg: TMessage); message stop_c;
 
     procedure html_pop(i: integer); //html模式的背单词
+    procedure change_html_by_id(const id,html: string); //根据id更新html
+    procedure visible_html_by_id(const id: string; canshow: boolean); //根据id决定显示还是隐藏
+    procedure loadurlbegin(Sender: TObject; sUrl: string;  out bHook,bHandled:boolean);
   public
     { Public declarations }
     pscene_id,old_pscene_id: integer; //当前显示的场景id,前一个场景id
-
+    web1: TWkeWebbrowser;
     procedure game_start(flag: integer); //游戏开始
     procedure game_save2;
     procedure Game_action_exe(const id: string); //执行动作，如果参数不是D字母开头，那么直接执行参数
@@ -247,6 +249,7 @@ type
      procedure load_sch_pic; //刷新下载的图片
      procedure update_caption(i: integer); //更新背单词数量到标题
      function game_create_guid: string;   //创建一个guid
+     procedure game_pic_from_text(Stream:TStream; s: string; path: string=''); //根据字符串返回图片数据
   published
     
     function game_show_scene(id: integer): integer; //显示场景
@@ -433,6 +436,7 @@ type
     function game_save_count(i: integer): integer; //取得存档数量
     function game_chinese_spk(const s: string): integer; //朗读中文
     function game_chat_spk_add(const s: string): integer; //添加一句话到等待发音的列表里。并启动发音
+    function game_showshare_readtext(i: integer): integer; //显示一个上传资源的窗口
   end;
 
 
@@ -441,6 +445,9 @@ type
  function game_get_role_H: integer; //返回队员数组上限
  function game_add_player_from_net(p: pointer; c: integer): integer; //添加游戏人物数据（主角）
  procedure game_lib_change; //词库改变了
+ procedure img_zoom(oldbmp,newbmp: tbitmap; new_w,new_h: integer); //放大缩小图片
+ function getBilv(i: integer): integer; //把一个数值乘以dpi_bilv
+ function HexToStr(s:ansistring):string; //16进制转字串
 var
   Form1: TForm1;
   Game_friend_list: Tstringlist; //伙伴列表
@@ -452,21 +459,57 @@ var
     Game_duihua_list: Tstringlist; //对话朗读列表
     game_effect_ini: Tinifile;
     game_hide_windows_h: boolean;
-    IEEvents1: TIEEvents;
+    dpi_bilv: single;
+    In_xp_system: boolean;
+    //IEEvents1: TIEEvents;
     MyTrayIcon : TNotifyIconData;   //定义一个托盘图标的类
+    show_share_text: string; //预读取的显示阅读的材料
 
 implementation
-  uses unit_save,FastStrings,unit_trade,unit_pop,FastStringFuncs,
+  uses unit_save,unit_trade,unit_pop,
   Unit_goods,unit_task,AAFont,GDIPAPI,GDIPOBJ,unit_zj_ly, Unit_set,unit2,
   unit_net,unit_chat,Unit_net_set,unit_download,unit_note,unit_glb,
-  unit_dwjh,unit_downhttp,unit_down_tips,unit_chinese,unit_exit,unit_langdu,unit_mp3_yodao;
+  unit_dwjh,unit_downhttp,unit_chinese,unit_exit,unit_langdu,unit_mp3_yodao,unit_httpserver,unit_down_tips;
 {$R *.dfm}
 
    const 
  csfsBold      = '|Bold';     
  csfsItalic    = '|Italic';   
- csfsUnderline = '|Underline'; 
+ csfsUnderline = '|Underline';
  csfsStrikeout = '|Strikeout';
+function getBilv(i: integer): integer; //把一个数值乘以dpi_bilv
+begin
+  result:= round(i * dpi_bilv);
+end;
+procedure img_zoom(oldbmp,newbmp: tbitmap; new_w,new_h: integer); //放大缩小图片
+var
+  gdibmp: TGPBitmap;
+  //hb: HBITMAP;
+  //ss: string;
+  Graphic: TGPGraphics;
+  I: Integer;
+
+begin
+  // 图片放大缩小
+  if oldbmp.Width=0 then
+   exit;
+
+  gdibmp := TGPBitmap.Create(oldbmp.Handle, oldbmp.Palette);
+
+  with newbmp do
+    begin
+      Width :=new_w;
+      Height := new_h;
+      PixelFormat := pf24bit;
+    end;
+
+     Graphic := TGPGraphics.Create(newbmp.Canvas.Handle);
+  Graphic.SetInterpolationMode(InterpolationModeHighQualityBicubic);  // bicubic resample
+  Graphic.DrawImage(gdibmp, 0, 0, newbmp.Width, newbmp.Height);
+
+  Graphic.Free;
+   gdibmp.Free;
+end;
 procedure game_lib_change; //词库改变了
 var s: string;
  hFile : THandle; 
@@ -709,20 +752,69 @@ Reg.Free;
 end;
 end;
 
+function getDPI(var h1:integer; var h2: integer): integer;
+var
+  DC: HDC;
+begin
+  DC := GetDC(0);
+  Result := GetDeviceCaps(DC, logpixelsx); //获取逻辑dpi，如果由系统负责缩放那么获取的值固定为96
+  h1:=  GetDeviceCaps(DC, DESKTOPHORZRES); //当程序属性，兼容，更改高dpi设置，高dpi缩放替代，选择 应用程序，那么 h1，h2相同
+  h2:=  GetDeviceCaps(DC, HORZRES);   //当程序属性，兼容，更改高dpi设置，高dpi缩放替代，选择 系统，那么 h2比 h1 小
+  ReleaseDC(0, DC);
+end;
+
 procedure TForm1.FormCreate(Sender: TObject);
 var ss: string;
-
+    k,h1,h2: integer;
 begin
+  if sametext(TOSVersion.Name,'Windows XP') then
+   begin
+    self.Caption:= self.Caption+' '+ TOSVersion.Name;
+    In_xp_system:= true;
+
+   end;
 
  Randomize; //初始化随机数
  // show_inst_game;
+    k:= getDPI(h1,h2);
+    if h1=h2 then
+    begin
+     //缩放由应用程序执行
+        if k=96 then
+         dpi_bilv:= 1
+        else
+          dpi_bilv:= k / 96;
+     end   else  begin
+                  //缩放由系统执行 系统或者系统增强dpi总是为96
+                  //showmessage(k.ToString); 系统有点模糊 系统增强清晰
+                  if k=96 then
+                    dpi_bilv:= 1
+                    else
+                      dpi_bilv:= h1 / h2;
+                  showmessage('当前高DPI设置导致显示效果不佳，建议在程序图标点击鼠标右键“属性”，再点开“兼容性”标签页，然后'+#13#10
+                  +'（win10 点击“更改高DPI设置”，然后取消勾选“替代高dpi缩放行为”或者缩放执行选择为“应用程序”）'+#13#10+
+                  '（win7 请勾选“禁用高 DPI 显示缩放”）');
+                 end;
 
+     web1:= TWkeWebbrowser.Create(form1);
 
- webbrowser1.Navigate('about:blank');
+  web1.Parent:= groupbox5;
+  web1.Align:=  alclient;
+  web1.OnBeforeLoad := WebBrowser1BeforeNavigate2;
+   web1.OnLoadUrlBegin:= loadurlbegin;
+  web1.LoadHTML('<html><body><p>游戏载入中，请稍后……</body></html>');
+
+ //
  game_app_path_G:= ExtractFilePath(application.ExeName);
   ss:= game_app_path_G;
 
  game_doc_path_g:= GetMyDocPath+ '\玩游戏背单词';
+  if not DirectoryExists(game_doc_path_g) then
+     CreateDir(game_doc_path_g);
+  if not DirectoryExists(game_doc_path_g+'\img') then
+     CreateDir(game_doc_path_g+'\img');
+  if not DirectoryExists(game_doc_path_g+'\scene') then
+     CreateDir(game_doc_path_g+'\scene');
 
   if not DirectoryExists(game_doc_path_g) then
    begin
@@ -737,7 +829,7 @@ begin
 
 
 
- Game_app_img_path_G:= game_doc_path_g + 'down_img\'; //保存游戏图片路径
+ Game_app_img_path_G:= game_doc_path_g + 'img\'; //保存游戏图片路径
 
 
  Game_action_list:= Tstringlist.Create;
@@ -753,18 +845,14 @@ begin
  //FDocHostUIHandler := TDocHostUIHandler.Create;
 
      Game_touxian_list_G:= Tstringlist.Create;
-
+               {
  DynamicProtocol.ProtocolName := 'gpic'; //game picture 协议
   DynamicProtocol.Enabled := True;
   DynamicProtocol.OnGetContent := OnContent;
   DynamicProtocol.OnAccept := OnAccept;
-
+                           }
  game_effect_ini:= Tinifile.Create(ss +'dat\effect.ini');
 
-  if FileExists(ss +'dat\read.txt') then
-     Game_read_stringlist.LoadFromFile(ss +'dat\read.txt')
-     else
-       Game_read_stringlist.Add('阅读材料不存在。http://www.finer2.com/wordgame/');
 
     hot_wordgame_h:= GlobalAddAtom('wordgame_H');
 
@@ -774,9 +862,13 @@ begin
 
     end;
 
-   IEEvents1:= TIEEvents.create(application);
+  // IEEvents1:= TIEEvents.create(application);
+    // IdHTTPServer1.Active:= True;
 
-   
+ {  httpserver1:= Thttpserver.Create();
+   httpserver1.FreeOnTerminate:= True;
+      httpserver1.Resume;   }
+
   {$IFDEF game_downbank}
    caption:= caption + ' -- www.downbank.cn 下载银行专版';
    button13.Caption:= '访问下载银行';
@@ -788,7 +880,7 @@ end;
 procedure TForm1.Button4Click(Sender: TObject);
 begin
 ShellExecute(Handle,
-              'open','IEXPLORE.EXE','http://www.finer2.com/wordgame/bbs.htm',nil,sw_shownormal);
+              'open','http://www.finer2.com/wordgame/bbs.htm',nil,nil,sw_shownormal);
 
 {ShellExecute(Handle,
   'open','rundll32.exe',
@@ -799,6 +891,8 @@ end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
 begin
+// httpserver1.Terminate; //结束服务线程
+
  Game_read_stringlist.Free;
  Game_action_list.Free;
  Game_Chat_list.Free;
@@ -811,9 +905,9 @@ begin
  Game_touxian_list_G.Free;
  Game_pscene_img_list.Free;
  Game_duihua_list.Free;
- 
+  web1.Free;
 end;
-
+  {
 function get_ad_IWeb2: IWebBrowser2;
 var pDoc:  IHTMLDocument3;
     tt: IHTMLElement;
@@ -827,9 +921,9 @@ begin
         result:= tt as IWebBrowser2;
      end;
 end;
-
+   }
 procedure TForm1.FormShow(Sender: TObject);
-var pDoc:  IHTMLDocument2;
+var
     vv: Variant;
   //  Content: string;
 begin
@@ -841,10 +935,13 @@ begin
   pdoc.writeln(PSafeArray(TVarData(vv).VArray));}
      vv := VarArrayCreate([0, 0], varVariant);
      vv[0] :='玩游戏背单词 2007-2012傅铖荣版权所有';
-   pdoc:= WebBrowser1.Document as IHTMLDocument2;
-    pdoc.writeln(PSafeArray(TVarData(vv).VArray));
+  // pdoc:= WebBrowser1.Document as IHTMLDocument2;
+  //  pdoc.writeln(PSafeArray(TVarData(vv).VArray));
 
   self.WindowState:= wsMaximized;
+  web1.ZoomPercent:=  round(dpi_bilv * 100);
+
+ // web1.ScaleForPPI(96);
    if (ParamCount > 0) then
    begin
 
@@ -876,11 +973,11 @@ end;
 function TForm1.game_show_scene(id: integer): integer;
 var str1: Tstringlist;
    // pDoc:  IHTMLDocument2;
-    AStream:   TMemoryStream;
+  //  AStream:   TMemoryStream;
 begin
  if DebugHook=1 then
   self.Caption:= '玩游戏背单词-'+ inttostr(id);
-
+screen.Cursor:= crhourglass;
   str1:= Tstringlist.Create;
   Game_action_list.Clear; //清除动作
   Game_chat_list.Clear;
@@ -891,15 +988,19 @@ begin
 
       game_tianqi_G:= 0;  //设置战斗，背单词天气效果为自动
     data2.load_scene(inttostr(id),str1); //拆分出场景html
+
+     //str1.SaveToFile('e:\a.txt');
+    web1.LoadHTML(str1.Text);
+screen.Cursor:= crdefault;
       //从内存流载入html到webbrowser
-      AStream   :=   TMemoryStream.Create;
+   {   AStream   :=   TMemoryStream.Create;
       try
           str1.SaveToStream(AStream);
           WBLoadFromStream(AStream   ,   WebBrowser1);
       finally
           AStream.Free;
       end;
-
+          }
    // pdoc:= WebBrowser1.Document as IHTMLDocument2;
        //直接插入html代码，但此方法不支持全部的html，如head段会被忽略
   //  pdoc.body.innerHTML:= str1.Text;
@@ -914,11 +1015,19 @@ result:= 1;
 
 end;
 
-procedure TForm1.WebBrowser1BeforeNavigate2(Sender: TObject;
-  const pDisp: IDispatch; var URL, Flags, TargetFrameName, PostData,
-  Headers: OleVariant; var Cancel: WordBool);
+procedure TForm1.WebBrowser1BeforeNavigate2(Sender: TObject; sUrl: string; navigationType: wkeNavigationType; var Cancel: boolean);
+var k: integer;
 begin
- Game_script_scene_G:= url;
+ Game_script_scene_G:= sUrl;
+  if pos('file:',Game_script_scene_G)>0 then
+   begin
+    k:= pos('/',Game_script_scene_G);
+     while k>0 do
+       begin
+       delete(Game_script_scene_G,1,k);
+        k:= pos('/',Game_script_scene_G);
+       end;
+   end;
  if Game_script_scene_G<> 'about:blank' then
   begin
    if pos('about:blank',Game_script_scene_G)= 1 then
@@ -930,24 +1039,24 @@ begin
 
          if Game_script_scene_G[1]= 'g' then
              begin
-              cancel:= true;
+              Cancel:= true;
               postmessage(Handle,game_const_script_after,32,0);
               //Game_action_exe(Game_script_scene_G);
              end else if Game_script_scene_G[1]= 'i' then
                        begin
-                        cancel:= true;
+                        Cancel:= true;
                         postmessage(Handle,game_const_script_after,33,0);
                         //Game_action_exe_S_adv(Game_script_scene_G);
                        end else
                        if Game_script_scene_G[1]= 'D' then
                        begin
-                        cancel:= true;
+                        Cancel:= true;
                         postmessage(Handle,game_const_script_after,31,0);
                         //Game_action_exe_S_adv(Game_script_scene_G);
                        end else
                     if length(Game_script_scene_G)=5 then
                       begin
-                        cancel:= true;
+                        Cancel:= true;
                         postmessage(Handle,game_const_script_after,34,0);
                         //game_show_scene(strtoint(Game_script_scene_G));
                       end;
@@ -1148,7 +1257,7 @@ k:= 0;
      delete(ss2,length(ss2),1);
 
   if fastcharpos(ss2,'^',1)> 0 then
-        ss2:= FastAnsiReplace(ss2, '^', '''', [rfReplaceAll]);  //处理转义符
+        ss2:= stringReplace(ss2, '^', '''', [rfReplaceAll]);  //处理转义符
 
   b:= false;
   j:= 1;
@@ -1345,32 +1454,23 @@ end;
 
   {在聊天窗口内添加一句话，实现部分}
 procedure TForm1.Game_add_line_to_web2(const s: string);
-var pDoc:  IHTMLDocument3;
-    tt: IHTMLElement;
+var ss: string;
 begin
-
-  pdoc:= WebBrowser1.Document as IHTMLDocument3;
-    if pdoc<> nil then
-     begin
-      tt:= pdoc.getElementById('layer_chat1');
-      while tt= nil do
-        begin
-         sleep(10);
-         application.ProcessMessages;
-         tt:= pdoc.getElementById('layer_chat1');
-        end;
-     tt.style.display:= 'block';
+      visible_html_by_id('layer_chat1',true);
+      //web1.WebView.RunJS('document.getElementById("layer_chat1").display="inline";');
 
 
      {if pdoc.getElementById('cell_chat1').innerText = '' then
        game_chat_cache_g:= s
      else }
-     game_chat_cache_g:= pdoc.getElementById('cell_chat1').innerHTML + '<br>' +s;
+      ss:= 'document.getElementById("cell_chat1").innerHTML=document.getElementById("cell_chat1").innerHTML+"<br>'+
+        StringReplace(s,'"','\"',[rfReplaceAll]) +'";';
+     // ss:= 'document.getElementById("cell_chat1").innerHTML="pppp";';
 
-     pdoc.getElementById('cell_chat1').innerHTML:= game_chat_cache_g;
+     web1.ExecuteJavascript(ss);
 
 
-    end;
+
  {  if pdoc<> nil then
     begin
 
@@ -1484,7 +1584,7 @@ function TForm1.game_talk(const n: string): integer;
             i2:= fastcharpos(s2,']',2)+1;
             if i2= 1 then
               i2:= fastcharpos(s2,'=',2)+1;
-            result:= strtoint2(CopyStr(s2,i2,fastcharpos(s2,',',i2)-i2));
+            result:= strtoint2(Copy(s2,i2,fastcharpos(s2,',',i2)-i2));
           end;
 
 var i,j,player_i: integer;
@@ -1658,7 +1758,7 @@ b:= false;
   data2.clean_if_then(ss); //对人物谈话内的if then进行判断过滤
      k:= get_id;
    i:= fastcharpos(ss,',',2) +1;
-  ss3:= CopyStr(ss,i,fastcharpos(ss,'=',2)-i);
+  ss3:= Copy(ss,i,fastcharpos(ss,'=',2)-i);
   if ss3= '' then
     ss3:= 'I'
     else ss3:= 'I,'+ ss3;
@@ -1714,7 +1814,7 @@ b:= false;
           break;
 
          j:= fastcharpos(ss,',',2) +1;  //获取参数 ss4
-         ss4:= CopyStr(ss,j,fastcharpos(ss,'=',2)-j);
+         ss4:= Copy(ss,j,fastcharpos(ss,'=',2)-j);
          if ss4= '' then
             ss4:= '0';
 
@@ -1726,7 +1826,7 @@ b:= false;
            j:= fastcharpos(ss,'[',1) +1;  //获取动作
            if j> 1 then
             begin
-         ss5:= CopyStr(ss,j,fastcharpos(ss,']',j)-j);
+         ss5:= Copy(ss,j,fastcharpos(ss,']',j)-j);
          if ss5='' then
           Continue;
 
@@ -1846,20 +1946,10 @@ result:= id;
 end;
 
 procedure TForm1.Game_scr_clean2;     //私聊窗口清屏
-var pDoc:  IHTMLDocument3;
-    tt: IHTMLElement;
-begin
-  pdoc:= WebBrowser1.Document as IHTMLDocument3;
-   if pdoc<> nil then
-    begin
-      tt:= pdoc.getElementById('cell_chat1');
-      if tt<> nil then
-        tt.innerHTML:= '&nbsp;';
 
-      tt:= pdoc.getElementById('layer_chat1');
-      if tt<> nil then
-         tt.style.display:= 'none';
-    end;
+begin
+   change_html_by_id('cell_chat1','');
+   visible_html_by_id('layer_chat1',false);
 
    game_chat_cache_g:= ''; //清空聊天缓存
 end;
@@ -2921,17 +3011,9 @@ begin
 end;
 
 procedure TForm1.Game_scr_clean3;   //清屏并打几个点
-var pDoc:  IHTMLDocument3;
-    tt: IHTMLElement;
-begin
 
-  pdoc:= WebBrowser1.Document as IHTMLDocument3;
-   if pdoc<> nil then
-    begin
-      tt:= pdoc.getElementById('cell_chat1');
-      if tt<> nil then
-        tt.innerHTML:= '……';
-    end;
+begin
+      change_html_by_id('cell_chat1','……');
 
   game_chat_cache_g:= ''; //清空聊天缓存
 
@@ -2941,6 +3023,19 @@ procedure TForm1.button_stat(b: boolean);
 begin
     button1.Enabled:= b;
   button5.Enabled:= b;
+end;
+
+procedure TForm1.change_html_by_id(const id, html: string);
+var ss: string;
+begin
+   ss:= StringReplace(html,'\','/',[rfReplaceAll]);
+   ss:= StringReplace(ss,'"','\"',[rfReplaceAll]);
+   ss:= StringReplace(ss,#13#10,'',[rfReplaceAll]);
+   ss:= 'document.getElementById("'+id+ '").innerHTML="'+ss+'";';
+
+
+
+   web1.ExecuteJavascript(ss);
 end;
 
 function TForm1.game_check_goods_nmb(n: string; i: integer): integer;
@@ -3013,14 +3108,10 @@ end;
 
 
 function TForm1.game_enabled_scene(i: integer): integer;
-var pdoc: IHTMLDocument2;
-    pwin: IHTMLWindow2;
+var
     ss: string;
 begin
 
-     pdoc:= WebBrowser1.Document as IHTMLDocument2;
-    if pdoc<> nil then
-     begin
 
      // 1,激活场景窗口，0，禁用场景窗口
     if i= 1 then
@@ -3032,8 +3123,7 @@ begin
                   'var iframe=document.createElement("<iframe style=width:100%;background:#cccccc;position:absolute;left:0;right:0;top:0;bottom:0;-moz-opacity:0.5;filter:alpha(opacity=50);z-index:62;height:100%;>");'+
                   'document.getElementsByTagName("body")[0].appendChild(iframe);'+
                   'document.getElementsByTagName("body")[0].appendChild(div);';
-                 pwin:= pdoc.parentWindow;
-                 pwin.execScript(ss,'JavaScript');
+                web1.ExecuteJavascript(ss);
               { tt:= pdoc.createElement('div');
                tt.id:= 'sce_1';
                tt.style.backgroundColor:= clblue;
@@ -3058,7 +3148,7 @@ begin
               // (WebBrowser1.Document as IHTMLDocument3).getElementsByTagName('body').item[0].appendChild(
                              //    pdoc.createElement('iframe');
               end;
-     end;
+
  result:= 1;
 end;
 
@@ -3164,7 +3254,7 @@ var i,p_pos,p_end,j,k: integer;
               end;
           end;
 
-         ss:= FastAnsiReplace(ss, ' ', '', [rfReplaceAll]);  //过滤空格
+         ss:= stringReplace(ss, ' ', '', [rfReplaceAll]);  //过滤空格
 
           for i8:= L to length(ss) do //再处理 and or
           case ss[I8] of
@@ -3195,7 +3285,7 @@ var i,p_pos,p_end,j,k: integer;
            ')': break;
            end;
 
-         ss:= FastAnsiReplace(ss, ' ', '', [rfReplaceAll]);  //过滤空格
+         ss:= stringReplace(ss, ' ', '', [rfReplaceAll]);  //过滤空格
 
         for i8:= L to length(ss) do   //最后处理 等于，不等于
           case ss[I8] of
@@ -3255,7 +3345,7 @@ if s= '' then
   exit;
  end;
      if fastcharpos(s,'^',1)> 0 then
-        ss:= FastAnsiReplace(s, '^', '''', [rfReplaceAll])
+        ss:= stringReplace(s, '^', '''', [rfReplaceAll])
          else
            ss:= s;
 
@@ -3299,14 +3389,14 @@ if s= '' then
           if ss_result = '' then
              ss_result:= ss;
       //替换字符为操作符
-         ss:= FastAnsiReplace(ss_result, ' ', '', [rfReplaceAll]);  //过滤空格
-         ss:= FastAnsiReplace(ss, 'and', '&', [rfReplaceAll,rfIgnoreCase]);
-         ss:= FastAnsiReplace(ss, 'or', '|', [rfReplaceAll,rfIgnoreCase]);
-         ss:= FastAnsiReplace(ss, 'not', '!', [rfReplaceAll,rfIgnoreCase]);
-         ss:= FastAnsiReplace(ss, '<>', '#', [rfReplaceAll,rfIgnoreCase]);
-          ss:= FastAnsiReplace(ss, '<=', '$', [rfReplaceAll,rfIgnoreCase]);
-          ss:= FastAnsiReplace(ss, '>=', '@', [rfReplaceAll,rfIgnoreCase]);
-         ss:= FastAnsiReplace(ss, ';', '', [rfReplaceAll]);
+         ss:= stringReplace(ss_result, ' ', '', [rfReplaceAll]);  //过滤空格
+         ss:= stringReplace(ss, 'and', '&', [rfReplaceAll,rfIgnoreCase]);
+         ss:= stringReplace(ss, 'or', '|', [rfReplaceAll,rfIgnoreCase]);
+         ss:= stringReplace(ss, 'not', '!', [rfReplaceAll,rfIgnoreCase]);
+         ss:= stringReplace(ss, '<>', '#', [rfReplaceAll,rfIgnoreCase]);
+          ss:= stringReplace(ss, '<=', '$', [rfReplaceAll,rfIgnoreCase]);
+          ss:= stringReplace(ss, '>=', '@', [rfReplaceAll,rfIgnoreCase]);
+         ss:= stringReplace(ss, ';', '', [rfReplaceAll]);
 
         if length(ss)= 1 then //如果值只有一位，那么无须下一步处理
          begin
@@ -3320,7 +3410,7 @@ if s= '' then
             begin
               ss[i]:= ' ';
               ccc(i + 1);
-              ss:= FastAnsiReplace(ss, ' ', '', [rfReplaceAll]);  //过滤空格
+              ss:= stringReplace(ss, ' ', '', [rfReplaceAll]);  //过滤空格
             end;
         end;
 
@@ -3529,11 +3619,11 @@ begin
      end else
           result:= ord (form_pop.ShowModal= mrok);
    Perform($000B, 1, 0);
-   RedrawWindow(self.WebBrowser1.Handle, nil, 0, RDW_FRAME + RDW_INVALIDATE + RDW_ALLCHILDREN + RDW_NOINTERNALPAINT);
+  // RedrawWindow(self.WebBrowser1.Handle, nil, 0, RDW_FRAME + RDW_INVALIDATE + RDW_ALLCHILDREN + RDW_NOINTERNALPAINT);
 end;
-
+   {
 function   TForm1.WBLoadFromStream(const   AStream:   TStream;   WB:   TWebBrowser):   HRESULT;
-  var   
+  var
       PersistStream:   IPersistStreamInit;
   begin
 
@@ -3548,7 +3638,7 @@ function   TForm1.WBLoadFromStream(const   AStream:   TStream;   WB:   TWebBrows
       PersistStream := nil;
        end;
   end;
-
+       }
 function TForm1.game_change_money(i: integer): integer; //修改金钱
 begin
    game_write_values(0,0,
@@ -3575,7 +3665,7 @@ end;
 
 function TForm1.game_direct_scene(id: integer): integer; //直接读入html，忽略脚本和转场效果
 var str1: Tstringlist;
-    pDoc:  IHTMLDocument2;
+
 begin
   str1:= Tstringlist.Create;
   Game_action_list.Clear; //清除动作
@@ -3588,9 +3678,7 @@ begin
 
     if not game_reload_chat_g then  //如果仅重载聊天记录，则不动作
     begin
-    pdoc:= WebBrowser1.Document as IHTMLDocument2;
-      // 直接插入html代码，但此方法不支持全部的html，如head段会被忽略
-    pdoc.body.innerHTML:= str1.Text;
+    web1.LoadHTML(str1.Text);
     end;
 
   str1.Free;
@@ -3651,7 +3739,7 @@ begin
   {$ENDIF}
 
 ShellExecute(Handle,
-              'open','IEXPLORE.EXE',pchar(ss),nil,sw_shownormal);
+              'open',pchar(ss),nil,nil,sw_shownormal);
               
 {ShellExecute(Handle,
   'open','rundll32.exe',
@@ -4010,7 +4098,8 @@ begin
      result:= ord( form_pop.ShowModal= mrok);
      
    Perform($000B, 1, 0);  //重新刷新屏幕，不然win10下面会有残留的画线
-   RedrawWindow(self.WebBrowser1.Handle, nil, 0, RDW_FRAME + RDW_INVALIDATE + RDW_ALLCHILDREN + RDW_NOINTERNALPAINT);
+   //重画屏幕的代码先不用试试看
+  // RedrawWindow(self.WebBrowser1.Handle, nil, 0, RDW_FRAME + RDW_INVALIDATE + RDW_ALLCHILDREN + RDW_NOINTERNALPAINT);
 
 end;
 
@@ -4117,7 +4206,7 @@ game_save_doc_net; //保存联网游戏内容
       
  Shell_NotifyIcon(NIM_DELETE, @MyTrayIcon);//删除托盘图标
 end;
-
+   (*
 procedure TForm1.WebBrowser1NavigateComplete2(Sender: TObject;
   const pDisp: IDispatch; var URL: OleVariant);
 {var
@@ -4133,7 +4222,7 @@ CustDoc.SetUIHandler(FDocHostUIHandler); }
 
  
 end;
-
+ *)
 
 procedure TForm1.OnAccept(const URL: String; var Accept: Boolean);
 begin
@@ -4233,7 +4322,7 @@ else begin
       end;
 end;
 
-procedure TForm1.game_pic_from_text(var Stream: TStream; s: string);  //根据字符串返回图片数据
+procedure TForm1.game_pic_from_text(Stream: TStream; s: string; path: string='');  //根据字符串返回图片数据
 var aafont: TAAFontEx;
     bmp,bmp2 : TBitmap;
     text_e,w,h: integer; //文字效果
@@ -4245,7 +4334,7 @@ var aafont: TAAFontEx;
     apos: integer; //是否输出文字时绝对定位
     apos_w,apos_h: integer; //绝对定位的位置
     apos_string: string;
-    //jpg: Tjpegimage;
+    jpg: Tjpegimage;
     gdibmp: Tgpbitmap;
     aw,ah: integer;
     filestr: TMemoryStream;
@@ -4263,8 +4352,6 @@ begin
           1007  向右下倾斜
           1008  阴影
          }
-
-   Stream.Position:= 0;
 
    text_e:= fastpos(s,'://',length(s),3,1);
   if (text_e > 0) and (text_e < 9) then
@@ -4317,27 +4404,31 @@ begin
       filestr.LoadFromFile(s);
       filestr.SaveToStream(Stream);
       filestr.Free;
+
       exit;
      end;
 
    //宽，高，字体，背景色，内容，效果，透明度
+
     try
-     aw:= strtoint2(copy(s,1,fastcharpos(s,',',1)-1));
+     aw:= round(strtoint2(copy(s,1,fastcharpos(s,',',1)-1))* dpi_bilv);
+      //aw:= strtoint2(copy(s,1,fastcharpos(s,',',1)-1));
      delete(s,1,fastcharpos(s,',',1));
     except
      aw:= 0;
     end;
      try
-     ah:= strtoint2(copy(s,1,fastcharpos(s,',',1)-1));
+      ah:= round(strtoint2(copy(s,1,fastcharpos(s,',',1)-1))* dpi_bilv);
+      // ah:= strtoint2(copy(s,1,fastcharpos(s,',',1)-1));
      delete(s,1,fastcharpos(s,',',1));
     except
      ah:= 0;
     end;
 
      if aw= 0 then
-       aw:= webbrowser1.Width-20;
+       aw:= web1.Width-20;
      if ah= 0 then
-      ah:= webbrowser1.Height;
+      ah:= web1.Height;
 
     afont:= Tfont.Create; //字体
 
@@ -4371,11 +4462,13 @@ begin
        end;
 
     bmp:=TBitmap.Create;
-    bmp2:= TBitmap.Create; //
+
       bmp.PixelFormat:=pf24bit;
-       jpg_pos:= FastPosNoCase(atext,'.jpg',length(atext),4,1); //是否需要载入图片
-       if FastPos(atext,':/',length(atext),2,1)> 1 then
-          jpg_pos:= 9999;
+       jpg_pos:= FastPos(atext,'.jpg',length(atext),4,1); //是否需要载入图片,jpg 需小写 ，大写的作为动态生成图片
+
+       if jpg_pos>0 then
+         if FastPos(atext,':/',length(atext),2,1)> 1 then
+            jpg_pos:= 9999;
 
       if jpg_pos > 1 then
        begin
@@ -4455,6 +4548,7 @@ begin
 
         if atouming > 0 then
                   begin
+                   bmp2:= TBitmap.Create; //
                    bmp2.Width:=aw; //这个是仅仅作为透明处理的背景用的
                    bmp2.Height:=ah;  //
                   end;
@@ -4485,11 +4579,11 @@ begin
            while apos > 0 do
             begin
              delete(atext,1,apos);
-             apos_w:= strtoint2(copy(atext,1,fastcharpos(atext,'@',2)-1)); //取得宽度
+             apos_w:= round(strtoint2(copy(atext,1,fastcharpos(atext,'@',2)-1)) * dpi_bilv); //取得宽度
               if apos_w < 0 then
                 apos_w:= aw+ apos_w; //宽度为负值表示从右边开始算
               delete(atext,1,fastcharpos(atext,'@',2));
-              apos_H:= strtoint2(copy(atext,1,fastcharpos(atext,'}',2)-1));   //取得高度
+              apos_H:= round(strtoint2(copy(atext,1,fastcharpos(atext,'}',2)-1)) * dpi_bilv);   //取得高度
                if apos_H < 0 then
                 apos_H:= ah+ apos_H; //高度为负值表示从下面开始算
               delete(atext,1,fastcharpos(atext,'}',2));
@@ -4530,11 +4624,22 @@ begin
           windows.AlphaBlend(bmp.Canvas.Handle,0,0,
            bmp.Width,bmp.Height,bmp2.Canvas.Handle,
              0,0, bmp.Width,bmp.Height,sBlendFunction); // Alpha混合处理
+          bmp2.Free;//
          end;
 
-          bmp.SaveToStream(Stream);
+          if path='' then
+           begin
+            Stream.Position:= 0;
+            bmp.SaveToStream(Stream);
+           end else begin
+                   jpg:= Tjpegimage.Create;
+                   jpg.Assign(bmp);
+                   jpg.CompressionQuality:= 80;
+                   jpg.Compress;
+                   jpg.SaveToFile(path);
+                   jpg.Free;
+                 end;
       bmp.Free;
-      bmp2.Free;//
 
 end;
 
@@ -4673,12 +4778,19 @@ end;
 
 procedure TForm1.game_load_image_to_imglist; //载入人物头像
 var i: integer;
-  bmp: Tbitmap;
+  bmp,bmp_zoom: Tbitmap;
  sr: TSearchRec;
- f: integer;
+ f,k: integer;
 begin
  bmp:= Tbitmap.Create;
   data2.ImageList_sml.Clear;
+   k:= data2.ImageList_sml.Width;
+  data2.ImageList_sml.Width:= round(16 * dpi_bilv);
+  data2.ImageList_sml.Height:= round(16 * dpi_bilv);
+
+   if k<> data2.ImageList_sml.Width then
+     bmp_zoom:= Tbitmap.Create;
+
  f := FindFirst(game_app_path_G + 'sml\*.bmp', faAnyFile, sr);
  while f = 0 do
    begin
@@ -4687,6 +4799,11 @@ begin
          if sr.Attr and faDirectory = 0 then
           begin
             bmp.LoadFromFile(game_app_path_G + 'sml\'+ sr.Name);
+             if k<> data2.ImageList_sml.Width then
+              begin
+                img_zoom(bmp,bmp_zoom,data2.ImageList_sml.Width,data2.ImageList_sml.Height);
+                bmp.Assign(bmp_zoom);
+              end;
             Game_goods_Index_G[strtoint2(copy(sr.Name,1,length(sr.Name)-4))]:=
                          data2.ImageList_sml.AddMasked(bmp,clfuchsia);
           end;
@@ -4696,7 +4813,8 @@ begin
  FindClose(sr);
 
  data2.ImageList2.Clear;
- 
+   data2.ImageList2.Width:= round(48 * dpi_bilv);
+  data2.ImageList2.Height:= round(48 * dpi_bilv);
   for i:= 0 to 199 do
    begin
      if FileExists(game_app_path_G +'img\'+ inttostr(i-1) + '.bmp') then
@@ -4705,6 +4823,12 @@ begin
         bmp.LoadFromFile(Game_save_path + inttostr(i-1) + '.bmp')
         else
          bmp.LoadFromFile(game_app_path_G +'img\'+ inttostr(i-1) + '.bmp');
+
+         if k<> data2.ImageList_sml.Width then
+              begin
+                img_zoom(bmp,bmp_zoom,data2.ImageList2.Width,data2.ImageList2.Height);
+                bmp.Assign(bmp_zoom);
+              end;
         data2.ImageList2.AddMasked(bmp,clfuchsia);
        //data2.ImageList2.FileLoad(rtbitmap,,clfuchsia)
       end  else
@@ -4712,6 +4836,9 @@ begin
    end;
 
  bmp.Free;
+
+ if k<> data2.ImageList_sml.Width then
+     bmp_zoom.Free;
 
  speedbutton1.Visible:= game_at_net_g;
  combobox2.Visible:= not game_at_net_g;
@@ -4808,8 +4935,9 @@ begin
    g_time_count:= t;
    g_time_page:= page;
    edit1.text:= '剩余：'+ inttostr(g_time_count) + '秒';
-   edit1.Left:= webbrowser1.Width- edit1.Width- 18;
+   edit1.Left:= web1.Width- edit1.Width- 18;
   edit1.Visible:= true;
+  edit1.BringToFront;
   timer1.Enabled:= true;
 result:= 1;
 end;
@@ -4937,20 +5065,27 @@ var t: integer;
     ss: string;
 begin
 
-  if not Game_is_reload then
-  begin
-  if i= 0 then
-   read_text_index_g:= Random(game_read_stringlist.Count)
-   else begin
-         if i >= game_read_stringlist.Count then
-           read_text_index_g:= Random(game_read_stringlist.Count)
-           else
-           read_text_index_g:= i;
-        end;
-  end;
+    if show_share_text='' then
+     begin
+      if not Game_is_reload then
+      begin
+      if i= 0 then
+       read_text_index_g:= Random(game_read_stringlist.Count)
+       else begin
+             if i >= game_read_stringlist.Count then
+               read_text_index_g:= Random(game_read_stringlist.Count)
+               else
+               read_text_index_g:= i;
+            end;
+      end;
 
      Game_pchar_string_G:= '<br>'+game_read_stringlist.Strings[read_text_index_g];
-
+     end else begin
+               Game_pchar_string_G:= show_share_text;
+               show_share_text:= '';
+               if (game_bg_music_rc_g.down_readfile= true) or (game_read_stringlist.Count=0) then
+                down_tip1.Resume;
+              end;
  //在英文符号上插入朗读按钮
  if Game_pchar_string_G= '' then
     Game_pchar_string_G:=' ';
@@ -4991,14 +5126,10 @@ begin
   if CompareText(form_set.combobox1.Text,'Microsoft Sam')=0 then
      Game_pchar_string_G:= Game_pchar_string_G +'<p>小贴士：需要更自然流畅，没有机器味的语音朗读？查看<a href="http://www.finer2.com/wordgame/wordlib.htm#tts" target="_blank">如何设置</a>。<br>';
 
-    // Game_pchar_string_G:= Game_pchar_string_G + '有好的学习心得或者英汉对照的精品阅读材料？点此<a href="http://www.finer2.com/NetBook_2.asp" target="_blank">共享</a>';
+    if Game_base_random(10)=0 then
+      Game_pchar_string_G:= Game_pchar_string_G + '<p>有好的学习心得或者英汉对照的精品阅读材料？点此<a href="game_showshare_readtext(0)">上传分享</a>';
  result:= pchar(Game_pchar_string_G);
 
-   if (not is_down_readlist) and game_bg_music_rc_g.down_readfile then
-     begin
-       is_down_readlist:= true;
-       down_tips.Create(false); //下载在线阅读内容
-     end;
 end;
 
 function TForm1.game_true(i: integer): integer;
@@ -5044,6 +5175,11 @@ begin
                'open',pchar(game_app_path_G +'game.exe'),nil,nil,sw_shownormal);
             end;
         }
+end;
+
+procedure TForm1.show_ad_error;
+begin
+
 end;
 
 function TForm1.game_get_TickCount(i: integer): integer;
@@ -5182,6 +5318,15 @@ begin
 result:= 1;
      Game_cannot_runOff:= i=0;
 
+end;
+
+procedure TForm1.CheckBox1Click(Sender: TObject);
+var str1: Tstringlist;
+begin
+  str1:= Tstringlist.Create;
+    str1.Text:= web1.GetSource;
+    str1.SaveToFile('e:\b.txt');
+  str1.Free;
 end;
 
 procedure TForm1.ComboBox2DrawItem(Control: TWinControl; Index: Integer;
@@ -5620,11 +5765,9 @@ begin
 end;
 
 procedure TForm1.game_reshow_net_id(all : boolean);
-var pDoc:  IHTMLDocument2;
+var
     ss: string;
     i,j,k: integer;
-    Disp: IDispatch;
-    tt:HTMLTableCell;
     t: cardinal;
     w: array of word;
 begin
@@ -5632,9 +5775,8 @@ begin
 
     j:= 0;
     ss:= '';
-  pdoc:= WebBrowser1.Document as IHTMLDocument2;
-   if pdoc<> nil then
-    begin
+
+
     //1合成串，2添加
     for i:= 0 to high(user_info_time) do
      begin
@@ -5657,20 +5799,7 @@ begin
        end;
      end;  //end for 合成
 
-
-    for i := 0 to pdoc.all.length-1 do
-     begin
-       Disp := pdoc.all.item(i, 0);
-       if (SUCCEEDED(Disp.QueryInterface(HTMLTableCell, tt)) ) then
-        begin
-         if tt.id= 'cell_net1' then
-          begin
-            tt.innerHTML:= ss;
-            break;
-          end;
-        end;
-     end; //end for i
-    end;
+      change_html_by_id('cell_net1',ss);
 
 
       //发送请求用户名数据
@@ -5772,6 +5901,11 @@ function TForm1.game_send_pk_msg(id: integer): integer;
 begin
     //发送pk邀请 ，如果是受保护地区，pk不能发送，如果是需应答地区，等待对方答应，如果是自由区，随意
     result:= 0;
+end;
+
+function TForm1.game_showshare_readtext(i: integer): integer;
+begin
+  button10.Click;
 end;
 
 function TForm1.game_show_chat(id: integer): integer;
@@ -5959,6 +6093,7 @@ function TForm1.game_chat_spk_add(const s: string): integer;
 begin
   game_duihua_list.Add(s);
   timer_duihua.Enabled:= true;
+result:= 1;
 end;
 
 procedure TForm1.SpeedButton1Click(Sender: TObject);
@@ -5994,249 +6129,53 @@ begin
 end;
 
 function TForm1.game_asw_html_in_pop(i: integer): integer;
-var pDoc:  IHTMLDocument3;
-    tt: IHTMLElement;
+var ss: string;
 begin
-  pdoc:= WebBrowser1.Document as IHTMLDocument3;
-   if pdoc<> nil then
-    begin
-     tt:= pdoc.getElementById('layer_chat1');
-     if tt<> nil then
-        tt.style.display:= 'block';
 
-      tt:= pdoc.getElementById('cell_chat1');
-      if tt<> nil then
-        tt.innerHTML:= form_pop.html_asw_string(i);
-
-    end;
+     //visible_html_by_id('layer_chat1',true);
+     //change_html_by_id('cell_chat1','');
+     ss:= form_pop.html_asw_string(i);
+     change_html_by_id('cell_chat1',ss);
 
    game_chat_cache_g:= ''; //清空聊天缓存
     result:= 1;
 end;
 
 procedure TForm1.html_pop(i: integer);
-var pDoc:  IHTMLDocument3;
-    tt: IHTMLElement;
-     pElement:IHTMLElement2;
+var ss: string;
 begin
-  pdoc:= WebBrowser1.Document as IHTMLDocument3;
-   if pdoc<> nil then
-    begin
-     tt:= pdoc.getElementById('layer_chat1');
-     if tt<> nil then
-       begin
-        (WebBrowser1.Document as IHTMLDocument2).Body.QueryInterface(IHTMLElement2, pElement);
-        tt.style.height:= 268;
-        tt.style.top:= (pElement.clientHeight- 268) div 2 + pElement.scrollTop;
-         tt.style.display:= 'block';
-       end;
+    ss:='document.getElementById("layer_chat1").height=368;'+
+        'document.getElementById("layer_chat1").top='+ inttostr((web1.height-268) div 2)+ ';'+
+        'document.getElementById("layer_chat1").style.display="block";'+
+        'document.getElementById("cell_chat1").innerHTML="'+StringReplace(form_pop.get_pop_string(i),'"','\"',[rfReplaceAll])+'";';
 
-      tt:= pdoc.getElementById('cell_chat1');
-      if tt<> nil then
-        tt.innerHTML:= form_pop.get_pop_string(i);
-
-    end;
+   web1.ExecuteJavascript(ss);
 
    game_chat_cache_g:= ''; //清空聊天缓存
 
 end;
 
-//ie加载时候出现错误的处理类 **********************************************************
-function TIEEvents._AddRef: Integer;
+function HexToStr(s:ansistring):string; //16进制转字串
+var
+    HexS,TmpStr:ansistring;
+    i:Integer;
+    a:Byte;
 begin
-
-  // No more than 2 counts
-  result := 2;
-
-end;
-
-function TIEEvents._Release: Integer;
-begin
-  // Always maintain 1 ref count (component holds the ref count)
-  result := 1;
-end;
-
-function TIEEvents.QueryInterface(const IID: TGUID; out Obj): HResult;
-begin
-  // Clear interface pointer
-  Pointer(Obj) := nil;
-
-  // Attempt to get the requested interface
-  if (GetInterface(IID, Obj)) then
-     // Success
-    result := S_OK
-  // Check to see if the guid requested is for the event
-  else if (IsEqualIID(IID, FSinkIID)) then
-  begin
-     // Event is dispatch based, so get dispatch interface (closest we can come)
-    if (GetInterface(IDispatch, Obj)) then
-        // Success
-      result := S_OK
-    else
-        // Failure
-      result := E_NOINTERFACE;
-  end
-  else
-     // Failure
-    result := E_NOINTERFACE;
-end;
-
-function TIEEvents.GetIDsOfNames(const IID: TGUID; Names: Pointer; NameCount,
-  LocaleID: Integer; DispIDs: Pointer): HResult;
-begin
-  // Not implemented
-  result := E_NOTIMPL;
-end;
-
-function TIEEvents.GetTypeInfo(Index, LocaleID: Integer; out TypeInfo): HResult;
-begin
-  // Clear the result interface
-  Pointer(TypeInfo) := nil;
-  // No type info for our interface
-  result := E_NOTIMPL;
-end;
-
-function TIEEvents.GetTypeInfoCount(out Count: Integer): HResult;
-begin
-  // Zero type info counts
-  Count := 0;
-  // Return success
-  result := S_OK;
-end;
-
-function TIEEvents.Invoke(DispID: Integer; const IID: TGUID; LocaleID: Integer; Flags: Word;
-  var Params; VarResult, ExcepInfo, ArgErr: Pointer): HResult;
-  {var pdpParams: PDispParams;
-  lpDispIDs: array[0..63] of TDispID;
-  dwCount: Integer; }
-begin
-
-  // Get the parameters   271 导航错误
-
-       result := S_OK;
-     // Handle the event
-   { if DispID = 250 then
-     begin
-        //参数处理***************************************************************
-           pdpParams := @Params;
-
-  // Events can only be called with method dispatch, not property get/set
-     if ((Flags and DISPATCH_METHOD) > 0) then
-       begin
-     // Clear DispID list
-      ZeroMemory(@lpDispIDs, SizeOf(lpDispIDs));
-     // Build dispatch ID list to handle named args
-    if (pdpParams^.cArgs > 0) then
+    HexS:=s;
+    if Length(HexS) mod 2=1 then
     begin
-        // Reverse the order of the params because they are backwards
-      for dwCount := 0 to Pred(pdpParams^.cArgs) do lpDispIDs[dwCount] := Pred(pdpParams^.cArgs) - dwCount;
-        // Handle named arguments
-      if (pdpParams^.cNamedArgs > 0) then
-      begin
-        for dwCount := 0 to Pred(pdpParams^.cNamedArgs) do
-          lpDispIDs[pdpParams^.rgdispidNamedArgs^[dwCount]] := dwCount;
-      end;
-
+        HexS:=HexS+'0';
     end;
-        //参数处理结束***********************************************************
-          pdpParams^.rgvarg^[lpDispIds[6]].pbool^:= true;
-         // Form1.show_ad_error;
-      end; //end if  (pdpParams^.cArgs > 0) then
-     end;
-        // Have to idea of what event they are calling
-      result := DISP_E_MEMBERNOTFOUND; }
-
-      if DispID = 250 then
-        begin
-         //禁止重定向
-          postmessage(Form1.Handle,game_const_script_after,37,0);
-
-          // Form1.show_ad_error;
-
-
-        end;      
-
-end;
-
-constructor TIEEvents.Create(AOwner: TComponent);
-begin
-  // Perform inherited
-  inherited Create(AOwner);
-
-  // Set the event sink IID
-  FSinkIID := DWebBrowserEvents2;
-end;
-
-destructor TIEEvents.Destroy;
-begin
-  // Disconnect
-  Disconnect;
-  // Perform inherited
-  inherited Destroy;
-end;
-
-procedure TIEEvents.ConnectTo(Source: IWebBrowser2);
-var pvCPC: IConnectionPointContainer;
-begin
-  // Disconnect from any currently connected event sink
-  Disconnect;
-
-  if Source= nil then
-     exit;
-
-  // Query for the connection point container and desired connection point.
-  // On success, sink the connection point
-  Source.QueryInterface(IConnectionPointContainer, pvCPC);
-  if pvCPC<> nil then
-     pvCPC.FindConnectionPoint(FSinkIID, FCP);
-
-  if fcp<> nil then
+    TmpStr:='';
+    for i:=1 to(Length(HexS)div 2)do
     begin
-     FCP.Advise(Self as IUnknown, FCookie);
-
-     // Update internal state variables
-     FSource := Source;
-     // We are in a connected state
-     FConnected := True;
+        a:=StrToInt('$'+HexS[2*i-1]+HexS[2*i]);
+        TmpStr:=TmpStr+ansiChar(a);
     end;
-  // Release the temp interface
-  pvCPC := nil;
+    Result:=TmpStr;
 end;
 
-procedure TIEEvents.Disconnect;
-begin
-  // Do we have the IWebBrowser2 interface?
-  if Assigned(FSource) then
-  begin
-    try
-        // Unadvise the connection point
-      FCP.Unadvise(FCookie);
-        // Release the interfaces
-      FCP := nil;
-      FSource := nil;
-    except
-      Pointer(FCP) := nil;
-      Pointer(FSource) := nil;
-    end;
-  end;
-
-  // Disconnected state
-  FConnected := False;
-end;
-
-procedure TIEEvents.DoOnNavigateError(const pDisp: IDispatch;
-                                  var URL: OleVariant;
-                                  var TargetFrameName: OleVariant;
-                                  var StatusCode: OleVariant;
-                                  var Cancel: wordbool); safecall;
-var ss : string;
-begin
-  //调用 加载网页-错误处理过程
- ss:= url;
- showmessage(ss);
-  Cancel:= false;
-end;
-//类结束 *********************************************************************************
+{
 procedure TForm1.show_ad_error;
 var pDoc:  IHTMLDocument3;
     tt: IHTMLElement;
@@ -6262,7 +6201,7 @@ begin
      end;
 
 end;
-
+     }
 function TForm1.game_set_var(i, v: integer): integer;
 begin
      case i of
@@ -6290,24 +6229,25 @@ begin
   result:= 1;
 end;
 
-procedure TForm1.load_sch_pic;  //刷新下载的图片
-var pDoc:  IHTMLDocument3;
-    tt: IHTMLImgElement;
+procedure TForm1.loadurlbegin(Sender: TObject; sUrl: string; out bHook,
+  bHandled: boolean);
 begin
-  pdoc:= Form1.WebBrowser1.Document as IHTMLDocument3;
-    if pdoc<> nil then
-     begin
-      tt:= pdoc.getElementById('img_shc') as IHTMLImgElement;
+  showmessage(surl);
+end;
 
-       if tt<> nil then
-        begin
-        tt.height:= game_bg_music_rc_g.sch_img_height;
-        tt.src:= temp_pic_file_g;
+procedure TForm1.load_sch_pic;  //刷新下载的图片
+var ss: string;
+begin
+  down_http.Create(get_down_img_url,'',false);
+  ss:= 'document.getElementById("img_shc").height='+game_bg_music_rc_g.sch_img_height.tostring+';'+
+                 'document.getElementById("img_shc").src="+temp_pic_file_g +";';
+  ss:= StringReplace(ss,'"','\"',[rfReplaceAll]);
+  web1.ExecuteJavascript(ss);
+
         temp_pic_file_g:= '';
          temp_sch_key_g:= '';
-        down_http.Create(get_down_img_url,'',false);
-        end;
-     end;
+
+
 
 end;
 
@@ -6337,43 +6277,32 @@ begin
 end;
 
 function TForm1.game_inner_html(i: integer; s: string): integer;
-var pDoc:  IHTMLDocument3;
-    tt: IHTMLElement;
+
 begin
-  result:= 0;                                                   //输入html
-  pdoc:= Form1.WebBrowser1.Document as IHTMLDocument3;
-    if pdoc<> nil then
-     begin
-      tt:= pdoc.getElementById('bo_'+ inttostr(i));
-       if tt<> nil then
-          begin
-          tt.innerHTML:= s;
-          result:=1;
-          end;
-     end;
-  
+
+                                                    //输入html
+  change_html_by_id('bo_'+ inttostr(i),s);
+  result:=1;
+
+
 end;
 
 function TForm1.game_biao_html(i: integer): integer; //做标记
-var pDoc:  IHTMLDocument3;
-    tt: IHTMLElement;
+var ss: string;
 begin
   result:= 0;
-  pdoc:= Form1.WebBrowser1.Document as IHTMLDocument3;
-    if pdoc<> nil then
-     begin
-      tt:= pdoc.getElementById('biao_1');
-       if tt<> nil then
-          begin
-           if i= 1 then
-           tt.innerHTML:= '<a href="game_write_temp(game_get_pscene_id(0),0);game_biao_html(0)" title="取消标记">'
-                         +'<img src="file://'+game_app_path_G+'img/img_flag.gif" border="0">'+ inttostr(pscene_id -10000)+ '</a>'
+     if i= 1 then
+           ss:= '<a href="game_write_temp(game_get_pscene_id(0),0);game_biao_html(0)" title="取消标记">'
+                         +'<img src="file:///'+game_app_path_G+'img\img_flag.gif" border="0">'+ inttostr(pscene_id -10000)+ '</a>'
                          else
-           tt.innerHTML:= '<a href="game_write_temp(game_get_pscene_id(0),1);game_biao_html(1)"'
+           ss:= '<a href="game_write_temp(game_get_pscene_id(0),1);game_biao_html(1)"'
                          +'title="在这里做个标记，表明到过这里了。">点此<b>做个标记</b></a>';
+
+     change_html_by_id('biao_1',ss);
+
+    // file:///'+game_app_path_G+'img/img_flag.gif
             result:=1;
-          end;
-     end;
+
 
 end;
 
@@ -6396,7 +6325,7 @@ function TForm1.game_res_goods(i,sl: integer; const s: string): pchar;
      else
         result:= 'img_w_0.gif';
      end;
-     result:= '<img src="file://'+game_app_path_G+'img/'+ result +'" border="0">';
+     result:= '<img src="file:///'+game_app_path_G+'img/'+ result +'" border="0">';
   end;
 begin    //返回一个物品是否捡到的标准字符串
         {
@@ -6443,7 +6372,7 @@ end;
 procedure TForm1.ApplicationEvents1Message(var Msg: tagMSG;
   var Handled: Boolean);
 begin
-   if (Msg.message = WM_RBUTTONDOWN) and IsChild(WebBrowser1.Handle, Msg.Hwnd) then
+   if (Msg.message = WM_RBUTTONDOWN) and IsChild(Web1.Handle, Msg.Hwnd) then
   begin
   popupmenu3.Popup(Mouse.CursorPos.X, Mouse.CursorPos.Y);//自己定义的菜单
   Handled := True;
@@ -6456,6 +6385,10 @@ begin
    {
     弹出泡泡龙窗口
    }
+   showmessage('泡泡龙暂时不能使用，请等待新版本。');
+   result:= ord (false);
+   exit;
+
    form_pop.game_pop_count:= bb;
   form_pop.game_pop_type:= 6; //泡泡龙
 
@@ -6492,6 +6425,10 @@ begin
     {
     弹出五子棋窗口
    }
+   showmessage('五子棋暂时不能使用，请等待新版本。');
+   result:= ord (false);
+   exit;
+
    form_pop.game_pop_count:= bb;
   form_pop.game_pop_type:= 7; //五子棋
 
@@ -6640,6 +6577,18 @@ begin
    if part_size_g<> nil then
      caption:= caption + '/' + inttostr(high(part_size_g));
 
+end;
+
+procedure TForm1.visible_html_by_id(const id: string; canshow: boolean);
+var ss: string;
+begin
+      ss:= 'document.getElementById("'+id+ '").';
+       if canshow then
+        ss:= ss+ 'style.display="block";'
+        else
+         ss:= ss+ 'style.display="none";';
+
+   web1.ExecuteJavascript(ss);
 end;
 
 end.

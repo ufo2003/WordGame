@@ -316,8 +316,8 @@ begin
        else
          checkbox9.Checked:= false;
 
-    if strtoint2(str1.Values['delay_show_word']) < 3000 then
-       edit2.Text:= '3000'
+    if strtoint2(str1.Values['delay_show_word']) < 1000 then
+       edit2.Text:= '1000'
        else
         edit2.Text:= str1.Values['delay_show_word'];
 
@@ -384,6 +384,7 @@ begin
           end;
      end;  }
     combobox1.OnChange(combobox1); //& ensure OnChange triggers
+    tbVolume.Position:= strtoint2(str1.Values['game_tts_vol']);
   end else begin
              //语音引擎不可用
           {   gbAttrs.Enabled:= false;
@@ -435,7 +436,7 @@ begin
 
           SOToken := ISpeechObjectToken(Pointer(
           combobox1.Items.Objects[combobox1.ItemIndex]));
-          form_pop.SpVoice1.Voice := SOToken;
+          form_pop.SpVoice1.Voice:=SOToken;
           ComboBox1.Tag:= combobox1.ItemIndex;
           if self.Showing and (checkbox1.Checked or checkbox18.Checked) then
              begin
@@ -452,9 +453,10 @@ var i: integer;
 begin
    if form_pop.SpVoice1<>nil then
     begin
-     tbRate.Position := form_pop.SpVoice1.Rate;
+     form_pop.SpVoice1.Rate:=tbRate.Position;
+
      lblRate.Caption := IntToStr(tbRate.Position);
-     tbVolume.Position := form_pop.SpVoice1.Volume;
+       form_pop.SpVoice1.Volume:=tbVolume.Position;
      lblVolume.Caption := IntToStr(tbVolume.Position);
     end else begin
      tbRate.Enabled:= false;
@@ -540,14 +542,14 @@ end;
 procedure TForm_set.tbRateChange(Sender: TObject);
 begin
   button4.Click;
-  form_pop.SpVoice1.Rate := tbRate.Position;
+  form_pop.SpVoice1.Rate:= tbRate.Position;
   lblRate.Caption := IntToStr(tbRate.Position);
 end;
 
 procedure TForm_set.tbVolumeChange(Sender: TObject);
 begin
  button4.Click;
-  form_pop.SpVoice1.Volume := tbVolume.Position;
+  form_pop.SpVoice1.Volume:= tbVolume.Position;
   lblVolume.Caption := IntToStr(tbVolume.Position);
 end;
 
@@ -576,6 +578,7 @@ begin
 end;
 procedure TForm_set.Button2Click(Sender: TObject);
 var str1: Tstringlist;
+
 begin
        //保存设置文件
    str1:= Tstringlist.Create;  //初始化背单词文本和背景颜色
@@ -1301,6 +1304,7 @@ begin
     combobox1.Items.Clear;
     if form_pop.SpVoice1<> nil then
     begin
+
     SOTokens := form_pop.SpVoice1.GetVoices('', '');
   for I := 0 to SOTokens.Count - 1 do
   begin

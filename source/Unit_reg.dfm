@@ -1,9 +1,9 @@
 object Form_reg: TForm_reg
   Left = 192
   Top = 107
-  Width = 522
-  Height = 610
   Caption = #27880#20876#29992#25143
+  ClientHeight = 571
+  ClientWidth = 506
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -115,7 +115,6 @@ object Form_reg: TForm_reg
       Width = 137
       Height = 24
       Style = csDropDownList
-      ItemHeight = 16
       ItemIndex = 0
       TabOrder = 5
       Text = #30007

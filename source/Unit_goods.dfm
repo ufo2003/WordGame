@@ -56,7 +56,6 @@ object Form_goods: TForm_goods
       Font.Height = -16
       Font.Name = #23435#20307
       Font.Style = []
-      ItemHeight = 16
       ParentFont = False
       TabOrder = 0
       OnClick = ListBox1Click
@@ -73,7 +72,7 @@ object Form_goods: TForm_goods
     Top = 8
     Width = 545
     Height = 569
-    ActivePage = TabSheet5
+    ActivePage = TabSheet1
     TabOrder = 2
     object TabSheet1: TTabSheet
       Caption = #27494#22120
@@ -95,7 +94,6 @@ object Form_goods: TForm_goods
         Font.Height = -16
         Font.Name = #40657#20307
         Font.Style = []
-        ItemHeight = 16
         ParentFont = False
         TabOrder = 0
         OnDblClick = Button1Click
@@ -152,7 +150,6 @@ object Form_goods: TForm_goods
         Font.Height = -16
         Font.Name = #40657#20307
         Font.Style = []
-        ItemHeight = 16
         ParentFont = False
         TabOrder = 0
         OnDblClick = Button4Click
@@ -209,7 +206,6 @@ object Form_goods: TForm_goods
         Font.Height = -16
         Font.Name = #23435#20307
         Font.Style = []
-        ItemHeight = 16
         ParentFont = False
         TabOrder = 0
         OnDblClick = Button7Click
@@ -266,7 +262,6 @@ object Form_goods: TForm_goods
         Font.Height = -16
         Font.Name = #23435#20307
         Font.Style = []
-        ItemHeight = 16
         ParentFont = False
         TabOrder = 0
         OnDrawItem = ListBox3DrawItem
@@ -322,7 +317,6 @@ object Form_goods: TForm_goods
         Font.Height = -16
         Font.Name = #40657#20307
         Font.Style = []
-        ItemHeight = 16
         ParentFont = False
         TabOrder = 0
         OnClick = ListBox7Click
@@ -373,7 +367,6 @@ object Form_goods: TForm_goods
         Font.Height = -16
         Font.Name = #23435#20307
         Font.Style = []
-        ItemHeight = 16
         ParentFont = False
         TabOrder = 0
         OnDrawItem = ListBox3DrawItem
@@ -395,7 +388,6 @@ object Form_goods: TForm_goods
         Font.Height = -16
         Font.Name = #23435#20307
         Font.Style = []
-        ItemHeight = 16
         ParentFont = False
         TabOrder = 0
         OnDrawItem = ListBox3DrawItem

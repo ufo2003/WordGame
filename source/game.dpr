@@ -1,7 +1,8 @@
 program game;
 
 uses
-  Forms,windows,
+  Forms,
+  windows,
   Unit1 in 'Unit1.pas' {Form1},
   Unit_player in 'Unit_player.pas',
   Unit_data in 'Unit_data.pas' {Data2: TDataModule},
@@ -19,7 +20,7 @@ uses
   Unit_chat in 'Unit_chat.pas' {Form_chat},
   Unit_net_set in 'Unit_net_set.pas' {Form_net_set},
   Unit_download in 'Unit_download.pas',
-  Unit_glb in '..\..\背单词游戏服务器端\Unit_glb.pas',
+  Unit_glb in 'Unit_glb.pas',
   Unit_note in 'Unit_note.pas' {Form_note},
   Unit_dwjh in 'Unit_dwjh.pas' {Form_dwjh},
   Unit_music in 'Unit_music.pas',
@@ -28,8 +29,9 @@ uses
   Unit_wuziqi in 'Unit_wuziqi.pas',
   Unit_chinese in 'Unit_chinese.pas' {Form_chinese},
   Unit_exit in 'Unit_exit.pas' {Form_exit},
-  Unit_mp3_yodao in 'Unit_mp3_yodao.pas',
-  Unit_langdu in 'Unit_langdu.pas' {Form_langdu};
+  Unit_mp3_yodao in 'Unit_mp3_yodao.pas' {/Unit_msg in 'Unit_msg.pas' {Form_msg},
+  Unit_langdu in 'Unit_langdu.pas' {Form_langdu},
+  Unit_httpserver in 'Unit_httpserver.pas';
 
 //  Unit3 in 'Unit3.pas';
 

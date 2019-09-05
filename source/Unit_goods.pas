@@ -133,7 +133,7 @@ var
   Form_goods: TForm_goods;
 
 implementation
-  uses unit_player,unit1, Unit_data,unit_pop,FastStrings,unit_pic,unit_dwjh,unit_net;
+  uses unit_player,unit1, Unit_data,unit_pop,unit_pic,unit_dwjh,unit_net;
 {$R *.dfm}
 
 { TForm_goods }
@@ -151,6 +151,7 @@ str1:= Tstringlist.Create;
           begin
            checkbox1.Checked:= (game_read_values(i,ord(g_hide))= 0); //是否隐藏，0表示隐藏
            checkbox1.Visible:= (listbox1.ItemIndex > 0); //主角不允许设置隐藏
+            listbox2.Items.BeginUpdate;
            listbox2.Items.Clear;
            listbox2.Items.Append('属性');
            if n='无名' then
@@ -194,6 +195,7 @@ str1:= Tstringlist.Create;
                    zb_yg1: listbox2.Items.Append('腰挂：'+ Data2.get_game_goods_type_a(Tplayer(game_role_list.Items[i]).pl_accouter1[j]));
                   end;
                 end;
+           listbox2.Items.EndUpdate;
             game_show_goods_all; //显示全部物品
             //显示技能和仙术
                str1.Clear;
@@ -311,7 +313,7 @@ end;
 
 procedure TForm_goods.ListBox1Click(Sender: TObject);
 begin
- if listbox1.Tag= 0 then
+// if listbox1.Tag= 0 then
  if listbox1.ItemIndex<> -1 then
      game_zb_Refresh;
 end;
@@ -784,7 +786,7 @@ begin
         if ss<> '' then
          begin
          form1.game_goods_change_n(ss2,-1); //物品减去一
-         ss:= FastAnsiReplace(ss, '$P$', inttostr(listbox1.ItemIndex+ 1), [rfReplaceAll]);
+         ss:= stringReplace(ss, '$P$', inttostr(listbox1.ItemIndex+ 1), [rfReplaceAll]);
          Data2.function_re_string(ss); //对string 关键字的内容进行取值
          self.Close;
          form1.Game_action_exe_S_adv(ss); //执行脚本
@@ -835,15 +837,15 @@ ListBox2.Canvas.FillRect(Rect);
         ListBox2.Canvas.Font.Style:= [fsbold];
         //ListBox1.Canvas.Font.Color:= clgreen;
 
-        ListBox2.Canvas.TextOut(Rect.Left+20, Rect.Top, ListBox2.Items[Index]);
+        ListBox2.Canvas.TextOut(Rect.Left+round(20 * dpi_bilv), Rect.Top, ListBox2.Items[Index]);
         end else begin
                   ListBox2.Canvas.Font.Style:= [];
-                   ListBox2.Canvas.TextOut(Rect.Left+20, Rect.Top+ 3, ListBox2.Items[Index]);
+                   ListBox2.Canvas.TextOut(Rect.Left+round(20 * dpi_bilv), Rect.Top+ round(3 * dpi_bilv), ListBox2.Items[Index]);
                  end;
 
  case index of
    2: begin //性别
-       Draw22(ListBox2.Canvas,rect.left+90,rect.top,18,18,Tplayer(Game_role_list.Items[listbox1.ItemIndex]).plvalues[ord(g_Icon_index)]+ 1);
+       Draw22(ListBox2.Canvas,rect.left+round(90 * dpi_bilv),rect.top,round(18 * dpi_bilv),round(18 * dpi_bilv),Tplayer(Game_role_list.Items[listbox1.ItemIndex]).plvalues[ord(g_Icon_index)]+ 1);
       { if form1.game_sex_from_id(ListBox1.ItemIndex + 1)=1 then
           data2.imagelist1.Draw(ListBox2.Canvas,rect.left+90,rect.top+3,10) //男
           else
@@ -855,30 +857,30 @@ ListBox2.Canvas.FillRect(Rect);
    4: begin  //生命值
        with ListBox2.Canvas do
         begin
-       Pen.Width:= 5;
+       Pen.Width:= round(5 * dpi_bilv);
        Pen.Color:= clred;
-       MoveTo(rect.left+ 250,rect.top+9);
-       LineTo(rect.left+ 330,rect.top+9);
+       MoveTo(rect.left+ round(250 * dpi_bilv),rect.top+round(9 * dpi_bilv));
+       LineTo(rect.left+ round(330 * dpi_bilv),rect.top+round(9 * dpi_bilv));
        Pen.Color:= clgreen;
-       MoveTo(rect.left+ 250,rect.top+9);
-       LineTo(rect.left+ 250 + round(form1.game_get_blood_l(ListBox1.ItemIndex + 1) /
-                        form1.game_get_blood_h(ListBox1.ItemIndex + 1) * 80),rect.top+9);
+       MoveTo(rect.left+ round(250 * dpi_bilv),rect.top+round(9 * dpi_bilv));
+       LineTo(rect.left+ round(250 * dpi_bilv) + round(form1.game_get_blood_l(ListBox1.ItemIndex + 1) /
+                        form1.game_get_blood_h(ListBox1.ItemIndex + 1) * round(80 * dpi_bilv)),rect.top+round(9 * dpi_bilv));
         end;
       end;
    5: begin  //体力值
        with ListBox2.Canvas do
         begin
        Pen.Mode:=pmCopy;
-       Pen.Width:= 5;
+       Pen.Width:= round(5 * dpi_bilv);
        Pen.Color:= clred;
-       MoveTo(rect.left+ 250,rect.top+9);
-       LineTo(rect.left+ 330,rect.top+9);
+       MoveTo(rect.left+ round(250 * dpi_bilv),rect.top+round(9 * dpi_bilv));
+       LineTo(rect.left+ round(330 * dpi_bilv),rect.top+round(9 * dpi_bilv));
        Pen.Color:= clblue;
        if form1.game_get_ti_l(ListBox1.ItemIndex + 1)= 0 then
             exit; //为零，不画
-       MoveTo(rect.left+ 250,rect.top+9);
-       LineTo(rect.left+ 250 + round(form1.game_get_ti_l(ListBox1.ItemIndex + 1) /
-                        form1.game_get_ti_h(ListBox1.ItemIndex + 1) * 80),rect.top+9);
+       MoveTo(rect.left+ round(250 * dpi_bilv),rect.top+round(9 * dpi_bilv));
+       LineTo(rect.left+ round(250 * dpi_bilv) + round(form1.game_get_ti_l(ListBox1.ItemIndex + 1) /
+                        form1.game_get_ti_h(ListBox1.ItemIndex + 1) * round(80 * dpi_bilv)),rect.top+round(9 * dpi_bilv));
         end;
       end;
    6: begin      //灵力值
@@ -888,21 +890,21 @@ ListBox2.Canvas.FillRect(Rect);
        with ListBox2.Canvas do
         begin
        Pen.Mode:=pmCopy;
-       Pen.Width:= 5;
+       Pen.Width:= round(5 * dpi_bilv);
        Pen.Color:= clred;
-       MoveTo(rect.left+ 250,rect.top+9);
-       LineTo(rect.left+ 330,rect.top+9);
+       MoveTo(rect.left+ round(250 * dpi_bilv),rect.top+round(9 * dpi_bilv));
+       LineTo(rect.left+ round(330 * dpi_bilv),rect.top+round(9 * dpi_bilv));
          if form1.game_get_ling_l(ListBox1.ItemIndex + 1)= 0 then
             exit; //为零，不画
 
        Pen.Color:= clpurple;
-       MoveTo(rect.left+ 250,rect.top+9);
-       LineTo(rect.left+ 250 + round(form1.game_get_ling_l(ListBox1.ItemIndex + 1) /
-                        form1.game_get_ling_h(ListBox1.ItemIndex + 1) * 80),rect.top+9);
+       MoveTo(rect.left+ round(250 * dpi_bilv),rect.top+round(9 * dpi_bilv));
+       LineTo(rect.left+ round(250 * dpi_bilv) + round(form1.game_get_ling_l(ListBox1.ItemIndex + 1) /
+                        form1.game_get_ling_h(ListBox1.ItemIndex + 1) * round(80 * dpi_bilv)),rect.top+round(9 * dpi_bilv));
         end;
       end;
    14: begin  //金钱
-       data2.imagelist1.Draw(ListBox2.Canvas,rect.left+1,rect.top,5);
+       data2.imagelist1.Draw(ListBox2.Canvas,rect.left+round(1 * dpi_bilv),rect.top,round(5 * dpi_bilv));
       end;
    end;
 end;
@@ -910,7 +912,7 @@ end;
 procedure TForm_goods.ListBox2MeasureItem(Control: TWinControl;
   Index: Integer; var Height: Integer);
 begin
-  Height:= 19
+  Height:= round(19 * dpi_bilv);
 end;
 
 procedure TForm_goods.ListBox7DblClick(Sender: TObject);
@@ -997,8 +999,8 @@ procedure TForm_goods.ListBox3DrawItem(Control: TWinControl;
 begin
   Tlistbox(control).Canvas.FillRect(Rect);
 
-  Tlistbox(control).Canvas.TextOut(Rect.Left+20, Rect.Top+ 3, Tlistbox(control).Items[Index]);
-  data2.ImageList_sml.Draw(Tlistbox(control).Canvas,rect.left+2,rect.top+3,
+  Tlistbox(control).Canvas.TextOut(Rect.Left+round(20 * dpi_bilv), Rect.Top+ round(3 * dpi_bilv), Tlistbox(control).Items[Index]);
+  data2.ImageList_sml.Draw(Tlistbox(control).Canvas,rect.left+round(2 * dpi_bilv),rect.top+round(3 * dpi_bilv),
                         Game_goods_Index_G[form_goods.get_goods_id(Tlistbox(control).Items[Index])]);
 
 end;
@@ -1006,7 +1008,7 @@ end;
 procedure TForm_goods.ListBox3MeasureItem(Control: TWinControl;
   Index: Integer; var Height: Integer);
 begin
-   Height:= 21;
+   Height:= round(21 * dpi_bilv);
 end;
 
 procedure TForm_goods.ListBox3MouseMove(Sender: TObject;
@@ -1016,7 +1018,7 @@ begin
 
 
         if TListBox(Sender).Tag > -1 then
-         if TListBox(Sender).Canvas.TextWidth(TListBox(Sender).Items[TListBox(Sender).Tag]) > TListBox(Sender).ClientWidth-18 then
+         if TListBox(Sender).Canvas.TextWidth(TListBox(Sender).Items[TListBox(Sender).Tag]) > TListBox(Sender).ClientWidth-round(18 * dpi_bilv) then
           begin
           TListBox(Sender).Hint:= TListBox(Sender).Items[TListBox(Sender).tag];
           TListBox(Sender).ShowHint:= true;
@@ -1032,15 +1034,15 @@ procedure TForm_goods.ListBox1DrawItem(Control: TWinControl;
 begin
   Tlistbox(control).Canvas.FillRect(Rect);
    Tlistbox(control).Canvas.CopyMode:=cmSrcCopy;
-  Tlistbox(control).Canvas.TextOut(Rect.Left+26, Rect.Top+ 1, Tlistbox(control).Items[Index]);
-  draw22(Tlistbox(control).Canvas,Rect.Left,Rect.Top+ 1,24,24,game_read_values(Index,ord(g_Icon_index))+ 1);
+  Tlistbox(control).Canvas.TextOut(Rect.Left+round(26 * dpi_bilv), Rect.Top+ 1, Tlistbox(control).Items[Index]);
+  draw22(Tlistbox(control).Canvas,Rect.Left,Rect.Top+ round(1 * dpi_bilv),round(24 * dpi_bilv),round(24 * dpi_bilv),game_read_values(Index,ord(g_Icon_index))+ 1);
 
 end;
 
 procedure TForm_goods.ListBox1MeasureItem(Control: TWinControl;
   Index: Integer; var Height: Integer);
 begin
-  Height:= 26;
+  Height:= round(26 * dpi_bilv);;
 end;
 
 procedure TForm_goods.draw22(Canvas: TCanvas; X, Y,w,h, i: Integer); //画一个缩小的图
@@ -1053,21 +1055,21 @@ begin
    r.Bottom:= y+ h;
    r2.Left:= 0;
    r2.Top:= 0;
-   r2.Right:= 48;
-   r2.Bottom:= 48;
+   r2.Right:= round(48 * dpi_bilv);;
+   r2.Bottom:= round(48 * dpi_bilv);;
       if FMonoBitmap = nil then
       begin
         FMonoBitmap := TBitmap.Create;
         with FMonoBitmap do
         begin
           Canvas.CopyMode:=cmSrcCopy;
-          Width := 48;
-          Height := 48;
+          Width := round(48 * dpi_bilv);;
+          Height := round(48 * dpi_bilv);;
         end;
       end;
       { Store masked version of image temporarily in FBitmap }
       FMonoBitmap.Canvas.Brush.Color := clWhite;
-      FMonoBitmap.Canvas.FillRect(Rect(0, 0, 48, 48));
+      FMonoBitmap.Canvas.FillRect(Rect(0, 0, round(48 * dpi_bilv), round(48 * dpi_bilv)));
       data2.ImageList2.Draw(FMonoBitmap.Canvas,0,0,i);
       Canvas.CopyRect(r,FMonoBitmap.Canvas,r2);
 
